@@ -1,13 +1,11 @@
-# Foster-Pals
+# Flux-capacitr
 
 [Heroku link][heroku]
 
-[heroku]: http://foster-pals.herokuapp.com
+[heroku]: http://flux-capacitr.herokuapp.com
 
 ## Minimum Viable Product
-FosterPals is an app inspired by AirBnb. FosterPals aims to bring together those who tirelessly rescue animals from kill shelters and those who have space in their homes to temporarily care for a rescue animal until it finds a forever home.
-
-  Users can:
+Flux-capacitr is a clone of Tumblr built on Rails and Backbone. Users can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
@@ -90,3 +88,4 @@ collections, but they will fetch from the new `search` routes.
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
+
