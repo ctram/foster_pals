@@ -11,16 +11,16 @@ FosterPals is an app inspired by AirBnb. FosterPals aims to bring together those
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [x] Create accounts
-- [x] Create sessions (log in)
-- [x] Create blogs
-- [x] Create blog posts
-- [ ] View blogs and posts
-- [ ] Subscribe to blogs
-- [ ] View a feed of subscribed blogs
-- [ ] Tag blog posts
-- [ ] Search for blogs by title
-- [ ] Search for posts by tag
+- [ ] Create accounts
+- [ ] Create sessions (log in)
+- [ ] Two kinds of users: fosters and rescuers
+- [ ] Fosters create profiles with info on their homes
+- [ ] Rescue organizations create profiles with info on their org
+- [ ] Rescuer organizations can compile a list of rescue animals in their care.
+- [ ] Rescuers can submit a Foster a request for the Foster to house an animal for a period of time.
+- [ ] Fosters can choose whether or not to accept a stay request from a Rescue Organization.
+- [ ] Fosters can keep track of confirmed and pending stays.
+- [ ] Rescue Organizations can keep track of confirmed and pending stays.
 
 ## Design Docs
 * [View Wireframes][views]
@@ -31,59 +31,50 @@ FosterPals is an app inspired by AirBnb. FosterPals aims to bring together those
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Blog Creation (~1 day)
+### Phase 1: Welcome Page (~1 day)
+
+This phase will include an "About" page to pique interest for the app.
+
+
+### Phase 2: User Authentication (~1 day)
+
+
 I will implement user authentication in Rails based on the practices learned at
-App Academy. By the end of this phase, users will be able to create blogs using
-a simple text form in a Rails view. The most important part of this phase will
+App Academy. By the end of this phase, users will be able to sign up and sign in. The most important part of this phase will
 be pushing the app to Heroku and ensuring that everything works before moving on
 to phase 2.
 
 [Details][phase-one]
 
-### Phase 2: Viewing Blogs and Posts (~2 days)
-I will add API routes to serve blog and post data as JSON, then add Backbone
-models and collections that fetch data from those routes. By the end of this
-phase, users will be able to create blogs and view both blogs and posts, all
-inside a single Backbone app.
+### Phase 3: Users' Profile Page w/ Basic Info (~1 day)
 
-[Details][phase-two]
+In this phase users, will have a profile page. They will be directed to this page upon sign-in/sign-up. There are two types of users: the Rescue Organization and the Foster. The Rescue Organization rescues animals from shelters and needs temporary homes for these animals. The Foster opens his home up to an animal in need. Each type of users' profile pages will be similar regarding basic info.
 
-### Phase 3: Editing and Displaying Posts (~2 days)
-I plan to use third-party libraries to add functionality to the `PostForm` and
-`PostShow` views in this phase. First I'll need to add a Markdown editor to the
-`PostForm`, and make sure that the Markdown is properly escaped and formatted in
-the `PostShow` view. I also plan to integrate Filepicker for file upload so
-users can add images to blog posts.
+### Phase 4: Organization User's List of Rescue Animals (~1 day)
 
-[Details][phase-three]
+In this phase, the orgnization can add animals to a roster. Animals on this roster can begin the process of finding a foster home to stay at.
 
-### Phase 4: User Feeds (~1-2 days)
-I'll start by adding a `feed` route that uses the `current_user`'s
-`subscribed_blogs` association to serve a list of blog posts ordered
-chronologically. On the Backbone side, I'll make a `FeedShow` view whose `posts`
-collection fetches from the new route.  Ultimately, this will be the page users
-see after logging in.
+### Phase 5: Organization User's Stay Request Page (~1 day)
 
-[Details][phase-four]
+In this phase, the Organization User chooses a foster and submits a request for an animal to stay at the Foster's home for a given set of dates.
 
-### Phase 5: Searching for Blogs and Posts (~2 days)
-I'll need to add `search` routes to both the Blogs and Posts controllers. On the
-Backbone side, there will be a `SearchResults` composite view has `BlogsIndex`
-and `PostsIndex` subviews. These views will use plain old `blogs` and `posts`
-collections, but they will fetch from the new `search` routes.
+### Phase 6: Foster User's Schedule Manager Page (~2 day)
 
-[Details][phase-five]
+In this phase, the Foster can review a list of pending requests for rescue animals to stay at his home. The Foster can approve or deny requests.
+
+### Phase 7: Search engine for finding Foster's by location (~2 day)
+
+This phase create a search feature for Rescue Organizations to find nearby Fosters for their rescue animals. Upon entering a location, the search engine will display a list of Fosters within a certain distance.
+
 
 ### Bonus Features (TBD)
-- [ ] "Like" button and counter for posts
-- [ ] Custom blog urls
-- [ ] Pagination/infinite scroll
-- [ ] Activity history (e.g. likes, reblogs, taggings)
-- [ ] Post types (image posts, quote posts, etc)
-- [ ] Reblogging
-- [ ] Multiple sessions/session management
-- [ ] User avatars
-- [ ] Typeahead search bar
+- [ ] Image gallery on profile pages
+- [ ] Ability for users to make posts on their profile pages
+- [ ] Ability for users to posts comments on other users profile pages
+- [ ] Ability for users to send private messages to each other.
+- [ ] Password recovery by email.
+- [ ] Rescuers can generate list of animals in need of a foster home.
+- [ ] Fosters can submit a request to foster a specific animal from a specific org
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md

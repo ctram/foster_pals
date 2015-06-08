@@ -1,29 +1,31 @@
-# Phase 2: Viewing Blogs and Posts
+# Phase 2: User Authentication
 
 ## Rails
 ### Models
+- User (Both Rescuer and Organiation)
+- Organization
+
 
 ### Controllers
-Api::BlogsController (create, destroy, index, show)
-Api::PostsController (create, destroy, show, update)
+Session (create, destroy, new)
+Api::UsersController (create, destroy, show, update)
+Api::OrganizationController (create, destroy, show, update)
 
 ### Views
-* blogs/show.json.jbuilder
+* Users/show.json.jbuilder
+* Organizations/show.json.jbuilder
 
 ## Backbone
 ### Models
-* Blog (parses nested `posts` association)
-* Post
+- User
+- Organization
 
 ### Collections
-* Blogs
-* Posts
+* Users
+* Organizations
 
 ### Views
-* BlogForm
-* BlogShow (composite view, contains PostsIndex subview)
-* PostsIndex (composite view, contains PostsIndexItem subviews)
-* PostsIndexItem
-* PostShow
+- UserFrom (Organization shares the same form)
+- ProfileShow
 
 ## Gems/Libraries

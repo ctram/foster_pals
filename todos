@@ -1,0 +1,68 @@
+// todo
+Foster Pals
+  Features:
+    Email verification upon sign up
+    Password reset via email
+    Users can sign up and sign in
+      Two types of users: fosters and savers
+    Fosters can post a profile of their home and info
+    Savers can post multiple listings of animals in need of a foster home.
+    Users can send messages to each other.
+    Users can post comments on each other's pages
+    Foster's profile page has an image gallery of foster home.
+    Animal listings have image gallery of animal.
+
+  Models:
+    users (fosters and savers)
+      password_digest
+      session_token
+      first_name
+      last_name
+      info
+      role
+      street_address
+      city
+      state
+      zip code
+      types_of_animals_at_home
+      num_native_animals_at_home
+      num_animals_willing_to_foster
+    organization
+      leader_id
+      types_of_animals_saved
+      num_animals_at_org
+      info
+      street_address
+      city
+      state
+      zip code
+    animals
+      org_id
+      foster_id
+      name
+      species
+      sex
+      weight
+      breed
+      color
+    posts (orgs and users make these on their home page) polymorphic association
+      author_id
+      title
+      content
+    comments (users and orgs make these on other users' home pages) polymorphic association
+      author_id
+      recipient_id
+      title
+      content
+    messages (private messages between users and orgs) polymorphic association
+      author_id
+      recipient_id
+      title
+      content
+    stays
+      animal_id
+      foster_id
+      organzation_id
+      check_in_date
+      check_out_date
+      confimed
