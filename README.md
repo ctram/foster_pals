@@ -35,6 +35,7 @@ FosterPals is an app inspired by AirBnb. FosterPals aims to bring together those
 
 This phase will include an "About" page to pique interest for the app.
 
+[Details][phase-one]
 
 ### Phase 2: User Authentication (~1 day)
 
@@ -44,27 +45,37 @@ App Academy. By the end of this phase, users will be able to sign up and sign in
 be pushing the app to Heroku and ensuring that everything works before moving on
 to phase 2.
 
-[Details][phase-one]
+[Details][phase-two]
 
 ### Phase 3: Users' Profile Page w/ Basic Info (~1 day)
 
 In this phase users, will have a profile page. They will be directed to this page upon sign-in/sign-up. There are two types of users: the Rescue Organization and the Foster. The Rescue Organization rescues animals from shelters and needs temporary homes for these animals. The Foster opens his home up to an animal in need. Each type of users' profile pages will be similar regarding basic info.
 
+[Details][phase-three]
+
 ### Phase 4: Organization User's List of Rescue Animals (~1 day)
 
 In this phase, the orgnization can add animals to a roster. Animals on this roster can begin the process of finding a foster home to stay at.
+
+[Details][phase-four]
 
 ### Phase 5: Organization User's Stay Request Page (~1 day)
 
 In this phase, the Organization User chooses a foster and submits a request for an animal to stay at the Foster's home for a given set of dates.
 
+[Details][phase-five]
+
 ### Phase 6: Foster User's Schedule Manager Page (~2 day)
 
 In this phase, the Foster can review a list of pending requests for rescue animals to stay at his home. The Foster can approve or deny requests.
 
+[Details][phase-six]
+
 ### Phase 7: Search engine for finding Foster's by location (~2 day)
 
 This phase create a search feature for Rescue Organizations to find nearby Fosters for their rescue animals. Upon entering a location, the search engine will display a list of Fosters within a certain distance.
+
+[Details][phase-seven]
 
 
 ### Bonus Features (TBD)
@@ -81,3 +92,5 @@ This phase create a search feature for Rescue Organizations to find nearby Foste
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
+[phase-six]: ./docs/phases/phase6.md
+[phase-seven]: ./docs/phases/phase7.md
