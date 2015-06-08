@@ -16,7 +16,26 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
-  has_many :messages, as: :messageable
+  has_many(
+    :messages,
+    class_name: 'Message',
+    foreign_key: :author_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :posts,
+    class_name: 'Message',
+    foreign_key: :author_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :comments,
+    class_name: 'Message',
+    foreign_key: :author_id,
+    primary_key: :id
+  )
 
 
 end
