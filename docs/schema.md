@@ -31,7 +31,7 @@ weight | integer
 breed | string
 color | string
 
-## messages (polymorphic: message, post, comment)
+## messages
 column name | data type
 ------------|-----------
 messageable_type | string
