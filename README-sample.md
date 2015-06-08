@@ -29,7 +29,11 @@ Flux-capacitr is a clone of Tumblr built on Rails and Backbone. Users can:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Blog Creation (~1 day)
+### Phase 1: Welcome Page (~1 day)
+
+This phase will include an "About" page to pique interest for the app.
+
+### Phase 2: User Authentication, Blog Creation (~1 day)
 I will implement user authentication in Rails based on the practices learned at
 App Academy. By the end of this phase, users will be able to create blogs using
 a simple text form in a Rails view. The most important part of this phase will
@@ -38,7 +42,7 @@ to phase 2.
 
 [Details][phase-one]
 
-### Phase 2: Viewing Blogs and Posts (~2 days)
+### Phase 3: Viewing Blogs and Posts (~2 days)
 I will add API routes to serve blog and post data as JSON, then add Backbone
 models and collections that fetch data from those routes. By the end of this
 phase, users will be able to create blogs and view both blogs and posts, all
@@ -46,7 +50,7 @@ inside a single Backbone app.
 
 [Details][phase-two]
 
-### Phase 3: Editing and Displaying Posts (~2 days)
+### Phase 4: Editing and Displaying Posts (~2 days)
 I plan to use third-party libraries to add functionality to the `PostForm` and
 `PostShow` views in this phase. First I'll need to add a Markdown editor to the
 `PostForm`, and make sure that the Markdown is properly escaped and formatted in
@@ -55,7 +59,7 @@ users can add images to blog posts.
 
 [Details][phase-three]
 
-### Phase 4: User Feeds (~1-2 days)
+### Phase 5: User Feeds (~1-2 days)
 I'll start by adding a `feed` route that uses the `current_user`'s
 `subscribed_blogs` association to serve a list of blog posts ordered
 chronologically. On the Backbone side, I'll make a `FeedShow` view whose `posts`
@@ -64,7 +68,7 @@ see after logging in.
 
 [Details][phase-four]
 
-### Phase 5: Searching for Blogs and Posts (~2 days)
+### Phase 6: Searching for Blogs and Posts (~2 days)
 I'll need to add `search` routes to both the Blogs and Posts controllers. On the
 Backbone side, there will be a `SearchResults` composite view has `BlogsIndex`
 and `PostsIndex` subviews. These views will use plain old `blogs` and `posts`
@@ -88,4 +92,3 @@ collections, but they will fetch from the new `search` routes.
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
-

@@ -1,4 +1,4 @@
-# Phase 5: Organization User's Stay Request Page
+# Phase 6: Foster User's Schedule Manager Page
 
 ## Rails
 ### Models
@@ -21,8 +21,9 @@ Api::AnimalsController (show)
 
 ### Collections
 - Animals
+- Organizations
 
 ### Views
-- OrganizationScheduleView
+- FosterScheduleView
 
 ## Gems/Libraries
