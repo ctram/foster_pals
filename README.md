@@ -26,7 +26,7 @@ FosterPals is an app inspired by AirBnb. FosterPals aims to bring together those
 * [View Wireframes][views]
 * [DB schema][schema]
 
-[views]: ./docs/foster-pals-mocks
+[views]: ./docs/wireframes
 [schema]: ./docs/schema.md
 
 ## Implementation Timeline

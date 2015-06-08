@@ -1,45 +1,51 @@
 # Schema Information
 
-## blogs
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-owner_id    | integer   | not null, foreign key (references users)
-title       | string    | not null
-
-## followings
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-blog_id     | integer   | not null, foreign key (references blogs)
-follower_id | integer   | not null, foreign key (references users)
-
-## posts
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users)
-title       | string    | not null
-body        | string    |
-
-## tags
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-label       | string    | not null, unique
-
-## taggings
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-post_id     | integer   | not null, foreign key (references posts)
-tag_id      | integer   | not null, foreign key (references tags)
-
 ## users
-column name     | data type | details
-----------------|-----------|-----------------------
-id              | integer   | not null, primary key
-email           | string    | not null, unique
-password_digest | string    | not null
-session_token   | string    | not null, unique
+column name | data type
+------------|-----------|-----------------------
+password_digest | string
+session_token| string  
+role| string  
+first_name| string  
+last_name| string  
+email| string  
+types_of_animals_at_location| string  
+num_native_animals_at_location| integer  
+num_animals_willing_to_foster| integer  
+street_address| string  
+city| string  
+state| string  
+zip code| string  
 
+
+
+## animals
+column name | data type
+------------|-----------
+org_id | integer
+foster_id | integer
+name | string
+species | string
+sex | string
+weight | integer
+breed | string
+color | string
+
+## messages (polymorphic: message, post, comment)
+column name | data type
+------------|-----------
+messageable_type | string
+author_id | integer
+recipient_id | integer
+title | string
+content | text
+
+## stays
+column name | data type
+------------|-----------
+animal_id | integer
+foster_id | integer
+organzation_id | integer
+check_in_date | date
+check_out_date | date
+status | string
