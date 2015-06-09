@@ -1,11 +1,13 @@
 class FosterersController < ApplicationController
   def new
     @fosterer = Fosterer.new
+    @x = 1
   end
 
   def create
     @fosterer = Fosterer.create(fosterer_params)
     if @fosterer.save
+      sign_in(@fosterer)
       redirect_to 'home'
     else
       flash[:errors] = @fosterer.errors.full_messages
