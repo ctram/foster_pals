@@ -14,6 +14,8 @@ window.FosterPals = {
   }
 };
 
-$(document).ready(function(){
-  FosterPals.initialize();
-});
+if (window.location.pathname !== '/') {
+  $(document).ready(function(){
+    FosterPals.initialize();
+  });
+}
