@@ -7,6 +7,10 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     '' : 'home'
   },
 
+  root: function () {
+
+  },
+
   _swapView: function (view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;

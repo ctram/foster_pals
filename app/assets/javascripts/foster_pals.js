@@ -10,7 +10,7 @@ window.FosterPals = {
     var navbarView = new FosterPals.Views.Navbar({
       router: router
     });
-    $('.navbar').html(navbarView.render().$el);
+    $('.navbar-wrapper').html(navbarView.render().$el);
   }
 };
 

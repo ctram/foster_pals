@@ -1,6 +1,8 @@
 FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   template: JST['navbar/navbar'],
 
+  tagName: '.container',
+
   initialize: function (options) {
     this.router = options.router;
 
