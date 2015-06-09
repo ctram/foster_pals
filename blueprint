@@ -20,8 +20,6 @@ Foster Pals
       first_name
       last_name
       email
-      types_of_animals_at_location
-      num_native_animals_at_location
       num_animals_willing_to_foster
       street_address
       city
@@ -29,7 +27,7 @@ Foster Pals
       zip code
     animals
       org_id
-      foster_id
+      fosterer_id
       name
       species
       sex
@@ -52,7 +50,7 @@ Foster Pals
       content
     stays
       animal_id
-      foster_id
+      fosterer_id
       organzation_id
       check_in_date
       check_out_date
