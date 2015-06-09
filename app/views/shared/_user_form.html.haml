@@ -1,21 +1,71 @@
+
+
 .form-horizontal.well
-  %form{action: session_url, method: 'POST'}
+  %form{action: "#{action_url}", method: 'POST' }
     %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
 
     %field-set.form-group
       %label
 
         <div class="input-group form-group">
-        %input{type:"text", class:"form-control", placeholder:"Email",name: "user[email]"}
+        %input{type:"email", class:"form-control", placeholder:"Email",name: "#{user_type}[email]"}
         </div>
 
-      %br
-      %br
       %br
 
       %label
 
         <div class="input-group form-group">
-        %input{type:"text", class:"form-control", placeholder:"Password",name: "user[passord]"}
+        %input{type:"password", class:"form-control", placeholder:"Password",name: "#{user_type}[password]"}
         </div>
+
+      %br
+
+      %label
+
+        <div class="input-group form-group">
+        %input{type:"text", class:"form-control", placeholder:"First Name",name: "#{user_type}[first_name]"}
+        </div>
+
+      %br
+
+      %label
+
+        <div class="input-group form-group">
+        %input{type:"text", class:"form-control", placeholder:"Last Name",name: "#{user_type}[last_name]"}
+        </div>
+
+      %label
+
+      %br
+
+        <div class="input-group form-group">
+        %input{type:"number", class:"form-control", placeholder:"Maximum animals to foster",name: "#{user_type}[num_animals_willing_to_foster]", min:1, max:99}
+        </div>
+
+      %label
+
+      %br
+
+        <div class="input-group form-group">
+        %input{type:"text", class:"form-control", placeholder:"Street Address",name: "#{user_type}[street_address]"}
+        </div>
+
+      %label
+
+      %br
+
+        <div class="input-group form-group">
+        %input{type:"text", class:"form-control", placeholder:"City",name: "#{user_type}[city]"}
+        </div>
+
+      %label
+
+      %br
+
+        <div class="input-group form-group">
+        %input{type:"text", class:"form-control", placeholder:"Zipcode",name: "#{user_type}[zip_code]"}
+        </div>
+
+
       %input.form-group{type: 'submit', class:'btn btn-primary'}
