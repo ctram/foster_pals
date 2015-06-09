@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  get '/', to: 'static_pages#root'
+  get '/', to: 'static_pages#front'
 end
