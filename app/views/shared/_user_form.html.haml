@@ -1,0 +1,21 @@
+.form-horizontal.well
+  %form{action: session_url, method: 'POST'}
+    %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
+
+    %field-set.form-group
+      %label
+
+        <div class="input-group form-group">
+        %input{type:"text", class:"form-control", placeholder:"Email",name: "user[email]"}
+        </div>
+
+      %br
+      %br
+      %br
+
+      %label
+
+        <div class="input-group form-group">
+        %input{type:"text", class:"form-control", placeholder:"Password",name: "user[passord]"}
+        </div>
+      %input.form-group{type: 'submit', class:'btn btn-primary'}
