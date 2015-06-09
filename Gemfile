@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'bootstrap-sass'
 gem 'backbone-on-rails'
+gem 'haml'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
