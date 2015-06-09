@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#myCarousel {
+  min-height: 500px;
+
+  .carousel-inner {
+
+    height: 500px;
+
+    .item {
+      height: inherit;
+    }
+
+  }
+
+
+}

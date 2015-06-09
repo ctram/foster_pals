@@ -2,18 +2,16 @@
 
 ## Rails
 ### Models
-- User (Both Rescuer and Organiation)
-- Organization
+- User (Both Fosterer and Organization)
 
 
 ### Controllers
 Session (create, destroy, new)
-Api::UsersController (create, destroy, show, update)
+Api::FosterersController (create, destroy, show, update)
 Api::OrganizationController (create, destroy, show, update)
 
 ### Views
 * Users/show.json.jbuilder
-* Organizations/show.json.jbuilder
 
 ## Backbone
 ### Models

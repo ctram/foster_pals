@@ -7,7 +7,7 @@
 - Organization
 
 ### Controllers
-Api::FostersController (show)
+Api::FosterersController (show)
 Api::OrganizationsController (show)
 Api::AnimalsController (show)
 
@@ -15,7 +15,7 @@ Api::AnimalsController (show)
 
 ## Backbone
 ### Models
-- Foster
+- Fosterer
 - Organization
 - Animal
 

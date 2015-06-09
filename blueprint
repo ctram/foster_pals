@@ -16,11 +16,21 @@ Foster Pals
     users
       password_digest
       session_token
-      role
       first_name
       last_name
       email
       num_animals_willing_to_foster
+      street_address
+      city
+      state
+      zip code
+    organizations
+      password_digest
+      session_token
+      name
+      leader_first_name
+      leader_last_name
+      email
       street_address
       city
       state
