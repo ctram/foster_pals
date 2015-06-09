@@ -1,1 +1,21 @@
-= render partial: "shared/user_form"
+
+.form-horizontal.well
+  %form{action: "#{action_url}", method: 'POST' }
+    %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
+
+    %field-set.form-group
+      %label
+
+        <div class="input-group form-group">
+        %input{type:"email", class:"form-control", placeholder:"Email",name: "user[email]"}
+        </div>
+
+      %br
+
+      %label
+
+        <div class="input-group form-group">
+        %input{type:"password", class:"form-control", placeholder:"Password",name: "user[password]"}
+        </div>
+
+      %br
