@@ -191,7 +191,6 @@
   $fostererRadioBtn.on('click', function (event) {
     if ($fostererRadioDiv.hasClass('invisible')) {
       $('#num-animals').removeClass('invisible');
-      $form.attr('action', "#{fosterers_url}");
 
       $fostererRadioBtn.prop('checked', true);
       $orgRadioBtn.prop('checked', false);
