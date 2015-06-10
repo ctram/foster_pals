@@ -1,6 +1,8 @@
+%h1
+  Sign In!
 
 .form-horizontal.well
-  %form{action: "#{action_url}", method: 'POST' }
+  %form{action: "#{session_url}", method: 'POST' }
     %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
 
     %field-set.form-group
@@ -19,3 +21,6 @@
         </div>
 
       %br
+
+      %button{class:'btn btn-primary'}
+        Sign In!

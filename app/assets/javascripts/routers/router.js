@@ -10,10 +10,9 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   show: function () {
-
     var showView = new FosterPals.Views.Show({
-
     });
+
   },
 
   _swapView: function (view) {

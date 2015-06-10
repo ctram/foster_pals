@@ -20,6 +20,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def find_by_credentials(email, password)
+    user_fosterer = Fosterer.find_by_email(email)
+    user_organization = Organization.find_by_email(email)
+
+    byebug
+    if !user_fosterer.nil? and
+      user_fosterer.valid_password?(password)
+      user_fosterer
+    elsif !user_organization.nil? and
+      user_organization.valid_password?(password)
+      user_organization
+    else
+      nil
+    end
+  end
+
   def signed_in?
     !!current_user
   end
@@ -33,6 +49,7 @@ class ApplicationController < ActionController::Base
     current_user.try(:reset_token!)
     session[:session_token] = nil
     @current_user = nil
+    redirect_to new_session_url
   end
 
   def require_signed_in!

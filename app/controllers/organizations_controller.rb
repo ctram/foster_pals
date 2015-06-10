@@ -8,7 +8,9 @@ class OrganizationsController < ApplicationController
     @organization = Organization.create(organization_params)
     if @organization.save
       sign_in(@organization)
-      redirect_to home_url
+      id = @organization.id
+      redirect_to "organizations/#{id}"
+      # redirect_to home_url
     else
       flash.now[:errors] = @organization.errors.full_messages
       render 'static_pages/register'
