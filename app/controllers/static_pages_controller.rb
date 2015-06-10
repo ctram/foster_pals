@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   def front
   end
 
-  def root
+  def home
   end
 
   def process_registration

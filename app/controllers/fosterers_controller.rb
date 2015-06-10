@@ -7,10 +7,10 @@ class FosterersController < ApplicationController
     @fosterer = Fosterer.create(fosterer_params)
     if @fosterer.save
       sign_in(@fosterer)
-      redirect_to 'home'
+      redirect_to home_url
     else
-      flash[:errors] = @fosterer.errors.full_messages
-      render :new
+      flash.now[:errors] = @fosterer.errors.full_messages
+      render 'static_pages/register'
     end
   end
 

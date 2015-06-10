@@ -4,13 +4,14 @@ class OrganizationsController < ApplicationController
   end
 
   def create
+    debugger
     @organization = Organization.create(organization_params)
     if @organization.save
       sign_in(@organization)
-      redirect_to 'home'
+      redirect_to home_url
     else
-      flash[:errors] = @organization.errors.full_messages
-      render :new
+      flash.now[:errors] = @organization.errors.full_messages
+      render 'static_pages/register'
     end
   end
 
@@ -39,7 +40,8 @@ class OrganizationsController < ApplicationController
       :street_address,
       :city,
       :state,
-      :zip_code
+      :zip_code,
+      :name
     )
   end
 
