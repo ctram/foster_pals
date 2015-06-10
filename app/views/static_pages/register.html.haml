@@ -11,13 +11,13 @@
     %field-set.form-group
 
       <div class="input-group form-group">
-      <input type='radio' class='form-control' name='organization[role]' value='orgranization' id='org-radio-btn' checked>
+      <input type='radio' class='form-control' value='orgranization' id='org-radio-btn' checked>
       Rescue Organization
       </input>
       </div>
 
       <div class="input-group form-group" >
-      <input type='radio' class='form-control' name='organization[role]' value='fosterer' id='fosterer-radio-btn'>
+      <input type='radio' class='form-control' value='fosterer' id='fosterer-radio-btn'>
       Fosterer
       </input>
       </div>
@@ -169,7 +169,6 @@
 -# TODO: add transitions to registration page
 
 :javascript
-  var fostererRadioBtnSelected = false;
   var $form = $('form');
   var $orgBtn = $('#org-radio-btn');
   var $fostererRadioBtn = $('#fosterer-radio-btn');
@@ -194,7 +193,6 @@
       $('#num-animals').removeClass('invisible');
       $form.attr('action', "#{fosterers_url}");
 
-      $fostererRadioBtn.attr('name', 'fosterer[role]')
       $fostererRadioBtn.prop('checked', true);
       $orgRadioBtn.prop('checked', false);
       $orgName.addClass('invisible');
@@ -221,7 +219,6 @@
       $('#num-animals').addClass('invisible');
       $form.attr('action', "#{organizations_url}")
 
-      $orgRadioBtn.attr('name', 'organization[role]')
       $orgRadioBtn.prop('checked', true);
       $fostererRadioBtn.prop('checked', false);
       $orgName.removeClass('invisible');

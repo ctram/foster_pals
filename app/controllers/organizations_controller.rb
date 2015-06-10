@@ -34,6 +34,7 @@ class OrganizationsController < ApplicationController
 
   def organization_params
     params.require(:organization).permit(
+      :password,
       :leader_first_name,
       :leader_last_name,
       :email,
