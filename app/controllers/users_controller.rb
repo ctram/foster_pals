@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :redirect_to_front_if_not_signed_in, except: [:new, :create]
+
   def new
     @user = User.new
   end

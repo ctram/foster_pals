@@ -6,9 +6,6 @@
 
 #content
 
-:javascript
-  window.CURRENT_USER = "#{current_user}"
-  window.CURRENT_USER_ID = "#{current_user.id}"
 
 -#
   TODO: working on home show view - add subviews for the profile and info box.
@@ -18,3 +15,7 @@
   $(document).ready(function(){
     FosterPals.initialize();
   });
+
+-#
+  window.CURRENT_USER = "#{current_user}"
+  window.CURRENT_USER_ID = "#{current_user.id}"
