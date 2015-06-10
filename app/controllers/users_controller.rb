@@ -11,11 +11,11 @@ class UsersController < ApplicationController
     if @user.save
       sign_in(@user)
       id = @user.id
-      redirect_to "/home/#users/#{id}"
+      redirect_to "/"
       # redirect_to home_url
     else
       flash.now[:errors] = @user.errors.full_messages
-      render 'static_pages/register'
+      render :new
     end
   end
 
