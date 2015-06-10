@@ -1,0 +1,241 @@
+= render partial: 'shared/flashes'
+
+%h1
+  Register
+
+
+.form-horizontal.well
+  %form{action: "#{users_url}", method: 'POST' }
+    %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
+
+    %field-set.form-group
+
+      <div class="input-group form-group">
+      <input type='radio' class='form-control' name='user[role]' value='org' id='org-radio-btn' checked>
+      Rescue Organization
+      </input>
+      </div>
+
+      <div class="input-group form-group" >
+      <input type='radio' class='form-control' name='user[role]' value='fosterer' id='fosterer-radio-btn'>
+      Fosterer
+      </input>
+      </div>
+
+      <div class="input-group form-group invisible" id="num-animals">
+      %input{type:"number", class:"form-control", placeholder:"Maximum animals to foster",name: "user[num_animals_willing_to_foster]", min:1, max:99, id:'num-animals-input', value: 1}
+      </div>
+
+      <div class="input-group form-group" id="org-name">
+      %input{type:"text", class:"form-control", placeholder:"Organization Name",name: "user[org_name]", id:'org-name-input'}
+      </div>
+
+      <div class="input-group form-group">
+      %input{type:"email", class:"form-control", placeholder:"Email",name: "user[email]", id:'email-input'}
+      </div>
+
+
+      <div class="input-group form-group">
+      %input{type:"password", class:"form-control", placeholder:"Password",name: "user[password]", id: 'password-input'}
+      </div>
+
+      <div class="input-group form-group">
+      %input{type:"text", class:"form-control", placeholder:"Leader's First Name",name: "user[first_name]", id: 'first-name-input'}
+      </div>
+
+      <div class="input-group form-group">
+      %input{type:"text", class:"form-control", placeholder:"Leader's Last Name",name: "user[last_name]", id: 'last-name-input'}
+      </div>
+
+      <div class="input-group form-group">
+      %input{type:"text", class:"form-control", placeholder:"Street Address",name: "user[street_address]", id: 'street-address-input'}
+      </div>
+
+      <div class="input-group form-group">
+      %input{type:"text", class:"form-control", placeholder:"City",name: "user[city]", id: 'city-input'}
+      </div>
+
+      %select{class:'input-group form-group', name:"user[state]"}
+        %option{ value:"AL", checked: true}
+          Alabama
+        %option{ value:"AK"}
+          Alaska
+        %option{ value:"AZ"}
+          Arizona
+        %option{ value:"AR"}
+          Arkansas
+        %option{ value:"CA"}
+          California
+        %option{ value:"CO"}
+          Colorado
+        %option{ value:"CT"}
+          Connecticut
+        %option{ value:"DE"}
+          Delaware
+        %option{ value:"DC"}
+          District Of Columbia
+        %option{ value:"FL"}
+          Florida
+        %option{ value:"GA"}
+          Georgia
+        %option{ value:"HI"}
+          Hawaii
+        %option{ value:"ID"}
+          Idaho
+        %option{ value:"IL"}
+          Illinois
+        %option{ value:"IN"}
+          Indiana
+        %option{ value:"IA"}
+          Iowa
+        %option{ value:"KS"}
+          Kansas
+        %option{ value:"KY"}
+          Kentucky
+        %option{ value:"LA"}
+          Louisiana
+        %option{ value:"ME"}
+          Maine
+        %option{ value:"MD"}
+          Maryland
+        %option{ value:"MA"}
+          Massachusetts
+        %option{ value:"MI"}
+          Michigan
+        %option{ value:"MN"}
+          Minnesota
+        %option{ value:"MS"}
+          Mississippi
+        %option{ value:"MO"}
+          Missouri
+        %option{ value:"MT"}
+          Montana
+        %option{ value:"NE"}
+          Nebraska
+        %option{ value:"NV"}
+          Nevada
+        %option{ value:"NH"}
+          New Hampshire
+        %option{ value:"NJ"}
+          New Jersey
+        %option{ value:"NM"}
+          New Mexico
+        %option{ value:"NY"}
+          New York
+        %option{ value:"NC"}
+          North Carolina
+        %option{ value:"ND"}
+          North Dakota
+        %option{ value:"OH"}
+          Ohio
+        %option{ value:"OK"}
+          Oklahoma
+        %option{ value:"OR"}
+          Oregon
+        %option{ value:"PA"}
+          Pennsylvania
+        %option{ value:"RI"}
+          Rhode Island
+        %option{ value:"SC"}
+          South Carolina
+        %option{ value:"SD"}
+          South Dakota
+        %option{ value:"TN"}
+          Tennessee
+        %option{ value:"TX"}
+          Texas
+        %option{ value:"UT"}
+          Utah
+        %option{ value:"VT"}
+          Vermont
+        %option{ value:"VA"}
+          Virginia
+        %option{ value:"WA"}
+          Washington
+        %option{ value:"WV"}
+          West Virginia
+        %option{ value:"WI"}
+          Wisconsin
+        %option{ value:"WY"}
+          Wyoming
+
+      <div class="input-group form-group">
+      %input{type:"text", class:"form-control", placeholder:"Zipcode",name: "user[zip_code]", id: 'zip-code-input'}
+      </div>
+
+    %input.form-group{type: 'submit', class:'btn btn-primary'}
+
+
+-# TODO: add transitions to registration page
+
+:javascript
+  var $form = $('form');
+  var $orgBtn = $('#org-radio-btn');
+  var $fostererRadioBtn = $('#fosterer-radio-btn');
+  var $orgName = $('#org-name');
+  var $numAnimals = $('#num-animals-input');
+  var $email = $('#email-input');
+  var $password = $('#password-input');
+  var $firstName = $('#first-name-input');
+  var $lastName = $('#last-name-input');
+  var $streetAddress = $('#street-address-input');
+  var $city = $('#city-input');
+  var $state = $('#state-input');
+  var $zipcode = $('#zip-code-input');
+
+
+  var $fostererRadioBtn = $('#fosterer-radio-btn');
+  var $fostererRadioDiv = $('#num-animals');
+  var $orgRadioBtn = $('#org-radio-btn');
+
+  $fostererRadioBtn.on('click', function (event) {
+    if ($fostererRadioDiv.hasClass('invisible')) {
+      $('#num-animals').removeClass('invisible');
+      $form.attr('action', "#{fosterers_url}");
+
+      $fostererRadioBtn.prop('checked', true);
+      $orgRadioBtn.prop('checked', false);
+      $orgName.addClass('invisible');
+
+      $numAnimals.attr('name', 'fosterer[num_animals_willing_to_foster]')
+      $email .attr('name', 'fosterer[email]')
+      $password.attr('name', 'fosterer[password]')
+
+      $firstName.attr('name', 'fosterer[first_name]')
+      $firstName.attr('placeholder', "First Name")
+
+      $lastName.attr('name', 'fosterer[last_name]')
+      $lastName.attr('placeholder', "Last Name")
+
+      $streetAddress .attr('name', 'fosterer[street_address]')
+      $city.attr('name', 'fosterer[city]')
+      $state .attr('name', 'fosterer[state]')
+      $zipcode.attr('name', 'fosterer[zip_code]')
+    }
+  });
+
+  $orgRadioBtn.on('click', function (event) {
+    if (!$fostererRadioBtn.hasClass('invisible')) {
+      $('#num-animals').addClass('invisible');
+      $form.attr('action', "#{users_url}")
+
+      $orgRadioBtn.prop('checked', true);
+      $fostererRadioBtn.prop('checked', false);
+      $orgName.removeClass('invisible');
+
+
+      $email .attr('name', 'user[email]')
+      $password.attr('name', 'user[password]')
+
+      $firstName.attr('name', 'user[leader_first_name]')
+      $firstName.attr('placeholder', "Leader's First Name")
+
+      $lastName.attr('name', 'user[leader_last_name]')
+      $lastName.attr('placeholder', "Leader's Last Name")
+
+      $streetAddress .attr('name', 'user[street_address]')
+      $city.attr('name', 'user[city]')
+      $state .attr('name', 'user[state]')
+      $zipcode.attr('name', 'user[zip_code]')
+    }
+  });

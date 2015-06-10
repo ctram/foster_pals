@@ -6,34 +6,7 @@ class ApplicationController < ActionController::Base
 
   private
   def current_user
-    if @current_user
-      return @current_user
-    end
-
-    user_fosterer = Fosterer.find_by_session_token(session[:session_token])
-    user_organization = Organization.find_by_session_token(session[:session_token])
-
-    if user_fosterer.nil?
-      @current_user = user_organization
-    else
-      @current_user = user_fosterer
-    end
-  end
-
-  def find_by_credentials(email, password)
-    user_fosterer = Fosterer.find_by_email(email)
-    user_organization = Organization.find_by_email(email)
-
-    byebug
-    if !user_fosterer.nil? and
-      user_fosterer.valid_password?(password)
-      user_fosterer
-    elsif !user_organization.nil? and
-      user_organization.valid_password?(password)
-      user_organization
-    else
-      nil
-    end
+    @current_user ||= User.find_by_session_token(session[:session_token])
   end
 
   def signed_in?
@@ -48,8 +21,6 @@ class ApplicationController < ActionController::Base
   def sign_out
     current_user.try(:reset_token!)
     session[:session_token] = nil
-    @current_user = nil
-    redirect_to new_session_url
   end
 
   def require_signed_in!

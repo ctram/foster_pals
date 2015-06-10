@@ -6,13 +6,13 @@ class SessionsController < ApplicationController
     email = params[:user][:email]
     password = params[:user][:password]
 
-    user = find_by_credentials(email, password)
+    user = User.find_by_credentials(email, password)
 
     if user
       sign_in(user)
       user_id = user.id
       user_role = user.class.to_s.downcase + 's'
-      redirect_to "/#{user_role}/#{user_id}"
+      redirect_to "/home/\##{user_role}/#{user_id}"
 
     else
       flash.now[:errors] = ["Invalid username or password"]

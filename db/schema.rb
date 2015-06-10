@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610053134) do
+ActiveRecord::Schema.define(version: 20150610170537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,21 +37,6 @@ ActiveRecord::Schema.define(version: 20150610053134) do
     t.datetime "updated_at"
   end
 
-  create_table "fosterers", force: :cascade do |t|
-    t.string   "password_digest",               null: false
-    t.string   "session_token",                 null: false
-    t.string   "first_name",                    null: false
-    t.string   "last_name",                     null: false
-    t.string   "email",                         null: false
-    t.integer  "num_animals_willing_to_foster", null: false
-    t.string   "street_address",                null: false
-    t.string   "city",                          null: false
-    t.string   "state",                         null: false
-    t.string   "zip_code",                      null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.integer  "sender_id",    null: false
     t.integer  "recipient_id", null: false
@@ -59,21 +44,6 @@ ActiveRecord::Schema.define(version: 20150610053134) do
     t.string   "content",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "organizations", force: :cascade do |t|
-    t.string   "password_digest",   null: false
-    t.string   "session_token",     null: false
-    t.string   "leader_first_name", null: false
-    t.string   "leader_last_name",  null: false
-    t.string   "email",             null: false
-    t.string   "street_address",    null: false
-    t.string   "city",              null: false
-    t.string   "state",             null: false
-    t.string   "zip_code",          null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -95,5 +65,22 @@ ActiveRecord::Schema.define(version: 20150610053134) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string  "password_digest",               null: false
+    t.string  "session_token",                 null: false
+    t.string  "role",                          null: false
+    t.string  "org_name"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "email",                         null: false
+    t.string  "street_address",                null: false
+    t.string  "city",                          null: false
+    t.string  "state",                         null: false
+    t.string  "zip_code",                      null: false
+    t.integer "num_animals_willing_to_foster", null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end

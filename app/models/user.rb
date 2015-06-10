@@ -1,4 +1,6 @@
-class Fosterer < ActiveRecord::Base
+class User < ActiveRecord::Base
+
+  validates_presence_of :org_name
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_presence_of :email, uniqueness: true
@@ -10,18 +12,17 @@ class Fosterer < ActiveRecord::Base
 
   validates :password, length: {minimum: 1, allow_nil: true}
 
+  after_initialize :ensure_session_token
+
   has_many :stays
   has_many :animals
-
-
-
 
   attr_reader :password
 
   def self.find_by_credentials(email, password)
-    fosterer = Fosterer.find_by(email: email)
-    return nil unless fosterer && fosterer.valid_password?(password)
-    fosterer
+    user = User.find_by(email: email)
+    return nil unless user && user.valid_password?(password)
+    user
   end
 
   def password=(password)
@@ -43,4 +44,5 @@ class Fosterer < ActiveRecord::Base
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
   end
+
 end

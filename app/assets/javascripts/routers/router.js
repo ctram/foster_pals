@@ -5,11 +5,12 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this.orgs = options.orgs;
   },
 
-  events: {
-    '' : 'show'
+  routes: {
+    'users/:id' : 'show'
   },
 
-  show: function () {
+  show: function (role, id) {
+    debugger
     var showView = new FosterPals.Views.Show({
     });
 

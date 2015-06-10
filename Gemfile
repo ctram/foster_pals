@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'bootstrap-sass'
 gem 'backbone-on-rails'
 gem 'haml'
+gem 'jquery-ui-rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -39,7 +40,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
 
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  # Call 'byebug' anywhere in the code to stop execution and get a  console
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
