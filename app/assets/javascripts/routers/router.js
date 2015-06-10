@@ -1,14 +1,19 @@
 FosterPals.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
+    this.fosterers = options.fosterers;
+    this.orgs = options.orgs;
   },
 
   events: {
-    '' : 'home'
+    '' : 'show'
   },
 
-  root: function () {
+  show: function () {
 
+    var showView = new FosterPals.Views.Show({
+
+    });
   },
 
   _swapView: function (view) {

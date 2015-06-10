@@ -5,7 +5,9 @@ window.FosterPals = {
   Routers: {},
   initialize: function() {
     var router = new FosterPals.Routers.Router({
-      $rootEl: $('#content')
+      $rootEl: $('#content'),
+      fosterers: FosterPals.Collections.fosterers,
+      orgs: FosterPals.Collections.organizations
     });
     var navbarView = new FosterPals.Views.Navbar({
       router: router
@@ -14,6 +16,8 @@ window.FosterPals = {
   }
 };
 
+// Show signed-in navbar only if in Backbone.
+// TODO: restrict access to Backbone app to only those signed in.
 if (window.location.pathname !== '/') {
   $(document).ready(function(){
     FosterPals.initialize();
