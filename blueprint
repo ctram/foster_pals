@@ -13,28 +13,21 @@ Foster Pals
     Animal listings have image gallery of animal.
 
   Models:
+
     users
       password_digest
       session_token
+      role
+      org_name
       first_name
       last_name
       email
+      street_address
+      city
+      state
+      zip code
       num_animals_willing_to_foster
-      street_address
-      city
-      state
-      zip code
-    organizations
-      password_digest
-      session_token
-      name
-      leader_first_name
-      leader_last_name
-      email
-      street_address
-      city
-      state
-      zip code
+
     animals
       org_id
       fosterer_id
