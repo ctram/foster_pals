@@ -195,46 +195,14 @@
       $fostererRadioBtn.prop('checked', true);
       $orgRadioBtn.prop('checked', false);
       $orgName.addClass('invisible');
-
-      $numAnimals.attr('name', 'fosterer[num_animals_willing_to_foster]')
-      $email .attr('name', 'fosterer[email]')
-      $password.attr('name', 'fosterer[password]')
-
-      $firstName.attr('name', 'fosterer[first_name]')
-      $firstName.attr('placeholder', "First Name")
-
-      $lastName.attr('name', 'fosterer[last_name]')
-      $lastName.attr('placeholder', "Last Name")
-
-      $streetAddress .attr('name', 'fosterer[street_address]')
-      $city.attr('name', 'fosterer[city]')
-      $state .attr('name', 'fosterer[state]')
-      $zipcode.attr('name', 'fosterer[zip_code]')
     }
   });
 
   $orgRadioBtn.on('click', function (event) {
     if (!$fostererRadioBtn.hasClass('invisible')) {
       $('#num-animals').addClass('invisible');
-      $form.attr('action', "#{users_url}")
-
       $orgRadioBtn.prop('checked', true);
       $fostererRadioBtn.prop('checked', false);
       $orgName.removeClass('invisible');
-
-
-      $email .attr('name', 'user[email]')
-      $password.attr('name', 'user[password]')
-
-      $firstName.attr('name', 'user[leader_first_name]')
-      $firstName.attr('placeholder', "Leader's First Name")
-
-      $lastName.attr('name', 'user[leader_last_name]')
-      $lastName.attr('placeholder', "Leader's Last Name")
-
-      $streetAddress .attr('name', 'user[street_address]')
-      $city.attr('name', 'user[city]')
-      $state .attr('name', 'user[state]')
-      $zipcode.attr('name', 'user[zip_code]')
     }
   });
