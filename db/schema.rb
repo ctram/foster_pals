@@ -11,55 +11,88 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609183919) do
+ActiveRecord::Schema.define(version: 20150610040533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "animals", force: :cascade do |t|
+    t.string   "org_id",      null: false
+    t.string   "fosterer_id", null: false
+    t.string   "name",        null: false
+    t.string   "species",     null: false
+    t.string   "sex",         null: false
+    t.string   "weight",      null: false
+    t.string   "breed",       null: false
+    t.string   "color",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "commenter_id", null: false
+    t.string   "title",        null: false
+    t.string   "content",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "fosterers", force: :cascade do |t|
-    t.string  "password_digest",               null: false
-    t.string  "session_token",                 null: false
-    t.string  "first_name",                    null: false
-    t.string  "last_name",                     null: false
-    t.string  "email",                         null: false
-    t.integer "num_animals_willing_to_foster", null: false
-    t.string  "street_address",                null: false
-    t.string  "city",                          null: false
-    t.string  "state",                         null: false
-    t.string  "zip_code",                      null: false
+    t.string   "password_digest",               null: false
+    t.string   "session_token",                 null: false
+    t.string   "first_name",                    null: false
+    t.string   "last_name",                     null: false
+    t.string   "email",                         null: false
+    t.integer  "num_animals_willing_to_foster", null: false
+    t.string   "street_address",                null: false
+    t.string   "city",                          null: false
+    t.string   "state",                         null: false
+    t.string   "zip_code",                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "messages", force: :cascade do |t|
-    t.string   "messageable_type", null: false
-    t.integer  "author_id",        null: false
-    t.integer  "recipient_id",     null: false
-    t.string   "title",            null: false
-    t.string   "content",          null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "sender_id",    null: false
+    t.integer  "recipient_id", null: false
+    t.string   "title",        null: false
+    t.string   "content",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "organizations", force: :cascade do |t|
-    t.string "password_digest",   null: false
-    t.string "session_token",     null: false
-    t.string "name",              null: false
-    t.string "leader_first_name", null: false
-    t.string "leader_last_name",  null: false
-    t.string "email",             null: false
-    t.string "street_address",    null: false
-    t.string "city",              null: false
-    t.string "state",             null: false
-    t.string "zip_code",          null: false
+    t.string   "password_digest",   null: false
+    t.string   "session_token",     null: false
+    t.string   "leader_first_name", null: false
+    t.string   "leader_last_name",  null: false
+    t.string   "email",             null: false
+    t.string   "street_address",    null: false
+    t.string   "city",              null: false
+    t.string   "state",             null: false
+    t.string   "zip_code",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "poster_id",  null: false
+    t.string   "title",      null: false
+    t.string   "content",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "stays", force: :cascade do |t|
-    t.integer "animal_id",       null: false
-    t.integer "fosterer_id",     null: false
-    t.integer "organzation_id",  null: false
-    t.boolean "indefinite_stay"
-    t.date    "check_in_date"
-    t.date    "check_out_date"
-    t.string  "status",          null: false
+    t.integer  "animal_id",       null: false
+    t.integer  "fosterer_id",     null: false
+    t.integer  "organzation_id",  null: false
+    t.boolean  "indefinite_stay"
+    t.date     "check_in_date"
+    t.date     "check_out_date"
+    t.string   "status",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

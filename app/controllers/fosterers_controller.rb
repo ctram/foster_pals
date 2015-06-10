@@ -1,7 +1,6 @@
 class FosterersController < ApplicationController
   def new
     @fosterer = Fosterer.new
-    @x = 1
   end
 
   def create

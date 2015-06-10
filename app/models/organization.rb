@@ -12,6 +12,9 @@ class Organization < ActiveRecord::Base
   validates_presence_of :zip_code
   validates :password, length: {minimum: 1, allow_nil: true}
 
+  has_many :stays
+  has_many :animals
+
   attr_reader :password
 
   def self.find_by_credentials(email, password)

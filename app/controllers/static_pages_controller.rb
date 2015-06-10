@@ -6,7 +6,12 @@ class StaticPagesController < ApplicationController
   end
 
   def process_registration
-    fail
+    role = params[:user][:role]
+    if role == 'organization'
+      redirect_to organizations_url, format: :json
+    else
+      redirect_to fosterers_url, format: :json
+    end
   end
 
 end
