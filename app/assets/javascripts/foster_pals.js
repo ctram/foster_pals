@@ -4,7 +4,7 @@ window.FosterPals = {
   Views: {},
   Routers: {},
   initialize: function() {
-
+    
     var router = new FosterPals.Routers.Router({
       $rootEl: $('#content'),
       fosterers: FosterPals.Collections.fosterers,

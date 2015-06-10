@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new', as: :register
   get '/sign-in', to: 'sessions#new', as: :sign_in
   get '/front', to: 'static_pages#front', as: :front
-
+  delete '/session/new', to: 'sessions#new'
 
   namespace :api do
     resources :users, only: [:show, :edit, :update ]
