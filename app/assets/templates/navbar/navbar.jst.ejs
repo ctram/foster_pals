@@ -1,40 +1,52 @@
 SIGNED IN!!!!
 
-    <nav class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">FosterPals</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">FosterPals</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
 
-        <div class="btn-toolbar" role="toolbar" aria-label="...">
-          <a href=''>
-            <div class="btn-group btn btn-primary" role="group" id='sign-in-btn'>Sign Out
-            </div>
-          </a>
-
-
-      </div>
-
-      <!-- TODO: implement search function by location -->
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+    <div class="btn-toolbar" role="toolbar" aria-label="...">
+      <form action='/session' method='DELETE'>
+        <input class='btn-group btn btn-primary' role='group' id='sign-out-btn'>
+          Sign Out
+        </input>
       </form>
+      <!--
+
+      <a href='/session' method='DELETE' id='sign-out-link'>
+        <div class="btn-group btn btn-primary" role="group" id='sign-in-btn'>Sign Out
+        </div>
+      </a> -->
+    </div>
 
 
-    </nav>
+    <script>
+      $('#sign-out-link').on('click', function () {
+
+      });
+    </script>
+
+  </div>
+
+  <!-- TODO: implement search function by location -->
+  <form class="navbar-form navbar-left" role="search">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</nav>
