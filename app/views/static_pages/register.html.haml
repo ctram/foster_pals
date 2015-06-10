@@ -1,0 +1,70 @@
+%h1
+  Register
+
+
+.form-horizontal.well
+  %form{action: "#{process_registration_url}", method: 'POST' }
+    %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
+
+
+
+    %field-set.form-group
+
+      <div class="input-group form-group">
+      %input{type:"radio", class:"form-control", name:"user[role]", value:'organization'}
+        Rescue Organization
+      </div>
+
+      <div class="input-group form-group">
+      %input{type:"radio", class:"form-control", name:"user[role]", value:'fosterer'}
+        Fosterer
+      </div>
+
+
+      <div class="input-group form-group">
+      %input{type:"email", class:"form-control", placeholder:"Email",name: "user[email]"}
+      </div>
+
+
+      <div class="input-group form-group">
+      %input{type:"password", class:"form-control", placeholder:"Password",name: "user[password]"}
+      </div>
+
+
+
+      <div class="input-group form-group">
+      %input{type:"text", class:"form-control", placeholder:"First Name",name: "user[first_name]"}
+      </div>
+
+
+
+      <div class="input-group form-group">
+      %input{type:"text", class:"form-control", placeholder:"Last Name",name: "user[last_name]"}
+      </div>
+
+
+
+      <div class="input-group form-group">
+      %input{type:"number", class:"form-control", placeholder:"Maximum animals to foster",name: "user[num_animals_willing_to_foster]", min:1, max:99}
+      </div>
+
+
+
+      <div class="input-group form-group">
+      %input{type:"text", class:"form-control", placeholder:"Street Address",name: "user[street_address]"}
+      </div>
+
+
+
+      <div class="input-group form-group">
+      %input{type:"text", class:"form-control", placeholder:"City",name: "user[city]"}
+      </div>
+
+
+
+      <div class="input-group form-group">
+      %input{type:"text", class:"form-control", placeholder:"Zipcode",name: "user[zip_code]"}
+      </div>
+
+
+    %input.form-group{type: 'submit', class:'btn btn-primary'}
