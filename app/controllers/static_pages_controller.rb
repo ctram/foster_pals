@@ -5,9 +5,7 @@ class StaticPagesController < ApplicationController
   def root
   end
 
-  def choose_role_sign_in
+  def process_registration
   end
 
-  def choose_role_registration
-  end
 end
