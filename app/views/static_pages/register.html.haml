@@ -11,15 +11,20 @@
     %field-set.form-group
 
       <div class="input-group form-group">
-      %input{type:"radio", class:"form-control", name:"user[role]", value:'organization'}
-        Rescue Organization
+      <input type='radio' class='form-control' name='user[role]' value='orgranization' id='org-radio-btn' checked>
+      Rescue Organization
+      </input>
       </div>
 
-      <div class="input-group form-group">
-      %input{type:"radio", class:"form-control", name:"user[role]", value:'fosterer'}
-        Fosterer
+      <div class="input-group form-group" >
+      <input type='radio' class='form-control' name='user[role]' value='fosterer' id='fosterer-radio-btn'>
+      Fosterer
+      </input>
       </div>
 
+      <div class="input-group form-group hidden" id="num-animals">
+      %input{type:"number", class:"form-control", placeholder:"Maximum animals to foster",name: "user[num_animals_willing_to_foster]", min:1, max:99}
+      </div>
 
       <div class="input-group form-group">
       %input{type:"email", class:"form-control", placeholder:"Email",name: "user[email]"}
@@ -45,12 +50,6 @@
 
 
       <div class="input-group form-group">
-      %input{type:"number", class:"form-control", placeholder:"Maximum animals to foster",name: "user[num_animals_willing_to_foster]", min:1, max:99}
-      </div>
-
-
-
-      <div class="input-group form-group">
       %input{type:"text", class:"form-control", placeholder:"Street Address",name: "user[street_address]"}
       </div>
 
@@ -68,3 +67,25 @@
 
 
     %input.form-group{type: 'submit', class:'btn btn-primary'}
+
+
+-# TODO: add transitions to registration page 
+
+:javascript
+  var fostererRadioBtnSelected = false;
+
+  var $fostererRadioBtn = $('#fosterer-radio-btn');
+  var $fostererRadioDiv = $('#num-animals');
+  var $orgRadioBtn = $('#org-radio-btn');
+
+  $fostererRadioBtn.on('click', function (event) {
+    if ($fostererRadioDiv.hasClass('hidden')) {
+      $('#num-animals').removeClass('hidden');
+    }
+  });
+
+  $orgRadioBtn.on('click', function (event) {
+    if (!$fostererRadioBtn.hasClass('hidden')) {
+      $('#num-animals').addClass('hidden');
+    }
+  });
