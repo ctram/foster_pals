@@ -9,10 +9,10 @@
 <body>
   <% if current_user %>
     <script>
-      if ("<%= current_user.org_name %>" ) {
-        var name = "<%= current_user.org_name %>";
+      if ("<%= current_user.org_name %>" !== 'NOT_ORG' ) {
+        var name = "<%= current_user.org_name %>, org";
       } else {
-        var name = "<%= current_user.first_name %>";
+        var name = "<%= current_user.first_name %>, fosterer";
       }
       var id = <%= current_user.id %>;
       window.CURRENT_USER = name;
