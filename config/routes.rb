@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get '/', to: 'static_pages#front'
   get '/register', to: 'static_pages#register', as: :register
+  get '/home', to: 'static_pages#home', as: :home
   post '/process_registration', to: 'static_pages#process_registration', as: :process_registration
 
   get '/root', to: 'static_pages#root'

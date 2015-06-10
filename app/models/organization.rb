@@ -1,21 +1,23 @@
 class Organization < ActiveRecord::Base
-
   validates_presence_of :password_digest
   validates_presence_of :session_token
   validates_presence_of :name
   validates_presence_of :leader_first_name
   validates_presence_of :leader_last_name
-  validates_presence_of :email
+  validates_presence_of :email, uniqueness: true
   validates_presence_of :street_address
   validates_presence_of :city
   validates_presence_of :state
-  validates_presence_of :zip_code
+  validates_presence_of :zip_code, numericality: { only_integer: true }, length: {minimum:5, maximum: 5}
+
   validates :password, length: {minimum: 1, allow_nil: true}
+
+  attr_reader :password
 
   has_many :stays
   has_many :animals
 
-  attr_reader :password
+  after_initialize :ensure_session_token
 
   def self.find_by_credentials(email, password)
     organization = organization.find_by(email: email)
@@ -24,6 +26,7 @@ class Organization < ActiveRecord::Base
   end
 
   def password=(password)
+    byebug
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end

@@ -1,3 +1,5 @@
+= render partial: 'shared/flashes'
+
 %h1
   Register
 
@@ -38,11 +40,11 @@
       </div>
 
       <div class="input-group form-group">
-      %input{type:"text", class:"form-control", placeholder:"First Name",name: "organization[first_name]", id: 'first-name-input'}
+      %input{type:"text", class:"form-control", placeholder:"Leader's First Name",name: "organization[leader_first_name]", id: 'first-name-input'}
       </div>
 
       <div class="input-group form-group">
-      %input{type:"text", class:"form-control", placeholder:"Last Name",name: "organization[last_name]", id: 'last-name-input'}
+      %input{type:"text", class:"form-control", placeholder:"Leader's Last Name",name: "organization[leader_last_name]", id: 'last-name-input'}
       </div>
 
       <div class="input-group form-group">
@@ -53,8 +55,8 @@
       %input{type:"text", class:"form-control", placeholder:"City",name: "organization[city]", id: 'city-input'}
       </div>
 
-      %select{class:'input-group form-group'}
-        %option{ value:"AL"}
+      %select{class:'input-group form-group', name:"organization[state]"}
+        %option{ value:"AL", checked: true}
           Alabama
         %option{ value:"AK"}
           Alaska
@@ -200,8 +202,13 @@
       $numAnimals.attr('name', 'fosterer[num_animals_willing_to_foster]')
       $email .attr('name', 'fosterer[email]')
       $password.attr('name', 'fosterer[password]')
+
       $firstName.attr('name', 'fosterer[first_name]')
+      $firstName.attr('placeholder', "First Name")
+
       $lastName.attr('name', 'fosterer[last_name]')
+      $lastName.attr('placeholder', "Last Name")
+
       $streetAddress .attr('name', 'fosterer[street_address]')
       $city.attr('name', 'fosterer[city]')
       $state .attr('name', 'fosterer[state]')
@@ -222,8 +229,13 @@
 
       $email .attr('name', 'organization[email]')
       $password.attr('name', 'organization[password]')
-      $firstName.attr('name', 'organization[first_name]')
-      $lastName.attr('name', 'organization[last_name]')
+
+      $firstName.attr('name', 'organization[leader_first_name]')
+      $firstName.attr('placeholder', "Leader's First Name")
+
+      $lastName.attr('name', 'organization[leader_last_name]')
+      $lastName.attr('placeholder', "Leader's Last Name")
+
       $streetAddress .attr('name', 'organization[street_address]')
       $city.attr('name', 'organization[city]')
       $state .attr('name', 'organization[state]')
