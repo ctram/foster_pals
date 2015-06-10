@@ -3,6 +3,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl;
     this.fosterers = options.fosterers;
     this.orgs = options.orgs;
+
   },
 
   routes: {
@@ -10,7 +11,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   show: function (role, id) {
-    debugger
     var showView = new FosterPals.Views.Show({
     });
 
