@@ -7,7 +7,7 @@ FosterPals.Views.Info = Backbone.CompositeView.extend({
       model: this.user
     });
     this.addSubview('.about-info-text', this.aboutDisplayView);
-    this.listenTo(this.user, 'sync', this.render);
+    this.listenTo(this.user, 'sync change:about_info', this.render);
   },
 
   events: {
@@ -22,6 +22,7 @@ FosterPals.Views.Info = Backbone.CompositeView.extend({
     return this;
   },
 
+  // TODO: write addAboutForm() to be toggleForm(), which adds and removes the about-info depending on whether the AboutForm is visible.
   addAboutForm: function (event) {
     if (parseInt(this.user.id) !== CURRENT_USER_ID) {
       alert('you do not own this content');
@@ -39,19 +40,18 @@ FosterPals.Views.Info = Backbone.CompositeView.extend({
     this.addSubview('.about-info-text', aboutFormView);
   },
 
-  saveAboutData: function () {
+
+  // TODO: move saveAboutData logic into about_form.js
+  saveAboutData: function (event) {
     // FIXME: so far it's possible update the about_info to send the data through the query string -- but what if you don't want show the information in the query string?
 
     // TODO: NEXT, on the train, working on getting a schedule button up and the schedule page.
 
     var $form = $('form.about-info-form');
     var aboutInfoData = $form.serializeJSON();
-    $.ajax('/api/update_about_info', {
-      method: 'POST',
-      headers: {
-        test: 'asdasd'
-      },
-      data: aboutInfoData
+    this.user.set(aboutInfoData);
+    this.user.save({
+      // toggle form on success
     });
   }
 
