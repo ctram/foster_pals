@@ -12,7 +12,7 @@ FosterPals.Views.ContactIsland = Backbone.CompositeView.extend({
     var scheduleBtnView = new FosterPals.Views.ScheduleBtn({
       user: this.user
     });
-    this.addSubview('.schedule-btn', ScheduleBtnView);
+    this.addSubview('.schedule-btn', scheduleBtnView);
 
     this.listenTo(this.user, 'sync', this.render);
   },

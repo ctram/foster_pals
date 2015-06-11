@@ -22,3 +22,7 @@ upload preset should be unsigned.
 figaro gem -
 
 figaro install > creates application.yaml which is always ignored by .gitignore
+
+"production" tells figaro to push the api keys when pushing production.
+
+in your head html, link the cloud-name and upload-preset (in global vars) to your ENV values.
