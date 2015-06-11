@@ -81,6 +81,7 @@ This phase create a search feature for Rescue Organizations to find nearby Foste
 
 
 ### Bonus Features (TBD)
+- [ ] Use slugs instead of user id numbers in the url
 - [ ] Mini google map of user's location on the user profile page
 - [ ] Integration with Google maps to show locations of search results
 - [ ] Image gallery on profile pages

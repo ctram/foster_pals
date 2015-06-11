@@ -6,6 +6,20 @@ FosterPals.Views.ScheduleBtn = Backbone.CompositeView.extend({
     this.listenTo(this.user, 'sync', this.render);
   },
 
+  events: {
+    'click button#schedule-btn': 'goToScheduler'
+  },
+
+  goToScheduler: function (event) {
+    var id = this.user.escape('id');
+    var url = '#users/' + id + '/scheduler';
+
+    Backbone.history.navigate(
+      url,
+      {trigger: true}
+    );
+  },
+
   render: function () {
     var content = this.template({user: this.user});
     this.$el.html(content);
