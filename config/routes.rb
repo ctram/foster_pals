@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new', as: :register
   get '/sign-in', to: 'sessions#new', as: :sign_in
   get '/front', to: 'static_pages#front', as: :front
-  get '/api/update_about_info', to: 'api/users#update_about_info', as: :update_about_info_api_user
+  post '/api/update_about_info', to: 'api/users#update_about_info', as: :update_about_info_api_user
   delete '/session/new', to: 'sessions#new'
 
   namespace :api, defaults: {format: :json} do

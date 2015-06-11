@@ -40,20 +40,18 @@ FosterPals.Views.Info = Backbone.CompositeView.extend({
   },
 
   saveAboutData: function () {
-    // TODO: finish ajax sending of updated about_info - serializeJSON() the form data and pass it in the "data" of the ajax request
+    // TODO: finish ajax sending of updated about_info - serializeJSON() the form data and pass it in the "data" of the ajax request -- so far it's possible to send the data through the query string -- but what if you don't want to do that?
+
+    // TODO: NEXT, on the train, working on getting a schedule button up and the schedule page.
 
     var $form = $('form.about-info-form');
     var aboutInfoData = $form.serializeJSON();
     $.ajax('/api/update_about_info', {
-      method: 'GET',
+      method: 'POST',
       headers: {
         test: 'asdasd'
       },
-      data: {
-        user: {
-          name: 'asdasd'
-        }
-      }
+      data: aboutInfoData
     });
   }
 
