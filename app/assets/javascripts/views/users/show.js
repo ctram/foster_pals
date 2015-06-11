@@ -1,5 +1,6 @@
 FosterPals.Views.UserShow = Backbone.CompositeView.extend({
 
+  template: JST['users/show'],
 
   initialize: function (options) {
     this.user = options.user;
@@ -15,8 +16,6 @@ FosterPals.Views.UserShow = Backbone.CompositeView.extend({
     this.listenTo(this.user, 'sync', this.render);
 
   },
-
-  template: JST['users/show'],
 
   render: function () {
     var content = this.template({});
