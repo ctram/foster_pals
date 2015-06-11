@@ -25,7 +25,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   userShow: function (id) {
 
     var user = this.users.getOrFetch(id);
-    var userShowView = new FosterPals.Views.UserShow({ user: user });
+    var userShowView = new FosterPals.Views.UserShow({ model: user });
 
     this._swapView(userShowView);
   },
@@ -33,6 +33,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   _swapView: function (view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
+
     this.$rootEl.html(view.render().$el);
   }
 });
