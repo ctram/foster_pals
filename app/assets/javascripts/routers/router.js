@@ -1,25 +1,30 @@
 FosterPals.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
-    this.fosterers = options.fosterers;
-    this.orgs = options.orgs;
-
+    this.currentUser = options.currentUser;
+    this.currentUserId = options.currentUserId;
+    this.users = options.users;
+    this.userShow(this.currentUserId);
   },
 
   routes: {
-    'users/:id' : 'show'
+    'users/:id': 'userShow'
   },
 
-  show: function (role, id) {
-    var showView = new FosterPals.Views.Show({
+  userShow: function (id) {
+    var user = this.users.getOrFetch(id);
+    var userShowView = new FosterPals.Views.UserShow({ user: user
     });
 
+    userShowView.attachSubviews();
+    this._swapView(userShowView);
   },
 
   _swapView: function (view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
+
   }
 });
 
