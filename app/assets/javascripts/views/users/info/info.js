@@ -11,7 +11,8 @@ FosterPals.Views.Info = Backbone.CompositeView.extend({
   },
 
   events: {
-    'click button.about-update-button': 'addAboutForm'
+    'click button.about-update-button': 'addAboutForm',
+    'click button.about-info-save-btn': 'saveAboutData'
   },
 
   render: function () {
@@ -36,7 +37,26 @@ FosterPals.Views.Info = Backbone.CompositeView.extend({
     });
 
     this.addSubview('.about-info-text', aboutFormView);
-// TODO: code updateInfo ajax call.
-// AJAX here to post updated info data.
+  },
+
+  saveAboutData: function () {
+    // TODO: finish ajax sending of updated about_info - serializeJSON() the form data and pass it in the "data" of the ajax request
+
+    var $form = $('form.about-info-form');
+    var aboutInfoData = $form.serializeJSON();
+    $.ajax('/api/update_about_info', {
+      method: 'GET',
+      headers: {
+        test: 'asdasd'
+      },
+      data: {
+        user: {
+          name: 'asdasd'
+        }
+      }
+    });
   }
+
+
+
 });
