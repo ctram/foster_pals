@@ -8,3 +8,8 @@ TODO: make registration form more dynamic -- have the input for first name and l
 TODO: add "about" to the users' table -- then add ability for user to update their about info.
 
 TODO: how do you prevent unauthorized users from seeing the buttons of other users?
+
+TODO: restructure parameters to match backbone pattern, i.e.
+  {model: user}, instead of {user: user}
+
+  Why? b/c backbone objects automatically has ivars for mode l and collection, you don't need to set them in initialize.
