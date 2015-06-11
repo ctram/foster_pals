@@ -10,3 +10,15 @@ Create a backbone view which holds the google map -- no need to render a templat
 use cloudinary
 
 look at cloudinary demo
+
+include cloudinary's js library - a simple link to add into your html head
+
+create an account
+
+need an upload preset and cloud name, all found our your account page.
+
+upload preset should be unsigned.
+
+figaro gem -
+
+figaro install > creates application.yaml which is always ignored by .gitignore
