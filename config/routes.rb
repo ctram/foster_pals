@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/front', to: 'static_pages#front', as: :front
   delete '/session/new', to: 'sessions#new'
 
-  namespace :api do
+  namespace :api, defaults: {format: :json} do
     resources :users, only: [:show, :edit, :update ]
     resources :animals, only: [:show, :edit, :update ]
     resources :messages, only: [:show, :edit, :update ]

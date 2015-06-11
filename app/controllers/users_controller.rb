@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :redirect_to_front_if_not_signed_in, except: [:new, :create]
   before_action :complete_attributes_for_user_creation, only: [:create]
 
   def new
@@ -19,21 +18,6 @@ class UsersController < ApplicationController
       flash.now[:errors] = @user.errors.full_messages
       render :new
     end
-  end
-
-  def show
-    @user = User.find(params[:id])
-    render json: @user
-  end
-
-  def edit
-    @user = User.find(params[:id])
-    render json: @user
-  end
-
-  def index
-    @users = User.all
-    render json: @users
   end
 
   private
