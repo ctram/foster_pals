@@ -1,5 +1,7 @@
-FosterPals.Views.Info = Backbone.CompositeView.extend({
+FosterPals.Views.About = Backbone.CompositeView.extend({
   template: JST['users/about/about'],
+
+  className: 'about col-md-8',
 
   initialize: function (options) {
     this.user = options.model;
@@ -47,7 +49,7 @@ FosterPals.Views.Info = Backbone.CompositeView.extend({
       success: function () {
         this.addSubview('section', this.aboutTextView);
         this.removeSubview('section', this.aboutFormView);
-        // debugger
+        //
       }.bind(this)
     });
   }
