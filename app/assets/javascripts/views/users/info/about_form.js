@@ -4,18 +4,23 @@ FosterPals.Views.AboutForm = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.user = options.model;
   },
-  events: {
-    "submit form": "updateAboutInfo"
-  },
-  updateAboutInfo: function(e){
-    e.preventDefault();
 
-    var $form = $(this.$El).find('form');
-    var aboutInfoData = $form.serializeJSON();
-    this.user.set(aboutInfoData);
-    this.user.save({
-    });
-  },
+  // events: {
+  //   "click button.about-info-save-btn": "updateAboutInfo"
+  // },
+  //
+  // updateAboutInfo: function(event){
+  //   event.preventDefault();
+  //
+  //   var $form = $(this.$el).find('form');
+  //   var aboutInfoData = $form.serializeJSON();
+  //   this.user.set(aboutInfoData);
+  //   this.user.save({}, {
+  //     success: function () {
+  //       this.remove
+  //     }
+  //   });
+  // },
 
   render: function () {
     var content = this.template({user: this.user});

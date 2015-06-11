@@ -3,15 +3,15 @@ FosterPals.Views.UserShow = Backbone.CompositeView.extend({
   template: JST['users/show'],
 
   initialize: function (options) {
-    this.user = options.user;
+    this.user = options.model;
     var islandView = new FosterPals.Views.Island({
-      user: this.user
+      model: this.user
     });
     var contactIslandView = new FosterPals.Views.ContactIsland({
-      user: this.user
+      model: this.user
     });
     var infoView = new FosterPals.Views.Info({
-      user: this.user
+      model: this.user
     });
 
     this.addSubview('.profile-island', islandView);

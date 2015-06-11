@@ -1,9 +1,9 @@
-FosterPals.Views.AboutDisplay = Backbone.CompositeView.extend({
-  template: JST['users/info/about_display'],
+FosterPals.Views.AboutText = Backbone.CompositeView.extend({
+  template: JST['users/info/about_text'],
 
   initialize: function (options) {
     this.user = options.model;
-    this.listenTo(this.user, 'sync', this.render);
+    this.listenTo(this.user, 'sync change', this.render);
   },
 
   render: function () {

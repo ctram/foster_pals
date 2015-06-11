@@ -1,10 +1,12 @@
 FosterPals.Views.Island = Backbone.CompositeView.extend({
   template: JST['users/profile/island'],
 
+  className: 'island',
+
   initialize: function (options) {
-    this.user = options.user;
+    this.user = options.model;
     this.listenTo(this.user, 'sync', this.render);
-    ;
+
   },
 
   render: function () {

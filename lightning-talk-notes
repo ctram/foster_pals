@@ -1,28 +1,40 @@
-// google maps api notes
+// google maps api notes /////////////////////////////////////////////////
 
-add src pointing to the google maps js in a script tag in the head of the html file
+  add src pointing to the google maps js in a script tag in the head of the html file
 
-Create a backbone view which holds the google map -- no need to render a template.
+  Create a backbone view which holds the google map -- no need to render a template.
 
 
-// image upload
+// image upload //////////////////////////////////////////////////////////
 
-use cloudinary
+  use cloudinary
 
-look at cloudinary demo
+  look at cloudinary demo
 
-include cloudinary's js library - a simple link to add into your html head
+  include cloudinary's js library - a simple link to add into your html head
 
-create an account
+  create an account
 
-need an upload preset and cloud name, all found our your account page.
+  need an upload preset and cloud name, all found our your account page.
 
-upload preset should be unsigned.
+  upload preset should be unsigned.
 
-figaro gem -
+  figaro gem -
 
-figaro install > creates application.yaml which is always ignored by .gitignore
+  figaro install > creates application.yaml which is always ignored by .gitignore
 
-"production" tells figaro to push the api keys when pushing production.
+  "production" tells figaro to push the api keys when pushing production.
 
-in your head html, link the cloud-name and upload-preset (in global vars) to your ENV values.
+  in your head html, link the cloud-name and upload-preset (in global vars) to your ENV values.
+
+// MODO FORM //////////////////////////////////////////////////////////////
+
+backbone views
+
+<div class='m-backdrop'>
+<div class='m-content'>
+
+have the backdrop position fiex and z-index 100
+have the content position absolute, z-index 101
+
+&times;  --> to get an X symbol
