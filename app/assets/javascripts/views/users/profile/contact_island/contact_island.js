@@ -1,5 +1,5 @@
 FosterPals.Views.ContactIsland = Backbone.CompositeView.extend({
-  template: JST['users/profile/contact_island'],
+  template: JST['users/profile/contact_island/contact_island'],
 
   initialize: function (options) {
     this.user = options.model;

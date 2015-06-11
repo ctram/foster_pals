@@ -1,5 +1,5 @@
 FosterPals.Views.ScheduleBtn = Backbone.CompositeView.extend({
-  template: JST['users/profile/island/contact_island_btns/schedule_btn'],
+  template: JST['users/profile/contact_island/contact_island_btns/scheduler_btn'],
 
   initialize: function (options) {
     this.user = options.model;

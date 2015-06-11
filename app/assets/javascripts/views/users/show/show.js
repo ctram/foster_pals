@@ -1,6 +1,6 @@
 FosterPals.Views.UserShow = Backbone.CompositeView.extend({
 
-  template: JST['users/show'],
+  template: JST['users/show/show'],
 
   initialize: function (options) {
     this.user = options.model;
