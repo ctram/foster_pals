@@ -1,5 +1,5 @@
 FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
-  template: JST['users/scheduler'],
+  template: JST['users/scheduler/scheduler'],
 
   initialize: function (options) {
     this.user = options.model;

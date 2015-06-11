@@ -1,5 +1,5 @@
 FosterPals.Views.Info = Backbone.CompositeView.extend({
-  template: JST['users/info/info'],
+  template: JST['users/about/about'],
 
   initialize: function (options) {
     this.user = options.model;
@@ -7,13 +7,12 @@ FosterPals.Views.Info = Backbone.CompositeView.extend({
       model: this.user
     });
     this.addSubview('section', this.aboutTextView);
-    // this.listenTo(this.user, 'sync change', this.render);
+    this.listenTo(this.user, 'sync change', this.render);
   },
 
   events: {
     'click button.about-update-button': 'addAboutForm',
     "click button.about-info-save-btn": "updateAboutInfo"
-
   },
 
   render: function () {
@@ -29,8 +28,6 @@ FosterPals.Views.Info = Backbone.CompositeView.extend({
       alert('you do not own this content');
       return;
     }
-    this.toggleAboutInfo();
-    this.toggleUpdateBtn();
 
     this.aboutTextView.remove();
     this.aboutFormView = new FosterPals.Views.AboutForm({
@@ -38,34 +35,6 @@ FosterPals.Views.Info = Backbone.CompositeView.extend({
     });
 
     this.addSubview('section', this.aboutFormView);
-  },
-
-  removeAboutForm: function (event) {
-    if (!this.aboutFormView) {
-      return;
-    }
-    this.removeSubview('section', this.aboutFormView);
-    this.toggleAboutInfo();
-    this.toggleUpdateBtn();
-  },
-
-
-  toggleAboutInfo: function (event) {
-    $('.about-info-text').toggleClass('display-none');
-    // if ($aboutInfoText.hasClass('display-none')) {
-    //   $aboutInfoText.removeClass('display-none');
-    // } else {
-    //   $aboutInfoText.addClass('display-none');
-    // }
-  },
-
-  toggleUpdateBtn: function () {
-    $('.about-update-button').toggleClass('display-none');
-    // if ($aboutUpdateBtn.hasClass('display-none')) {
-    //   $aboutUpdateBtn.removeClass('display-none');
-    // } else {
-    //   $aboutUpdateBtn.addClass('display-none');
-    // }
   },
 
   updateAboutInfo: function(event){
@@ -82,6 +51,4 @@ FosterPals.Views.Info = Backbone.CompositeView.extend({
       }.bind(this)
     });
   }
-
-
 });

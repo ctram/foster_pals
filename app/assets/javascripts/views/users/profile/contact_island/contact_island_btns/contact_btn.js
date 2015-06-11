@@ -1,12 +1,9 @@
-FosterPals.Views.Island = Backbone.CompositeView.extend({
-  template: JST['users/profile/island'],
-
-  className: 'island',
+FosterPals.Views.ContactBtn = Backbone.CompositeView.extend({
+  template: JST['users/profile/contact_island/contact_island_btns/contact_btn'],
 
   initialize: function (options) {
     this.user = options.model;
     this.listenTo(this.user, 'sync', this.render);
-
   },
 
   render: function () {
@@ -14,4 +11,5 @@ FosterPals.Views.Island = Backbone.CompositeView.extend({
     this.$el.html(content);
     return this;
   }
+
 });
