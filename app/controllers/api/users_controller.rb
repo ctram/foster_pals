@@ -18,6 +18,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update_about_info
+    debugger
     user_id = params[:user][:id]
     about_info = params[:user][:about_info]
     user = User.find_by_id(user_id)

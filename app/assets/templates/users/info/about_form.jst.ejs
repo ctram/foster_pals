@@ -1,7 +1,7 @@
 Form for updating about data.
 <form class='about-info-form'>
-  <textarea><%= user.escape('about_info') %></textarea>
+  <textarea name='user[about_info]'><%= user.escape('about_info') %></textarea>
 
-  <button class='about-info-submit-btn'></button>
+  <button class='about-info-save-btn'>Save</button>
 
 </form>
