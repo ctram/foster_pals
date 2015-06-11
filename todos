@@ -4,3 +4,5 @@ TODO: add custom error messages to the registration form -- right now they don't
 TODO: check out google-maps-demo.herokuapp.com  - check the github for docs
 
 TODO: make registration form more dynamic -- have the input for first name and last name disappear and reappear depending on which role is toggled.
+
+TODO: add "about" to the users' table -- then add ability for user to update their about info.
