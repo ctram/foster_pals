@@ -2,6 +2,7 @@ class Api::UsersController < ApplicationController
   before_action :redirect_to_front_if_not_signed_in, except: [:new, :create]
 
   def show
+
     @user = User.find(params[:id])
     render :show
   end
@@ -14,6 +15,15 @@ class Api::UsersController < ApplicationController
   def index
     @users = User.all
     render json: @users
+  end
+
+  def update_about_info
+    user_id = params[:user][:id]
+    about_info = params[:user][:about_info]
+    user = User.find_by_id(user_id)
+    user.about_info = about_info
+    user.save
+    render :show
   end
 
   private
