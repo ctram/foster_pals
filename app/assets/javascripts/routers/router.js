@@ -12,6 +12,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   userShow: function (id) {
+    
     var user = this.users.getOrFetch(id);
     var userShowView = new FosterPals.Views.UserShow({ user: user
     });
