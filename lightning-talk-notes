@@ -3,3 +3,10 @@
 add src pointing to the google maps js in a script tag in the head of the html file
 
 Create a backbone view which holds the google map -- no need to render a template.
+
+
+// image upload
+
+use cloudinary
+
+look at cloudinary demo

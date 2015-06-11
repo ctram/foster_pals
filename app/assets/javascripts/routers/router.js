@@ -8,11 +8,21 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    'users/:id': 'userShow'
+    'users/:id': 'userShow',
+    'users/:id/schedule': 'userSchedule'
+  },
+
+  userSchedule: function (id) {
+    var user = this.users.getOrFetch(id);
+    var userScheduleView = new FosterPals.Views.UserSchedule({
+      model: this.user
+    });
+    userScheduleView.attachSubviews();
+    this._swapView(userScheduleView);
   },
 
   userShow: function (id) {
-    
+
     var user = this.users.getOrFetch(id);
     var userShowView = new FosterPals.Views.UserShow({ user: user
     });
