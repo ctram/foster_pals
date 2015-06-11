@@ -5,10 +5,16 @@ FosterPals.Views.AboutForm = Backbone.CompositeView.extend({
     this.user = options.model;
   },
   events: {
-    "submit form": "update"
+    "submit form": "updateAboutInfo"
   },
-  update: function(e){
+  updateAboutInfo: function(e){
     e.preventDefault();
+
+    var $form = $(this.$El).find('form');
+    var aboutInfoData = $form.serializeJSON();
+    this.user.set(aboutInfoData);
+    this.user.save({
+    });
   },
 
   render: function () {
