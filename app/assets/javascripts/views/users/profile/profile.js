@@ -6,9 +6,11 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
   initialize: function (options) {
 
     this.user = options.model;
+    viewingFromScheduler = options.viewingFromScheduler;
 
     this.contactIslandView = new FosterPals.Views.ContactIsland({
-      model: this.user
+      model: this.user,
+      viewingFromScheduler: viewingFromScheduler
     });
     this.addSubview('.contact-btns', this.contactIslandView);
 

@@ -5,7 +5,8 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     this.user = options.model;
 
     this.profileView = new FosterPals.Views.Profile({
-      model: this.user
+      model: this.user,
+      viewingFromScheduler: true
     });
     this.addSubview('.row', this.profileView);
 
