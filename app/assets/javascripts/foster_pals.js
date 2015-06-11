@@ -4,11 +4,13 @@ window.FosterPals = {
   Views: {},
   Routers: {},
   initialize: function() {
-    
+    var currentUser = FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID);
+    var currentUserId = CURRENT_USER_ID;
     var router = new FosterPals.Routers.Router({
       $rootEl: $('#content'),
-      fosterers: FosterPals.Collections.fosterers,
-      orgs: FosterPals.Collections.organizations
+      users: FosterPals.Collections.users,
+      currentUser: currentUser,
+      currentUserId: currentUserId
     });
     var navbarView = new FosterPals.Views.Navbar({
       router: router

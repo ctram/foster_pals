@@ -15,6 +15,7 @@ FosterPals is an app inspired by AirBnb. FosterPals aims to bring together those
 - [x] Create accounts
 - [x] Create sessions (log in)
 - [x] Two kinds of users: fosters and rescuers
+- [ ] Users have a well with profile info
 - [ ] Fosters create profiles with info on their homes
 - [ ] Rescue organizations create profiles with info on their org
 - [ ] Rescuer organizations can compile a list of rescue animals in their care.
@@ -80,6 +81,7 @@ This phase create a search feature for Rescue Organizations to find nearby Foste
 
 
 ### Bonus Features (TBD)
+- [ ] Mini google map of user's location on the user profile page
 - [ ] Integration with Google maps to show locations of search results
 - [ ] Image gallery on profile pages
 - [ ] Ability for users to make posts on their profile pages

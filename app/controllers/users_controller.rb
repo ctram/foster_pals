@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
 # TODO: write before action for users#create that auto fills out the remaining attributes for the user - if user is a fosterer than auto fill out the org name.
   def create
-    debugger
+
     @user = User.create(user_params)
     if @user.save
       sign_in(@user)
