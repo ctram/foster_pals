@@ -1,7 +1,7 @@
 FosterPals.Views.Profile = Backbone.CompositeView.extend({
   template: JST['users/profile/profile'],
 
-  className: 'profile col-md-4',
+  className: 'profile col-md-4 well',
 
   initialize: function (options) {
 
