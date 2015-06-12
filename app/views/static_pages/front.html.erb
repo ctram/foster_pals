@@ -8,43 +8,24 @@
 
 
   <div class="navbar-wrapper">
-    <div class="container">
-
-      <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">FosterPals</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#sign-in">Sign-in</a></li>
-            </ul>
-          </div>
-
-          <div class="btn-toolbar" role="toolbar" aria-label="...">
-            <a href= <%= new_session_url %>>
-              <div class="btn-group btn btn-primary" role="group" id='sign-in-btn'>Sign In
-              </div>
-            </a>
-
-            <a href= <%= register_url %>>
-              <div class="btn-group btn btn-primary" role="group" id='register-btn'>Register</div>
-            </a>
-          </div>
-
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">FosterPals</a>
         </div>
-      </nav>
-
-    </div>
+        <div id="navbar" class="navbar-collapse collapse pull-right">
+          <ul class="nav navbar-nav">
+            <li><a href="#about">About</a></li>
+            <li><a href="/session/new">Sign-in</a></li>
+            <li><a href="/register">Register</a></li>
+          </ul>
+        </div>
+    </nav>
   </div>
 
 
@@ -59,7 +40,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
       <div class="item">
-        <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+        <img class="first-slide" src="http://placekitten.com/g/1089/500" alt="First slide">
         <div class="container">
           <div class="carousel-caption">
             <h1>Example headline.</h1>
@@ -69,7 +50,7 @@
         </div>
       </div>
       <div class="item active">
-        <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+        <img class="second-slide" src="http://placekitten.com/g/1089/501" alt="Second slide">
         <div class="container">
           <div class="carousel-caption">
             <h1>Another example headline.</h1>
@@ -79,7 +60,7 @@
         </div>
       </div>
       <div class="item">
-        <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+        <img class="third-slide" src="http://placekitten.com/g/1090/503" alt="Third slide">
         <div class="container">
           <div class="carousel-caption">
             <h1>One more for good measure.</h1>
