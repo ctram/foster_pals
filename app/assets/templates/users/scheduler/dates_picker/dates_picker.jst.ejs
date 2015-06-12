@@ -1,31 +1,37 @@
-<h4>Check-in:</h4>
-<br>
-<div id='datepicker-check-in'></div>
+Scheduler
 
-<BR><BR>
+<form>
+  <input type='datetime'>
+</form>
 
-<h4>Check-out:</h4>
-<br>
-<div id='datepicker-check-out'></div>
 
-<script>
-  $(function () {
-    $( "#datepicker-check-in" ).datepicker({
-      beforeShow: function(input) {
-        $( input ).css( 'background-color', '#ff9' );
-      },
-      onSelect: function(dateText, inst) {
-        // $( this ).css( 'background-color', '' );
-        alert( 'Selected: ' + dateText +
-          "\n\nid: " + inst.id +
-          "\nselectedDay: " + inst.selectedDay +
-          "\nselectedMonth: " + inst.selectedMonth +
-          "\nselectedYear: " + inst.selectedYear);
-      },
-      onClose: function(dateText, inst) {
-        $( this ).css( 'background-color', '' );
-      }
-    });
-    $( "#datepicker-check-out" ).datepicker();
-  });
-</script>
+
+
+
+
+
+
+
+
+
+
+<!-- bootstrap datetimepicker
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+</div> -->
