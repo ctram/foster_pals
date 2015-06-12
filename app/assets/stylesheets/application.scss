@@ -13,9 +13,25 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
+
+#sign-out-link {
+  margin-left: 40px;
+}
+
+.navbar-brand {
+}
+
+.navbar-form {
+
+  margin-top: 8px;
+  width: 700px;
+}
+
+input.form-control.search-input {
+  width: 400px;
+}
 
 #myCarousel {
   min-height: 500px;

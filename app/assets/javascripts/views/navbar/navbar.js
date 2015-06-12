@@ -4,7 +4,7 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   className: '.container',
 
   events: {
-    'click button#sign-out-btn': 'signOut'
+    'click a#sign-out-link': 'signOut'
   },
 
   signOut: function (event) {
