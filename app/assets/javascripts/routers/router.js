@@ -5,6 +5,11 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this.currentUserId = options.currentUserId;
     this.users = options.users;
     this.userShow(this.currentUserId);
+    if (this.currentUser.escape('role') === 'org') {
+      this.animals = this.currentUser.escape('animals_as_org');
+    } else {
+      this.animals = this.currentUser.escape('animals_as_fosterer');
+    }
   },
 
   routes: {
@@ -15,11 +20,12 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   animalRoster: function () {
-    debugger
     // TODO: NEXT code animal roster for org so they can add animals - need animals to select from before building up the fosterer's scheduler.
     var animalRosterView = new FosterPals.Views.AnimalRoster({
-      model: this.user
+      model: this.currentUser,
+      collection: this.animals
     });
+
     this._swapView(animalRosterView);
   },
 
