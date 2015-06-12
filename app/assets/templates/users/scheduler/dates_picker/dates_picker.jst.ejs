@@ -1,12 +1,12 @@
 Scheduler
 
 
-
+<h3>Check-in</h3>
 <div class="container">
     <div class="row">
         <div class='col-sm-6'>
             <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
+                <div class='input-group date' id='check-in'>
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -14,10 +14,37 @@ Scheduler
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
     </div>
 </div>
+
+<br><BR>
+
+<h3>Check-out</h3>
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='check-out'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button class='btn btn-primary' id='check-aval-btn'>Check Availability</button>
+
+
+<script type="text/javascript">
+  $(function () {
+    $('#check-in').datetimepicker({
+      format: "MM/DD/YYYY"
+    });
+    $('#check-out').datetimepicker({
+      format: "MM/DD/YYYY"
+    });
+  });
+</script>

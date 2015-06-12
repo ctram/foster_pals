@@ -4,11 +4,20 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   className: 'dates-picker col-md-8',
 
   events: {
-    'click #check-dates-btn' : 'checkDates'
+    'click button#check-aval-btn' : 'checkDates'
   },
 
   checkDates: function (event) {
-    // dates data
+    var $checkIn = $('#check-in');
+    //
+    var $checkOut = $('#check-out');
+
+
+    var checkInDate = $checkIn.data("DateTimePicker").date()._d.toLocaleString();
+    var checkOutDate = $checkOut.data("DateTimePicker").date()._d.toLocaleString();
+
+
+    debugger
     // send to rails to generate a stay resource
   },
 
