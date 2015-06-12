@@ -4,6 +4,8 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this.currentUser = options.currentUser;
     this.currentUserId = options.currentUserId;
     this.users = options.users;
+    //TODO: restructure router to have '' go to 'show' -- depending on whether an ID was passed, route to the current user's page. The initialization of the router should not call a route method.
+
     this.userShow(this.currentUserId);
     if (this.currentUser.escape('role') === 'org') {
       this.animals = this.currentUser.escape('animals_as_org');
