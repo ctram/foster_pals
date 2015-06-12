@@ -5,7 +5,6 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   className: 'add-animal',
 
   initialize: function (options) {
-
   },
 
   render: function () {
