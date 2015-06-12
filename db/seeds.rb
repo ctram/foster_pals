@@ -33,5 +33,5 @@ Fabricate(
 )
 
 10.times do
-  Fabricate(:animal, org_id: 1)
+  Fabricate(:animal, org_id: 1, status: 'rescued')
 end

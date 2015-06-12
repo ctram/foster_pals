@@ -1,18 +1,19 @@
-<div class='form-horizontal well'
+<div class='form-horizontal well' id='add-animal'>
   <form class=' form-horizontal add-animal-form'>
 
-      <input type='hidden' name='animal[org_id]' value=<%= CURRENT_USER_ID %>>
+      <input type='hidden' name='org_id' value=<%= CURRENT_USER_ID %>>
+      <input type='hidden' name='status' value='rescued'>
 
       <div class="form-group">
         <label>
-          <input type="text" class="form-control" placeholder="Name" name="animal[name]">
+          <input type="text" class="form-control" placeholder="Name" name="name">
           </input>
         </label>
       </div>
 
       <div class="form-group">
         <label>
-          <input type="text" class="form-control" placeholder="Species" name="animal[species]">
+          <input type="text" class="form-control" placeholder="Species" name="species">
           </input>
         </label>
       </div>
@@ -21,32 +22,32 @@
         Sex
         <div class="form-group">
           <label>
-            <input type='radio' class='form-control' name='animal[sex]' value='m'>Male</input>
+            <input type='radio' class='form-control' name='sex' value='m'>Male</input>
           </label>
 
           <label>
-            <input type='radio' class='form-control' name='animal[sex]' value='f'>Female</input>
+            <input type='radio' class='form-control' name='sex' value='f'>Female</input>
           </label>
         </div>
       </label>
 
       <div class="form-group">
         <label>
-          <input type="text" class="form-control" placeholder="Breed" name="animal[breed]">
+          <input type="text" class="form-control" placeholder="Breed" name="breed">
           </input>
         </label>
       </div>
 
       <div class="form-group">
         <label>
-          <input type="text" class="form-control" placeholder="Color" name="animal[Color]">
+          <input type="text" class="form-control" placeholder="Color" name="color">
           </input>
         </label>
       </div>
 
       <div class="form-group">
         <label>
-          <input type="number" class="form-control weight-input" placeholder="Weight" name="animal[weight]" min='1' max='500'>
+          <input type="number" class="form-control weight-input" placeholder="Weight" name="weight" min='1' max='500'>
           </input>
         </label>
       </div>
