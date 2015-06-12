@@ -1,5 +1,4 @@
-Scheduler
-
+<h2>Request a Stay with a Fosterer!</h2>
 
 <h3>Check-in</h3>
 <div class="container">
@@ -19,21 +18,32 @@ Scheduler
 
 <br><BR>
 
-<h3>Check-out</h3>
-<div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='check-out'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- <h3>Undetermined Check-out</h3> -->
+
+<div class='check-out-group'>
+  <h3>Check-out</h3>
+  <div class="container">
+      <div class="row">
+          <div class='col-sm-6'>
+              <div class="form-group">
+                  <div class='input-group date' id='check-out'>
+                      <input type='text' class="form-control" />
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
+
+<BR>
+
+<fieldset id='indefinite_stay-field'>
+  <input id ='indefinite-stay-checkbox' type='checkbox' name='indefinite_stay' value='true'> Undetermined Check-out Date</input>
+</fieldset>
+<BR><BR>
 
 <button class='btn btn-primary' id='check-aval-btn'>Check Availability</button>
 
