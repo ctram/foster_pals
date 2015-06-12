@@ -5,16 +5,18 @@ FosterPals.Views.ContactIsland = Backbone.CompositeView.extend({
     this.user = options.model;
     viewingFromScheduler = options.viewingFromScheduler;
 
-    var contactBtnView = new FosterPals.Views.ContactBtn({
-      model: this.user
-    });
-    this.addSubview('.contact-btn', contactBtnView);
-
-    if (!viewingFromScheduler) {
-      var scheduleBtnView = new FosterPals.Views.SchedulerBtn({
+    if (this.user.get('id') !== CURRENT_USER_ID) {
+      var contactBtnView = new FosterPals.Views.ContactBtn({
         model: this.user
       });
-      this.addSubview('.scheduler-btn', scheduleBtnView);
+      this.addSubview('.contact-btn', contactBtnView);
+
+      if (!viewingFromScheduler) {
+        var scheduleBtnView = new FosterPals.Views.SchedulerBtn({
+          model: this.user
+        });
+        this.addSubview('.scheduler-btn', scheduleBtnView);
+      }
     }
 
     this.listenTo(this.user, 'sync', this.render);

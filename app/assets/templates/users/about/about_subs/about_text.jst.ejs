@@ -2,5 +2,6 @@
   <%= user.escape('about_info') %>
 </div>
 
-
-<button class='about-update-button'>Update</button>
+<% if (parseInt(this.user.escape('id')) === CURRENT_USER_ID) { %>
+  <button class='about-update-button'>Update</button>
+<% } %>

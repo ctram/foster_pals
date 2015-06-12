@@ -24,7 +24,6 @@ FosterPals.Views.About = Backbone.CompositeView.extend({
     return this;
   },
 
-  // TODO: write addAboutForm() to be toggleForm(), which adds and removes the about-info depending on whether the AboutForm is visible.
   addAboutForm: function (event) {
     if (parseInt(this.user.id) !== CURRENT_USER_ID) {
       alert('you do not own this content');

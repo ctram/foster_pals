@@ -10,11 +10,17 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   routes: {
     '': 'test',
     'users/:id': 'userShow',
-    'users/:id/scheduler': 'userScheduler'
+    'users/:id/scheduler': 'userScheduler',
+    'animal-roster': 'animalRoster'
   },
 
-  test: function () {
-    console.log('test');
+  animalRoster: function () {
+    debugger
+    // TODO: NEXT code animal roster for org so they can add animals - need animals to select from before building up the fosterer's scheduler.
+    var animalRosterView = new FosterPals.Views.AnimalRoster({
+      model: this.user
+    });
+    this._swapView(animalRosterView);
   },
 
   userScheduler: function (id) {
