@@ -23,6 +23,7 @@ class Api::UsersController < ApplicationController
     render :show
   end
 
+# TODO: move update_about_info into update() -- redundant
   def update_about_info
     user_id = params[:user][:id]
     about_info = params[:user][:about_info]
