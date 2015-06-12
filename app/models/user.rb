@@ -14,8 +14,33 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
-  has_many :stays
-  has_many :animals
+  has_many(
+    :stays_as_fosterer,
+    class_name: 'Stay',
+    foreign_key: :fosterer_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :stays_as_org,
+    class_name: 'Stay',
+    foreign_key: :organzation_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :animals_as_fosterer,
+    class_name: 'Animal',
+    foreign_key: :fosterer_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :animals_as_org,
+    class_name: 'Animal',
+    foreign_key: :org_id,
+    primary_key: :id
+  )
 
   attr_reader :password
 

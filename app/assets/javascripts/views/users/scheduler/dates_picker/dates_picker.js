@@ -4,8 +4,12 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   className: 'dates-picker col-md-8',
 
   events: {
-    // 'click #dates-picker-check-in': 'selectDateCheckIn',
-    // 'click #dates-picker-check-out': 'selectDateCheckOut'
+    'click #check-dates-btn' : 'checkDates'
+  },
+
+  checkDates: function (event) {
+    // dates data
+    // send to rails to generate a stay resource
   },
 
   initialize: function (options) {
@@ -19,7 +23,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     return this;
-    
+
   },
 
   selectDateCheckIn: function (event) {
