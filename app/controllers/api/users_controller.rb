@@ -32,6 +32,10 @@ class Api::UsersController < ApplicationController
     render :show
   end
 
+  def animal_roster
+    @user = User.find(params[:id])
+  end
+
   private
 
   def user_params
