@@ -1,7 +1,13 @@
 class Api::StaysController < ApplicationController
 
-  def new
-    @stay = Stay.new
+  def show
+    @stay = Stay.find(params[:id])
+    render :show
+  end
+
+  def index
+    @stays = Stay.all
+    render :index
   end
 
   def create
@@ -14,6 +20,19 @@ class Api::StaysController < ApplicationController
   end
 
   def update
+    @stay = Stay.find(params[:id])
+    if @stay.update(stay_params)
+      render :show
+    else
+      render json: @stay.errors.full_messages
+    end
+  end
+
+  def destroy
+    @stay = Stay.find(params[:id])
+    @stay.destroy()
+    render :show
+  end
 
   private
 
