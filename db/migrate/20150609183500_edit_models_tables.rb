@@ -1,6 +1,5 @@
 class EditModelsTables < ActiveRecord::Migration
   def change
-    drop_table :users
 
     create_table :fosterers do |t|
       t.string :password_digest, null: false
