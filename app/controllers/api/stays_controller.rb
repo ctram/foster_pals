@@ -38,24 +38,13 @@ class Api::StaysController < ApplicationController
 
   def stay_params
     params.require(:stay).permit(
-      :password,
-      :role,
-      :org_name,
-      :first_name,
-      :last_name,
-      :email,
-      :street_address,
-      :city,
-      :state,
-      :zip_code,
-      :num_animals_willing_to_foster
+      :animal_id,
+      :fosterer_id,
+      :organzation_id,
+      :indefinite_stay,
+      :check_in_date,
+      :check_out_date,
+      :status
     )
   end
-
-  def complete_attributes_for_stay_creation
-    if params[:stay][:role] == 'fosterer'
-      params[:stay][:org_name] = 'NOT_ORG'
-    end
-  end
-
 end
