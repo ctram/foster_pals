@@ -4,7 +4,8 @@ gem 'bootstrap-sass'
 gem 'backbone-on-rails'
 gem 'haml'
 gem 'jquery-ui-rails'
-
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'

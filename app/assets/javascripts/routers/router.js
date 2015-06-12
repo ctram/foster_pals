@@ -8,8 +8,13 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
+    '': 'test',
     'users/:id': 'userShow',
     'users/:id/scheduler': 'userScheduler'
+  },
+
+  test: function () {
+    console.log('test');
   },
 
   userScheduler: function (id) {
