@@ -9,9 +9,9 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:show, :edit, :update, :update_about_info ]
-    resources :animals, only: [:show, :edit, :update ]
-    resources :messages, only: [:show, :edit, :update ]
-    resources :stays, only: [:show, :edit, :update, :destroy ]
+    resources :animals, only: [:show, :update, :create ]
+    resources :messages, only: [:show, :update, :create, :destroy ]
+    resources :stays, only: [:show, :update, :create, :destroy ]
   end
 
   resources :static_pages, only: [:front]
