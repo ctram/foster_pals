@@ -3,6 +3,7 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @animals = @user.animals_as_org
     render :show
   end
 
@@ -17,7 +18,6 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-
     @user = User.find(params[:id])
     @user.update(user_params)
     render :show
