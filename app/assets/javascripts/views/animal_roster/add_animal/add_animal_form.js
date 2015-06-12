@@ -14,8 +14,19 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   addAnimal: function (event) {
     var $button = $(event.target);
     var $form = $button.closest('form');
-    var attrs = $form.serializeJSON();
-    var animal = new FosterPals.Models.Animal(attrs);
+    var animal = $form.serializeJSON();
+    var attrs = animal.animal;
+    $.ajax(
+      '/api/animals',
+      {
+        data: animal,
+        method: 'POST',
+        success: function () {
+          var animal = new FosterPals.Models.Animal(attrs);
+          this.animals.add(animal, {merge: true});
+        }.bind(this)
+      }
+    );
 
   },
 

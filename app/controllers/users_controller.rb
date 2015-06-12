@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-# TODO: write before action for users#create that auto fills out the remaining attributes for the user - if user is a fosterer than auto fill out the org name.
   def create
     @user = User.create(user_params)
     if @user.save
