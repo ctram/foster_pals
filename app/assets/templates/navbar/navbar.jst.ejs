@@ -18,6 +18,12 @@
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
+
+        <% if (CURRENT_USER_ROLE === "fosterer") { %>
+          <li><a href="#schedule-manager">Schedule Manager</a></li>
+        <% } else { %>
+          <li><a href="#something-for-org">Something for Org</a></li>
+        <% } %>
       </ul>
     </div>
 

@@ -15,8 +15,11 @@
         var name = "<%= current_user.first_name %>, fosterer";
       }
       var id = <%= current_user.id %>;
+      var role = "<%= current_user.role %>";
+      
       window.CURRENT_USER = name;
       window.CURRENT_USER_ID = id;
+      window.CURRENT_USER_ROLE = role;
     </script>
   <% end %>
 
