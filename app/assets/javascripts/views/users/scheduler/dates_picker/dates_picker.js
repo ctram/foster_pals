@@ -3,6 +3,11 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
   className: 'dates-picker col-md-8',
 
+  events: {
+    // 'click #dates-picker-check-in': 'selectDateCheckIn',
+    // 'click #dates-picker-check-out': 'selectDateCheckOut'
+  },
+
   initialize: function (options) {
     this.user = options.model;
   },
@@ -14,5 +19,11 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     return this;
+    
+  },
+
+  selectDateCheckIn: function (event) {
+
   }
+
 });

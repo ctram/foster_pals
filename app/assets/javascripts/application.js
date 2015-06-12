@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require jquery-ui/datepicker
 //= require underscore
 //= require backbone
 //= require foster_pals
