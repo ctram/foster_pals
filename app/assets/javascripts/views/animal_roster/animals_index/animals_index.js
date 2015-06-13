@@ -18,6 +18,7 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   },
 
   addAnimalItemView: function (model) {
+    // FIXME: NEVER GETTING TRIGGERED!
     var animalItemView = new FosterPals.Views.AnimalItem({
       model: model
     });
