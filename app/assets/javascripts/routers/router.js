@@ -55,5 +55,3 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this.$rootEl.html(view.render().$el);
   }
 });
-
-// # TODO: think about how to get to backbone app and what to call the root page.

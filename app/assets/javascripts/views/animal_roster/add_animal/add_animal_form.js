@@ -12,7 +12,7 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
       collection: this.images
     });
     // FIXME: listOfImagesView not showing up in the AddAnimalForm view.
-    this.addSubview('div.image-item', listOfImagesView);
+    this.addSubview('div.image-list', listOfImagesView);
     this.listenTo(this.images, 'add', this.render);
   },
 
