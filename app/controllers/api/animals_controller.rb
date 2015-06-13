@@ -2,7 +2,7 @@ class Api::AnimalsController < ApplicationController
   before_action :redirect_to_front_if_not_signed_in
 
   def create
-    debugger
+
     @animal = Animal.create(animal_params)
     if !@animal.save
       render json: @animal.errors.full_messages

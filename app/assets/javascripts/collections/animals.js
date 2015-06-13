@@ -1,4 +1,6 @@
 FosterPals.Collections.Animals = Backbone.Collection.extend({
+  url: '/api/animals',
+
   model: FosterPals.Models.Animal,
 
   getOrFetch: function (id) {

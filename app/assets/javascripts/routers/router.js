@@ -7,11 +7,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     //TODO: restructure router to have '' go to 'show' -- depending on whether an ID was passed, route to the current user's page. The initialization of the router should not call a route method.
 
     this.userShow(this.currentUserId);
-    if (this.currentUser.escape('role') === 'org') {
-      this.animals = this.currentUser.escape('animals_as_org');
-    } else {
-      this.animals = this.currentUser.escape('animals_as_fosterer');
-    }
   },
 
   routes: {
@@ -22,10 +17,17 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   animalRoster: function () {
-    // TODO: NEXT code animal roster for org so they can add animals - need animals to select from before building up the fosterer's scheduler.
+    // if (this.currentUser.escape('role') === 'org') {
+    //   this.animals = this.currentUser.escape('animals_as_org');
+    // } else {
+    //   this.animals = this.currentUser.escape('animals_as_fosterer');
+    // }
+
+    var animals_as_org = this.currentUser.animals_as_org();
+
     var animalRosterView = new FosterPals.Views.AnimalRoster({
       model: this.currentUser,
-      collection: this.animals
+      collection: animals_as_org
     });
 
     this._swapView(animalRosterView);
