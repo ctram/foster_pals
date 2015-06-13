@@ -7,5 +7,5 @@ Fabricator :animal do
   org_id {Faker::Number.digit}
   fosterer_id {Faker::Number.digit}
   weight { Faker::Number.number(2)}
-  status
+  status {'rescued'}
 end
