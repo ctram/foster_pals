@@ -23,8 +23,9 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   },
 
   addAnimal: function (event) {
-    // TODO add images of animals - user cloudinary
     // TODO add images of users
+    // TODO: animals are being saved with out being associated with images, i.e. the animals have no images to display.
+
     var $button = $(event.target);
     var $form = $button.closest('form');
     var animal = $form.serializeJSON();
@@ -34,6 +35,7 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
       {
         data: animal,
         method: 'POST',
+        // TODO: display error message if the animal was not added.
         success: function () {
           var animal = new FosterPals.Models.Animal(attrs);
           this.animals.add(animal, {merge: true});
@@ -44,7 +46,9 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   },
 
   addImage: function(e){
-    // TODO: add a subview upon upload of image
+    // TODO: right now, when an image is uploaded - it is immediately saved to the database - perhaps delete the images if the animal does not end up being saved.
+    // TODO: Right now the whole page refreshes when an image is upload, losing all previously inputted data. If the user than saves, no animal will be added.
+
     var id = parseInt(this.user.escape('id'));
     var image = new FosterPals.Models.Image();
     e.preventDefault();

@@ -28,11 +28,19 @@ class Animal < ActiveRecord::Base
   )
 
   def main_image_url
-    self.images.first.url unless images.empty?
+    if images.empty?
+      'url_to_default_image'
+    else
+      images.first.url
+    end
   end
 
   def main_image_thumb_url
-    self.images.first.thumb_url unless images.empty?
+    if images.empty?
+      "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+    else
+      images.first.thumb_url
+    end
   end
 
 end
