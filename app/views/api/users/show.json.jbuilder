@@ -5,5 +5,5 @@ json.animals_as_org @user.animals_as_org do |animal|
 end
 
 json.animals_as_fosterer @user.animals_as_fosterer do |animal|
-  json.extract! animal, :fosterer_id, :name, :color, :weight, :species, :sex, :breed, :status
+  json.extract! animal, :fosterer_id, :name, :color, :weight, :species, :sex, :breed, :status, :main_image_thumb_url, :main_image_url
 end

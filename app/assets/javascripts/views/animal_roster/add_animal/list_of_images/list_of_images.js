@@ -5,6 +5,7 @@ FosterPals.Views.ListOfImages = Backbone.CompositeView.extend({
   className: 'list-of-images',
 
   initialize: function (options) {
+    
     this.user = options.model;
     this.listenTo(this.collection, 'add', this.addImageItemView);
   },

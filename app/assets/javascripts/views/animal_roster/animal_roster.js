@@ -19,7 +19,7 @@ FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
     });
     this.addSubview('.animals-roster', animalsIndexView);
 
-    this.listenTo(this.animals, 'sync add remove change reset', this.render);
+    // this.listenTo(this.animals, 'sync remove change reset', this.render);
   },
 
   render: function () {
