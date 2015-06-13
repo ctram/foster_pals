@@ -20,12 +20,3 @@ window.FosterPals = {
     Backbone.history.start();
   }
 };
-
-// // Show signed-in navbar only if in Backbone.
-// // TODO: restrict access to Backbone app to only those signed in.
-// if (window.location.pathname === '/home') {
-//
-//   $(document).ready(function(){
-//     FosterPals.initialize();
-//   });
-// }
