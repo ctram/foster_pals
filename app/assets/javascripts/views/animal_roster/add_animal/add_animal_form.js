@@ -6,6 +6,14 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.user = options.model;
+    this.images = FosterPals.Collections.addFormImages;
+
+    var listOfImagesView = new FosterPals.Views.ListOfImages({
+      collection: this.images
+    });
+    // FIXME: listOfImagesView not showing up in the AddAnimalForm view.
+    this.addSubview('div.image-item', listOfImagesView);
+    this.listenTo(this.images, 'add', this.render);
   },
 
   events: {
@@ -36,6 +44,7 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   },
 
   addImage: function(e){
+    // TODO: add a subview upon upload of image
     var id = parseInt(this.user.escape('id'));
     var image = new FosterPals.Models.Image();
     e.preventDefault();
@@ -48,7 +57,7 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
       });
       image.save({}, {
         success: function(){
-          FosterPals.Collections.images.add(image);
+          FosterPals.Collections.addFormImages.add(image);
         }
       });
     });
@@ -61,7 +70,6 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
 
     return this;
   },
-
-
-
 });
+
+FosterPals.Collections.addFormImages = new FosterPals.Collections.Images();
