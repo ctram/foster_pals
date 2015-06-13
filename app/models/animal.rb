@@ -28,11 +28,11 @@ class Animal < ActiveRecord::Base
   )
 
   def main_image_url
-    self.images.first.url
+    self.images.first.url unless images.empty?
   end
 
   def main_image_thumb_url
-    self.images.first.thumb_url
+    self.images.first.thumb_url unless images.empty?
   end
 
 end
