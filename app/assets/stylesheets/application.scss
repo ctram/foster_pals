@@ -18,7 +18,6 @@
 
 a.welcome-text {
  pointer-events: none;
-
 }
 
 li.welcome-text {
@@ -26,11 +25,20 @@ li.welcome-text {
   border-right: white solid 2px;
 }
 
-#sign-out-link {
-  margin-left: 40px;
+ul {
+  .animal-item {
+    height: 136px;
+  }
 }
 
-.navbar-brand {
+.animals-index {
+  .container {
+    width: 100%;
+  }
+}
+
+#sign-out-link {
+  margin-left: 40px;
 }
 
 .navbar-form {
@@ -91,5 +99,4 @@ input.form-control.search-input {
 .well {
   max-width: 600px;
   margin: 32px;
-
 }
