@@ -12,6 +12,9 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   },
 
   addAnimal: function (event) {
+    // TODO add images of animals - user cloudinary
+    // TODO add images of users
+    // FIXME: why list of animals aren't showing.
     var $button = $(event.target);
     var $form = $button.closest('form');
     var animal = $form.serializeJSON();

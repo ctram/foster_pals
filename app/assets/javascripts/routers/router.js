@@ -10,7 +10,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'test',
+    '': 'userShow',
     'users/:id': 'userShow',
     'users/:id/scheduler': 'userScheduler',
     'animal-roster': 'animalRoster'
@@ -44,6 +44,9 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   userShow: function (id) {
+    if (typeof id === 'undefined') {
+      id = parseInt(this.currentUser.escape('id'));
+    }
 
     var user = this.users.getOrFetch(id);
     var userShowView = new FosterPals.Views.UserShow({ model: user });
