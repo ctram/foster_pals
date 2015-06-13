@@ -5,16 +5,18 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   className: 'add-animal',
 
   initialize: function (options) {
+    this.user = options.model;
   },
 
   events: {
-    'click button.add-animal-btn': 'addAnimal'
+    // TODO: make all button elements have IDs instead of classes for your event listeners.
+    'click button.add-animal-btn': 'addAnimal',
+    'click button.add-image-btn' : 'addImage'
   },
 
   addAnimal: function (event) {
     // TODO add images of animals - user cloudinary
     // TODO add images of users
-    // FIXME: why list of animals aren't showing.
     var $button = $(event.target);
     var $form = $button.closest('form');
     var animal = $form.serializeJSON();
@@ -31,6 +33,25 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
       }
     );
 
+  },
+
+  addImage: function(e){
+    var id = parseInt(this.user.escape('id'));
+    var image = new FosterPals.Models.Image();
+    e.preventDefault();
+    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result){
+      var data = result[0];
+      image.set({
+        url: data.url,
+        thumb_url: data.thumbnail_url,
+        owner_id: id
+      });
+      image.save({}, {
+        success: function(){
+          FosterPals.Collections.images.add(image);
+        }
+      });
+    });
   },
 
   render: function () {
