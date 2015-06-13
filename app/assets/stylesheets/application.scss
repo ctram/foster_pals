@@ -16,6 +16,16 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+a.welcome-text {
+ pointer-events: none;
+
+}
+
+li.welcome-text {
+  border-left: white solid 2px;
+  border-right: white solid 2px;
+}
+
 #sign-out-link {
   margin-left: 40px;
 }
