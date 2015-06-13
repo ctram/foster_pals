@@ -4,11 +4,24 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   className: '.container',
 
   events: {
-    'click a#sign-out-link': 'signOut'
+    'click a#sign-out-link': 'signOut',
+    'click nav a': 'followLink'
+  },
+
+  initialize: function (options) {
+    this.router = options.router;
+    this.listenTo(this.router, '', this.render);
+  },
+
+  followLink: function (event) {
+    var $destLink = $(event.currentTarget);
+    var $destLi = $(event.currentTarget.parentElement);
+    this.switchHighlights($destLi);
+    var dest = $destLink.attr('id');
+    Backbone.history.navigate(dest, {trigger: true});
   },
 
   signOut: function (event) {
-    ;
     $.ajax(
       {
         url: '/session',
@@ -20,17 +33,27 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
     );
   },
 
+  switchHighlights: function ($newLi) {
+    if (this.$currentLi === undefined) {
+      this.$currentLi = $('li.active');
+    }
 
-
-  initialize: function (options) {
-    this.router = options.router;
-
-    this.listenTo(this.router, '', this.render);
+    this.toggleLinkHighlight($newLi);
+    this.toggleLinkHighlight(this.$currentLi);
+    this.$currentLi = $newLi;
   },
 
   render: function () {
     var content = this.template({});
     this.$el.html(content);
     return this;
+  },
+
+  toggleLinkHighlight: function ($link) {
+    if ($link.hasClass('active')) {
+      $link.removeClass('active');
+    } else {
+      $link.addClass('active');
+    }
   }
 });
