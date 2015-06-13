@@ -73,6 +73,13 @@ input.form-control.search-input {
   margin: auto;
 }
 
-.animals-index {
+.animals-index.well {
+  max-width: inherit;
   margin: auto;
+}
+
+.well {
+  max-width: 600px;
+  margin: 32px;
+
 }
