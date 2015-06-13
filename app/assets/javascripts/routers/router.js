@@ -17,13 +17,8 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   animalRoster: function () {
-    // if (this.currentUser.escape('role') === 'org') {
-    //   this.animals = this.currentUser.escape('animals_as_org');
-    // } else {
-    //   this.animals = this.currentUser.escape('animals_as_fosterer');
-    // }
-
     var animals_as_org = this.currentUser.animals_as_org();
+    animals_as_org.fetch();
 
     var animalRosterView = new FosterPals.Views.AnimalRoster({
       model: this.currentUser,
@@ -34,7 +29,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   userScheduler: function (id) {
-
     var user = this.users.getOrFetch(id);
     var userSchedulerView = new FosterPals.Views.UserScheduler({
       model: user

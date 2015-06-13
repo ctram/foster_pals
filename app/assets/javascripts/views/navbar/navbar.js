@@ -5,6 +5,7 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
 
   events: {
     'click a#sign-out-link': 'signOut',
+    // FIXME: right now, if you copy and paste a url into the address bar, li hightlighting defaults the  "home" regardless of what page you are actually on - fix that.
     'click nav a': 'followLink'
   },
 
