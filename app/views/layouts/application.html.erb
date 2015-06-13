@@ -5,6 +5,15 @@
   <%= stylesheet_link_tag    'application', media: 'all'%>
   <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
+  <script src="http://widget.cloudinary.com/global/all.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+  window.CLOUDINARY_OPTIONS = {
+    cloud_name: "<%=ENV['CLOUD_NAME']%>",
+    upload_preset: "<%= ENV['UPLOAD_PRESET'] %>"
+  };
+</script>
+
+
 </head>
 <body>
   <% if current_user %>
@@ -16,7 +25,7 @@
       }
       var id = <%= current_user.id %>;
       var role = "<%= current_user.role %>";
-      
+
       window.CURRENT_USER = name;
       window.CURRENT_USER_ID = id;
       window.CURRENT_USER_ROLE = role;
