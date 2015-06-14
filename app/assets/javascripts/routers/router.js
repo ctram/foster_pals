@@ -13,10 +13,10 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     '': 'userShow',
     'users/:id': 'userShow',
     'users/:id/scheduler': 'userScheduler',
-    'animal-roster': 'animalRoster'
+    'animal-roster': 'animalRoster',
   },
 
-  animalRoster: function () {
+  animalRoster: function (id) {
     var animals_as_org = this.currentUser.animals_as_org();
     animals_as_org.fetch();
 
@@ -28,7 +28,12 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this._swapView(animalRosterView);
   },
 
+  // TODO: setup scheduler
   userScheduler: function (id) {
+    if (id === null) {
+      id = parseInt(this.currentUser.escape('id'));
+    }
+
     var user = this.users.getOrFetch(id);
     var userSchedulerView = new FosterPals.Views.UserScheduler({
       model: user
@@ -38,7 +43,8 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   userShow: function (id) {
-    if (typeof id === 'undefined') {
+
+    if (id === null) {
       id = parseInt(this.currentUser.escape('id'));
     }
 

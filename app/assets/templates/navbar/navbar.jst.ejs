@@ -17,14 +17,10 @@
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
 
-        <% if (CURRENT_USER_ROLE === "fosterer") { %>
-          <li><a href="#schedule-manager">Schedule Manager</a></li>
-        <% } else { %>
-          <!-- var id = CURRENT_USER_ID; -->
+          <li><a href="#schedule-manager" id='schedule-manager-link'>Stay Manager</a></li>
           <li><a href="#animal-roster" id='animal-roster-link'>Animal Roster</a></li>
 
           <li><a href="#sign-out" id='sign-out-link'>Sign Out</a></li>
-        <% } %>
       </ul>
     </div>
 
