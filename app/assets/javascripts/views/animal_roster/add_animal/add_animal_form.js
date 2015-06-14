@@ -6,6 +6,8 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.user = options.model;
+    this.imageSetId = randomString(25, 'aA#');
+
     this.images = FosterPals.Collections.addFormImages;
 
     var listOfImagesView = new FosterPals.Views.ListOfImages({
@@ -30,6 +32,7 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     var $form = $button.closest('form');
     var animal = $form.serializeJSON();
     var attrs = animal.animal;
+    attrs.image_set_id = this.imageSetId;
     $.ajax(
       '/api/animals',
       {
@@ -52,23 +55,27 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     var id = parseInt(this.user.escape('id'));
     var image = new FosterPals.Models.Image();
     e.preventDefault();
+    ;
     cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result){
       var data = result[0];
       image.set({
         url: data.url,
         thumb_url: data.thumbnail_url,
-        owner_id: id
+        owner_id: id,
+        image_set_id: this.imageSetId
       });
+      ;
       image.save({}, {
         success: function(){
+          ;
           FosterPals.Collections.addFormImages.add(image);
         }
       });
-    });
+    }.bind(this));
   },
 
   render: function () {
-    var content = this.template({});
+    var content = this.template({imageSetId: this.imageSetId});
     this.$el.html(content);
     this.attachSubviews();
 
