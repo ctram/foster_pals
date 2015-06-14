@@ -16,6 +16,15 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+
+select.new-user {
+  color: #464545;
+}
+
+.navbar-brand {
+  font-family: 'Roboto Slab', serif;
+}
+
 a.welcome-text {
  pointer-events: none;
 }

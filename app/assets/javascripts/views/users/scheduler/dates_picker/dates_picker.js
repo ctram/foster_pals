@@ -1,20 +1,16 @@
 FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   template: JST['users/scheduler/dates_picker/dates_picker'],
 
-  className: 'dates-picker col-md-8',
+  className: 'dates-picker well col-md-8',
 
   events: {
     'click button#check-aval-btn' : 'checkDates',
-    'click input#indefinite-stay-checkbox' : 'lockCheckOutInput'
+    'click input#indefinite-stay-checkbox' : 'lockCheckOutInput',
   },
 
   initialize: function (options) {
     this.user = options.model;
     this.checkOutInputToggled = false;
-
-
-
-
   },
 
   checkDates: function (event) {
@@ -33,6 +29,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
     // TODO: send info to Rails -- if indefiniteStay is true, then ignore the checkout date since it will be locked out in the app but may have a date selected before the user locked it.
 
+    // TODO: add ability to for current user to select which animal the stay is being made for.
 
     // send to rails to generate a stay resource
   },

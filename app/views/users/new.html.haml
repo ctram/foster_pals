@@ -4,7 +4,6 @@
   %h1
     Register
 
-
 .form-horizontal.well
   %form{action: "#{users_url}", method: 'POST' }
     %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
@@ -58,7 +57,7 @@
     %input{type:"text", class:"form-control", placeholder:"City",name: "user[city]", id: 'city-input'}
     </div>
 
-    %select{class:'input-group form-group', name:"user[state]"}
+    %select{class:'input-group form-group new-user', name:"user[state]"}
       %option{ value:"AL", checked: true}
         Alabama
       %option{ value:"AK"}
