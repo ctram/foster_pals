@@ -40,13 +40,11 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     // send to rails to generate a stay resource
   },
 
-
   lockCheckOutInput: function () {
     var $checkOutGroup = $('.check-out-group');
     $checkOutGroup.toggleClass('lock-check-out');
     this.toggleCheckOutInput();
   },
-
 
   render: function () {
     var content = this.template({
@@ -58,6 +56,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   toggleAnimalRoster: function () {
+
     $('.selector-toggler').toggleClass('display-none');
     $('.animal-roster-hook').toggleClass('display-none');
 
