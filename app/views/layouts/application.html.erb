@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>FosterPals</title>
-  <%= stylesheet_link_tag    'application', media: 'all'%>
-  <%= javascript_include_tag 'application'%>
-  <%= csrf_meta_tags %>
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>  <script src="http://widget.cloudinary.com/global/all.js" type="text/javascript" charset="utf-8"></script>
-  <script type="text/javascript" charset="utf-8">
-  window.CLOUDINARY_OPTIONS = {
-    cloud_name: "<%=ENV['CLOUD_NAME']%>",
-    upload_preset: "<%= ENV['UPLOAD_PRESET'] %>"
-  };
-</script>
-
-
-</head>
-<body>
-  <% if current_user %>
-    <script>
-      if ("<%= current_user.org_name %>" !== 'NOT_ORG' ) {
-        var name = "<%= current_user.org_name %>, org";
-      } else {
-        var name = "<%= current_user.first_name %>, fosterer";
-      }
-      var id = <%= current_user.id %>;
-      var role = "<%= current_user.role %>";
-
-      window.CURRENT_USER = name;
-      window.CURRENT_USER_ID = id;
-      window.CURRENT_USER_ROLE = role;
+  <head>
+    <title>FosterPals</title>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%>
+    <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>  <script src="http://widget.cloudinary.com/global/all.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      window.CLOUDINARY_OPTIONS = {
+        cloud_name: "<%=ENV['CLOUD_NAME']%>",
+        upload_preset: "<%= ENV['UPLOAD_PRESET'] %>"
+      };
     </script>
-  <% end %>
 
-<%= yield %>
+    <style type="text/css">
+      html, body, #map-canvas { height: 1000px; margin: 0; padding: 0;}
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcfHXDgD4PWKfI4V3CP1kvDTtqZ9MJUcQ">
+    </script>
 
-</body>
+  </head>
+  <body>
+    <% if current_user %>
+      <script>
+        if ("<%= current_user.org_name %>" !== 'NOT_ORG' ) {
+          var name = "<%= current_user.org_name %>, org";
+        } else {
+          var name = "<%= current_user.first_name %>, fosterer";
+        }
+        var id = <%= current_user.id %>;
+        var role = "<%= current_user.role %>";
+
+        window.CURRENT_USER = name;
+        window.CURRENT_USER_ID = id;
+        window.CURRENT_USER_ROLE = role;
+      </script>
+    <% end %>
+
+  <%= yield %>
+
+  </body>
 </html>

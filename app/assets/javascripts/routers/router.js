@@ -14,6 +14,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     'users/:id': 'userShow',
     'users/:id/scheduler': 'userScheduler',
     'animal-roster': 'animalRoster',
+    'search': 'search'
   },
 
   animalRoster: function (id) {
@@ -26,6 +27,12 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     });
 
     this._swapView(animalRosterView);
+  },
+
+  search: function (event) {
+    var searchMapView = new FosterPals.Views.SearchMap();
+    this._swapView(searchMapView);
+    // search result view here
   },
 
   // TODO: setup scheduler

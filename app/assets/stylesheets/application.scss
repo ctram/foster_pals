@@ -17,6 +17,12 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+div.container {
+  margin-left: 0px;
+  margin-right: 0px;
+  width: inherit;
+  padding: 0px;
+}
 
 select.new-user {
   color: #464545;

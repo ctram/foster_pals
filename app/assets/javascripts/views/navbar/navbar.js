@@ -1,12 +1,13 @@
 FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   template: JST['navbar/navbar'],
 
-  className: '.container',
+  className: 'container',
 
   events: {
     'click a#sign-out-link': 'signOut',
     // FIXME: right now, if you copy and paste a url into the address bar, li hightlighting defaults the  "home" regardless of what page you are actually on - fix that.
-    'click nav a': 'followLink'
+    'click nav a': 'followLink',
+    'click button#search-btn': 'submitSearch'
   },
 
   initialize: function (options) {
@@ -20,6 +21,18 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
     this.switchHighlights($destLi);
     var dest = $destLink.attr('id');
     Backbone.history.navigate(dest, {trigger: true});
+  },
+
+  submitSearch: function (event) {
+    event.preventDefault();
+    $locationInput = $('#search-input');
+    var locationQuery = $locationInput.val();
+    $.ajax('/api/users', {
+      data: {location_query: locationQuery},
+      success: function () {
+        Backbone.history.navigate('#search', {trigger: true});
+      }
+    });
   },
 
   signOut: function (event) {
