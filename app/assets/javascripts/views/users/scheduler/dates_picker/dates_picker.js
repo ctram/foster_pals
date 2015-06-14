@@ -6,10 +6,17 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   events: {
     'click button#check-aval-btn' : 'checkDates',
     'click input#indefinite-stay-checkbox' : 'lockCheckOutInput',
+    'click div.selector-toggler': 'toggleAnimalRoster'
   },
 
   initialize: function (options) {
+    this.currentUser = options.currentUser;
     this.checkOutInputToggled = false;
+
+    var animalRosterSelectorView = new FosterPals.Views.AnimalRosterSelector({
+      currentUser: this.currentUser
+    });
+    this.addSubview('.animal-roster-hook', animalRosterSelectorView);
   },
 
   checkDates: function (event) {
@@ -47,6 +54,12 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     return this;
+
+  },
+
+  toggleAnimalRoster: function () {
+    $('.selector-toggler').toggleClass('display-none');
+    $('.animal-roster-hook').toggleClass('display-none');
 
   },
 
