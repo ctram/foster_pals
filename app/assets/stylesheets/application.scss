@@ -17,11 +17,18 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
-#map-canvas {
-  height: 800px;
-  width: 800px;
+#content, .search-map{
+  height: inherit;
+}
+
+#map-hr {
   margin: 0px;
-  margin-right: 10px;
+}
+
+#map-canvas {
+  height: 100%;
+  width: 50%;
+  margin: 0px;
   padding: 0px;
   float: right;
   border-radius: 5px;
