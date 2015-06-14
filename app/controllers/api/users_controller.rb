@@ -13,6 +13,7 @@ class Api::UsersController < ApplicationController
   end
 
   def index
+    # TODO: add search feature - have the backbone query hit the users#index and return only the users that match the query 
     @users = User.all
     render json: @users
   end
