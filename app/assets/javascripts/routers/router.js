@@ -36,7 +36,8 @@ FosterPals.Routers.Router = Backbone.Router.extend({
 
     var user = this.users.getOrFetch(id);
     var userSchedulerView = new FosterPals.Views.UserScheduler({
-      model: user
+      model: user,
+      currentUser: this.currentUser 
     });
     // userSchedulerView.attachSubviews();
     this._swapView(userSchedulerView);

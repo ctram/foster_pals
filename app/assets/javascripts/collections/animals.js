@@ -21,5 +21,3 @@ FosterPals.Collections.Animals = Backbone.Collection.extend({
     return animal;
   }
 });
-
-FosterPals.Collections.animals = new FosterPals.Collections.Animals();

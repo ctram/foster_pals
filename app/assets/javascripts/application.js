@@ -13,6 +13,9 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require jquery-ui/selectable
+//= require jquery-ui/effect-drop
+
 //= require moment
 //= require bootstrap-datetimepicker
 //= require underscore
