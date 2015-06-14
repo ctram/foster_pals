@@ -52,7 +52,6 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     // TODO: right now, when an image is uploaded - it is immediately saved to the database - perhaps delete the images if the animal does not end up being saved.
     // TODO: Right now the whole page refreshes when an image is upload, losing all previously inputted data. If the user than saves, no animal will be added.
 
-    var id = parseInt(this.user.escape('id'));
     var image = new FosterPals.Models.Image();
     e.preventDefault();
     ;
