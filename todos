@@ -14,4 +14,4 @@ TODO: restructure parameters to match backbone pattern, i.e.
 
   Why? b/c backbone objects automatically has ivars for mode l and collection, you don't need to set them in initialize.
 
- TODO: !!! have features for both org and fosterers avaiable to the user for demoing purposes.
+TODO: !!! have features for both org and fosterers avaiable to the user for demoing purposes.
