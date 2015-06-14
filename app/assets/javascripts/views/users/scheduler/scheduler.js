@@ -5,6 +5,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.user = options.model;
+    this.currentUser = options.currentUser;
 
     this.profileView = new FosterPals.Views.Profile({
       model: this.user,
@@ -12,7 +13,9 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     });
     this.addSubview('.row', this.profileView);
 
-    this.datesPickerView = new FosterPals.Views.DatesPicker({});
+    this.datesPickerView = new FosterPals.Views.DatesPicker({
+      currentUser: this.currentUser
+    });
     this.addSubview('.row', this.datesPickerView);
 
     this.listenTo(this.user, 'sync', this.render);
