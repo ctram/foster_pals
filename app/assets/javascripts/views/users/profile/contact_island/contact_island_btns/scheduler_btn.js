@@ -2,6 +2,7 @@ FosterPals.Views.SchedulerBtn = Backbone.CompositeView.extend({
   template: JST['users/profile/contact_island/contact_island_btns/scheduler_btn'],
 
   initialize: function (options) {
+
     this.user = options.model;
     this.listenTo(this.user, 'sync', this.render);
   },
