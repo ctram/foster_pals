@@ -2,11 +2,17 @@ class Api::AnimalsController < ApplicationController
   before_action :redirect_to_front_if_not_signed_in
 
   def create
-
     @animal = Animal.create(animal_params)
     if !@animal.save
       render json: @animal.errors.full_messages
+      return
     end
+
+    animal_images = Image.where(image_set_id: @animal.image_set_id)
+    animal_images.each do |image|
+      image.owner_id = @animal.id
+      image.save
+    end    
   end
 
   def show
@@ -37,7 +43,8 @@ class Api::AnimalsController < ApplicationController
       :org_id,
       :fosterer_id,
       :weight,
-      :status
+      :status,
+      :image_set_id
     )
   end
 

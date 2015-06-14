@@ -11,23 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613174434) do
+ActiveRecord::Schema.define(version: 20150613235614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "animals", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "species",     null: false
-    t.string   "sex",         null: false
-    t.string   "breed",       null: false
-    t.string   "color",       null: false
+    t.string   "name",         null: false
+    t.string   "species",      null: false
+    t.string   "sex",          null: false
+    t.string   "breed",        null: false
+    t.string   "color",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "org_id"
     t.integer  "fosterer_id"
-    t.integer  "weight",      null: false
-    t.string   "status",      null: false
+    t.integer  "weight",       null: false
+    t.string   "status",       null: false
+    t.string   "image_set_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -42,8 +43,9 @@ ActiveRecord::Schema.define(version: 20150613174434) do
     t.integer  "owner_id"
     t.string   "url"
     t.string   "thumb_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "image_set_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -89,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150613174434) do
     t.string  "zip_code",                      null: false
     t.integer "num_animals_willing_to_foster", null: false
     t.text    "about_info"
+    t.string  "image_set_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
