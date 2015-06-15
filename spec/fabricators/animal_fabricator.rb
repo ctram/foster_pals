@@ -7,5 +7,15 @@ Fabricator :animal do
   org_id {Faker::Number.digit}
   fosterer_id {Faker::Number.digit}
   weight { Faker::Number.number(2)}
-  status {'rescued'}
+  status {
+    rand_num = rand(0..2)
+    case rand_num
+    when 0
+      'fostered'
+    when 1
+      'rescued'
+    else
+      'adopted'
+    end
+  }
 end
