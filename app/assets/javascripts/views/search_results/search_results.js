@@ -10,10 +10,12 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
-    var mapView = new FosterPals.Views.Map();
-    this.addSubview('#map', mapView);
-
     var users = this.collection;
+
+    this.mapView = new FosterPals.Views.Map({
+      collection: users
+    });
+
 
     // HACK: to prevent an empty list item appearing on the list of search results.
     if (users.length !== 1) {
@@ -22,6 +24,7 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
         this.addResultItem(model);
       }
     }
+    this.render();
 
   },
 
@@ -41,8 +44,8 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     //  TODO: insert into the template a script to populate map with markers of where fosterers and orgs are.
     var content = this.template();
     this.$el.html(content);
-    this.attachSubviews();
-
+    this.$('#map').html(this.mapView.$el);
+    this.mapView.initMap();
     return this;
   },
 
