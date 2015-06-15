@@ -1,1 +1,9 @@
-<li><%= user.escape('name') %></li>
+<div class='result-item' data-user-id=<%= user.escape('id') %>>
+  <strong><%= user.escape('name') %></strong>
+  <br>
+  <% var city = user.escape('city') %>
+  <% var state = user.escape('state') %>
+  <% var zip = user.escape('zip_code') %>
+
+  <%= city + ', ' + state + ' ' + zip %>
+</div>

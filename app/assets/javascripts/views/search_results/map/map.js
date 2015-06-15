@@ -7,7 +7,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
-
+    // FIXME: map not fully rendered on first arrival -- needs a refresh of the view.
   },
 
   render: function () {

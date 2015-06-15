@@ -30,14 +30,13 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   search: function (event) {
+    var users = {};
 
     if (FosterPals.SearchResults) {
       searchResults = FosterPals.SearchResults;
-      var users = new FosterPals.Collections.Users(searchResults);
+      users = new FosterPals.Collections.Users(searchResults);
       FosterPals.SearchResults = {};
     }
-
-
 
     var searchResultsView = new FosterPals.Views.SearchResults({
       collection: users
@@ -63,6 +62,11 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   userShow: function (id) {
+    if (FosterPals.UserId !== null) {
+      id = FosterPals.UserId;
+      FosterPals.UserId = null;
+    }
+
 
     if (id === null) {
       id = parseInt(this.currentUser.escape('id'));
