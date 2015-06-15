@@ -5,8 +5,8 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
 
   events: {
     'click div.result-item': 'toUserShowPage',
-    'mouseenter div.result-item': 'highlightResultItem',
-    'mouseleave div.result-item': 'unhighlightResultItem'
+    'mouseenter div.user-item': 'highlightResultItem',
+    'mouseleave div.user-item': 'unhighlightResultItem'
   },
 
   initialize: function () {
