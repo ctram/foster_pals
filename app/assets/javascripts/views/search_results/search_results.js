@@ -5,7 +5,8 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
 
   events: {
     'click div.result-item': 'toUserShowPage',
-    'mouseover div.result-item': 'highlightResultItem'
+    'mouseenter div.result-item': 'highlightResultItem',
+    'mouseleave div.result-item': 'unhighlightResultItem'
   },
 
   initialize: function () {
@@ -33,11 +34,7 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
 
   highlightResultItem: function (event) {
     $resultItem = $(event.currentTarget);
-    this.toggleResultItemHighlight($resultItem);
-    if (this.activeResultItem) {
-      this.toggleResultItemHighlight(this.activeResultItem);
-    }
-    this.activeResultItem = $resultItem;
+    $resultItem.addClass('active-result-item');
   },
 
   render: function () {
@@ -49,10 +46,6 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     return this;
   },
 
-  toggleResultItemHighlight: function ($resultItem) {
-    $resultItem.toggle('active-result-item');
-  },
-
   toUserShowPage: function (event) {
     var $div = $(event.currentTarget);
     var userId = $div.data('user-id');
@@ -60,5 +53,10 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     // HACK: to pass the user id to the router userShow action. Otherwise, Backbone.history.navigate is not passing the id for some reason.
     FosterPals.UserId = parseInt(userId);
     Backbone.history.navigate(destUrl, {trigger: true});
+  },
+
+  unhighlightResultItem: function (event) {
+    $resultItem = $(event.currentTarget);
+    $resultItem.removeClass('active-result-item');
   }
 });
