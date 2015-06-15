@@ -1,25 +1,38 @@
-<label>
-  Name:
-</label>
-<h2><%= user.escape('name') %></h2>
+<strong><%= user.escape('role') %></strong>
+<br>
+<br>
+
+<div class='profile-photo'>
+</div>
+
+<div>
+  <label>
+    Name:
+    <h2><%= user.escape('name') %></h2>
+  </label>
+</div>
 
 <% if (user.escape('role') === 'fosterer') { %>
-    <label>
-      Nums Spots Available:
-    </label>
-    <h4><%=user.escape('num_animals_willing_to_foster')%></h4>
+<div>
+  <label>
+    Nums Spots Available:
+  </label>
+  <h4><%=user.escape('num_animals_willing_to_foster')%></h4>
+</div>
 <% } %>
 
-<label>
-  Email:
-</label>
-<h2><%= user.escape('email') %></h2>
-
-<label>
-  Location:
-</label>
 <div>
-  <h2><%= user.escape('street_address') %> <%= user.escape('city') %> <%= user.escape('state') %> <%= user.escape('zip_code') %></h2>
+  <label>
+    Email:
+    <h2><%= user.escape('email') %></h2>
+  </label>
+</div>
+
+<div>
+  <label>
+    Location:
+    <h2><%= user.escape('street_address') %> <%= user.escape('city') %> <%= user.escape('state') %> <%= user.escape('zip_code') %></h2>
+  </label>
 </div>
 
 <div class='contact-btns'>

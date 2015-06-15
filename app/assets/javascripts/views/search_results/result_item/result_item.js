@@ -7,7 +7,7 @@ FosterPals.Views.ResultItem = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
-    
+
   },
 
 

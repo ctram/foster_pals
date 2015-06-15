@@ -4,6 +4,7 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   id: 'search-results-view',
 
   events: {
+    'click div.result-item': 'toUserShowPage'
   },
 
   initialize: function () {
@@ -12,16 +13,17 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
 
     var users = this.collection;
 
-    for (var i = 0; i < users.models.length; i++) {
-      model = users.models[i];
-      this.addResultItem(model);
+    // HACK: to prevent an empty list item appearing on the list of search results.
+    if (users.length !== 1) {
+      for (var i = 0; i < users.models.length; i++) {
+        model = users.models[i];
+        this.addResultItem(model);
+      }
     }
 
-    this.listenTo(this.collection, 'add', this.addResultItem);
   },
 
   addResultItem: function (model) {
-
     var resultItemView = new FosterPals.Views.ResultItem({
       model: model
     });
@@ -35,5 +37,14 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     this.attachSubviews();
 
     return this;
+  },
+
+  toUserShowPage: function (event) {
+    var $div = $(event.currentTarget);
+    var userId = $div.data('user-id');
+    var destUrl = '/#users/' + userId;
+    // HACK: to pass the user id to the router userShow action. Otherwise, Backbone.history.navigate is not passing the id for some reason.
+    FosterPals.UserId = parseInt(userId);
+    Backbone.history.navigate(destUrl, {trigger: true});
   }
 });
