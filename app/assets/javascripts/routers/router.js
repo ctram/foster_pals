@@ -29,13 +29,20 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this._swapView(animalRosterView);
   },
 
-  search: function (event, options) {
-    if (options && options.search_results) {
-      var users = options.search_results;
+  search: function (event) {
+
+    if (FosterPals.SearchResults) {
+      searchResults = FosterPals.SearchResults;
+      var users = new FosterPals.Collections.Users(searchResults);
+      FosterPals.SearchResults = {};
     }
-    debugger
-    var searchMapView = new FosterPals.Views.SearchMap();
-    this._swapView(searchMapView);
+
+
+
+    var searchResultsView = new FosterPals.Views.SearchResults({
+      collection: users
+    });
+    this._swapView(searchResultsView);
     // search result view here
   },
 

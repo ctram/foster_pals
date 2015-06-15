@@ -17,8 +17,16 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
-#content, .search-map{
+.navbar-wrapper {
+}
+
+#content, #search-results-view, #map-view, #map, #result-items{
   height: inherit;
+}
+
+#result-items {
+  float: left;
+  width: 50%
 }
 
 #map-hr {

@@ -32,10 +32,11 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
       data: {location_query: locationQuery},
       success: function (response) {
         // NOTE: receive back a response which is an array of JSON objects -> users
-        var users = new FosterPals.Collections.Users(response);
+        var users = new FosterPals.Collections.Users(response.users);
         // FIXME: troubleshoot search - search is reaching search action again in the router.
-        debugger
-        Backbone.history.navigate('#search', {trigger: true, search_results: users});
+
+        FosterPals.SearchResults = users.models;
+        Backbone.history.navigate('#search', {trigger: true});
       }
     });
   },

@@ -3,6 +3,7 @@ window.FosterPals = {
   Collections: {},
   Views: {},
   Routers: {},
+  SearchResults: {},
   initialize: function() {
     var currentUser = FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID);
     var currentUserId = CURRENT_USER_ID;

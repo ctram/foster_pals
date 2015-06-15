@@ -21,7 +21,8 @@ class Api::UsersController < ApplicationController
 
 
     @users = User.all
-    render json: @users
+    #  TODO: use jbuilder to remmove password digest and other stuff from the json response.
+    render :index
   end
 
   def update

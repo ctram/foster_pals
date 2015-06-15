@@ -1,7 +1,7 @@
-FosterPals.Views.SearchMap = Backbone.CompositeView.extend({
-  template: JST['search/search_map'],
+FosterPals.Views.Map = Backbone.CompositeView.extend({
+  template: JST['search_results/map/map'],
 
-  className: 'search-map',
+  id: 'map-view',
 
   events: {
   },
