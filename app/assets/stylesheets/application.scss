@@ -29,9 +29,17 @@
 }
 
 
-#result-items {
+.result-items{
   float: left;
-  width: 50%
+  width: 50%;
+  height: 100%;
+}
+
+.users-index {
+  float: left;
+  height: 100%;
+  width: 100%;
+
 }
 
 #map-hr {
