@@ -53,7 +53,6 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
 
     var image = new FosterPals.Models.Image();
     e.preventDefault();
-    ;
     cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result){
       var data = result[0];
       image.set({
@@ -62,10 +61,8 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
         owner_id: id,
         image_set_id: this.imageSetId
       });
-      ;
       image.save({}, {
         success: function(){
-          ;
           FosterPals.Collections.addFormImages.add(image);
         }
       });

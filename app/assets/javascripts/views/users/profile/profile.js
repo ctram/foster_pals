@@ -1,7 +1,7 @@
 FosterPals.Views.Profile = Backbone.CompositeView.extend({
   template: JST['users/profile/profile'],
 
-  className: 'profile col-md-4 well',
+  className: 'profile-view col-md-4 well',
 
   initialize: function (options) {
     viewingFromScheduler = options.viewingFromScheduler;
@@ -12,7 +12,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     });
     this.addSubview('.contact-btns', this.contactIslandView);
 
-    // TODO: codoe ProfilePhoto view and template
+    // // TODO: codoe ProfilePhoto view and template
     var profilePhotoView = new FosterPals.Views.ProfilePhoto({
       model: this.model
     });
@@ -24,7 +24,6 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
 
   render: function () {
     var content = this.template({user: this.model});
-    this.$el.html(content);
     this.$el.html(content);
     this.attachSubviews();
     return this;
