@@ -24,9 +24,10 @@
 .navbar-wrapper {
 }
 
-#content, #search-results-view, #map-view, #map, #result-items{
+#content, #search-results-view, .map-view, .map-hook, #result-items{
   height: inherit;
 }
+
 
 #result-items {
   float: left;
@@ -37,8 +38,7 @@
   margin: 0px;
 }
 
-#map-canvas {
-  height: 100%;
+.map-hook {
   width: 50%;
   margin: 0px;
   padding: 0px;
