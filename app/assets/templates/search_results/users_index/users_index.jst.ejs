@@ -1,0 +1,27 @@
+<div class="sidebar-info">
+  <h3>Search Results</h3>
+  <hr>
+  <!-- <p>
+    These are the available users. You can:
+  </p>
+  <ul>
+    <li>Click on the map to add users</li>
+    <li>Hover over user names to animate markers</li>
+    <li>Click on user names to pan</li>
+    <li>Click on markers to show info windows</li>
+    <li>Click (remove) to destroy users</li>
+  </ul> -->
+</div>
+
+<ul class="users-list">
+  <% users.each(function (user) { %>
+    <li class="user">
+      <a href="javascript:void(0)" class="user-name" data-user-id="<%= user.id %>">
+        <%= user.get('name') %>
+      </a>
+      <a href="javascript:void(0)" class="remove-user" data-user-id="<%= user.id %>">
+        (remove)
+      </a>
+    </li>
+  <% }); %>
+</ul>

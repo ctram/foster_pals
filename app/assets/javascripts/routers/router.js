@@ -30,19 +30,12 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   search: function (event) {
-    var users = {};
-
-    if (FosterPals.SearchResults) {
-      searchResults = FosterPals.SearchResults;
-      users = new FosterPals.Collections.Users(searchResults);
-      FosterPals.SearchResults = {};
-    }
-
-    var searchResultsView = new FosterPals.Views.SearchResults({
-      collection: users
+    var users = new FosterPals.Collections.Users();
+    users.fetch();
+    var view = new FosterPals.Views.SearchResults({
+    collection: users
     });
-    this._swapView(searchResultsView);
-    // search result view here
+    this._swapView(view);
   },
 
   // TODO: setup scheduler
