@@ -1,3 +1,5 @@
+require 'net/http'
+require 'json'
 class Api::UsersController < ApplicationController
   before_action :redirect_to_front_if_not_signed_in, except: [:new, :create]
 
@@ -19,9 +21,22 @@ class Api::UsersController < ApplicationController
     query = params[:location_query].split.join('+')
     gmaps_complete_url = gmaps_api_url + query + '&key=' + api_key
 
-
     @users = User.all
-    #  TODO: use jbuilder to remmove password digest and other stuff from the json response.
+
+    @users.each do |user|
+      location = "#{user.street_address}, #{user.state} #{user.zip_code}"
+      location = location.split.join('+')
+      complete_url = gmaps_api_url + location + '&key=' + api_key
+      uri = URI(complete_url)
+      response = JSON.parse(Net::HTTP.get(uri))
+      unless response['status'] == 'ZERO_RESULTS'
+        user.lat = response['results'][0]['geometry']['location']['lat']
+        user.long = response['results'][0]['geometry']['location']['lng']
+        user.save
+      end
+    end
+
+    #  TODO: use jbuilder to remove password digest and other stuff from the json response.
     render :index
   end
 
