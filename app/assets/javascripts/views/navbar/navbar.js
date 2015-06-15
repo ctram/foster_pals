@@ -28,9 +28,14 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
     $locationInput = $('#search-input');
     var locationQuery = $locationInput.val();
     $.ajax('/api/users', {
+      dataType:'json',
       data: {location_query: locationQuery},
-      success: function () {
-        Backbone.history.navigate('#search', {trigger: true});
+      success: function (response) {
+        // NOTE: receive back a response which is an array of JSON objects -> users
+        var users = new FosterPals.Collections.Users(response);
+        // FIXME: troubleshoot search - search is reaching search action again in the router.
+        debugger
+        Backbone.history.navigate('#search', {trigger: true, search_results: users});
       }
     });
   },

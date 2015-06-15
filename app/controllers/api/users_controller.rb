@@ -14,6 +14,11 @@ class Api::UsersController < ApplicationController
 
     # TODO: add search feature - have the backbone query hit the users#index and return only the users that match the query
   def index
+    api_key = ENV['GOOGLE_MAPS_API_KEY']
+    gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?address="
+    query = params[:location_query].split.join('+')
+    gmaps_complete_url = gmaps_api_url + query + '&key=' + api_key
+
 
     @users = User.all
     render json: @users

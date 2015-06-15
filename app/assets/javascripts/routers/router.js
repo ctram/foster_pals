@@ -29,7 +29,11 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this._swapView(animalRosterView);
   },
 
-  search: function (event) {
+  search: function (event, options) {
+    if (options && options.search_results) {
+      var users = options.search_results;
+    }
+    debugger
     var searchMapView = new FosterPals.Views.SearchMap();
     this._swapView(searchMapView);
     // search result view here
