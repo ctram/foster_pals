@@ -62,6 +62,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   userShow: function (id) {
+
     if (FosterPals.UserId !== null) {
       id = FosterPals.UserId;
       FosterPals.UserId = null;

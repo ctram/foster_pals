@@ -4,7 +4,8 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   id: 'search-results-view',
 
   events: {
-    'click div.result-item': 'toUserShowPage'
+    'click div.result-item': 'toUserShowPage',
+    'mouseover div.result-item': 'highlightResultItem'
   },
 
   initialize: function () {
@@ -30,6 +31,15 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     this.addSubview('#result-items', resultItemView);
   },
 
+  highlightResultItem: function (event) {
+    $resultItem = $(event.currentTarget);
+    this.toggleResultItemHighlight($resultItem);
+    if (this.activeResultItem) {
+      this.toggleResultItemHighlight(this.activeResultItem);
+    }
+    this.activeResultItem = $resultItem;
+  },
+
   render: function () {
     //  TODO: insert into the template a script to populate map with markers of where fosterers and orgs are.
     var content = this.template();
@@ -37,6 +47,10 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     this.attachSubviews();
 
     return this;
+  },
+
+  toggleResultItemHighlight: function ($resultItem) {
+    $resultItem.toggle('active-result-item');
   },
 
   toUserShowPage: function (event) {

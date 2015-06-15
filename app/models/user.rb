@@ -81,6 +81,23 @@ class User < ActiveRecord::Base
     self.session_token
   end
 
+  # TODO: extract main_image code into a module -- animal class also uses it.
+  def main_image_url
+    if images.empty?
+      'url_to_default_image'
+    else
+      images.first.url
+    end
+  end
+
+  def main_image_thumb_url
+    if images.empty?
+      "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+    else
+      images.first.thumb_url
+    end
+  end
+
   private
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
