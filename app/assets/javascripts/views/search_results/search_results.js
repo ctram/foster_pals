@@ -24,8 +24,6 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
         this.addResultItem(model);
       }
     }
-    this.render();
-
   },
 
   addResultItem: function (model) {
@@ -44,7 +42,8 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     //  TODO: insert into the template a script to populate map with markers of where fosterers and orgs are.
     var content = this.template();
     this.$el.html(content);
-    this.$('#map').html(this.mapView.$el);
+    this.attachSubviews();
+    this.$('.map-hook').html(this.mapView.$el);
     this.mapView.initMap();
     return this;
   },
