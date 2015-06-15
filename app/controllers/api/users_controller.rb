@@ -18,8 +18,6 @@ class Api::UsersController < ApplicationController
   def index
     api_key = ENV['GOOGLE_MAPS_API_KEY']
     gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?address="
-    query = params[:location_query].split.join('+')
-    gmaps_complete_url = gmaps_api_url + query + '&key=' + api_key
 
     @users = User.all
 
@@ -33,6 +31,8 @@ class Api::UsersController < ApplicationController
         user.lat = response['results'][0]['geometry']['location']['lat']
         user.long = response['results'][0]['geometry']['location']['lng']
         user.save
+        p user.lat
+        p user.long
       end
     end
 

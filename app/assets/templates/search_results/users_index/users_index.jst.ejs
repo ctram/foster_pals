@@ -13,15 +13,13 @@
   </ul> -->
 </div>
 
-<ul class="users-list">
-  <% users.each(function (user) { %>
-    <li class="user">
-      <a href="javascript:void(0)" class="user-name" data-user-id="<%= user.id %>">
-        <%= user.get('name') %>
-      </a>
-      <a href="javascript:void(0)" class="remove-user" data-user-id="<%= user.id %>">
-        (remove)
-      </a>
-    </li>
-  <% }); %>
-</ul>
+<% users.each(function (user) { %>
+  <div class="user-item">
+    <a href="javascript:void(0)" class="user-name" data-user-id="<%= user.id %>">
+      <%= user.get('name') %>
+    </a>
+    <a href="javascript:void(0)" class="remove-user" data-user-id="<%= user.id %>">
+      (remove)
+    </a>
+  </div>
+<% }); %>
