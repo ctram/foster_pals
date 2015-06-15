@@ -4,6 +4,8 @@
   %h1
     Register
 
+-# TODO: remove input asking for number of animals to foster.
+-# TODO: Have explanation of input fields
 .form-horizontal.well
   %form{action: "#{users_url}", method: 'POST' }
     %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}

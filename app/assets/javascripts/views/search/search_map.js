@@ -11,6 +11,7 @@ FosterPals.Views.SearchMap = Backbone.CompositeView.extend({
   },
 
   render: function () {
+    //  TODO: insert into the template a script to populate map with markers of where fosterers and orgs are.
     var content = this.template();
     this.$el.html(content);
 
