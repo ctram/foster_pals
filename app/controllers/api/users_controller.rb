@@ -22,17 +22,22 @@ class Api::UsersController < ApplicationController
     @users = User.all
 
     @users.each do |user|
-      location = "#{user.street_address}, #{user.state} #{user.zip_code}"
-      location = location.split.join('+')
-      complete_url = gmaps_api_url + location + '&key=' + api_key
-      uri = URI(complete_url)
-      response = JSON.parse(Net::HTTP.get(uri))
-      unless response['status'] == 'ZERO_RESULTS'
-        user.lat = response['results'][0]['geometry']['location']['lat']
-        user.long = response['results'][0]['geometry']['location']['lng']
-        user.save
-        p user.lat
-        p user.long
+      if user.lat.nil?
+        location = "#{user.street_address}, #{user.state} #{user.zip_code}"
+        location = location.split.join('+')
+        complete_url = gmaps_api_url + location + '&key=' + api_key
+        uri = URI(complete_url)
+        response = JSON.parse(Net::HTTP.get(uri))
+        if response['status'] == 'ZERO_RESULTS'
+          user.lat = 37.7835
+          user.long = -122.4169
+        else
+          user.lat = response['results'][0]['geometry']['location']['lat']
+          user.long = response['results'][0]['geometry']['location']['lng']
+          user.save
+          p user.lat
+          p user.long
+        end
       end
     end
 
