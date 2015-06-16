@@ -5,12 +5,10 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
 
   events: {
     'click div.result-item': 'toUserShowPage',
-    // 'mouseenter div.user-item': 'highlightResultItem',
-    // 'mouseleave div.user-item': 'unhighlightResultItem',
-    'click a.remove-listing': 'destroyListing',
-    'click a.listing-name': 'panToListing',
-    'mouseenter div.user-item': 'startBounce',
-    'mouseleave div.user-item': 'stopBounce'
+    // 'click a.remove-listing': 'destroyListing',
+    // 'click a.result-name': 'panToListing',
+    'mouseenter div.user-item': 'startBounceAndHightlight',
+    'mouseleave div.user-item': 'stopBounceAndHighlight'
   },
 
   initialize: function () {
@@ -62,12 +60,14 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   },
 
     // Event handlers
-  startBounce: function (event) {
+  startBounceAndHightlight: function (event) {
+    this.highlightResultItem(event);
     var userId = $(event.currentTarget).data('user-id');
     this.mapView.startBounce(userId);
   },
 
-  stopBounce: function (event) {
+  stopBounceAndHighlight: function (event) {
+    this.unhighlightResultItem(event);
     var userId = $(event.currentTarget).data('user-id');
     this.mapView.stopBounce(userId);
   },
