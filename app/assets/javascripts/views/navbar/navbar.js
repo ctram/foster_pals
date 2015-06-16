@@ -1,18 +1,18 @@
 FosterPals.Views.Navbar = Backbone.CompositeView.extend({
+  initialize: function (options) {
+    this.router = options.router;
+    this.listenTo(this.router, '', this.render);
+  },
+
   template: JST['navbar/navbar'],
 
-  className: 'container',
+  className: '',
 
   events: {
     'click a#sign-out-link': 'signOut',
     // FIXME: right now, if you copy and paste a url into the address bar, li hightlighting defaults the  "home" regardless of what page you are actually on - fix that.
     'click nav a': 'followLink',
     'click button#search-btn': 'submitSearch'
-  },
-
-  initialize: function (options) {
-    this.router = options.router;
-    this.listenTo(this.router, '', this.render);
   },
 
   followLink: function (event) {
