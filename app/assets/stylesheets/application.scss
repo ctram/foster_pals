@@ -17,6 +17,21 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+
+.form-horizontal .form-group {
+  margin: 0px;
+}
+
+.add-image-btn {
+  margin: 5px;
+
+}
+
+.add-animal-btn {
+  margin-top: 15px;
+  margin-left: 184px;
+}
+
 span.strong {
   font-weight: bold;
 }
@@ -95,6 +110,12 @@ select.new-user {
     border-color: #A33D3D;
     background-color: #76415F;
   }
+}
+
+.panel {
+  border-color: #321616;
+  background-color: #614646;
+  padding: 15px;
 }
 
 .navbar-brand {
