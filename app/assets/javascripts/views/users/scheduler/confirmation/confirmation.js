@@ -1,4 +1,4 @@
-FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
+FosterPals.Views.Confirmation = Backbone.CompositeView.extend({
   template: JST['users/scheduler/confirmation/confirmation'],
 
   className: 'confirmation-view well col-md-8',
@@ -7,12 +7,11 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   initialize: function (options) {
+    this.listenTo(this.collection, 'add sync', this.render);
   },
 
   render: function () {
     var content = this.template({
-      user: this.model,
-      currentUser: this.currentUser,
       stays: this.collection
     });
     this.$el.html(content);
