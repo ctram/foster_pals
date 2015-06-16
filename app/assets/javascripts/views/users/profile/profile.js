@@ -3,6 +3,10 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
 
   className: 'profile-view col-md-4 well',
 
+  events: {
+    'click button.schedule-btn': 'toScheduler'
+  },
+
   initialize: function (options) {
     viewingFromScheduler = options.viewingFromScheduler;
 
@@ -27,5 +31,9 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     return this;
+  },
+
+  toScheduler: function () {
+
   }
 });

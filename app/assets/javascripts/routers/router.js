@@ -5,8 +5,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this.currentUserId = options.currentUserId;
     this.users = options.users;
     //TODO: restructure router to have '' go to 'show' -- depending on whether an ID was passed, route to the current user's page. The initialization of the router should not call a route method.
-
-    this.userShow(this.currentUserId);
   },
 
   routes: {
@@ -45,7 +43,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     }
 
     var user = this.users.getOrFetch(id);
-
     var userSchedulerView = new FosterPals.Views.UserScheduler({
       model: user,
       currentUser: this.currentUser
@@ -65,6 +62,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     if (id === null) {
       id = parseInt(this.currentUser.escape('id'));
     }
+
 
     var user = this.users.getOrFetch(id);
     var userShowView = new FosterPals.Views.UserShow({ model: user });
