@@ -24,8 +24,6 @@ FosterPals.Views.UsersIndex = Backbone.View.extend({
     this.$el.html(content);
     this.setUsersHeight();
 
-    console.log(this.collection.models);
-    
     return this;
   },
 

@@ -34,10 +34,8 @@ class Api::UsersController < ApplicationController
         else
           user.lat = response['results'][0]['geometry']['location']['lat']
           user.long = response['results'][0]['geometry']['location']['lng']
-          user.save
-          p user.lat
-          p user.long
         end
+        user.save
       end
     end
 

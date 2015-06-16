@@ -11,7 +11,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
 
 
     this.listenTo(this.collection, 'add', this.addMarker);
-    // this.listenTo(this.collection, 'remove', this.removeMarker);
+    this.listenTo(this.collection, 'remove', this.removeMarker);
   },
 
   initMap: function () {

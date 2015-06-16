@@ -5,8 +5,12 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
 
   events: {
     'click div.result-item': 'toUserShowPage',
-    'mouseenter div.user-item': 'highlightResultItem',
-    'mouseleave div.user-item': 'unhighlightResultItem'
+    // 'mouseenter div.user-item': 'highlightResultItem',
+    // 'mouseleave div.user-item': 'unhighlightResultItem',
+    'click a.remove-listing': 'destroyListing',
+    'click a.listing-name': 'panToListing',
+    'mouseenter div.user-item': 'startBounce',
+    'mouseleave div.user-item': 'stopBounce'
   },
 
   initialize: function () {
@@ -18,19 +22,6 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     this.usersIndex = new FosterPals.Views.UsersIndex({
       collection: this.collection
     });
-
-
-
-
-
-    //
-    // // HACK: to prevent an empty list item appearing on the list of search results.
-    // if (users.length !== 1) {
-    //   for (var i = 0; i < users.models.length; i++) {
-    //     model = users.models[i];
-    //     this.addResultItem(model);
-    //   }
-    // }
   },
 
   addResultItem: function (model) {
@@ -68,5 +59,35 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   unhighlightResultItem: function (event) {
     $resultItem = $(event.currentTarget);
     $resultItem.removeClass('active-result-item');
+  },
+
+    // Event handlers
+  startBounce: function (event) {
+    var userId = $(event.currentTarget).data('user-id');
+    this.mapView.startBounce(userId);
+  },
+
+  stopBounce: function (event) {
+    var userId = $(event.currentTarget).data('user-id');
+    this.mapView.stopBounce(userId);
+  },
+
+  destroyListing: function (event) {
+    var userId = $(event.currentTarget).data('user-id');
+    var user = this.collection.get(userId);
+    user.destroy();
+  },
+
+  panToListing: function (event) {
+    var userId = $(event.currentTarget).data('user-id');
+    var marker = this.mapView._markers[userId];
+    this.mapView._map.panTo(marker.getPosition());
+  },
+
+  remove: function () {
+    Backbone.View.prototype.remove.call(this);
+    this.mapView.remove();
+    this.listingsIndex.remove();
   }
+
 });
