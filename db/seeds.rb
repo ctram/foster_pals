@@ -13,13 +13,18 @@ carl = Fabricate(
   role: 'org'
 )
 
+Fabricate(
+  :image, imageable_id: carl.id, :imageable_type: 'user', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+)
+
+
 3.times do
   animal = Fabricate(
     :animal, org_id: carl.id
   )
 
   Fabricate(
-    :image, owner_id: animal.id, thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+    :image, imageable_id: animal.id, imageable_type: 'animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
   )
 end
 ############################################
@@ -32,13 +37,17 @@ frosty = Fabricate(
   role: 'org'
 )
 
+Fabricate(
+  :image, imageable_id: frosty.id, :imageable_type: 'user', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+)
+
 3.times do
   animal = Fabricate(
     :animal, org_id: frosty.id
   )
 
   Fabricate(
-    :image, owner_id: animal.id, thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  :image, imageable_id: animal.id, imageable_type: 'animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
   )
 end
 
@@ -51,13 +60,17 @@ end
     role: 'fosterer'
   )
 
+  Fabricate(
+    :image, imageable_id: user.id, :imageable_type: 'user', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  )
+
   3.times do
     animal = Fabricate(
       :animal, fosterer_id: user.id
     )
 
     Fabricate(
-      :image, owner_id: animal.id, thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+      :image, imageable_id: animal.id, imageable_type: 'animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
     )
   end
 end
@@ -71,13 +84,18 @@ end
     role: 'org'
   )
 
+  Fabricate(
+    :image, imageable_id: user.id, :imageable_type: 'user', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  )
+
+
   3.times do
     animal = Fabricate(
       :animal, org_id: user.id
     )
 
     Fabricate(
-      :image, owner_id: animal.id, thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+      :image, imageable_id: animal.id, imageable_type: 'animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
     )
   end
 end
