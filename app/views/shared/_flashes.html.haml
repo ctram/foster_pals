@@ -1,11 +1,11 @@
 - if flash[:errors]
   %ul
     - flash[:errors].each do |msg|
-      %li
+      %li.alert.alert-danger
         = msg
 
 - if flash[:notice]
   %ul
     - flash[:notice].each do |msg|
-      %li
+      %li.alert.alert-info
         =msg

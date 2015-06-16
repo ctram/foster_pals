@@ -20,12 +20,7 @@ class Animal < ActiveRecord::Base
     primary_key: :id
   )
 
-  has_many(
-    :images,
-    class_name: 'Image',
-    foreign_key: :owner_id,
-    primary_key: :id
-  )
+  has_many :images, as: :imageable
 
   def main_image_url
     if images.empty?

@@ -57,7 +57,7 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
       image.set({
         url: data.url,
         thumb_url: data.thumbnail_url,
-        owner_id: id,
+        imageable_id: id,
         image_set_id: this.imageSetId
       });
       image.save({}, {
