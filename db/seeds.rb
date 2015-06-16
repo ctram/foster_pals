@@ -3,7 +3,8 @@
 
 # Carl's place password_digest : $2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y -> 'w'
 
-Fabricate(
+############################################
+carl = Fabricate(
   :user,
   org_name: "Carl's Place",
   first_name: 'Carl',
@@ -11,6 +12,17 @@ Fabricate(
   email: 'c@w',
   role: 'org'
 )
+
+3.times do
+  animal = Fabricate(
+    :animal, org_id: carl.id
+  )
+
+  Fabricate(
+    :image, owner_id: animal.id, thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  )
+end
+############################################
 
 frosty = Fabricate(
   :user,
@@ -20,51 +32,52 @@ frosty = Fabricate(
   role: 'org'
 )
 
-10.times do
+3.times do
   animal = Fabricate(
     :animal, org_id: frosty.id
   )
 
   Fabricate(
-  :image, owner_id: animal.id, thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+    :image, owner_id: animal.id, thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
   )
 end
 
+############################################
 
-
-
-2.times do
+# Fosterers
+10.times do
   user = Fabricate(
     :user,
-    password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
-    role: 'org'
+    role: 'fosterer'
   )
 
-  10.times do
+  3.times do
     animal = Fabricate(
       :animal, fosterer_id: user.id
     )
 
     Fabricate(
-    :image, owner_id: animal.id, thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+      :image, owner_id: animal.id, thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
     )
   end
 end
 
-2.times do
+############################################
+
+# Orgs
+10.times do
   user = Fabricate(
     :user,
-    password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
-    role: 'fosterer'
+    role: 'org'
   )
 
-  10.times do
+  3.times do
     animal = Fabricate(
-      :animal, fosterer_id: user.id
+      :animal, org_id: user.id
     )
 
     Fabricate(
-    :image, owner_id: animal.id, thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+      :image, owner_id: animal.id, thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
     )
   end
 end

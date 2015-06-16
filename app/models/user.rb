@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   # TODO: extract main_image code into a module -- animal class also uses it.
   def main_image_url
     if images.empty?
-      'url_to_default_image'
+      "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
     else
       images.first.url
     end
