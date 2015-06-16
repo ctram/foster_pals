@@ -38,6 +38,9 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   scheduleManager: function (event) {
+    var scheduleManagerView = new FosterPals.Views.ScheduleManager({
+      model: this.currentUser
+    });
 
   },
 
