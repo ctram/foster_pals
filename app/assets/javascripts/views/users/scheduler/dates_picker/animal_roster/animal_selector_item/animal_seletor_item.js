@@ -3,12 +3,19 @@ FosterPals.Views.AnimalSelectorItem = Backbone.CompositeView.extend({
 
   className: 'animal-selector-item',
 
-  initialize: function (options) {
+  attributes: function () {
+    if (this.model) {
+      return {
+        animal_id: this.model.escape('id')
+      };
+    }
+    return {};
+  },
 
+  initialize: function (options) {
   },
 
   render: function () {
-
     var content = this.template({
       animal: this.model
     });

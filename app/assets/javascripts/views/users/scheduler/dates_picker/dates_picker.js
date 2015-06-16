@@ -6,7 +6,10 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   events: {
     'click button#check-aval-btn' : 'checkDates',
     'click input#indefinite-stay-checkbox' : 'lockCheckOutInput',
-    'click div.selector-toggler': 'toggleAnimalRoster'
+    'click div.selector-toggler': 'toggleAnimalRoster',
+    'mouseenter div.animal-selector-item': 'toggleAnimalItemHighlight',
+    'mouseleave div.animal-selector-item': 'toggleAnimalItemHighlight',
+    'click div.animal-selector-item': 'toggleSelectedColoring'
   },
 
   initialize: function (options) {
@@ -20,24 +23,50 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   checkDates: function (event) {
+    var $selectedItems = $('#selector').find('.ui-selected');
+    var animalIds = [];
+    debugger
+    // for (var i = 0; i < $selectedItems.length; i++) {
+    //   $item = $selectedItems[i];
+    //   animalIds.push();
+    // }
+
     var $checkIn = $('#check-in');
     //
     var $checkOut = $('#check-out');
 
-
     var checkInDate = $checkIn.data("DateTimePicker").date()._d.toLocaleString();
     var checkOutDate = $checkOut.data("DateTimePicker").date()._d.toLocaleString();
+    // var attrs = {
+    //   check_in_date: checkInDate,
+    //   check_out_date: checkOutDate,
+    //
+    // }
     if ($('#indefinite-stay-checkbox:checked').length === 1) {
       var indefiniteStay = true;
     } else {
       var indefiniteStay = false;
     }
+    // $.ajax( '/api/stays',{
+    //   data: {chec}
+    // })
 
     // TODO: send info to Rails -- if indefiniteStay is true, then ignore the checkout date since it will be locked out in the app but may have a date selected before the user locked it.
 
     // TODO: add ability to for current user to select which animal the stay is being made for.
 
     // send to rails to generate a stay resource
+  },
+
+  toggleSelectedColoring: function (event) {
+    debugger
+    $div = $(event.currentTarget);
+    $div.toggleClass('selected-item');
+  },
+
+  toggleAnimalItemHighlight: function (event) {
+    $div = $(event.currentTarget);
+    $div.toggleClass('active-item');
   },
 
   lockCheckOutInput: function () {

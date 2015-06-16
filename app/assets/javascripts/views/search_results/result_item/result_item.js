@@ -1,7 +1,7 @@
 FosterPals.Views.ResultItem = Backbone.CompositeView.extend({
   template: JST['search_results/result_item/result_item'],
 
-  className: 'result-item-view',
+  className: 'user-item-view',
 
   events: {
   },

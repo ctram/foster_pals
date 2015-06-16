@@ -24,6 +24,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
 
     this.collection.each(this.addMarker.bind(this));
     this.attachMapListeners();
+    google.maps.event.trigger(window, 'load');
   },
 
   attachMapListeners: function () {
