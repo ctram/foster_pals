@@ -14,8 +14,13 @@
  *= require_tree .
  *= require_self
  */
+
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
+
+.animal-stays {
+  margin-left: 25px;
+}
 
 li.alert {
   width: 256px;
@@ -101,12 +106,12 @@ span.strong {
   border-style: solid;
 }
 
-div.container {
-  margin-left: 0px;
-  margin-right: 0px;
-  width: inherit;
-  padding: 0px;
-}
+// div.container {
+//   margin-left: 0px;
+//   margin-right: 0px;
+//   width: inherit;
+//   padding: 0px;
+// }
 
 select.new-user {
   color: #464545;
@@ -218,3 +223,5 @@ input.form-control.search-input {
 .active-user-item {
   background-color: rgb(59, 41, 68);
 }
+
+.row > * { display: inline-block; }
