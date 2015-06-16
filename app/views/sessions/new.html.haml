@@ -1,3 +1,18 @@
+
+.navbar-wrapper
+  %nav.navbar.navbar-inverse.navbar-static-top
+    .navbar-header
+      %a{class:"navbar-brand", href:"#"}
+        FosterPals
+    %div{id:"navbar", class:"navbar-collapse collapse pull-right"}
+      %ul.nav.navbar-nav
+        %li
+          %a{href:"#about"}
+            About
+        %li
+          %a{href:"/register"}
+            Register
+
 = render partial: 'shared/flashes'
 
 .page-header
