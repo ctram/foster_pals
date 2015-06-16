@@ -4,21 +4,21 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   className: 'scheduler',
 
   initialize: function (options) {
-    this.user = options.model;
     this.currentUser = options.currentUser;
 
     this.profileView = new FosterPals.Views.Profile({
-      model: this.user,
+      model: this.model,
       viewingFromScheduler: true
     });
     this.addSubview('.row', this.profileView);
 
     this.datesPickerView = new FosterPals.Views.DatesPicker({
-      currentUser: this.currentUser
+      currentUser: this.currentUser,
+      model: this.model
     });
     this.addSubview('.row', this.datesPickerView);
 
-    this.listenTo(this.user, 'sync', this.render);
+    this.listenTo(this.model, 'sync', this.render);
   },
 
   events: {
@@ -26,14 +26,14 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   },
 
   goToShow: function (event) {
-    var id = this.user.escape('id');
+    var id = this.model.escape('id');
     var url = 'users/' + id;
     Backbone.history.navigate(url, {trigger: true});
   },
 
   render: function () {
     var content = this.template({
-      model: this.user
+      model: this.model
     });
     this.$el.html(content);
     this.attachSubviews();
