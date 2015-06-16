@@ -25,7 +25,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   checkDates: function (event) {
     var $selectedItems = $('#selector').find('.ui-selected');
     var animalIds = [];
-    debugger
+    
     // for (var i = 0; i < $selectedItems.length; i++) {
     //   $item = $selectedItems[i];
     //   animalIds.push();
@@ -59,7 +59,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   toggleSelectedColoring: function (event) {
-    debugger
+    
     $div = $(event.currentTarget);
     $div.toggleClass('selected-item');
   },

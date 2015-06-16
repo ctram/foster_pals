@@ -1,1 +1,14 @@
-<div class='contact-btns'></div>
+<% if (CURRENT_USER_ID !== parseInt(user.escape('id'))) { %>
+  <%  %>
+  <button class='btn btn-primary'>
+    <% if (user.escape('role') === 'fosterer') { %>
+      Contact Fosterer
+    <% } else { %>
+      Contact Rescue Organization
+    <% } %>
+  </button>
+
+  <button class='btn btn-primary schedule-btn'>
+    Schedule a Stay for an Animal
+  </button>
+<% } %>
