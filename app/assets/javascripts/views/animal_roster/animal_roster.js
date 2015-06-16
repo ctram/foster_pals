@@ -1,7 +1,6 @@
 FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.user = options.model;
-    this.animals = options.collection;
 
     var addAnimalFormView = new FosterPals.Views.AddAnimalForm({
       model: this.user
@@ -11,11 +10,11 @@ FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
     // FIXME: when page is first loaded, AnimalsIndex does not show any animals - but if you refresh the page, it does.
     var animalsIndexView = new FosterPals.Views.AnimalsIndex({
       model: this.user,
-      collection: this.animals
+      collection: this.collection
     });
     this.addSubview('.animals-roster', animalsIndexView);
 
-    // this.listenTo(this.animals, 'sync remove change reset', this.render);
+    this.listenTo(this.collection, 'sync', this.render);
   },
 
   template: JST['animal_roster/animal_roster'],
