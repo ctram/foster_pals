@@ -34,6 +34,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
   },
 
   toScheduler: function (event) {
+
     var $btn = $(event.currentTarget);
     var userId = $btn.data('user-id');
     Backbone.history.navigate('users/' + userId + '/scheduler', {trigger: true});

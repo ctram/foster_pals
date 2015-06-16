@@ -17,6 +17,10 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+span.strong {
+  font-weight: bold;
+}
+
 .ui-selected {
   background-color: #904295;
 }
