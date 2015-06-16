@@ -6,7 +6,7 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
 
   template: JST['navbar/navbar'],
 
-  className: '',
+  className: 'navbar-view',
 
   events: {
     'click a#sign-out-link': 'signOut',

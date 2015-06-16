@@ -35,7 +35,6 @@ class Api::StaysController < ApplicationController
     params[:stay][:check_in_date] = check_in_date
     params[:stay][:check_out_date] = check_out_date
 
-
     @stay = Stay.create(stay_params)
     if @stay.save
       render :show
