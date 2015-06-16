@@ -5,6 +5,10 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   className: 'animals-index-view well',
 
   initialize: function (options) {
+    for (var i = 0; i < this.collection.models.length; i++) {
+      var model = this.collection.models[i];
+      this.addAnimalItemView(model);
+    }
     this.listenTo(this.collection, 'add', this.addAnimalItemView);
     this.listenTo(this.collection, 'sync', this.render);
   },
