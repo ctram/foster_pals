@@ -2,11 +2,11 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
 
   template: JST['animal_roster/animals_index/animals_index'],
 
-  className: 'animals-index well',
+  className: 'animals-index-view well',
 
   initialize: function (options) {
     this.listenTo(this.collection, 'add', this.addAnimalItemView);
-    this.listenTo(this.collection, 'sync remove reset change', this.render);
+    this.listenTo(this.collection, 'sync', this.render);
   },
 
   addAnimalItemView: function (model) {
