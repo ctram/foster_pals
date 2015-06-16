@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616210515) do
+ActiveRecord::Schema.define(version: 20150616231525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(version: 20150616210515) do
     t.string   "image_set_id"
   end
 
+  add_index "animals", ["fosterer_id"], name: "index_animals_on_fosterer_id", using: :btree
+  add_index "animals", ["id"], name: "index_animals_on_id", using: :btree
+  add_index "animals", ["org_id"], name: "index_animals_on_org_id", using: :btree
+
   create_table "comments", force: :cascade do |t|
     t.integer  "commenter_id", null: false
     t.string   "title",        null: false
@@ -38,6 +42,9 @@ ActiveRecord::Schema.define(version: 20150616210515) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["commenter_id"], name: "index_comments_on_commenter_id", using: :btree
+  add_index "comments", ["id"], name: "index_comments_on_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "url"
@@ -49,6 +56,9 @@ ActiveRecord::Schema.define(version: 20150616210515) do
     t.integer  "imageable_id"
   end
 
+  add_index "images", ["id"], name: "index_images_on_id", using: :btree
+  add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
+
   create_table "messages", force: :cascade do |t|
     t.integer  "sender_id",    null: false
     t.integer  "recipient_id", null: false
@@ -58,6 +68,10 @@ ActiveRecord::Schema.define(version: 20150616210515) do
     t.datetime "updated_at"
   end
 
+  add_index "messages", ["id"], name: "index_messages_on_id", using: :btree
+  add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.integer  "poster_id",  null: false
     t.string   "title",      null: false
@@ -65,6 +79,9 @@ ActiveRecord::Schema.define(version: 20150616210515) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "posts", ["id"], name: "index_posts_on_id", using: :btree
+  add_index "posts", ["poster_id"], name: "index_posts_on_poster_id", using: :btree
 
   create_table "stays", force: :cascade do |t|
     t.integer  "animal_id",       null: false
@@ -77,6 +94,13 @@ ActiveRecord::Schema.define(version: 20150616210515) do
     t.integer  "fosterer_id"
     t.string   "indefinite_stay"
   end
+
+  add_index "stays", ["animal_id"], name: "index_stays_on_animal_id", using: :btree
+  add_index "stays", ["check_in_date"], name: "index_stays_on_check_in_date", using: :btree
+  add_index "stays", ["check_out_date"], name: "index_stays_on_check_out_date", using: :btree
+  add_index "stays", ["fosterer_id"], name: "index_stays_on_fosterer_id", using: :btree
+  add_index "stays", ["id"], name: "index_stays_on_id", using: :btree
+  add_index "stays", ["org_id"], name: "index_stays_on_org_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string  "password_digest",               null: false
@@ -98,5 +122,6 @@ ActiveRecord::Schema.define(version: 20150616210515) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["id"], name: "index_users_on_id", using: :btree
 
 end
