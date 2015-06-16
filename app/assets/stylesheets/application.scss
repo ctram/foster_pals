@@ -18,6 +18,17 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.container {
+}
+
+.animal-name, .org-name, .start-date, .end-date {
+  margin: 15px;
+}
+
+.table-header {
+  border-bottom: red solid 1px;
+}
+
 .animal-stays {
   margin-left: 25px;
 }
@@ -216,7 +227,6 @@ input.form-control.search-input {
 }
 
 .well {
-  max-width: 600px;
   margin: 32px;
 }
 
