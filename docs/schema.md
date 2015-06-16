@@ -45,7 +45,7 @@ column name | data type
 ------------|-----------
 animal_id | integer
 foster_id | integer
-organzation_id | integer
+org_id | integer
 check_in_date | date
 check_out_date | date
 status | string

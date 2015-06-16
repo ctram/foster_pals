@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   has_many(
     :stays_as_org,
     class_name: 'Stay',
-    foreign_key: :organzation_id,
+    foreign_key: :org_id,
     primary_key: :id
   )
 

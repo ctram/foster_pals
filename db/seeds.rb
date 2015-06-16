@@ -21,7 +21,7 @@ Fabricate(
 )
 
 
-10.times do
+2.times do
   user = Fabricate(
     :user,
     password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
@@ -35,7 +35,7 @@ Fabricate(
   end
 end
 
-10.times do
+2.times do
   user = Fabricate(
     :user,
     password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
@@ -47,15 +47,4 @@ end
       :animal, fosterer_id: user.id
     )
   end
-end
-
-
-
-
-10.times do
-  Fabricate(:animal, org_id: 1, status: 'rescued')
-end
-
-10.times do
-  Fabricate(:animal, org_id: 2, status: 'rescued')
 end

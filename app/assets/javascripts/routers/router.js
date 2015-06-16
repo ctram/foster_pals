@@ -38,6 +38,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
 
   // TODO: setup scheduler
   userScheduler: function (id) {
+
     if (id === null) {
       id = parseInt(this.currentUser.escape('id'));
     }
