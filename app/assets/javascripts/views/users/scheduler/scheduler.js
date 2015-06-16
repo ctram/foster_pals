@@ -52,18 +52,18 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     for (var i = 0; i < animalIds.length; i++) {
       animalId = animalIds[i];
 
-      data = {
+      stayAttrs = {
         animal_id: animalId,
         indefinite_stay: indefiniteStay,
         check_in_date: checkInDate,
         check_out_date: checkOutDate,
         org_id: CURRENT_USER_ID,
         fosterer_id: this.model.escape('id'),
-        status: 'rescued'
+        status: 'pending'
       };
 
       $.ajax( '/api/stays',{
-        data: {stay: data},
+        data: {stay: stayAttrs},
         method: 'post',
         dataType: 'json',
         success: function (response) {
