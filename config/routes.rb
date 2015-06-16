@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete '/session/new', to: 'sessions#new'
 
   namespace :api, defaults: {format: :json} do
-    resources :animals, only: [:show, :update, :create ]
+    resources :animals, only: [:show, :update, :create, :index ]
     resources :images, only: [:index, :create, :show]
     resources :messages, only: [:show, :update, :create, :destroy ]
     resources :stays, only: [:show, :update, :create, :destroy ]

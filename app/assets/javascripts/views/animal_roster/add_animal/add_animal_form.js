@@ -1,9 +1,4 @@
 FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
-
-  template: JST['animal_roster/add_animal/add_animal_form'],
-
-  className: 'add-animal',
-
   initialize: function (options) {
     this.user = options.model;
     this.imageSetId = randomString(25, 'aA#');
@@ -16,6 +11,10 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     this.addSubview('div.image-list', listOfImagesView);
     this.listenTo(this.images, 'add', this.render);
   },
+
+  template: JST['animal_roster/add_animal/add_animal_form'],
+
+  className: 'add-animal',
 
   events: {
     // TODO: make all button elements have IDs instead of classes for your event listeners.
@@ -75,7 +74,7 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     this.attachSubviews();
 
     return this;
-  },
+  }
 });
 
 FosterPals.Collections.addFormImages = new FosterPals.Collections.Images();

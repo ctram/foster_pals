@@ -1,9 +1,4 @@
 FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
-
-  template: JST['animal_roster/animal_roster'],
-
-  className: 'animal-roster',
-
   initialize: function (options) {
     this.user = options.model;
     this.animals = options.collection;
@@ -23,6 +18,10 @@ FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
     // this.listenTo(this.animals, 'sync remove change reset', this.render);
   },
 
+  template: JST['animal_roster/animal_roster'],
+
+  className: 'animal-roster-view',
+
   render: function () {
     var content = this.template({
       org: this.model
@@ -31,8 +30,6 @@ FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
     this.attachSubviews();
 
     return this;
-  },
-
-
+  }
 
 });
