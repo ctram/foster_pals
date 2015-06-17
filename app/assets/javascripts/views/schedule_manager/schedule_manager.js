@@ -29,6 +29,10 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
   className: 'schedule-manager-view',
 
+  events: {
+    'click button.confirm-stay': 'confirmStay'
+  },
+
   render: function () {
     var content = this.template();
     this.$el.html(content);
