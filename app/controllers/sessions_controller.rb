@@ -36,7 +36,56 @@ class SessionsController < ApplicationController
       last_name: 'Guest',
       password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y'
     )
-    # user = User.find_by_credentials("f@w", "w")
+
+    user2 = Fabricate(
+      :user
+    )
+
+    image = Fabricate(
+      :image,
+      imageable_id: user.id,
+      imageable_type: 'User'
+    )
+
+    10.times do
+      animal = Fabricate(
+        :animal,
+        org_id: user.id,
+        status: 'rescued'
+      )
+
+
+      Fabricate(
+        :image,
+        imageable_id: animal.id,
+        imageable_type: 'Animal'
+      )
+
+    end
+
+    10.times do
+      animal = Fabricate(
+        :animal,
+        fosterer_id: user.id,
+        status: 'rescued'
+      )
+
+      image = Fabricate(
+        :image,
+        imageable_id: animal.id,
+        imageable_type: 'Animal'
+      )
+
+      Fabricate(
+        :stay,
+        animal_id: image.id,
+        status: 'pending',
+        fosterer_id: user.id,
+        org_id: user2.id
+      )
+
+    end
+
     sign_in(user)
     redirect_to "/"
   end
