@@ -2,6 +2,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.stays_as_fosterer = this.model.stays_as_fosterer();
     this.stays_as_fosterer.each( function (stay) {
+
       var animalId = stay.get("animal_id");
       var orgId = stay.get('org_id');
 
@@ -31,23 +32,49 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   className: 'schedule-manager-view',
 
   events: {
-    'click button.confirm-stay': 'confirmStay'
+    'click button.confirm-stay': 'confirmStay',
+    'click button.finalize-stay': 'finalizeStay'
   },
 
   confirmStay: function (event) {
-    // var modalView = new FosterPals.Views.Modal({
-    //
-    // });
-    // this.addSubview('.modal-hook', modalView);
     $btn = $(event.currentTarget);
     var stayId = $btn.data('stay-id');
     var stay = this.stays_as_fosterer.get(stayId);
 
+    var orgId = stay.get('org_id');
+    var animalId = stay.get('id');
+
+    var org = FosterPals.Collections.users.getOrFetch(orgId);
+    var animal = FosterPals.Collections.animals.getOrFetch(animalId);
+
     var confirmStayView = new FosterPals.Views.ConfirmStay({
-      model: stay
+      stay: stay,
+      animal: animal,
+      org: org
     });
-    $('.animal-stays').toggleClass('.display-none');
+    $('.animal-stays').toggleClass('display-none');
     this.addSubview('.confirmation', confirmStayView);
+  },
+
+  finalizeStay: function (event) {
+    $btn = $(event.currentTarget);
+    var stayId = $btn.data('stay-id');
+    var stay = this.stays_as_fosterer.get(stayId);
+
+    var animalId = stay.get('animal_id');
+    var animal = FosterPals.Collections.animals.getOrFetch(animalId);
+
+    stay.set({status: 'confirmed'});
+    animal.set({status: 'fostered'});
+
+    debugger
+
+    $.ajax('/api/stays', {
+      method: 'post',
+      dataType: 'json',
+    });
+
+
   },
 
   render: function () {
