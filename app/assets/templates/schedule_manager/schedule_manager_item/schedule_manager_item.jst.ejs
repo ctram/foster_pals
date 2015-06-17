@@ -1,15 +1,20 @@
-<div class='schedule-manager-item col-md-3'>
-  <%= animal.escape('name') %>
+<div class='row'>
+  <div class='schedule-manager-item col-md-3'>
+    <%= animal.escape('name') %>
+  </div>
+
+  <div class='schedule-manager-item col-md-3'>
+    <%= org.escape('org_name') %>
+  </div>
+
+  <div class='schedule-manager-item col-md-3'>
+    <%= stay.escape('check_in_date') %>
+  </div>
+
+  <div class='schedule-manager-item col-md-3'>
+    <%= stay.escape('check_out_date') %>
+  </div>
 </div>
 
-<div class='schedule-manager-item col-md-3'>
-  <%= org.escape('org_name') %>
-</div>
-
-<div class='schedule-manager-item col-md-3'>
-  <%= stay.escape('check_in_date') %>
-</div>
-
-<div class='schedule-manager-item col-md-3'>
-  <%= stay.escape('check_out_date') %>
-</div>
+<button class='btn btn-success' data-animal-id=<%= animal.escape('id') %>>Confirm</button>
+<button class='btn btn-success' data-animal-id=<%= animal.escape('id') %>>Deny</button>
