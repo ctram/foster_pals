@@ -1,4 +1,6 @@
 FosterPals.Collections.Stays = Backbone.Collection.extend({
+  url: '/api/stays',
+
   model: FosterPals.Models.Stay,
 
   getOrFetch: function (id) {

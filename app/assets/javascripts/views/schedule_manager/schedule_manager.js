@@ -1,8 +1,22 @@
 FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   initialize: function (options) {
-    for (var i = 0; i < this.collection.models.length; i++) {
-      var animal =,
-    }
+    var stays_as_fosterer = this.model.stays_as_fosterer();
+    stays_as_fosterer.each( function (stay) {
+      var id = stay.get("animal_id");
+      var animal = FosterPals.Collections.animals.getOrFetch(id);
+      var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem ({
+        model: animal
+      });
+
+      if (stay.get("status") === 'fostered') {
+        this.addSubview('.scheduled-animals', scheduleManagerItemView);
+      } else if (stay.get("status") === 'pending') {
+        this.addSubview('.pending-animals', scheduleManagerItemView);
+      }
+    }.bind(this));
+
+    // this.listenTo(stays_as_fosterer, 'all', this.addScheduleManagerItemView);
+    this.listenTo(stays_as_fosterer, 'sync', this.render);
 
   },
 
@@ -11,11 +25,28 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   className: 'schedule-manager-view',
 
   render: function () {
-    var content = this.template({animals: this.collection});
+    var content = this.template();
     this.$el.html(content);
     this.attachSubviews();
 
     return this;
   },
+
+  // addScheduleManagerItemView: function (model) {
+  //   var stays_as_fosterer = this.model.stays_as_fosterer();
+  //   stays_as_fosterer.each( function (stay) {
+  //     var id = stay.get("animal_id");
+  //     var animal = FosterPals.Collections.animals.getOrFetch(id);
+  //     var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem ({
+  //       model: animal
+  //     });
+  //
+  //     if (stay.get("status") === 'fostered') {
+  //       this.addSubview('.scheduled-animals', scheduleManagerItemView);
+  //     } else if (stay.get("status") === 'pending') {
+  //       this.addSubview('.pending-animals', scheduleManagerItemView);
+  //     }
+  //   }.bind(this));
+  // }
 
 });
