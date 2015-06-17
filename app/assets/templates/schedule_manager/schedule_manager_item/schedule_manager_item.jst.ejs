@@ -16,5 +16,10 @@
   </div>
 </div>
 
-<button class='btn btn-success' data-animal-id=<%= animal.escape('id') %>>Confirm</button>
-<button class='btn btn-success' data-animal-id=<%= animal.escape('id') %>>Deny</button>
+
+<% if (stay.escape('status') === 'pending') { %>
+  <button class='btn btn-success confirm-stay' data-animal-id=<%= animal.escape('id') %>>Confirm</button>
+  <button class='btn btn-danger reschedule-stay' data-animal-id=<%= animal.escape('id') %>>Reschedule</button>
+<% } else { %>
+  <button class='btn btn-info contact-org' data-animal-id=<%= animal.escape('id') %>>Contact Rescue Org</button>
+<% } %>
