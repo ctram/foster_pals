@@ -97,7 +97,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     $('.res-confirmation').toggleClass('invisible');
     setTimeout(function () {
       Backbone.history.loadUrl();
-    }, 2500);
+    }, 1000);
   },
 
   render: function () {
