@@ -2,12 +2,17 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   initialize: function (options) {
     var stays_as_fosterer = this.model.stays_as_fosterer();
     stays_as_fosterer.each( function (stay) {
-      var id = stay.get("animal_id");
-      var animal = FosterPals.Collections.animals.getOrFetch(id);
+      var animalId = stay.get("animal_id");
+      var orgId = stay.get('org_id');
+
+      var animal = FosterPals.Collections.animals.getOrFetch(animalId);
+      var org = FosterPals.Collections.users.getOrFetch(orgId);
       // TODO: also pass in the org (need org name) and the stay (need start and end dates)
 
       var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem ({
-        model: animal
+        model: animal,
+        org: org,
+        stay: stay
       });
 
       if (stay.get("status") === 'fostered') {
