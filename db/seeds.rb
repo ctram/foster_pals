@@ -73,6 +73,19 @@ Fabricate(
   )
 end
 
+10.times do
+  animal = Fabricate(
+    :animal,
+    fosterer_id: carl.id,
+    org_id: frosty.id,
+    status: 'rescued'
+  )
+
+  Fabricate(
+  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  )
+end
+
 
 ############################################
 #
