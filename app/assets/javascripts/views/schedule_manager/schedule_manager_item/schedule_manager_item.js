@@ -7,9 +7,10 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
     this.listenTo(this.org, 'sync', this.render);
   },
 
+
   template: JST['schedule_manager/schedule_manager_item/schedule_manager_item'],
 
-  className: 'schedule-manager-item-view',
+  className: 'schedule-manager-item-view row',
 
   render: function () {
 
