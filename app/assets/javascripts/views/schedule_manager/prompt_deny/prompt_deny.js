@@ -1,4 +1,4 @@
-FosterPals.Views.ConfirmStay = Backbone.CompositeView.extend({
+FosterPals.Views.DenyStay = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.stay = options.stay;
     this.animal = options.animal;
@@ -9,7 +9,7 @@ FosterPals.Views.ConfirmStay = Backbone.CompositeView.extend({
     this.listenTo(this.org, 'sync', this.render);
   },
 
-  template: JST['schedule_manager/prompt_confirm/prompt_confirm'],
+  template: JST['schedule_manager/prompt_deny/prompt_deny'],
 
   className: 'deny-stay-view well',
 
@@ -17,6 +17,7 @@ FosterPals.Views.ConfirmStay = Backbone.CompositeView.extend({
   },
 
   render: function () {
+
     var content = this.template({
       stay: this.stay,
       animal: this.animal,
