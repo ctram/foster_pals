@@ -1,7 +1,6 @@
 FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.stays_as_fosterer = this.model.stays_as_fosterer();
-    debugger
     this.stays_as_fosterer.each( function (stay) {
       var animalId = stay.get("animal_id");
       var orgId = stay.get('org_id');
@@ -42,11 +41,14 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     // this.addSubview('.modal-hook', modalView);
     $btn = $(event.currentTarget);
     var stayId = $btn.data('stay-id');
-    var stay = FosterPals
+    var stay = this.stays_as_fosterer.get(stayId);
 
     var confirmStayView = new FosterPals.Views.ConfirmStay({
-
+      model: stay
     })
+    $('.animal-stays').toggleClass('.display-none');
+    this.addSubview('.confirmation', confirmStayView);
+
 
   },
 
