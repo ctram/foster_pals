@@ -17,7 +17,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
       });
 
       // TODO: move some of this code into separate functions, too much going on in the intialize.
-      if (stay.get("status") === 'fostered') {
+      if (stay.get("status") === 'confirmed') {
         this.addSubview('.scheduled-animals', scheduleManagerItemView);
       } else if (stay.get("status") === 'pending') {
         this.addSubview('.pending-animals', scheduleManagerItemView);
@@ -67,11 +67,21 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     stay.set({status: 'confirmed'});
     animal.set({status: 'fostered'});
 
-    debugger
+    stayAttrs = stay.attributes;
+    animalAttrs = animal.attributes;
 
-    $.ajax('/api/stays', {
-      method: 'post',
+
+    $.ajax('/api/stays/' + stayId, {
+      method: 'patch',
       dataType: 'json',
+      data: {stay: stayAttrs}
+    });
+
+
+    $.ajax('/api/animals/' + animalId, {
+      method: 'patch',
+      dataType: 'json',
+      data: {animal: animalAttrs}
     });
 
 
