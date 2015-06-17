@@ -45,11 +45,9 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
     var confirmStayView = new FosterPals.Views.ConfirmStay({
       model: stay
-    })
+    });
     $('.animal-stays').toggleClass('.display-none');
     this.addSubview('.confirmation', confirmStayView);
-
-
   },
 
   render: function () {
