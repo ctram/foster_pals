@@ -23,9 +23,9 @@
     <% if current_user %>
       <script>
         if ("<%= current_user.org_name %>" !== 'NOT_ORG' ) {
-          var name = "<%= current_user.org_name %>, org";
+          var name = "<%= current_user.org_name %>";
         } else {
-          var name = "<%= current_user.first_name %>, fosterer";
+          var name = "<%= current_user.first_name %>";
         }
         var id = <%= current_user.id %>;
         var role = "<%= current_user.role %>";
