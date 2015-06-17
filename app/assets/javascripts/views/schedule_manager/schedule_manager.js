@@ -4,6 +4,8 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     stays_as_fosterer.each( function (stay) {
       var id = stay.get("animal_id");
       var animal = FosterPals.Collections.animals.getOrFetch(id);
+      // TODO: also pass in the org (need org name) and the stay (need start and end dates)
+
       var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem ({
         model: animal
       });
@@ -15,9 +17,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
       }
     }.bind(this));
 
-    // this.listenTo(stays_as_fosterer, 'all', this.addScheduleManagerItemView);
     this.listenTo(stays_as_fosterer, 'sync', this.render);
-
   },
 
   template: JST['schedule_manager/schedule_manager'],
@@ -31,22 +31,5 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
     return this;
   },
-
-  // addScheduleManagerItemView: function (model) {
-  //   var stays_as_fosterer = this.model.stays_as_fosterer();
-  //   stays_as_fosterer.each( function (stay) {
-  //     var id = stay.get("animal_id");
-  //     var animal = FosterPals.Collections.animals.getOrFetch(id);
-  //     var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem ({
-  //       model: animal
-  //     });
-  //
-  //     if (stay.get("status") === 'fostered') {
-  //       this.addSubview('.scheduled-animals', scheduleManagerItemView);
-  //     } else if (stay.get("status") === 'pending') {
-  //       this.addSubview('.pending-animals', scheduleManagerItemView);
-  //     }
-  //   }.bind(this));
-  // }
 
 });
