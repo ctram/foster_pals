@@ -18,6 +18,14 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.res-confirmation.well {
+  border: 2px solid red;
+}
+
+.row.pending-animals {
+  // display: inline-block;
+}
+
 .m-backdrop {
   display: block;
   position: fixed;

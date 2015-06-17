@@ -9,7 +9,7 @@ FosterPals.Views.ConfirmStay = Backbone.CompositeView.extend({
     this.listenTo(this.org, 'sync', this.render);
   },
 
-  template: JST['schedule_manager/confirm_stay/confirm_stay'],
+  template: JST['schedule_manager/prompt_confirm/prompt_confirm'],
 
   className: 'confirm-stay-view well',
 
@@ -17,7 +17,6 @@ FosterPals.Views.ConfirmStay = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    
     var content = this.template({
       stay: this.stay,
       animal: this.animal,

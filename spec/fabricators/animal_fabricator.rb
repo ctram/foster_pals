@@ -4,8 +4,8 @@ Fabricator :animal do
   sex { rand(0..1) == 1 ? 'm' : 'f'}
   breed {Faker::Internet.password}
   color {Faker::Commerce.color}
-  org_id {Faker::Number.digit}
-  fosterer_id {Faker::Number.digit}
+  # org_id
+  # fosterer_id
   weight { Faker::Number.number(2)}
   status {
     rand_num = rand(0..2)

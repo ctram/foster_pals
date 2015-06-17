@@ -8,7 +8,6 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
       var animal = FosterPals.Collections.animals.getOrFetch(animalId);
       var org = FosterPals.Collections.users.getOrFetch(orgId);
-      // TODO: also pass in the org (need org name) and the stay (need start and end dates)
 
       var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem ({
         model: animal,
@@ -32,8 +31,8 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   className: 'schedule-manager-view',
 
   events: {
+    'click button.prompt-confirm': 'promptConfirm',
     'click button.confirm-stay': 'confirmStay',
-    'click button.finalize-stay': 'finalizeStay',
     'click button.rtrn-to-manager': 'backToScheduleManager'
   },
 
@@ -44,7 +43,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     this.removeSubview('.confirmation', confirmStayView);
   },
 
-  confirmStay: function (event) {
+  promptConfirm: function (event) {
     $btn = $(event.currentTarget);
     var stayId = $btn.data('stay-id');
     var stay = this.stays_as_fosterer.get(stayId);
@@ -60,11 +59,12 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
       animal: animal,
       org: org
     });
+
     $('.animal-stays').toggleClass('display-none');
     this.addSubview('.confirmation', confirmStayView);
   },
 
-  finalizeStay: function (event) {
+  confirmStay: function (event) {
     $btn = $(event.currentTarget);
     var stayId = $btn.data('stay-id');
     var stay = this.stays_as_fosterer.get(stayId);
@@ -92,6 +92,9 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
       data: {animal: animalAttrs}
     });
 
+    $('.res-confirmation').toggleClass('invisible');
+
+    Backbone.history.loadUrl();
 
   },
 

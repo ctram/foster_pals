@@ -27,6 +27,17 @@ Fabricate(
     :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
   )
 end
+
+
+3.times do
+  animal = Fabricate(
+    :animal, fosterer_id: carl.id
+  )
+
+  Fabricate(
+  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  )
+end
 ############################################
 
 frosty = Fabricate(
@@ -41,9 +52,20 @@ Fabricate(
   :image, imageable_id: frosty.id, imageable_type: 'User', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
 )
 
-3.times do
+10.times do
   animal = Fabricate(
-    :animal, org_id: frosty.id
+    :animal,
+    fosterer_id: frosty.id,
+    org_id: carl.id,
+    status: 'rescued'
+  )
+
+  stay = Fabricate(
+    :stay,
+    animal_id: animal.id,
+    fosterer_id: frosty.id,
+    org_id: carl.id,
+    status: 'pending',
   )
 
   Fabricate(
@@ -51,51 +73,52 @@ Fabricate(
   )
 end
 
-############################################
-
-# Fosterers
-10.times do
-  user = Fabricate(
-    :user,
-    role: 'fosterer'
-  )
-
-  Fabricate(
-    :image, imageable_id: user.id, imageable_type: 'User', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
-  )
-
-  3.times do
-    animal = Fabricate(
-      :animal, fosterer_id: user.id
-    )
-
-    Fabricate(
-      :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
-    )
-  end
-end
 
 ############################################
-
-# Orgs
-10.times do
-  user = Fabricate(
-    :user,
-    role: 'org'
-  )
-
-  Fabricate(
-    :image, imageable_id: user.id, imageable_type: 'User', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
-  )
-
-
-  3.times do
-    animal = Fabricate(
-      :animal, org_id: user.id
-    )
-
-    Fabricate(
-      :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
-    )
-  end
-end
+#
+# # Fosterers
+# 10.times do
+#   user = Fabricate(
+#     :user,
+#     role: 'fosterer'
+#   )
+#
+#   Fabricate(
+#     :image, imageable_id: user.id, imageable_type: 'User', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+#   )
+#
+#   3.times do
+#     animal = Fabricate(
+#       :animal, fosterer_id: user.id
+#     )
+#
+#     Fabricate(
+#       :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+#     )
+#   end
+# end
+#
+# ############################################
+#
+# # Orgs
+# 10.times do
+#   user = Fabricate(
+#     :user,
+#     role: 'org'
+#   )
+#
+#   Fabricate(
+#     :image, imageable_id: user.id, imageable_type: 'User', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+#   )
+#
+#
+#   3.times do
+#     animal = Fabricate(
+#       :animal, org_id: user.id
+#     )
+#
+#     Fabricate(
+#       :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+#     )
+#   end
+# end
