@@ -18,8 +18,8 @@
 
 
 <% if (stay.escape('status') === 'pending') { %>
-  <button class='btn btn-success confirm-stay' data-animal-id=<%= animal.escape('id') %>>Confirm</button>
+  <button class='btn btn-success confirm-stay' data-animal-id=<%= animal.escape('id') %> data-stay-id=<%= stay.escape('id')%>>Confirm</button>
   <button class='btn btn-danger reschedule-stay' data-animal-id=<%= animal.escape('id') %>>Reschedule</button>
 <% } else { %>
-  <button class='btn btn-info contact-org' data-animal-id=<%= animal.escape('id') %>>Contact Rescue Org</button>
+  <button class='btn btn-info contact-org' data-animal-id=<%= animal.escape('id') %> data-stay-id=<%= stay.escape('id')%>>Contact Rescue Org</button>
 <% } %>
