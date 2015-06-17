@@ -18,6 +18,21 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.navbar-tagline {
+  width: 553px;
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Inconsolata', ;
+}
+
+.marketing-header {
+  font-size: 30px;
+  border: 2px solid white;
+  border-radius: 13px;
+  padding: 6px;
+  margin-top: 22px;
+}
+
 .btn {
   padding: 2px 18px;
   width: inherit;
