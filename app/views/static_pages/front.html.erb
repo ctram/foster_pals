@@ -23,6 +23,7 @@
             <ul class="nav navbar-nav">
               <li><a href="/session/new">Sign-in</a></li>
               <li><a href="/register">Register</a></li>
+              <li><a href="/sign-in-as-guest">Sign In As A Guest</a></li>
             </ul>
           </div>
       </nav>
@@ -45,7 +46,7 @@
             <div class="carousel-caption">
               <h1>Make a new friend.</h1>
               <p>We connect people who want to help animals in need. Becoming a foster pal is the first step to making new friends and making a difference.</p>
-              <p><a class="btn btn-lg btn-primary" href="front#featurette-1" role="button">Learn More</a></p>
+              <p><a class="btn btn-lg btn-primary" href="#featurette-1" role="button">Learn More</a></p>
             </div>
           </div>
         </div>
@@ -65,19 +66,11 @@
             <div class="carousel-caption">
               <h1>Share the love.</h1>
               <p>Our gallery is full of people who love animals and animals who could use a little love.</p>
-              <p><a class="btn btn-lg btn-primary" href="front#featurette-3" role="button">Browse gallery</a></p>
+              <p><a class="btn btn-lg btn-primary" href="front#featurette-3" role="button">Learn More</a></p>
             </div>
           </div>
         </div>
       </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div><!-- /.carousel -->
 
 
@@ -140,7 +133,7 @@
       <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>© 2014 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+        <p>© 2015 FosterPals · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
       </footer>
 
     </div><!-- /.container -->
@@ -161,3 +154,19 @@
 
 
 </div>
+<script>
+  $(function() {
+    $('a[href*=#]:not([href=#])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html,body').animate({
+            scrollTop: target.offset().top
+          }, 1000);
+          return false;
+        }
+      }
+    });
+  });
+</script>
