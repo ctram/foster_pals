@@ -35,7 +35,9 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   events: {
     'click button.prompt-confirm': 'promptConfirm',
     'click button.confirm-stay': 'confirmStay',
-    'click button.rtrn-to-manager': 'backToScheduleManager'
+    'click button.rtrn-to-manager': 'backToScheduleManager',
+    'click button.prompt-deny': 'promptDeny',
+    'click button.deny-stay': 'denyStay'
   },
 
   backToScheduleManager: function (event) {
@@ -43,6 +45,27 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     var confirmStayView = this.subviews('.confirmation')._wrapped[0];
 
     this.removeSubview('.confirmation', confirmStayView);
+  },
+
+  denyStay: function (event) {
+    $btn = $(event.currentTarget);
+    var stayId = $btn.data('stay-id');
+    var stay = this.stays_as_fosterer.get(stayId);
+
+    stay.set({status: 'denied'});
+
+    stayAttrs = stay.attributes;
+
+    $.ajax('/api/stays/' + stayId, {
+      method: 'patch',
+      dataType: 'json',
+      data: {stay: stayAttrs}
+    });
+
+    $('.res-confirmation').toggleClass('invisible');
+    setTimeout(function () {
+      Backbone.history.loadUrl();
+    }, 1000);
   },
 
   promptConfirm: function (event) {
@@ -64,6 +87,27 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
     $('.animal-stays').toggleClass('display-none');
     this.addSubview('.confirmation', confirmStayView);
+  },
+
+  promptDeny: function (event) {
+    $btn = $(event.currentTarget);
+    var stayId = $btn.data('stay-id');
+    var stay = this.stays_as_fosterer.get(stayId);
+
+    var orgId = stay.get('org_id');
+    var animalId = stay.get('id');
+
+    var org = FosterPals.Collections.users.getOrFetch(orgId);
+    var animal = FosterPals.Collections.animals.getOrFetch(animalId);
+
+    var denyStayView = new FosterPals.Views.DenyStay({
+      stay: stay,
+      animal: animal,
+      org: org
+    });
+
+    $('.animal-stays').toggleClass('display-none');
+    this.addSubview('.confirmation', denyStayView);
   },
 
   confirmStay: function (event) {

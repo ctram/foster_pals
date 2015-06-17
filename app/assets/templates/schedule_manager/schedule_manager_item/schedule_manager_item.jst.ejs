@@ -24,8 +24,8 @@
       Confirm
     </button>
 
-    <button class='btn btn-danger reschedule-stay col-md-2' data-animal-id="<%= animal.escape('id') %>" >
-      Reschedule
+    <button class='btn btn-danger prompt-deny col-md-2' data-stay-id="<%= stay.escape('id')%>" >
+      Deny
     </button>
   <% } else { %>
     <button class='btn btn-info contact-org col-md-1' data-animal-id="<%= animal.escape('id') %>" data-stay-id="<%= stay.escape('id')%>" >
