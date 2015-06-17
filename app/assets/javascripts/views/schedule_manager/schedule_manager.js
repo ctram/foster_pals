@@ -1,7 +1,8 @@
 FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   initialize: function (options) {
-    var stays_as_fosterer = this.model.stays_as_fosterer();
-    stays_as_fosterer.each( function (stay) {
+    this.stays_as_fosterer = this.model.stays_as_fosterer();
+    debugger
+    this.stays_as_fosterer.each( function (stay) {
       var animalId = stay.get("animal_id");
       var orgId = stay.get('org_id');
 
@@ -15,6 +16,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
         stay: stay
       });
 
+      // TODO: move some of this code into separate functions, too much going on in the intialize.
       if (stay.get("status") === 'fostered') {
         this.addSubview('.scheduled-animals', scheduleManagerItemView);
       } else if (stay.get("status") === 'pending') {
@@ -22,7 +24,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
       }
     }.bind(this));
 
-    this.listenTo(stays_as_fosterer, 'sync', this.render);
+    this.listenTo(this.stays_as_fosterer, 'sync', this.render);
   },
 
   template: JST['schedule_manager/schedule_manager'],
@@ -31,6 +33,21 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
   events: {
     'click button.confirm-stay': 'confirmStay'
+  },
+
+  confirmStay: function (event) {
+    // var modalView = new FosterPals.Views.Modal({
+    //
+    // });
+    // this.addSubview('.modal-hook', modalView);
+    $btn = $(event.currentTarget);
+    var stayId = $btn.data('stay-id');
+    var stay = FosterPals
+
+    var confirmStayView = new FosterPals.Views.ConfirmStay({
+
+    })
+
   },
 
   render: function () {
