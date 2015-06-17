@@ -1,1 +1,44 @@
-FROM CONFIRM STAY!!!!!!
+<h3>Please Confirm This Reservation</h3>
+
+<div class='row table-header'>
+  <div class='col-md-3'>
+    Name
+  </div>
+  <div class='col-md-3'>
+    Rescue Org
+  </div>
+  <div class='col-md-3'>
+    Check In Date
+  </div>
+  <div class='col-md-3'>
+    Check Out Date
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-3'>
+    <%=animal.escape('name') %>
+  </div>
+  <div class='col-md-3'>
+    <%=org.escape('org_name') %>
+  </div>
+  <div class='col-md-3'>
+    <%=stay.escape('check_in_date') %>
+  </div>
+  <div class='col-md-3'>
+    <%=stay.escape('check_out_date') %>
+  </div>
+</div>
+
+<button class='btn btn-success finalize-stay'
+  data-stay-id=<%= stay.escape('id')%> >
+  Confirm Reservation
+</button>
+
+<button class='btn btn-success rtrn-to-manager'>
+  Return to Reservation Manager
+</button>
+
+<div class='invisible'>
+  Reservation Confirmed!
+</div>

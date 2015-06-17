@@ -9,9 +9,9 @@ json.animals_as_fosterer @user.animals_as_fosterer do |animal|
 end
 
 json.stays_as_fosterer @user.stays_as_fosterer do |stay|
-  json.extract! stay, :animal_id, :check_in_date, :check_out_date, :status, :org_id, :indefinite_stay
+  json.extract! stay, :animal_id, :check_in_date, :check_out_date, :status, :org_id, :indefinite_stay, :id
 end
 
 json.stays_as_org @user.stays_as_org do |stay|
-  json.extract! stay, :animal_id, :check_in_date, :check_out_date, :status, :fosterer_id, :indefinite_stay
+  json.extract! stay, :animal_id, :check_in_date, :check_out_date, :status, :fosterer_id, :indefinite_stay, :id
 end

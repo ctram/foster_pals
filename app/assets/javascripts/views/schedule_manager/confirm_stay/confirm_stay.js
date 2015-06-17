@@ -1,28 +1,27 @@
 FosterPals.Views.ConfirmStay = Backbone.CompositeView.extend({
   initialize: function (options) {
+    this.stay = options.stay;
+    this.animal = options.animal;
+    this.org = options.org;
+
+    this.listenTo(this.stay, 'sync', this.render);
+    this.listenTo(this.animal, 'sync', this.render);
+    this.listenTo(this.org, 'sync', this.render);
   },
 
   template: JST['schedule_manager/confirm_stay/confirm_stay'],
 
-  className: 'confirm-stay-view',
+  className: 'confirm-stay-view well',
 
   events: {
   },
 
   render: function () {
-    var stay = this.model;
-    var orgId = stay.get('org_id');
-    var animalId = stay.get('id');
-
-    var org = FosterPals.Collections.users.getOrFetch(orgId);
-    var animal = FosterPals.Collections.animals.gegetOrFetch(animalId);
-
-    debugger
-
+    
     var content = this.template({
-      animal: animal,
-      org: org,
-      stay: stay
+      stay: this.stay,
+      animal: this.animal,
+      org: this.org
     });
     this.$el.html(content);
     this.attachSubviews();
