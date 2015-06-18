@@ -49,7 +49,5 @@ class Animal < ActiveRecord::Base
 
       completed_url = url_front + ',' + image_height + ',' + image_width + '/' + url_back
     end
-
   end
-
 end
