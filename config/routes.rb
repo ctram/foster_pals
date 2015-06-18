@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :images, only: [:index, :create, :show]
     resources :messages, only: [:show, :update, :create, :destroy ]
     resources :stays, only: [:show, :update, :create, :destroy ]
-    resources :users, only: [:show, :edit, :index, :update, :update_about_info ]
+    resources :users, only: [:show, :edit, :index, :update, :update_about_info, :filter_by_location ]
   end
 
   resources :static_pages, only: [:front]
