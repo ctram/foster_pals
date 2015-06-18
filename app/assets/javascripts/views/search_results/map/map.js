@@ -10,6 +10,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   className: 'map-view',
 
   events: {
+    'bounds_changed': 'reDrawMap'
   },
 
   addMarker: function (user) {
@@ -56,9 +57,20 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
       zoom: 12
     };
     this._map = new google.maps.Map(this.el, mapOptions);
+    this.x = 100;
+    this.map = this._map;
     this.collection.each(this.addMarker.bind(this));
     this.attachMapListeners();
     google.maps.event.trigger(window, 'load');
+    google.maps.event.addDomListener(this._map, 'idle', this.reDrawMap.bind(this));
+  },
+
+  reDrawMap: function () {
+    bounds = this._map.getBounds();
+    NECoords = bounds.getNorthEast();
+    SWCoords = bounds.getSouthWest();
+
+    debugger
   },
 
   removeMarker: function (user) {
