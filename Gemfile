@@ -38,13 +38,14 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'faker'
+gem 'fabrication'
+
 group :development, :test do
-  gem 'fabrication'
   gem 'factory_girl_rails'
-  gem 'faker'
+
   gem 'better_errors'
   gem 'binding_of_caller'
-
   # Call 'byebug' anywhere in the code to stop execution and get a  console
   gem 'byebug'
 
