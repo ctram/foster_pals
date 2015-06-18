@@ -2,7 +2,7 @@ FosterPals.Views.AnimalItem = Backbone.CompositeView.extend({
 
   template: JST['animal_roster/animals_index/animal_item/animal_item'],
 
-  className: 'animal-item-view',
+  className: 'animal-item-view row',
 
   initialize: function (options) {
 

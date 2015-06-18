@@ -11,6 +11,7 @@ class Api::AnimalsController < ApplicationController
     animal_images = Image.where(image_set_id: @animal.image_set_id)
     animal_images.each do |image|
       image.imageable_id = @animal.id
+      image.imageable_type = 'Animal'
       image.save
     end
   end

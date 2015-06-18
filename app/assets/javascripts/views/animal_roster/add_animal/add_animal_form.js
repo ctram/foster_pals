@@ -1,6 +1,7 @@
 FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.user = options.model;
+    this.animals = options.animals;
     this.imageSetId = randomString(25, 'aA#');
 
     this.images = FosterPals.Collections.addFormImages;
