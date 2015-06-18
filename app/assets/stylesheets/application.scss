@@ -18,6 +18,12 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.navbar-form.navbar-search {
+  width: 1000px;
+  margin: auto;
+  margin-top: 6px;
+}
+
 .sex-radio-btns {
   width: 26px;
 }
@@ -27,7 +33,7 @@
 }
 
 .navbar-tagline {
-  width: 553px;
+  width: 511px;
   text-align: center;
   margin-top: 20px;
   font-family: 'Inconsolata', ;

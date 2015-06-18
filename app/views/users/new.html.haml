@@ -1,25 +1,4 @@
-
-.navbar-wrapper
-  %nav.navbar.navbar-inverse.navbar-static-top
-    .navbar-header
-      %a{class:"navbar-brand", href:"/front"}
-        FosterPals
-    %div{id:"navbar", class:"navbar-collapse collapse pull-right"}
-      %ul.nav.navbar-nav
-        %li
-          %a{href:"#about"}
-            About
-        %li
-          %a{href:"/sign-in"}
-            Sign In
-        %li
-          %a{href:"/sign-in-as-guest"}
-            Sign In As A Guest
-
-
-
-<li><a href="/sign-in-as-guest">Sign In As A Guest</a></li>
-
+= render partial: 'shared/navbar'
 
 -# TODO: add validation errors for new user page
 
