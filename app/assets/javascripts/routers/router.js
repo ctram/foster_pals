@@ -7,7 +7,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'userShow',
+    '': 'search',
     'users/:id': 'userShow',
     'users/:id/scheduler': 'userScheduler',
     'animal-roster': 'animalRoster',
@@ -27,15 +27,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this._swapView(animalRosterView);
   },
 
-  search: function (event) {
-    var users = new FosterPals.Collections.Users();
-    users.fetch();
-    var view = new FosterPals.Views.SearchResults({
-    collection: users
-    });
-    this._swapView(view);
-  },
-
   scheduleManager: function (event) {
     this.currentUser.fetch({
       success: function () {
@@ -46,6 +37,36 @@ FosterPals.Routers.Router = Backbone.Router.extend({
 
       }.bind(this)
     });
+  },
+
+  search: function (event) {
+    /*
+      - Land the user on the search page when he signs in.
+      - function checks for the bounds of the map viewport.
+      passes the bounds to the users#index and returns only the users's whose location is within the bounds.
+      - have a listener on the view for when the map is moved: listen for the "bounds_changed" event. - when the bounds change, ping Rails and regenerate the markers (or just the list of users on the left side.)
+      - using the search engine repositions the map, which in turn changes the bounds of the map, which pings Rails for the users within the bounds and then repopulates the list of users.
+      
+
+
+
+
+
+
+
+    */
+
+
+
+
+
+    debugger
+    var users = new FosterPals.Collections.Users();
+    users.fetch();
+    var view = new FosterPals.Views.SearchResults({
+    collection: users
+    });
+    this._swapView(view);
   },
 
   // TODO: setup scheduler
