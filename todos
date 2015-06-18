@@ -16,39 +16,4 @@ TODO: restructure parameters to match backbone pattern, i.e.
 
 TODO: !!! have features for both org and fosterers avaiable to the user for demoing purposes.
 
-
-Ok I've written copy for three user flows on your homepage.
-
-
-Banner 1:
-Make a new friend.
-We connect people who want to help animals in need. Becoming a foster pal is the first step to making new friends and making a difference.
-[Sign up today]-->links to first featurette heading:
-
-Become a part of our gang. (Picture of all the puppies at the beach)
-Whether you represent a rescue organization, a shelter, or are just interested in learning how you can help, we can make the connection you're looking for. There's no commitment involved in signing up, and we'll never, ever share your information with anyone unless you ask us to. It takes just a few minutes to register to become a foster pal, so what are you waiting for?
-[Register now]-->links to reg page
-
-Banner 2:
-Save a life.
-Sometimes a place to stay for just one night can save a life. Foster pals make connections that save lives.
-[Learn more]-->links to second featurette heading:
-
-Provide shelter in a storm. (Pathetic cat picture of your choice)
-We believe that every adoptable animal should be given a chance to find a loving home, don't you? The problem is that sometimes there simply aren't enough spaces for animals in need. Shelter populations can vary widely, and weather events or other unforeseen circumstances can leave adoptable animals out in the cold. Sometimes a place to stay for just one night can make all the difference. Whether you represent a shelter, a rescue organization, a foster ring, or just want to learn more about how you can help, becoming a foster pal is a great way to spread the love.
-
---If you're a shelter or a rescue organization, we connect you with people who are willing to provide a port in a storm for an animal in need.
-
---If you're interested in providing short-term shelter to an animal awaiting adoption, we put you in touch with people who need your help.
-
-[Sign in]-->links to sign in page
-
-Banner 3:
-Share the love.
-Our gallery is full of people who love animals and animals who could use a little love.
-[Browse gallery]-->links to third featurette heading:
-
-Make connections that save lives. (Picture of me kissing Hugh at sunset in LA)
-Our foster pals gallery is where you can make connections that save lives, just sign in to get started!
-
-[Sign in]-->links to sign in page
+TODO: fix the navbar - make it fixed.
