@@ -1,35 +1,15 @@
 FosterPals.Views.Map = Backbone.CompositeView.extend({
+  initialize: function () {
+    this._markers = {};
+    this.listenTo(this.collection, 'add', this.addMarker);
+    this.listenTo(this.collection, 'remove', this.removeMarker);
+  },
+
   template: JST['search_results/map/map'],
 
   className: 'map-view',
 
   events: {
-  },
-
-  initialize: function () {
-    this._markers = {};
-
-
-    this.listenTo(this.collection, 'add', this.addMarker);
-    this.listenTo(this.collection, 'remove', this.removeMarker);
-  },
-
-  initMap: function () {
-    var mapOptions = {
-      center: { lat: 37.7833, lng: -122.4167 },
-      zoom: 12
-    };
-
-    this._map = new google.maps.Map(this.el, mapOptions);
-
-    this.collection.each(this.addMarker.bind(this));
-    this.attachMapListeners();
-    google.maps.event.trigger(window, 'load');
-  },
-
-  attachMapListeners: function () {
-    google.maps.event.addListener(this._map, 'idle', this.search.bind(this));
-    google.maps.event.addListener(this._map, 'click', this.createUser.bind(this));
   },
 
   addMarker: function (user) {
@@ -51,6 +31,11 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     this._markers[user.id] = marker;
   },
 
+  attachMapListeners: function () {
+    google.maps.event.addListener(this._map, 'idle', this.search.bind(this));
+    google.maps.event.addListener(this._map, 'click', this.createUser.bind(this));
+  },
+
   createUser: function (event) {
     var user = new FosterPals.Models.User({
       lat: event.latLng.lat(),
@@ -62,6 +47,23 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
         this.collection.add(user);
       }.bind(this)
     });
+  },
+
+  initMap: function () {
+    var mapOptions = {
+      center: { lat: 37.7833, lng: -122.4167 },
+      zoom: 12
+    };
+    this._map = new google.maps.Map(this.el, mapOptions);
+    this.collection.each(this.addMarker.bind(this));
+    this.attachMapListeners();
+    google.maps.event.trigger(window, 'load');
+  },
+
+  removeMarker: function (user) {
+    var marker = this._markers[user.id];
+    marker.setMap(null);
+    delete this._markers[user.id];
   },
 
   search: function () {
@@ -80,12 +82,6 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     this.collection.fetch({
       data: { filter_data: filterData }
     });
-  },
-
-  removeMarker: function (user) {
-    var marker = this._markers[user.id];
-    marker.setMap(null);
-    delete this._markers[user.id];
   },
 
   showMarkerInfo: function (event, marker) {
