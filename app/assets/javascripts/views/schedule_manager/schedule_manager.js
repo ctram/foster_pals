@@ -9,6 +9,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
 
       var animal = FosterPals.Collections.animals.getOrFetch(animalId);
+      debugger
       var org = FosterPals.Collections.users.getOrFetch(orgId);
 
       var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem ({

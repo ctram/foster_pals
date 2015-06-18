@@ -48,7 +48,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
       - using the search engine repositions the map, which in turn changes the bounds of the map, which pings Rails for the users within the bounds and then repopulates the list of users.
 
     */
-    
+
     var users = new FosterPals.Collections.Users();
     users.fetch();
     var view = new FosterPals.Views.SearchResults({
