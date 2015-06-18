@@ -39,6 +39,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     });
   },
 
+// TODO: look at Austin's thing
   search: function (event) {
     /*
       x Land the user on the search page when he signs in.
@@ -46,7 +47,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
       passes the bounds to the users#index and returns only the users's whose location is within the bounds.
       - have a listener on the view for when the map is moved: listen for the "bounds_changed" event. - when the bounds change, ping Rails and regenerate the markers (or just the list of users on the left side.)
       - using the search engine repositions the map, which in turn changes the bounds of the map, which pings Rails for the users within the bounds and then repopulates the list of users.
-
     */
 
     var users = new FosterPals.Collections.Users();

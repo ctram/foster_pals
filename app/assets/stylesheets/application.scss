@@ -18,6 +18,11 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+button.register-featurette-btn {
+  width: 162px;
+  height: 38px;
+}
+
 .navbar-form.navbar-search {
   width: 1000px;
   margin: auto;
