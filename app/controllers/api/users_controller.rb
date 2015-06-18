@@ -30,7 +30,7 @@ class Api::UsersController < ApplicationController
 
     @users
 
-    debugger
+    
     render :filter_by_location
   end
 
