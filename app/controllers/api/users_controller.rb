@@ -28,42 +28,30 @@ class Api::UsersController < ApplicationController
         (user.long.between? lower_long, upper_long)
     end
 
-    @users
-
-    
     render :filter_by_location
   end
 
     # TODO: add search feature - have the backbone query hit the users#index and return only the users that match the query
   def index
+    if params[:viewport_bounds]
+      viewport_bounds = params[:viewport_bounds]
 
+      lower_long = viewport_bounds[:long][0].to_f
+      upper_long = viewport_bounds[:long][1].to_f
 
-    # Generate lat and long data for all users
-    api_key = ENV['GOOGLE_MAPS_API_KEY']
-    gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?address="
+      lower_lat = viewport_bounds[:lat][0].to_f
+      upper_lat = viewport_bounds[:lat][1].to_f
 
-    @users = User.all
-
-    @users.each do |user|
-      if user.lat.nil?
-        location = "#{user.street_address}, #{user.state} #{user.zip_code}"
-        location = location.split.join('+')
-        complete_url = gmaps_api_url + location + '&key=' + api_key
-        uri = URI(complete_url)
-        response = JSON.parse(Net::HTTP.get(uri))
-        if response['status'] == 'ZERO_RESULTS'
-          user.lat = 37.7835
-          user.long = -122.4169
-        else
-          user.lat = response['results'][0]['geometry']['location']['lat']
-          user.long = response['results'][0]['geometry']['location']['lng']
-        end
-        user.save
+      @users = User.all.select do |user|
+        (user.lat.between? lower_lat, upper_lat) and
+          (user.long.between? lower_long, upper_long)
       end
-    end
 
-    #  TODO: use jbuilder to remove password digest and other stuff from the json response.
-    render :index
+      render :filter_by_location
+    else
+      @users = User.all
+      render :index
+    end
   end
 
   def update

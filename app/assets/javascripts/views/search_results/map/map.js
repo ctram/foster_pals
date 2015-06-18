@@ -33,7 +33,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   },
 
   attachMapListeners: function () {
-    google.maps.event.addListener(this._map, 'idle', this.search.bind(this));
+    google.maps.event.addListener(this._map, 'idle', this.reDrawMap.bind(this));
   },
 
   initMap: function () {
@@ -42,7 +42,6 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
       zoom: 12
     };
     this._map = new google.maps.Map(this.el, mapOptions);
-    this.x = 100;
     this.map = this._map;
     this.collection.each(this.addMarker.bind(this));
     this.attachMapListeners();
@@ -63,10 +62,14 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
 
     viewport_bounds = {lat: [lowerLat, upperLat], long: [lowerLong, upperLong]};
 
-    $.ajax('/api/users/filter_by_location', {
-      method: 'get',
-      dataType: 'json',
-      data: {viewport_bounds: viewport_bounds}
+    // $.ajax('/api/users/filter_by_location', {
+    //   method: 'get',
+    //   dataType: 'json',
+    //   data: {viewport_bounds: viewport_bounds}
+    // });
+
+    this.collection.fetch({
+      data: { viewport_bounds: viewport_bounds }
     });
 
   },
@@ -77,23 +80,23 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     delete this._markers[user.id];
   },
 
-  search: function () {
-    // This method will re-fetch the map's collection, using the
-    // map's current bounds as constraints on latitude/longitude.
-
-    var mapBounds = this._map.getBounds();
-    var ne = mapBounds.getNorthEast();
-    var sw = mapBounds.getSouthWest();
-
-    var filterData = {
-      lat: [sw.lat(), ne.lat()],
-      lng: [sw.lng(), ne.lng()]
-    };
-
-    this.collection.fetch({
-      data: { filter_data: filterData }
-    });
-  },
+  // search: function () {
+  //   // This method will re-fetch the map's collection, using the
+  //   // map's current bounds as constraints on latitude/longitude.
+  //
+  //   var mapBounds = this._map.getBounds();
+  //   var ne = mapBounds.getNorthEast();
+  //   var sw = mapBounds.getSouthWest();
+  //
+  //   var filterData = {
+  //     lat: [sw.lat(), ne.lat()],
+  //     lng: [sw.lng(), ne.lng()]
+  //   };
+  //
+  //   this.collection.fetch({
+  //     data: { filter_data: filterData }
+  //   });
+  // },
 
   showMarkerInfo: function (event, marker) {
     // This event will be triggered when a marker is clicked. Right now it

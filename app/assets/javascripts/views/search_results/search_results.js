@@ -70,12 +70,13 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   },
 
   toUserShowPage: function (event) {
+    // FIXME: redirect to user's page is not working.
     // TODO: add new relic APM
 
-    // FIXME: redirect to user's page is not working.
+
     var $div = $(event.currentTarget);
     var userId = $div.data('user-id');
-    var destUrl = '/#users/' + userId;
+    var destUrl = 'users/' + userId;
     // HACK: to pass the user id to the router userShow action. Otherwise, Backbone.history.navigate is not passing the id for some reason.
     FosterPals.UserId = parseInt(userId);
     Backbone.history.navigate(destUrl, {trigger: true});
