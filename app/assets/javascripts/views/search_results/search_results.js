@@ -19,8 +19,9 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     'click div.user-item': 'toUserShowPage',
     // 'click a.result-name': 'panToListing',
     'mouseenter div.user-item': 'startBounceAndHightlight',
-    'mouseleave div.user-item': 'stopBounceAndHighlight'
+    'mouseleave div.user-item': 'stopBounceAndHighlight',
   },
+
 
   highlightUserItem: function (event) {
     $resultItem = $(event.currentTarget);
@@ -37,14 +38,6 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     return this;
   },
 
-  toUserShowPage: function (event) {
-    var $div = $(event.currentTarget);
-    var userId = $div.data('user-id');
-    var destUrl = '/#users/' + userId;
-    // HACK: to pass the user id to the router userShow action. Otherwise, Backbone.history.navigate is not passing the id for some reason.
-    FosterPals.UserId = parseInt(userId);
-    Backbone.history.navigate(destUrl, {trigger: true});
-  },
 
   unhighlightUserItem: function (event) {
     $resultItem = $(event.currentTarget);
@@ -74,6 +67,17 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     Backbone.View.prototype.remove.call(this);
     this.mapView.remove();
     this.usersIndex.remove();
-  }
+  },
 
+  toUserShowPage: function (event) {
+    // TODO: add new relic APM
+
+    // FIXME: redirect to user's page is not working.
+    var $div = $(event.currentTarget);
+    var userId = $div.data('user-id');
+    var destUrl = '/#users/' + userId;
+    // HACK: to pass the user id to the router userShow action. Otherwise, Backbone.history.navigate is not passing the id for some reason.
+    FosterPals.UserId = parseInt(userId);
+    Backbone.history.navigate(destUrl, {trigger: true});
+  },
 });
