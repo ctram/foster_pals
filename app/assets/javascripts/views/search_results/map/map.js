@@ -34,7 +34,6 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
 
   attachMapListeners: function () {
     google.maps.event.addListener(this._map, 'idle', this.search.bind(this));
-    google.maps.event.addListener(this._map, 'click', this.createUser.bind(this));
   },
 
   initMap: function () {
