@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/sign-in-as-guest', to: 'sessions#sign_in_as_guest', as: :sign_in_as_guest
   post '/api/update_about_info', to: 'api/users#update_about_info', as: :update_about_info_api_user
   delete '/session/new', to: 'sessions#new'
+  get '/api/users/filter_by_location', to: 'api/users#filter_by_location'
 
   namespace :api, defaults: {format: :json} do
     resources :animals, only: [:show, :update, :create, :index ]
