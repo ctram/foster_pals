@@ -70,6 +70,18 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     NECoords = bounds.getNorthEast();
     SWCoords = bounds.getSouthWest();
 
+    upperLong = NECoords.F;
+    lowerLong = SWCoords.F;
+
+    upperLat = NECoords.A;
+    lowerLat = SWCoords.A;
+
+    viewport_bounds = {lat: [lowerLat, upperLat], long: [lowerLong, upperLong]};
+
+    $.ajax('/api/users/filter_by_location', {
+
+    })
+
     debugger
   },
 
