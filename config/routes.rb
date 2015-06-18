@@ -8,13 +8,14 @@ Rails.application.routes.draw do
   post '/api/update_about_info', to: 'api/users#update_about_info', as: :update_about_info_api_user
   delete '/session/new', to: 'sessions#new'
   get '/api/users/filter_by_location', to: 'api/users#filter_by_location'
+  get '/api/search/location-to-geocode', to: 'api/search#location_to_geocode'
 
   namespace :api, defaults: {format: :json} do
     resources :animals, only: [:show, :update, :create, :index ]
     resources :images, only: [:index, :create, :show]
     resources :messages, only: [:show, :update, :create, :destroy ]
     resources :stays, only: [:show, :update, :create, :destroy ]
-    resources :users, only: [:show, :edit, :index, :update, :update_about_info, :filter_by_location ]
+    resources :users, only: [:show, :edit, :index, :update]
   end
 
   resources :static_pages, only: [:front]

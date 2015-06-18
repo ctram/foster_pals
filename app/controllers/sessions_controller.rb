@@ -44,10 +44,7 @@ class SessionsController < ApplicationController
       user = generate_lat_and_long_for_user user
     end
 
-    # user = generate_lat_and_long_for_user user
-    #
-    #
-    # user2 = generate_lat_and_long_for_user user2
+    # TODO: remove ajax calls in backbone -- create backbone collections instead to use fetch instead of ajax calls.
 
     image = Fabricate(
       :image,
@@ -61,7 +58,6 @@ class SessionsController < ApplicationController
         org_id: user.id,
         status: 'rescued'
       )
-
 
       Fabricate(
         :image,
