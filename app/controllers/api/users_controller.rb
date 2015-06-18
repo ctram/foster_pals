@@ -14,8 +14,31 @@ class Api::UsersController < ApplicationController
     render :show
   end
 
+  def filter_by_location
+    viewport_bounds = params[:viewport_bounds]
+
+    lower_long = viewport_bounds[:long][0].to_f
+    upper_long = viewport_bounds[:long][1].to_f
+
+    lower_lat = viewport_bounds[:lat][0].to_f
+    upper_lat = viewport_bounds[:lat][1].to_f
+
+    @users = User.all.select do |user|
+      (user.lat.between? lower_lat, upper_lat) and
+        (user.long.between? lower_long, upper_long)
+    end
+
+    @users
+
+    debugger
+    render :filter_by_location
+  end
+
     # TODO: add search feature - have the backbone query hit the users#index and return only the users that match the query
   def index
+
+
+    # Generate lat and long data for all users
     api_key = ENV['GOOGLE_MAPS_API_KEY']
     gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?address="
 

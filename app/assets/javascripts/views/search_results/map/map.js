@@ -79,10 +79,11 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     viewport_bounds = {lat: [lowerLat, upperLat], long: [lowerLong, upperLong]};
 
     $.ajax('/api/users/filter_by_location', {
+      method: 'get',
+      dataType: 'json',
+      data: {viewport_bounds: viewport_bounds}
+    });
 
-    })
-
-    debugger
   },
 
   removeMarker: function (user) {
