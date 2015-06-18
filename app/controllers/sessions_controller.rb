@@ -31,19 +31,23 @@ class SessionsController < ApplicationController
   def sign_in_as_guest
     user = Fabricate(
       :user,
-      org_name: 'Guest',
-      first_name: "Guest",
-      last_name: 'Guest',
       password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y'
     )
-
-    user = generate_lat_and_long_for_user user
-
     user2 = Fabricate(
       :user
     )
 
-    user2 = generate_lat_and_long_for_user user2
+    [user, user2].each do |user|
+      user.org_name += ' Guest'
+      user.first_name += ' Guest'
+      user.last_name += ' Guest'
+      user = generate_lat_and_long_for_user user
+    end
+
+    # user = generate_lat_and_long_for_user user
+    #
+    #
+    # user2 = generate_lat_and_long_for_user user2
 
     image = Fabricate(
       :image,
