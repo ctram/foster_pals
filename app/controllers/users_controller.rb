@@ -7,11 +7,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
+    @user = generate_lat_and_long_for_user @user
+
     if @user.save
       sign_in(@user)
-      id = @user.id
       redirect_to "/"
-      # redirect_to home_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new

@@ -37,9 +37,13 @@ class SessionsController < ApplicationController
       password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y'
     )
 
+    user = generate_lat_and_long_for_user user
+
     user2 = Fabricate(
       :user
     )
+
+    user2 = generate_lat_and_long_for_user user2
 
     image = Fabricate(
       :image,
@@ -83,7 +87,6 @@ class SessionsController < ApplicationController
         fosterer_id: user.id,
         org_id: user2.id
       )
-
     end
 
     sign_in(user)

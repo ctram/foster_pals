@@ -10,7 +10,10 @@ carl = Fabricate(
   first_name: 'Carl',
   password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
   email: 'c@w',
-  role: 'org'
+  role: 'org',
+  lat: 37.733795,
+  long: -122.446747
+
 )
 
 Fabricate(
@@ -45,7 +48,9 @@ frosty = Fabricate(
   org_name: "Frosty's Place",
   password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
   email: 'f@w',
-  role: 'org'
+  role: 'org',
+  lat: 37.3393857,
+  long: -121.8949555
 )
 
 Fabricate(

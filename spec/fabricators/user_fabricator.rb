@@ -12,4 +12,6 @@ Fabricator :user do
   zip_code { Faker::Address.zip_code }
   num_animals_willing_to_foster { Faker::Number.digit.to_i }
   about_info { Faker::Lorem.paragraph(2) }
+  lat {rand * 90 * [-1, 1].sample}
+  long {rand * 180 * [-1, 1].sample}
 end

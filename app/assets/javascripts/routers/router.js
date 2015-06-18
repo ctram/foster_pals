@@ -74,21 +74,18 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   userShow: function (id) {
-
     if (FosterPals.UserId !== null) {
       id = FosterPals.UserId;
       FosterPals.UserId = null;
     }
 
-
     if (id === null) {
       id = parseInt(this.currentUser.escape('id'));
     }
 
-
     var user = this.users.getOrFetch(id);
     var userShowView = new FosterPals.Views.UserShow({ model: user });
-
+    
     this._swapView(userShowView);
   },
 
