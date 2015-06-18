@@ -36,6 +36,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     google.maps.event.addListener(this._map, 'click', this.createUser.bind(this));
   },
 
+  // XXX: remove? Don't need to create Backbone models for your map.
   createUser: function (event) {
     var user = new FosterPals.Models.User({
       lat: event.latLng.lat(),
