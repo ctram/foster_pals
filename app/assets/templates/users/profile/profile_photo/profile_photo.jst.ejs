@@ -1,5 +1,6 @@
 <img src=<%= user.escape('main_image_thumb_url') %> >
 
 <% if (parseInt(user.escape('id')) === CURRENT_USER_ID ) { %>
+  <br>
   <button class='photo-upload-btn btn btn-primary'>Upload Photo</button>
 <% } %>
