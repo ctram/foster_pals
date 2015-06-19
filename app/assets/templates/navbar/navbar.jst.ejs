@@ -13,13 +13,37 @@
     </div>
     <div id="navbar" class="pull-right navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class='welcome-text'><a class='welcome-text'>Welcome, <%= CURRENT_USER %></a></li>
-        <li class="active"><a href="#" id='home-link'>My Profile</a></li>
 
-        <li><a href="#schedule-manager" id='schedule-manager-link'>Reservation Requests</a></li>
-        <li><a href="#animal-roster" id='animal-roster-link'>Animal Roster</a></li>
+        <li class='welcome-text'>
+          <a class='welcome-text'>
+            Welcome, <%= CURRENT_USER %>
+          </a>
+        </li>
 
-        <li><a href="#sign-out" id='sign-out-link'>Sign Out</a></li>
+        <li>
+          <a href="#profile" id=<%= CURRENT_USER_ID %>>
+            My Profile
+          </a>
+        </li>
+
+        <li>
+          <a href="#schedule-manager" id='schedule-manager-link'>
+            Reservation Requests
+          </a>
+        </li>
+
+        <li>
+          <a href="#animal-roster" id='animal-roster-link'>
+            Animal Roster
+          </a>
+        </li>
+
+        <li>
+          <a href="#sign-out" id='sign-out-link'>
+            Sign Out
+          </a>
+        </li>
+
       </ul>
     </div>
 

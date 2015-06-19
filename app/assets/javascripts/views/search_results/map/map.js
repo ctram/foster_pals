@@ -17,7 +17,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   events: {
   },
 
-   addMarker: function (user) {
+  addMarker: function (user) {
     if (this._markers[user.id]) {
       return;
     }
@@ -50,7 +50,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   },
 
   pan: function (search_location) {
-    
+
     // TODO: when map re-renders, it should set an appropriate zoom   to cover the current "subject", right now it retains the current zoom level.
     $.ajax('/api/search/location-to-geocode', {
       data: {search_location: search_location},
@@ -94,16 +94,9 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
 
     viewport_bounds = {lat: [lowerLat, upperLat], long: [lowerLong, upperLong]};
 
-    // $.ajax('/api/users/filter_by_location', {
-    //   method: 'get',
-    //   dataType: 'json',
-    //   data: {viewport_bounds: viewport_bounds}
-    // });
-
     this.collection.fetch({
       data: { viewport_bounds: viewport_bounds }
     });
-
   },
 
   removeMarker: function (user) {
@@ -111,24 +104,6 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     marker.setMap(null);
     delete this._markers[user.id];
   },
-
-  // search: function () {
-  //   // This method will re-fetch the map's collection, using the
-  //   // map's current bounds as constraints on latitude/longitude.
-  //
-  //   var mapBounds = this._map.getBounds();
-  //   var ne = mapBounds.getNorthEast();
-  //   var sw = mapBounds.getSouthWest();
-  //
-  //   var filterData = {
-  //     lat: [sw.lat(), ne.lat()],
-  //     lng: [sw.lng(), ne.lng()]
-  //   };
-  //
-  //   this.collection.fetch({
-  //     data: { filter_data: filterData }
-  //   });
-  // },
 
   showMarkerInfo: function (event, marker) {
     // This event will be triggered when a marker is clicked. Right now it

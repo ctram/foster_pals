@@ -1,12 +1,10 @@
 FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
 
   initialize: function (options) {
-
     this.mapView = new FosterPals.Views.Map({
       collection: this.collection,
       search_location: options.search_location
     });
-
 
     this.usersIndex = new FosterPals.Views.UsersIndex({
       collection: this.collection
@@ -18,13 +16,12 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   id: 'search-results-view',
 
   events: {
-    'click div.user-item': 'toUserShowPage',
-    // 'click a.result-name': 'panToListing',
     'mouseenter div.user-item': 'startBounceAndHightlight',
-    'mouseleave div.user-item': 'stopBounceAndHighlight'
+    'mouseleave div.user-item': 'stopBounceAndHighlight',
+    'click div.go-to-user-profile': 'toUserShow',
+    'click div.user-item': 'panToListing'
 
   },
-
 
   highlightUserItem: function (event) {
     $resultItem = $(event.currentTarget);
@@ -41,12 +38,17 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     return this;
   },
 
-
-  unhighlightUserItem: function (event) {
-    $resultItem = $(event.currentTarget);
-    $resultItem.removeClass('active-user-item');
+  panToListing: function (event) {
+    var userId = $(event.currentTarget).data('user-id');
+    var marker = this.mapView._markers[userId];
+    this.mapView._map.panTo(marker.getPosition());
   },
 
+  remove: function () {
+    Backbone.View.prototype.remove.call(this);
+    this.mapView.remove();
+    this.usersIndex.remove();
+  },
     // Event handlers
   startBounceAndHightlight: function (event) {
     this.highlightUserItem(event);
@@ -60,22 +62,8 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     this.mapView.stopBounce(userId);
   },
 
-  panToListing: function (event) {
-    var userId = $(event.currentTarget).data('user-id');
-    var marker = this.mapView._markers[userId];
-    this.mapView._map.panTo(marker.getPosition());
-  },
-
-  remove: function () {
-    Backbone.View.prototype.remove.call(this);
-    this.mapView.remove();
-    this.usersIndex.remove();
-  },
-
-  toUserShowPage: function (event) {
-    // FIXME: redirect to user's page is not working.
+  toUserShow: function (event) {
     // TODO: add new relic APM
-
 
     var $div = $(event.currentTarget);
     var userId = $div.data('user-id');
@@ -83,5 +71,10 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     // HACK: to pass the user id to the router userShow action. Otherwise, Backbone.history.navigate is not passing the id for some reason.
     FosterPals.UserId = parseInt(userId);
     Backbone.history.navigate(destUrl, {trigger: true});
+  },
+
+  unhighlightUserItem: function (event) {
+    $resultItem = $(event.currentTarget);
+    $resultItem.removeClass('active-user-item');
   },
 });
