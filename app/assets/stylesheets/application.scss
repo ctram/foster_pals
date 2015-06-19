@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require jquery-ui/selectable
+ *= require animate
  *= require_tree .
  *= require_self
  */
@@ -29,6 +30,9 @@
   padding: inherit;
 }
 
+
+
+
 .no-results-err {
   font-size: 30px;
   position: absolute;
@@ -41,7 +45,6 @@
   padding: 17px;
   padding-top: 0px;
   padding-bottom: 0px;
-  // transition: opacity 1000ms ease;
   opacity: 0;
 }
 
@@ -54,6 +57,62 @@
   opacity: 0;
   transition: opacity 5000ms ease;
 
+}
+
+
+
+
+
+
+
+.res-confirmation {
+  font-size: 30px;
+  position: absolute;
+  z-index: 1000;
+  top: 292px;
+  right: 340px;
+  color: white;
+  background-color: red;
+  border-radius: 10px;
+  padding: 17px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  opacity: 0;
+}
+
+.res-confirmation.fade-in {
+  opacity: 1;
+  transition: opacity 5000ms ease;
+}
+
+.res-confirmation.fade-out {
+  opacity: 0;
+  transition: opacity 5000ms ease;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.test {
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
 }
 
 
@@ -109,13 +168,11 @@ button.register-featurette-btn {
   width: inherit;
 }
 
-.res-confirmation.well {
-  border: 2px solid red;
-}
 
-.row.pending-animals {
-  // display: inline-block;
-}
+
+
+
+
 
 .m-backdrop {
   display: block;

@@ -9,7 +9,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
 
       var animal = FosterPals.Collections.animals.getOrFetch(animalId);
-      
+
       var org = FosterPals.Collections.users.getOrFetch(orgId);
 
       var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem ({
@@ -48,6 +48,59 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     this.removeSubview('.confirmation', confirmStayView);
   },
 
+  confirmStay: function (event) {
+    $btn = $(event.currentTarget);
+    var stayId = $btn.data('stay-id');
+    var stay = this.stays_as_fosterer.get(stayId);
+
+    var animalId = stay.get('animal_id');
+    var animal = FosterPals.Collections.animals.getOrFetch(animalId);
+
+    stay.set({status: 'confirmed'});
+    animal.set({status: 'fostered'});
+
+    stayAttrs = stay.attributes;
+    animalAttrs = animal.attributes;
+
+    // TODO: move ajax calls to backbone save()
+    $.ajax('/api/stays/' + stayId, {
+      method: 'patch',
+      dataType: 'json',
+      data: {stay: stayAttrs},
+      success: function() {
+        $('.res-confirmation').addClass('fade-in');
+        console.log($('.res-confirmation'));
+      }
+    });
+
+    $.ajax('/api/animals/' + animalId, {
+      method: 'patch',
+      dataType: 'json',
+      data: {animal: animalAttrs}
+    });
+
+
+    // setTimeout(function () {
+    //   console.log('first time out');
+    //   }, 0);
+    // setTimeout(function () {
+    //   console.log('first delay time out');
+    // }, 5000);
+    // setTimeout(function () {
+    //   console.log('second A time out');
+    //
+    //   $('.res-confirmation').toggleClass('fade-in');
+    //   console.log('second B time out');
+    //
+    //   $('.res-confirmation').toggleClass('fade-out');
+    // }, 2000);
+    // setTimeout(function () {
+    //   console.log('final time out');
+    //
+    //   $('.res-confirmation').remove();
+    // }, 6000);
+  },
+
   denyStay: function (event) {
     $btn = $(event.currentTarget);
     var stayId = $btn.data('stay-id');
@@ -75,7 +128,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     var stay = this.stays_as_fosterer.get(stayId);
 
     var orgId = stay.get('org_id');
-    var animalId = stay.get('id');
+    var animalId = stay.get('animal_id');
 
     var org = FosterPals.Collections.users.getOrFetch(orgId);
     var animal = FosterPals.Collections.animals.getOrFetch(animalId);
@@ -109,40 +162,6 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
     $('.animal-stays').toggleClass('display-none');
     this.addSubview('.confirmation', denyStayView);
-  },
-
-  confirmStay: function (event) {
-    $btn = $(event.currentTarget);
-    var stayId = $btn.data('stay-id');
-    var stay = this.stays_as_fosterer.get(stayId);
-
-    var animalId = stay.get('animal_id');
-    var animal = FosterPals.Collections.animals.getOrFetch(animalId);
-
-    stay.set({status: 'confirmed'});
-    animal.set({status: 'fostered'});
-
-    stayAttrs = stay.attributes;
-    animalAttrs = animal.attributes;
-
-
-    $.ajax('/api/stays/' + stayId, {
-      method: 'patch',
-      dataType: 'json',
-      data: {stay: stayAttrs}
-    });
-
-
-    $.ajax('/api/animals/' + animalId, {
-      method: 'patch',
-      dataType: 'json',
-      data: {animal: animalAttrs}
-    });
-
-    $('.res-confirmation').toggleClass('invisible');
-    setTimeout(function () {
-      Backbone.history.loadUrl();
-    }, 1000);
   },
 
   render: function () {
