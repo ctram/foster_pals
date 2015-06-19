@@ -5,6 +5,8 @@ window.FosterPals = {
   Routers: {},
   SearchResults: {},
   UserId: null,
+  Events: {},
+  map: {}, 
   initialize: function() {
     var currentUser = FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID);
     var currentUserId = CURRENT_USER_ID;
@@ -19,6 +21,7 @@ window.FosterPals = {
       router: router
     });
     $('.navbar-wrapper').html(navbarView.render().$el);
+    _.extend(FosterPals.Events, Backbone.Events);
     Backbone.history.start();
   }
 };

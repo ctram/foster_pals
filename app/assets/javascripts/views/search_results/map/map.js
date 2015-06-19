@@ -3,6 +3,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     this._markers = {};
     this.listenTo(this.collection, 'add', this.addMarker);
     this.listenTo(this.collection, 'remove', this.removeMarker);
+    this.listenTo(FosterPals.Events, 'pan', this.pan);
   },
 
   template: JST['search_results/map/map'],
@@ -10,7 +11,6 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   className: 'map-view',
 
   events: {
-    'bounds_changed': 'reDrawMap'
   },
 
   addMarker: function (user) {
@@ -32,24 +32,25 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     this._markers[user.id] = marker;
   },
 
-  attachMapListeners: function () {
-    google.maps.event.addListener(this._map, 'idle', this.reDrawMap.bind(this));
-  },
-
   initMap: function () {
     var mapOptions = {
       center: { lat: 37.7833, lng: -122.4167 },
       zoom: 12
     };
     this._map = new google.maps.Map(this.el, mapOptions);
+    FosterPals.map = this._map;
     this.map = this._map;
     this.collection.each(this.addMarker.bind(this));
-    this.attachMapListeners();
     google.maps.event.trigger(window, 'load');
     google.maps.event.addDomListener(this._map, 'idle', this.reDrawMap.bind(this));
   },
 
+  pan: function (coords) {
+    this._map.panTo(coords);
+  },
+
   reDrawMap: function () {
+    // TODO: have the current user's marker look special.
     bounds = this._map.getBounds();
     NECoords = bounds.getNorthEast();
     SWCoords = bounds.getSouthWest();
