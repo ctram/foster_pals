@@ -18,6 +18,45 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.no-results-err {
+  font-size: 30px;
+  position: absolute;
+  z-index: 1000;
+  top: 292px;
+  right: 340px;
+  color: white;
+  background-color: red;
+  border-radius: 10px;
+  padding: 17px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  transition: opacity 1000ms ease;
+
+}
+
+.no-results-err.fade-out {
+  opacity: 0;
+
+}
+
+.no-results-err.fade-in {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+.error-msg-hook {
+  position: relative;
+  top: 54px;
+}
+
 button.register-featurette-btn {
   width: 162px;
   height: 38px;
@@ -284,7 +323,6 @@ input.form-control.search-input {
 .display-none {
   display: none;
 }
-
 
 .navbar.navbar-inverse.navbar-static-top {
   margin: 0px;
