@@ -3,6 +3,7 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
     this.animal = options.animal;
     this.org = options.org;
     this.stay = options.stay;
+
     this.listenTo(this.animal, 'sync', this.render);
     this.listenTo(this.org, 'sync', this.render);
     this.listenTo(this.stay, 'sync', this.render);

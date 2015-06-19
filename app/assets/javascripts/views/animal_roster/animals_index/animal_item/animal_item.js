@@ -5,16 +5,16 @@ FosterPals.Views.AnimalItem = Backbone.CompositeView.extend({
   className: 'animal-item-view row',
 
   initialize: function (options) {
-
   },
 
   render: function () {
 
-    var content = this.template({animal: this.model});
+    var content = this.template({
+      animal: this.model
+    });
     this.$el.html(content);
     this.attachSubviews();
 
     return this;
   },
-
 });

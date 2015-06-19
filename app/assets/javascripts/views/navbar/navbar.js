@@ -18,8 +18,8 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   followLink: function (event) {
     $('li').removeClass('active');
     var $destLink = $(event.currentTarget);
-    $destLi.addClass('active');
     var $destLi = $(event.currentTarget.parentElement);
+    $destLi.addClass('active');
     var dest = $destLink.attr('id');
     Backbone.history.navigate(dest, {trigger: true});
   },
