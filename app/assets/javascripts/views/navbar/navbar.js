@@ -25,6 +25,7 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   },
 
   panToLocation: function (event) {
+    event.preventDefault();
     search_location = $('form').find('input').val();
     $.ajax('/api/search/location-to-geocode', {
       data: {search_location: search_location},
@@ -46,9 +47,10 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
           }, 6000);
         } else {
           var lat = response.results[0].geometry.location.lat;
-          var long = response.results[0].geometry.location.long;
+          var long = response.results[0].geometry.location.lng;
+          var coords = {lat: lat, lng: long}
+          FosterPals.Events.trigger('pan', coords);
         }
-
       }
     });
   },
