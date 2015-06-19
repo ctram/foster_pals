@@ -27,6 +27,7 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   panToLocation: function (event) {
     event.preventDefault();
     search_location = $('form').find('input').val();
+    Backbone.history.navigate('search', {trigger: true});
     $.ajax('/api/search/location-to-geocode', {
       data: {search_location: search_location},
       method: 'get',
