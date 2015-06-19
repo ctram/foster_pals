@@ -26,7 +26,7 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
 
   panToLocation: function (event) {
     keyCode = event.keyCode;
-    if (keyCode === 13) {
+    if ((keyCode === 13) && ($('.no-results-err').length === 0)){
       search_location = $(event.currentTarget).val();
       $.ajax('/api/search/location-to-geocode', {
         data: {search_location: search_location},
@@ -37,8 +37,16 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
             $errMsg = $('<div>').addClass('no-results-err').html('Location not found');
             $('.map-hook').prepend($errMsg);
             setTimeout(function () {
+              $('.no-results-err').toggleClass('fade-in');
+            }, 0);
+            setTimeout(function () {
+              $('.no-results-err').toggleClass('fade-in');
               $('.no-results-err').toggleClass('fade-out');
-            }, 1000);
+            }, 2000);
+            setTimeout(function () {
+              $('.no-results-err').remove();
+            }, 6000);
+
             // $('.no-results-err').toggleClass('fade-out');
             // $('.no-results-err').toggleClass('.fade-in');
             // $('.no-results-err').toggleClass('.fade-out');
