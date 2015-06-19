@@ -34,7 +34,9 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.$('.user-items').html(this.usersIndex.render().$el);
     this.$('.map-hook').html(this.mapView.$el);
-    this.mapView.initMap();
+    setTimeout(function () {
+      this.mapView.initMap();
+    }.bind(this), 0);
     return this;
   },
 
