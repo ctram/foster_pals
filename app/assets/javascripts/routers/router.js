@@ -39,17 +39,16 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     });
   },
 
-// TODO: look at Austin's thing
-  search: function (event) {
+  search: function (search_location) {
     var users = new FosterPals.Collections.Users();
     users.fetch();
     var view = new FosterPals.Views.SearchResults({
-    collection: users
+      collection: users,
+      search_location: search_location
     });
     this._swapView(view);
   },
 
-  // TODO: setup scheduler
   userScheduler: function (id) {
 
     if (id === null) {

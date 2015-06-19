@@ -1,9 +1,13 @@
 FosterPals.Views.Map = Backbone.CompositeView.extend({
-  initialize: function () {
+  initialize: function (options) {
     this._markers = {};
     this.listenTo(this.collection, 'add', this.addMarker);
     this.listenTo(this.collection, 'remove', this.removeMarker);
     this.listenTo(FosterPals.Events, 'pan', this.pan);
+    if (options.search_location) {
+      this.pan(search_location);
+    }
+
   },
 
   template: JST['search_results/map/map'],
@@ -13,7 +17,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   events: {
   },
 
-  addMarker: function (user) {
+   addMarker: function (user) {
     if (this._markers[user.id]) {
       return;
     }
@@ -45,8 +49,35 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     google.maps.event.addDomListener(this._map, 'idle', this.reDrawMap.bind(this));
   },
 
-  pan: function (coords) {
-    this._map.panTo(coords);
+  pan: function (search_location) {
+    
+    // TODO: when map re-renders, it should set an appropriate zoom   to cover the current "subject", right now it retains the current zoom level.
+    $.ajax('/api/search/location-to-geocode', {
+      data: {search_location: search_location},
+      method: 'get',
+      dataType: 'json',
+      success: function (response) {
+        if ((response.status === 'ZERO_RESULTS') && ($('.no-results-err').length === 0)) {
+          $errMsg = $('<div>').addClass('no-results-err').html('Location not found');
+          $('.map-hook').prepend($errMsg);
+          setTimeout(function () {
+            $('.no-results-err').toggleClass('fade-in');
+          }, 0);
+          setTimeout(function () {
+            $('.no-results-err').toggleClass('fade-in');
+            $('.no-results-err').toggleClass('fade-out');
+          }, 2000);
+          setTimeout(function () {
+            $('.no-results-err').remove();
+          }, 6000);
+        } else {
+          var lat = response.results[0].geometry.location.lat;
+          var long = response.results[0].geometry.location.lng;
+          var coords = {lat: lat, lng: long};
+          this._map.panTo(coords);
+        }
+      }.bind(this)
+    });
   },
 
   reDrawMap: function () {

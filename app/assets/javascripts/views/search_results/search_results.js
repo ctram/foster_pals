@@ -1,8 +1,10 @@
 FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
 
-  initialize: function () {
+  initialize: function (options) {
+
     this.mapView = new FosterPals.Views.Map({
-      collection: this.collection
+      collection: this.collection,
+      search_location: options.search_location
     });
 
 
