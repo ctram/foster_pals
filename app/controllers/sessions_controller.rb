@@ -29,67 +29,55 @@ class SessionsController < ApplicationController
   end
 
   def sign_in_as_guest
-    user = Fabricate(
+    user1 = Fabricate(
       :user,
       password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y'
     )
+
     user2 = Fabricate(
       :user
     )
 
-    [user, user2].each do |user|
+    [user1, user2].each do |user|
       user.org_name += ' Guest'
       user.first_name += ' Guest'
       user.last_name += ' Guest'
       user = generate_lat_and_long_for_user user
-    end
-
-    # TODO: remove ajax calls in backbone -- create backbone collections instead to use fetch instead of ajax calls.
-
-    image = Fabricate(
-      :image,
-      imageable_id: user.id,
-      imageable_type: 'User'
-    )
-
-    10.times do
-      animal = Fabricate(
-        :animal,
-        org_id: user.id,
-        status: 'rescued'
-      )
-
-      Fabricate(
-        :image,
-        imageable_id: animal.id,
-        imageable_type: 'Animal'
-      )
-
-    end
-
-    10.times do
-      animal = Fabricate(
-        :animal,
-        fosterer_id: user.id,
-        status: 'rescued'
-      )
 
       image = Fabricate(
         :image,
-        imageable_id: animal.id,
-        imageable_type: 'Animal'
+        imageable_id: user.id,
+        imageable_type: 'User'
       )
 
-      Fabricate(
-        :stay,
-        animal_id: image.id,
-        status: 'pending',
-        fosterer_id: user.id,
-        org_id: user2.id
-      )
+      other_user = (user == user1 ? user2 : user1)
+
+      # Set ten animals for user's roster / these animals will in the other user's schedule manager.
+      10.times do
+        animal = Fabricate(
+          :animal,
+          org_id: user.id,
+          fosterer_id: other_user.id,
+          status: 'rescued'
+        )
+
+        Fabricate(
+          :image,
+          imageable_id: animal.id,
+          imageable_type: 'Animal'
+        )
+
+        Fabricate(
+          :stay,
+          status: 'pending',
+          org_id: other_user.id,
+          fosterer_id: user.id,
+          animal_id: animal.id
+        )
+      end
     end
 
-    sign_in(user)
+    sign_in(user1)
     redirect_to "/"
   end
 end
