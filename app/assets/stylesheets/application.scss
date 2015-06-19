@@ -30,17 +30,19 @@
   padding: 17px;
   padding-top: 0px;
   padding-bottom: 0px;
-  transition: opacity 1000ms ease;
-
-}
-
-.no-results-err.fade-out {
+  // transition: opacity 1000ms ease;
   opacity: 0;
-
 }
 
 .no-results-err.fade-in {
   opacity: 1;
+  transition: opacity 1000ms ease;
+}
+
+.no-results-err.fade-out {
+  opacity: 0;
+  transition: opacity 5000ms ease;
+
 }
 
 
