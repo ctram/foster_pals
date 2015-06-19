@@ -12,7 +12,8 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     'users/:id/scheduler': 'userScheduler',
     'animal-roster': 'animalRoster',
     'schedule-manager': 'scheduleManager',
-    'search': 'search'
+    'search': 'search',
+    'profile': 'profile'
   },
 
   animalRoster: function (id) {
@@ -25,6 +26,10 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     });
 
     this._swapView(animalRosterView);
+  },
+
+  profile: function () {
+    this.userShow(CURRENT_USER_ID);
   },
 
   scheduleManager: function (event) {

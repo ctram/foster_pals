@@ -18,14 +18,9 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   followLink: function (event) {
     $('li').removeClass('active');
     var $destLink = $(event.currentTarget);
-    var $destLi = $(event.currentTarget.parentElement);
     $destLi.addClass('active');
-    if ($destLink.attr('href') === '#profile') {
-      var userId = $destLink.attr('id');
-      var dest = 'users/' + userId;
-    } else {
-      var dest = $destLink.attr('id');
-    }
+    var $destLi = $(event.currentTarget.parentElement);
+    var dest = $destLink.attr('id');
     Backbone.history.navigate(dest, {trigger: true});
   },
 
