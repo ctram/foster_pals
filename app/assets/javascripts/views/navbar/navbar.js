@@ -31,8 +31,25 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
       $.ajax('/api/search/location-to-geocode', {
         data: {search_location: search_location},
         method: 'get',
-        dataType: 'json'
-      })
+        dataType: 'json',
+        success: function (response) {
+          if (response.status === 'ZERO_RESULTS') {
+            $errMsg = $('<div>').addClass('no-results-err').html('Location not found');
+            $('.map-hook').prepend($errMsg);
+            setTimeout(function () {
+              $('.no-results-err').toggleClass('fade-out');
+            }, 1000);
+            // $('.no-results-err').toggleClass('fade-out');
+            // $('.no-results-err').toggleClass('.fade-in');
+            // $('.no-results-err').toggleClass('.fade-out');
+            // $('.no-results-err').toggleClass('.fade-out');
+          }
+
+
+
+
+        }
+      });
       // TODO: send search location to google to find lat and long of location
 
     }
