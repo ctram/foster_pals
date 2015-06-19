@@ -5,6 +5,25 @@
 
 <% users.each(function (user) { %>
   <div class="user-item" data-user-id=<%= user.escape('id')%> >
-      <%= user.get('name') %>
+    <% var city = user.escape('city') %>
+    <% var state = user.escape('state') %>
+    <% var zip = user.escape('zip_code') %>
+
+    <div class='user-item-info' data-user-id=<%= user.escape('id')%>>
+      <div class='user-item-name'>
+        <strong><%= user.escape('name') %></strong>
+      </div>
+
+      <div class='user-item-location'>
+        <%= city %>, <%= state%> <%= zip %>
+      </div>
+    </div>
+
+    <div class='go-to-user-profile' data-user-id=<%= user.escape('id')%> >
+      <a>
+        Go To Pal's Profile
+      </a>
+    </div>
+
   </div>
 <% }); %>

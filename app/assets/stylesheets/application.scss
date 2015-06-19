@@ -18,6 +18,17 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.user-item-info {
+  display: inline-block;
+  width: 200px;
+}
+
+.go-to-user-profile {
+  display: inline-block;
+  float: right;
+  padding: inherit;
+}
+
 .no-results-err {
   font-size: 30px;
   position: absolute;

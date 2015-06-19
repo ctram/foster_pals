@@ -10,22 +10,28 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
 
   events: {
     'click a#sign-out-link': 'signOut',
-    // FIXME: right now, if you copy and paste a url into the address bar, li hightlighting defaults the  "home" regardless of what page you are actually on - fix that.
     'click nav a': 'followLink',
-    'click button#search-btn': 'panToLocation',
-    'submit form': 'panToLocation'
+    'click button#search-btn': 'invokeSearch',
+    'submit form': 'invokeSearch'
   },
 
   followLink: function (event) {
+    $('li').removeClass('active');
     var $destLink = $(event.currentTarget);
     var $destLi = $(event.currentTarget.parentElement);
-    this.switchHighlights($destLi);
-    var dest = $destLink.attr('id');
+    $destLi.addClass('active');
+    if ($destLink.attr('href') === '#profile') {
+      var userId = $destLink.attr('id');
+      var dest = 'users/' + userId;
+    } else {
+      var dest = $destLink.attr('id');
+    }
     Backbone.history.navigate(dest, {trigger: true});
   },
 
-  panToLocation: function (event) {
+  invokeSearch: function (event) {
     event.preventDefault();
+    $('li').removeClass('active');
     search_location = $('form').find('input').val();
 
     if ($('.map-hook').length === 0) {
@@ -47,16 +53,6 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
         }
       }
     );
-  },
-
-  switchHighlights: function ($newLi) {
-    if (this.$currentLi === undefined) {
-      this.$currentLi = $('li.active');
-    }
-
-    this.toggleLinkHighlight($newLi);
-    this.toggleLinkHighlight(this.$currentLi);
-    this.$currentLi = $newLi;
   },
 
   render: function () {

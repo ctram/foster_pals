@@ -1,6 +1,6 @@
 FosterPals.Views.UsersIndex = Backbone.View.extend({
   // Initialization
-  className: 'users-index',
+  className: 'users-index-view',
 
   template: JST['search_results/users_index/users_index'],
 
@@ -17,7 +17,6 @@ FosterPals.Views.UsersIndex = Backbone.View.extend({
 
   // Rendering
   render: function () {
-
     var content = this.template({
       users: this.collection
     });
