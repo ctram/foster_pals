@@ -27,51 +27,15 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   panToLocation: function (event) {
     event.preventDefault();
     search_location = $('form').find('input').val();
-    Backbone.history.navigate('search', {trigger: true});
-    $.ajax('/api/search/location-to-geocode', {
-      data: {search_location: search_location},
-      method: 'get',
-      dataType: 'json',
-      success: function (response) {
-        if ((response.status === 'ZERO_RESULTS') && ($('.no-results-err').length === 0)) {
-          $errMsg = $('<div>').addClass('no-results-err').html('Location not found');
-          $('.map-hook').prepend($errMsg);
-          setTimeout(function () {
-            $('.no-results-err').toggleClass('fade-in');
-          }, 0);
-          setTimeout(function () {
-            $('.no-results-err').toggleClass('fade-in');
-            $('.no-results-err').toggleClass('fade-out');
-          }, 2000);
-          setTimeout(function () {
-            $('.no-results-err').remove();
-          }, 6000);
-        } else {
-          var lat = response.results[0].geometry.location.lat;
-          var long = response.results[0].geometry.location.lng;
-          var coords = {lat: lat, lng: long}
-          FosterPals.Events.trigger('pan', coords);
-        }
-      }
-    });
-  },
 
-  // submitSearch: function (event) {
-  //   event.preventDefault();
-  //   $locationInput = $('#search-input');
-  //   var locationQuery = $locationInput.val();
-  //   $.ajax('/api/users', {
-  //     dataType:'json',
-  //     data: {location_query: locationQuery},
-  //     success: function (response) {
-  //       // NOTE: receive back a response which is an array of JSON objects -> users
-  //       var users = new FosterPals.Collections.Users(response.users);
-  //       FosterPals.SearchResults = users.models;
-  //       // FIXME: when already on the search page, not able to commit a new search.
-  //       Backbone.history.navigate('#search', {trigger: true});
-  //     }
-  //   });
-  // },
+    if ($('.map-hook').length === 0) {
+
+      this.router.search(search_location);
+    } else {
+
+      FosterPals.Events.trigger('pan', search_location);
+    }
+  },
 
   signOut: function (event) {
     $.ajax(
