@@ -68,8 +68,15 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
       dataType: 'json',
       data: {stay: stayAttrs},
       success: function() {
-        $('.res-confirmation').addClass('fade-in');
-        console.log($('.res-confirmation'));
+        setTimeout(function () {
+          $('.res-confirmation').addClass('fadeIn');
+        }, 0);
+        setTimeout(function () {
+          $('.res-confirmation').addClass('fadeOut');
+        }, 1000);
+        setTimeout(function () {
+          Backbone.history.loadUrl();
+        }, 3500);
       }
     });
 
@@ -80,25 +87,6 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     });
 
 
-    // setTimeout(function () {
-    //   console.log('first time out');
-    //   }, 0);
-    // setTimeout(function () {
-    //   console.log('first delay time out');
-    // }, 5000);
-    // setTimeout(function () {
-    //   console.log('second A time out');
-    //
-    //   $('.res-confirmation').toggleClass('fade-in');
-    //   console.log('second B time out');
-    //
-    //   $('.res-confirmation').toggleClass('fade-out');
-    // }, 2000);
-    // setTimeout(function () {
-    //   console.log('final time out');
-    //
-    //   $('.res-confirmation').remove();
-    // }, 6000);
   },
 
   denyStay: function (event) {
