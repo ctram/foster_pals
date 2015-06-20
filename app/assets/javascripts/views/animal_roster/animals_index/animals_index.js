@@ -2,7 +2,12 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   initialize: function (options) {
     for (var i = 0; i < this.collection.models.length; i++) {
       var model = this.collection.models[i];
-      this.addAnimalItemView(model);
+      model.fetch({
+        success: function () {
+          this.addAnimalItemView(model);
+        }.bind(this)
+      });
+
     }
     this.listenTo(this.collection, 'add', this.addAnimalItemView);
     this.listenTo(this.collection, 'sync', this.render);
@@ -19,10 +24,21 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   className: 'animals-index-view well',
 
   addAnimalItemView: function (model) {
-    var animalItemView = new FosterPals.Views.AnimalItem({
-      model: model
+    debugger
+
+    var fosterer = model.fosterer();
+    fosterer.fetch({
+      animal: model,
+      success: function (model, response, options) {
+        debugger
+        var animalItemView = new FosterPals.Views.AnimalItem({
+          model: options.animal,
+          fosterer: model[0]
+        });
+        this.addSubview('div.animals-list', animalItemView);
+
+      }.bind(this)
     });
-    this.addSubview('div.animals-list', animalItemView);
   },
 
   hightlightAnimalItem: function (event) {

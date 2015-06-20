@@ -11,7 +11,7 @@ FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
     // FIXME: when page is first loaded, AnimalsIndex does not show any animals - but if you refresh the page, it does.
     var animalsIndexView = new FosterPals.Views.AnimalsIndex({
       model: this.user,
-        collection: this.collection
+      collection: this.collection
     });
     this.addSubview('.animals-roster', animalsIndexView);
 

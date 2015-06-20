@@ -8,10 +8,25 @@ FosterPals.Models.Animal = Backbone.Model.extend({
     return this._images;
   },
 
+  fosterer: function () {
+
+    if (!this._fosterer) {
+      this._fosterer = new FosterPals.Models.User();
+    }
+    return this._fosterer;
+  },
+
   parse: function (response) {
     if (response.images) {
       this.images().set(response.images);
       delete response.images;
+    }
+
+    if (response.fosterer) {
+
+      this.fosterer().set(response.fosterer);
+        debugger
+      delete response.fosterer;
     }
     return response;
   }
