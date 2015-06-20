@@ -4,8 +4,10 @@ FosterPals.Views.AnimalShow = Backbone.CompositeView.extend({
       model: this.model
     });
 
+    var images = this.model.images();
     var imageGalleryView = new FosterPals.Views.ImageGallery({
-      model: this.model
+      model: this.model,
+      images: images
     });
 
     this.addSubview('.profile-hook', profileView);
