@@ -21,19 +21,16 @@ FosterPals.Views.ProfilePhoto = Backbone.CompositeView.extend({
     e.preventDefault();
 
     reRender = function () {
-
       this.render();
     }.bind(this);
 
     imageSaveCallback = function () {
-
       this.model.fetch({
         success: reRender
       });
     }.bind(this);
 
     cloudinaryCallback = function (error, result) {
-
       var data = result[0];
       image.set({
         url: data.url,
@@ -42,7 +39,10 @@ FosterPals.Views.ProfilePhoto = Backbone.CompositeView.extend({
         imageable_type: 'User',
         image_set_id: this.imageSetId
       });
-      image.save({}, imageSaveCallback);
+
+      image.save({}, {
+        success: imageSaveCallback
+      });
     }.bind(this);
 
     var image = new FosterPals.Models.Image();
