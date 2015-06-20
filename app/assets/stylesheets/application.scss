@@ -19,6 +19,10 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.active-highlight {
+  background-color: rgb(59, 41, 68);
+}
+
 .user-item-info {
   display: inline-block;
   width: 200px;

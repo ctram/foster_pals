@@ -1,9 +1,4 @@
 FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
-
-  template: JST['animal_roster/animals_index/animals_index'],
-
-  className: 'animals-index-view well',
-
   initialize: function (options) {
     for (var i = 0; i < this.collection.models.length; i++) {
       var model = this.collection.models[i];
@@ -13,11 +8,26 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
     this.listenTo(this.collection, 'sync', this.render);
   },
 
+  events: {
+    'mouseenter .animal-item-view': 'hightlightAnimalItem',
+    'mouseleave .animal-item-view': 'toggleHighlightAnimalItem',
+    'click .animal-item-view': 'toAnimalShow'
+  },
+
+  template: JST['animal_roster/animals_index/animals_index'],
+
+  className: 'animals-index-view well',
+
   addAnimalItemView: function (model) {
     var animalItemView = new FosterPals.Views.AnimalItem({
       model: model
     });
     this.addSubview('div.animals-list', animalItemView);
+  },
+
+  hightlightAnimalItem: function (event) {
+    var $div = $(event.currentTarget);
+    this.toggleHighlightAnimalItem(null, $div);
   },
 
   render: function () {
@@ -27,5 +37,16 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
 
     return this;
   },
+
+  toAnimalShow: function (event) {
+    
+  },
+
+  toggleHighlightAnimalItem: function (event, $div) {
+    if (event !== null) {
+      $div = $(event.currentTarget);
+    }
+    $div.toggleClass('active-highlight');
+  }
 
 });

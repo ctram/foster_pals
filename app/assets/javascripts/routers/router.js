@@ -13,7 +13,8 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     'animal-roster': 'animalRoster',
     'schedule-manager': 'scheduleManager',
     'search': 'search',
-    'profile': 'profile'
+    'profile': 'profile',
+    'animals/:id': 'animalShow'
   },
 
   animalRoster: function (id) {
@@ -26,6 +27,15 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     });
 
     this._swapView(animalRosterView);
+  },
+
+  animalShow: function (id) {
+    // TODO: add animal show view page -- include an image gallery
+    var animal = FosterPals.Collections.animals.getOrFetch(id);
+    var animalShowView = new FosterPals.Views.AnimalShow({
+      model: animal
+    });
+    this._swapView(animalShowView);
   },
 
   profile: function () {
