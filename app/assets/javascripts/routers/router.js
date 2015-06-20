@@ -17,16 +17,19 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     'animals/:id': 'animalShow'
   },
 
-  animalRoster: function (id) {
-    this.currentUser.fetch();
-    var animals_as_org = this.currentUser.animals_as_org();
+  animalRoster: function () {
+    this.currentUser.fetch({
+      success: function () {
+        var animals_as_org = this.currentUser.animals_as_org();
 
-    var animalRosterView = new FosterPals.Views.AnimalRoster({
-      model: this.currentUser,
-      collection: animals_as_org
+        var animalRosterView = new FosterPals.Views.AnimalRoster({
+          model: this.currentUser,
+          collection: animals_as_org
+        });
+
+        this._swapView(animalRosterView);
+      }.bind(this)
     });
-
-    this._swapView(animalRosterView);
   },
 
   animalShow: function (id) {

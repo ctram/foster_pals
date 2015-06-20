@@ -18,6 +18,14 @@ FosterPals.Views.AnimalShow = Backbone.CompositeView.extend({
 
   className: 'animal-show-view',
 
+  events: {
+    'click button.to-animal-roster-btn': 'toAnimalRoster'
+  },
+
+  toAnimalRoster: function () {
+    Backbone.history.navigate('animal-roster', {trigger: true});
+  },
+
   render: function () {
     var content = this.template({});
     this.$el.html(content);

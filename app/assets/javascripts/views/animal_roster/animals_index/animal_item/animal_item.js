@@ -5,12 +5,17 @@ FosterPals.Views.AnimalItem = Backbone.CompositeView.extend({
   className: 'animal-item-view row animated',
 
   initialize: function (options) {
+    this.fosterer = options.fosterer;
+    this.listenTo(this.fosterer, 'sync', this.render)
   },
 
   render: function () {
 
+    debugger
     var content = this.template({
-      animal: this.model
+      animal: this.model,
+      fosterer: this.fosterer
+
     });
     this.$el.html(content);
     this.attachSubviews();
