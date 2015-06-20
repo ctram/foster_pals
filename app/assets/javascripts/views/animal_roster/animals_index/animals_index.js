@@ -39,7 +39,8 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   },
 
   toAnimalShow: function (event) {
-    
+    var animalId = $(event.currentTarget).find('.animal-name').data('animal-id');
+    Backbone.history.navigate('animals/' + animalId, {trigger: true});
   },
 
   toggleHighlightAnimalItem: function (event, $div) {
