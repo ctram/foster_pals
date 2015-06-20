@@ -18,6 +18,6 @@ class Api::ImagesController < ApplicationController
 
   private
   def image_params
-    params.require(:image).permit(:url, :thumb_url, :imageable_id, :image_set_id)
+    params.require(:image).permit(:url, :thumb_url, :imageable_id, :image_set_id, :imageable_type)
   end
 end
