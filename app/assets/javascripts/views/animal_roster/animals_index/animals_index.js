@@ -1,14 +1,13 @@
 FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   initialize: function (options) {
+    // FIXME: collection of animals do not have a fosterer, even though they do in the animal rosterer view.
+    console.log(this.collection.models.length);
+
 
     for (var i = 0; i < this.collection.models.length; i++) {
-      var model = this.collection.models[i];
-      model.fetch({
-        success: function () {
-          this.addAnimalItemView(model);
-        }.bind(this)
-      });
+      var animal = this.collection.models[i];
 
+      this.addAnimalItemView(animal);
     }
     this.listenTo(this.collection, 'add', this.addAnimalItemView);
     this.listenTo(this.collection, 'sync', this.render);
@@ -24,22 +23,24 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
 
   className: 'animals-index-view well',
 
-  addAnimalItemView: function (model) {
-
-
-    var fosterer = model.fosterer();
-    fosterer.fetch({
-      animal: model,
+  addAnimalItemView: function (animal) {
+    animal.fetch({
       success: function (model, response, options) {
+        debugger
+        animal = model;
+        var fosterer = animal.fosterer();
 
         var animalItemView = new FosterPals.Views.AnimalItem({
-          model: options.animal,
-          fosterer: model[0]
+          animal: animal,
+          fosterer: fosterer
         });
         this.addSubview('div.animals-list', animalItemView);
-
       }.bind(this)
     });
+
+
+
+
   },
 
   hightlightAnimalItem: function (event) {
