@@ -25,7 +25,7 @@ FosterPals.Models.Animal = Backbone.Model.extend({
     if (response.fosterer) {
 
       this.fosterer().set(response.fosterer);
-        debugger
+        
       delete response.fosterer;
     }
     return response;
