@@ -31,17 +31,12 @@
   <%= animal.escape('status') %>
 </div>
 
-<% if (stay.escape('status' === '')) { %>
-  <div class='col-md-1 stay-status'>
-    No Reservations Made
-  </div>
-<% } else { %>
-  <div class='col-md-1 stay-status'>
-    <%= stay.escape('status') %>
-  </div>
-<% } %>
-
-
+<div class='col-md-1 stay-status'>
+  <% if (stay.escape('status' === '')) { %>
+      No Reservations Made
+  <% } else { %>
+      <%= stay.escape('status') %>
+  <% } %>
 </div>
 
 <div class='col-md-1 animal-fosterer'>
@@ -51,8 +46,3 @@
     <%= fosterer.escape('first_name') %>
   <% } %>
 </div>
-
-current user id:
-<%= CURRENT_USER_ID %>
-org id:
-<%= org.escape('id') %>

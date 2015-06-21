@@ -53,7 +53,7 @@ class SessionsController < ApplicationController
       other_user = (user == user1 ? user2 : user1)
 
       # Set ten animals for user's roster / these animals will in the other user's schedule manager.
-      30.times do
+      5.times do
         animal = Fabricate(
           :animal,
           org_id: user.id,
