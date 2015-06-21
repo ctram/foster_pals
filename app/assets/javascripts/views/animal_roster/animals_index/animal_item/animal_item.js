@@ -19,12 +19,16 @@ FosterPals.Views.AnimalItem = Backbone.CompositeView.extend({
       animal: this.animal,
       fosterer: this.fosterer,
       stay: this.stay,
-      org :this.stay
+      org :this.org
 
     });
     this.$el.html(content);
     this.attachSubviews();
+    counter++;
+    console.log('counter: '+ counter);
 
     return this;
   },
 });
+
+counter = 0;
