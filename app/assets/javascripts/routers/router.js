@@ -26,6 +26,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     }.bind(this);
 
     animalsCallback = function (animals) {
+
       var animalRosterView = new FosterPals.Views.AnimalRoster({
         model: this.currentUser,
         collection: animals

@@ -14,6 +14,7 @@ FosterPals.Views.AnimalItem = Backbone.CompositeView.extend({
 
     var content = this.template({
       animal: this.model,
+      fosterer: this.fosterer
 
     });
     this.$el.html(content);
