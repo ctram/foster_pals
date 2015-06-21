@@ -24,16 +24,19 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   className: 'animals-index-view well',
 
   addAnimalItemView: function (animal) {
+    // FIXME: all animals are listed on the org's animal roster, not just his own animals 
     animal.fetch({
       success: function (model, response, options) {
-        // TODO: here
-
         animal = model;
         var fosterer = animal.fosterer();
-        
+        var stay = animal.stay();
+        var org = animal.org();
+
         var animalItemView = new FosterPals.Views.AnimalItem({
           animal: animal,
-          fosterer: fosterer
+          fosterer: fosterer,
+          stay: stay,
+          org: org
         });
         this.addSubview('div.animals-list', animalItemView);
       }.bind(this)

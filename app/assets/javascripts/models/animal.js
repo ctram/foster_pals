@@ -9,11 +9,24 @@ FosterPals.Models.Animal = Backbone.Model.extend({
   },
 
   fosterer: function () {
-
     if (!this._fosterer) {
       this._fosterer = new FosterPals.Models.User();
     }
     return this._fosterer;
+  },
+
+  org: function () {
+    if (!this._org) {
+      this._org = new FosterPals.Models.User();
+    }
+    return this._org;
+  },
+
+  stay: function () {
+    if (!this._stay) {
+      this._stay = new FosterPals.Models.Stay();
+    }
+    return this._stay;
   },
 
   parse: function (response) {
@@ -23,10 +36,18 @@ FosterPals.Models.Animal = Backbone.Model.extend({
     }
 
     if (response.fosterer) {
-
       this.fosterer().set(response.fosterer);
-        
       delete response.fosterer;
+    }
+
+    if (response.org) {
+      this.org().set(response.org);
+      delete response.org;
+    }
+
+    if (response.stay) {
+      this.stay().set(response.stay);
+      delete response.stay;
     }
     return response;
   }
