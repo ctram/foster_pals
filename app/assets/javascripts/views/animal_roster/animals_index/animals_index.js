@@ -1,5 +1,6 @@
 FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   initialize: function (options) {
+
     for (var i = 0; i < this.collection.models.length; i++) {
       var model = this.collection.models[i];
       model.fetch({
@@ -24,13 +25,13 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   className: 'animals-index-view well',
 
   addAnimalItemView: function (model) {
-    debugger
+
 
     var fosterer = model.fosterer();
     fosterer.fetch({
       animal: model,
       success: function (model, response, options) {
-        debugger
+
         var animalItemView = new FosterPals.Views.AnimalItem({
           model: options.animal,
           fosterer: model[0]

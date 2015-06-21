@@ -6,15 +6,14 @@ FosterPals.Views.AnimalItem = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.fosterer = options.fosterer;
-    this.listenTo(this.fosterer, 'sync', this.render)
+    this.listenTo(this.fosterer, 'sync', this.render);
   },
 
   render: function () {
 
-    debugger
+
     var content = this.template({
       animal: this.model,
-      fosterer: this.fosterer
 
     });
     this.$el.html(content);
