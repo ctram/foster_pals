@@ -26,10 +26,11 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   addAnimalItemView: function (animal) {
     animal.fetch({
       success: function (model, response, options) {
-        debugger
+        // TODO: here
+
         animal = model;
         var fosterer = animal.fosterer();
-
+        
         var animalItemView = new FosterPals.Views.AnimalItem({
           animal: animal,
           fosterer: fosterer

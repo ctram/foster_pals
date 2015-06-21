@@ -35,8 +35,7 @@
   <% if (animal.escape('fosterer_id') === '') { %>
       None
   <% } else { %>
-    <%= animal.escape('fosterer_id') %>
-    <%= fosterer.escape('id') %>
+    <%= fosterer.escape('first_name') %>
 
   <% } %>
 </div>
