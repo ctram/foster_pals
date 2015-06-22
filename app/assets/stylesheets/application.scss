@@ -426,7 +426,12 @@ input.form-control.search-input {
 }
 
 .input-group {
+  padding: 10px;
   min-width: 229px;
+  input {
+    border: 2px solid grey;
+    border-radius: 10px;
+  }
 }
 
 .display-none {
