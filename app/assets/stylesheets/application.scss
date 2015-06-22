@@ -372,13 +372,11 @@ select.new-user {
   font-family: 'Roboto Slab', serif;
 }
 
-a.welcome-text {
- pointer-events: none;
-}
-
 li.welcome-text {
-  border-left: white solid 2px;
-  border-right: white solid 2px;
+  background-color: #5E007B;
+  a.welcome-text {
+   pointer-events: none;
+  }
 }
 
 ul {

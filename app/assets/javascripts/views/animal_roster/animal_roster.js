@@ -2,6 +2,7 @@ FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.user = options.model;
 
+
     var addAnimalFormView = new FosterPals.Views.AddAnimalForm({
       model: this.user,
       animals: this.collection
@@ -9,6 +10,8 @@ FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
     this.addSubview('.add-animal', addAnimalFormView);
 
     // FIXME: when page is first loaded, AnimalsIndex does not show any animals - but if you refresh the page, it does.
+
+    // TODO: add validation errors to animal add form
 
     var animalsIndexView = new FosterPals.Views.AnimalsIndex({
       model: this.user,
