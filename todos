@@ -1,19 +1,9 @@
 TODO: add custom error messages to the registration form -- right now they don't make sense in english
 
+TODO: Let users update their basic info
 
-TODO: check out google-maps-demo.herokuapp.com  - check the github for docs
+TODO: check that all forms have error messages
 
-TODO: make registration form more dynamic -- have the input for first name and last name disappear and reappear depending on which role is toggled.
+TODO: get custom hosting address
 
-TODO: add "about" to the users' table -- then add ability for user to update their about info.
-
-TODO: how do you prevent unauthorized users from seeing the buttons of other users?
-
-TODO: restructure parameters to match backbone pattern, i.e.
-  {model: user}, instead of {user: user}
-
-  Why? b/c backbone objects automatically has ivars for mode l and collection, you don't need to set them in initialize.
-
-TODO: !!! have features for both org and fosterers avaiable to the user for demoing purposes.
-
-TODO: fix the navbar - make it fixed.
+TODO: Redesign text to make it more obvious what to do on each page.

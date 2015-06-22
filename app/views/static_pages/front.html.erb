@@ -76,7 +76,6 @@
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
-
     <div class="container marketing">
 
       <!-- START THE FEATURETTES -->
@@ -91,7 +90,7 @@
           <button class='btn btn-primary register-featurette-btn'>Register</button>
         </div>
         <div class="col-md-5">
-          <img data-holder-rendered="true" src="http://placekitten.com/600/607" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500">
+          <img data-holder-rendered="true" src="assets/suki-in-your-face.JPG" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500">
         </div>
       </div>
 
@@ -153,8 +152,49 @@
 
   <svg style="visibility: hidden; position: absolute; top: -100%; left: -100%;" preserveAspectRatio="none" viewBox="0 0 500 500" height="500" width="500"><defs></defs><text style="font-weight:bold;font-size:23pt;font-family:Arial, Helvetica, Open Sans, sans-serif;dominant-baseline:middle" y="23" x="0">500x500</text></svg>
 
+<!-- MODAL ===============================================================  -->
 
+<div id='myModal' class="modal fade in slacker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
+	<div class="modal-dialog modal-slacker">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<img class="modal-img" alt="140x140" src="assets/suki-in-your-face.JPG">
+				<h4 class="modal-title" id="myLargeModalLabel">
+          FosterPals.
+          <span class="text-muted"> Here's we do:</span>
+        </h4>
+			</div>
+			<div class="modal-body">
+				<div class="col-md-6 text-center modal-text">
+  				<p>
+            <ul>
+              <li>
+                We dig animals.
+              </li>
+              <li>
+                We connect people who want to fosterer an animal with animal rescue organizations.
+              </li>
+              <li>
+                We connect animal rescue organizations with people who want to foster an animal.
+              </li>
+              <li>
+                That's what we are about.
+              </li>
+            </ul>
+          </p>
+   				<p><a class="btn btn-default modal-off" href="" data-toggle='modal' role="button">Come Take Look! »</a></p>
+  			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
 </div>
+<!-- END MODAL =========================================================== -->
+
+
+<img src='../suki-in-your-face.JPG'></img>
+
+
+
 <script>
   $(function() {
     $('a[href*=#]:not([href=#])').click(function() {
@@ -168,6 +208,14 @@
           return false;
         }
       }
+    });
+
+    jQuery.noConflict();
+    $('.modal').modal();
+
+    $('a.modal-off').on('click', function (event) {
+      event.preventDefault();
+      $('.modal').modal('hide');
     });
   });
 </script>
