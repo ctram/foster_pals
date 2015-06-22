@@ -1,21 +1,5 @@
 
-.navbar-wrapper
-  %nav.navbar.navbar-inverse.navbar-static-top
-    .navbar-header
-      %a{class:"navbar-brand", href:"/front"}
-        FosterPals
-    %div{id:"navbar", class:"navbar-collapse collapse pull-right"}
-      %ul.nav.navbar-nav
-        %li
-          %a{href:"#about"}
-            About
-        %li
-          %a{href:"/register"}
-            Register
-        %li
-          %a{href:"/sign-in-as-guest"}
-            Sign In As A Guest
-
+= render partial: 'shared/navbar', locals: {other_url: '/register', other_link_text: 'Register'}
 
 = render partial: 'shared/flashes'
 
