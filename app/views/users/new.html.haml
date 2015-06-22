@@ -28,13 +28,14 @@
 
     %hr
 
-    <div class="input-group form-group invisible" id="num-animals">
-    %label
-      Number of spots available for animals:
-    %input{type:"number", class:"form-control", placeholder:"Maximum animals to foster",name: "user[num_animals_willing_to_foster]", min:1, max:99, id:'num-animals-input', value: 1}
-    </div>
+    -#
+      <div class="input-group form-group invisible" id="num-animals">
+      %label
+        Number of spots available for animals:
+      %input{type:"number", class:"form-control", placeholder:"Maximum animals to foster",name: "user[num_animals_willing_to_foster]", min:1, max:99, id:'num-animals-input', value: 1}
+      </div>
 
-    <div class="input-group form-group" id="org-name">
+    <div class="input-group form-group animated" id="org-name">
     %input{type:"text", class:"form-control", placeholder:"Organization Name",name: "user[org_name]", id:'org-name-input'}
     </div>
 
@@ -185,20 +186,21 @@
   var $orgRadioBtn = $('#org-radio-btn');
 
   $fostererRadioBtn.on('click', function (event) {
-    if ($fostererRadioDiv.hasClass('invisible')) {
       $('#num-animals').removeClass('invisible');
 
       $fostererRadioBtn.prop('checked', true);
       $orgRadioBtn.prop('checked', false);
-      $orgName.addClass('invisible');
+      $orgName.addClass('fadeOutRight');
+    if ($fostererRadioDiv.hasClass('invisible')) {
     }
   });
 
   $orgRadioBtn.on('click', function (event) {
-    if (!$fostererRadioBtn.hasClass('invisible')) {
       $('#num-animals').addClass('invisible');
       $orgRadioBtn.prop('checked', true);
       $fostererRadioBtn.prop('checked', false);
-      $orgName.removeClass('invisible');
+      $orgName.removeClass('invisible fadeOutRight');
+      $orgName.addClass('fadeInLeft');
+    if (!$fostererRadioBtn.hasClass('invisible')) {
     }
   });
