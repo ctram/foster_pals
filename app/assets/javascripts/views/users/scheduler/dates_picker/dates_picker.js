@@ -14,15 +14,14 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
   template: JST['users/scheduler/dates_picker/dates_picker'],
 
-  className: 'dates-picker well col-md-8 asdasdasd',
+  className: 'dates-picker well col-md-8',
 
   events: {
     'click input#indefinite-stay-checkbox' : 'lockCheckOutInput',
-    'mouseenter .selector-toggler': 'toggleAnimalRoster',
-    'mouseleave #selector': 'toggleAnimalRoster',
-    'mouseenter div.animal-selector-item': 'toggleAnimalItemHighlight',
-    'mouseleave div.animal-selector-item': 'toggleAnimalItemHighlight',
-    'mouseleave #selector': 'populateChosenAnimals',
+    'mouseover .selector-toggler': 'toggleAnimalRoster',
+    'mouseleave .animal-selector-item': 'toggleAnimalRoster',
+    // 'mouseenter div.animal-selector-item': 'toggleAnimalItemHighlight',
+    // 'mouseleave div.animal-selector-item': 'toggleAnimalItemHighlight',
   },
 
   lockCheckOutInput: function () {
@@ -44,10 +43,10 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   populateChosenAnimals: function (event) {
     // Clear previously chosen animals
     var chosenAnimalViews = this.subviews('.chosen-animals-hook')._wrapped;
+    var startingLength = chosenAnimalViews.length;
     if (chosenAnimalViews.length > 0) {
-      for (var i = 0; i < chosenAnimalViews.length; i++) {
+      for (var i = 0; i < startingLength; i++) {
         var chosenAnimalView = chosenAnimalViews[i];
-
         this.removeSubview('.chosen-animals-hook', chosenAnimalView);
       }
 
@@ -68,6 +67,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
           var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
             model: animal
           });
+
           this.addSubview('.chosen-animals-hook', chosenAnimalView);
         }
       }.bind(this);
@@ -91,11 +91,14 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   toggleAnimalItemHighlight: function (event) {
+    debugger
     $div = $(event.currentTarget);
     $div.toggleClass('active-item');
   },
 
   toggleAnimalRoster: function (event) {
+    debugger
+    this.populateChosenAnimals(event);
     $('.selector-toggler').toggleClass('display-none');
     $('.animal-roster-hook').toggleClass('display-none');
   },
