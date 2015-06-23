@@ -39,27 +39,33 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     var animal = $form.serializeJSON();
     var attrs = animal.animal;
     attrs.image_set_id = this.imageSetId;
+
+    successCallback = function (model, response, options) {
+      var animal = new FosterPals.Models.Animal(attrs);
+      this.animals.add(animal, {merge: true});
+
+      this.render();
+    }.bind(this);
+
+    errorCallback = function (model, response, options) {
+      var errorsView = new FosterPals.Views.ValidationErrors({
+        model: model
+      });
+      this.addSubview('.errors-hook', errorsView, 'prepend');
+    }.bind(this);
+
     $.ajax(
       '/api/animals',
       {
         data: animal,
         method: 'POST',
         // TODO: newly added animal not showing up in the roster immediately.
-        success: function (model, response, options) {
-          var animal = new FosterPals.Models.Animal(attrs);
-          this.animals.add(animal, {merge: true});
-
-          this.render();
-        }.bind(this),
-        error: function (model, response, options) {
-
-          var errorsView = new FosterPals.Views.ValidationErrors({
-            model: model
-          });
-          this.addSubview('.errors-hook', errorsView, 'prepend');
-        }.bind(this)
+        success: successCallback,
+        error: errorCallback
       }
     );
+
+
 
   },
 

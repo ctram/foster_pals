@@ -1,10 +1,8 @@
 FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   initialize: function (options) {
-    // FIXME: collection of animals do not have a fosterer, even though they do in the animal rosterer view.
-    console.log(this.collection.models.length);
-
-
-    for (var i = 0; i < this.collection.models.length; i++) {
+    // HACK: Quick and dirty: have the newest animal at top of the list.
+    // TODO: use collection comparators to flip the list.
+    for (var i = this.collection.models.length - 1; i >= 0; i--) {
       var animal = this.collection.models[i];
       var org_id = animal.attributes.org_id;
       this.addAnimalItemView(animal);
@@ -40,10 +38,6 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
         this.addSubview('div.animals-list', animalItemView);
       }.bind(this)
     });
-
-
-
-
   },
 
   hightlightAnimalItem: function (event) {
