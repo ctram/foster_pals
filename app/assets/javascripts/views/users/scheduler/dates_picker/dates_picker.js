@@ -16,10 +16,14 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   events: {
     'click input#indefinite-stay-checkbox' : 'lockCheckOutInput',
     'click .selector-toggler': 'toggleAnimalRoster',
-    // 'mouseleave .animal-selector-item': 'toggleAnimalRoster',
     'mouseenter div.animal-selector-item': 'toggleAnimalItemHighlight',
     'mouseleave div.animal-selector-item': 'toggleAnimalItemHighlight',
-    'click .animal-selector-item': 'toggleSelectedColoring'
+    'click .animal-selector-item': 'addChosenAnimal',
+    // 'click .animal-selector-item': 'toggleSelectedColoring'
+  },
+
+  addChosenAnimal: function (event) {
+    debugger
   },
 
   lockCheckOutInput: function () {
@@ -90,7 +94,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   toggleAnimalRoster: function (event) {
-    this.populateChosenAnimals(event);
+    // this.populateChosenAnimals(event);
     $('.selector-toggler').toggleClass('display-none');
     $('.animal-roster-hook').toggleClass('display-none');
   },
