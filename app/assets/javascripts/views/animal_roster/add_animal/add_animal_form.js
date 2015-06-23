@@ -44,11 +44,11 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
       {
         data: animal,
         method: 'POST',
-        // TODO: display error message if the animal was not added.
+        // TODO: newly added animal not showing up in the roster immediately.
         success: function (model, response, options) {
           var animal = new FosterPals.Models.Animal(attrs);
           this.animals.add(animal, {merge: true});
-          
+
           this.render();
         }.bind(this),
         error: function (model, response, options) {
