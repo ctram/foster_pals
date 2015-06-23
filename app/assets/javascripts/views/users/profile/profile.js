@@ -28,10 +28,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
 
   editProfile: function (event) {
     event.preventDefault();
-    var editProfileView = new FosterPals.Views.EditProfile({
-      model: this.model
-    });
-    this.addSubview('.edit-profile-hook', editProfileView);
+    $('.modal').modal();
   },
 
   render: function () {
