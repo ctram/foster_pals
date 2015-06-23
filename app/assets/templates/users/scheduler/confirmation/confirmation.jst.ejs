@@ -1,4 +1,4 @@
-<h3>Requests Sent for the Following!</h3>
+<h3>Requests Sent for the Following:</h3>
 
 <% for (var i = 0; i < stays.models.length; i++) { %>
   <% var animal = stays.models[i] %>
@@ -7,9 +7,14 @@
     <span class='strong'>
       <%= animal.escape('name') %>
     </span>
-    
+
     <span class='strong'>
       <%= animal.escape('status') %>
     </span>
   </div>
 <% } %>
+
+
+<button class='btn btn-primary to-map'>
+  Return to the Map
+</button>

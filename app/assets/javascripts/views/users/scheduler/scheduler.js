@@ -1,5 +1,6 @@
 FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   initialize: function (options) {
+
     this.currentUser = options.currentUser;
 
     this.profileView = new FosterPals.Views.Profile({
@@ -8,11 +9,12 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     });
     this.addSubview('.row', this.profileView);
 
+    // FIXME: dates-picker-view added 8 times even though it is only initialized once?
     this.datesPickerView = new FosterPals.Views.DatesPicker({
       currentUser: this.currentUser,
       model: this.model
     });
-    this.addSubview('.row', this.datesPickerView);
+    this.addSubview('.dates-picker-hook', this.datesPickerView);
 
     this.listenTo(this.model, 'sync', this.render);
   },
@@ -64,13 +66,13 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
 
     this.stays = new FosterPals.Collections.Stays();
 
-    successCallback = function () {
+    successCallback = function (model, response, options) {
       var animal_id = model['animal_id'];
       var animal = FosterPals.Collections.animals.getOrFetch(animal_id);
       this.stays.add(animal);
     }.bind(this);
 
-    errorCallback = function () {
+    errorCallback = function (model, response, options) {
       var errorsView = new FosterPals.Views.ValidationErrors({
         model: model
       });
@@ -118,12 +120,12 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   },
 
   showConfirmation: function () {
-    animalRosterSelectorView = this.subviews('.row')['_wrapped'][1];
-    this.removeSubview('.row', animalRosterSelectorView);
+    animalRosterSelectorView  = this.subviews()._wrapped['.dates-picker-hook']._wrapped[0]
+    this.removeSubview('.dates-picker-hook', animalRosterSelectorView);
     var confirmationView = new FosterPals.Views.Confirmation({
       collection: this.stays
     });
-    this.addSubview('.row', confirmationView);
+    this.addSubview('.dates-picker-hook', confirmationView);
   }
 
 });
