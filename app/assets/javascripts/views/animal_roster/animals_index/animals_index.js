@@ -7,7 +7,7 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
       var org_id = animal.attributes.org_id;
       this.addAnimalItemView(animal);
     }
-    this.listenTo(this.collection, 'sync', this.render);
+    // this.listenTo(this.collection, 'sync', this.render);
   },
 
   events: {
@@ -21,7 +21,6 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   className: 'animals-index-view well',
 
   addAnimalItemView: function (animal) {
-    // FIXME: all animals are listed on the org's animal roster, not just his own animals
     animal.fetch({
       success: function (model, response, options) {
         animal = model;

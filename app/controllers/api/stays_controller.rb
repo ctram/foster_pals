@@ -39,7 +39,7 @@ class Api::StaysController < ApplicationController
     if @stay.save
       render :show
     else
-      render json: @stay.errors.full_messages
+      render json: @stay.errors.full_messages, status: 422
     end
   end
 

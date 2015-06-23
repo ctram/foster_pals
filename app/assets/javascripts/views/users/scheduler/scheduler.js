@@ -39,8 +39,26 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     var $checkIn = $('#check-in');
     var $checkOut = $('#check-out');
 
+    if ($checkIn.find('input').val() === '' || ($checkOut.find('input').val() === '' && $('#indefinite-stay-checkbox:checked').length !== 1)) {
+      var errors = ['Must enter check-in and check-out dates'];
+      var errorsView = new FosterPals.Views.ValidationErrors({
+        manualErrors: errors
+      });
+      this.addSubview('.errors-hook', errorsView, 'prepend');
+      debugger
+      return;
+    }
+
     var checkInDate = $checkIn.data("DateTimePicker").date()._d.toLocaleString();
     var checkOutDate = $checkOut.data("DateTimePicker").date()._d.toLocaleString();
+
+
+    var errorsView = new FosterPals.Views.ValidationErrors({
+      model: model
+    });
+    this.addSubview('.errors-hook', errorsView, 'prepend');
+
+
 
     if ($('#indefinite-stay-checkbox:checked').length === 1) {
       var indefiniteStay = true;
@@ -66,12 +84,32 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
         data: {stay: stayAttrs},
         method: 'post',
         dataType: 'json',
-        success: function (response) {
-          var animal_id = response['animal_id'];
+        success: function (model, response, options) {
+          var animal_id = model['animal_id'];
           var animal = FosterPals.Collections.animals.getOrFetch(animal_id);
           this.stays.add(animal);
-        }.bind(this)
+        }.bind(this),
+        error: function (model, response, options) {
+          var errorsView = new FosterPals.Views.ValidationErrors({
+            model: model
+          });
+          this.addSubview('.errors-hook', errorsView, 'prepend');
+        }
       });
+
+      $.ajax(
+        '/api/animals',
+        {
+          data: animal,
+          method: 'POST',
+          // TODO: newly added animal not showing up in the roster immediately.
+          success: successCallback,
+          error: errorCallback
+        }
+      );
+
+
+
 
       this.showConfirmation();
     }

@@ -1,6 +1,10 @@
 FosterPals.Views.ValidationErrors = Backbone.CompositeView.extend({
   initialize: function (options) {
-    this.errors = options.model.responseJSON;
+    if (options.manualErrors) {
+      this.errors = options.manualErrors;
+    } else {
+      this.errors = options.model.responseJSON;
+    }
   },
 
   template: JST['validation_errors/validation_errors'],
