@@ -19,7 +19,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
 
   template: JST['users/profile/profile'],
 
-  className: 'profile-view col-md-4 well',
+  className: 'profile-view well',
 
   events: {
     'click button.schedule-btn': 'toScheduler',

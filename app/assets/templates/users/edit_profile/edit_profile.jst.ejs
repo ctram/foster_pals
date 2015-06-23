@@ -1,43 +1,5 @@
-<div class='profile-photo'>
-</div>
 
-<hr>
 
-<div class='edit-profile-hook'>
-</div>
-
-<div>
-  <label class='profile-label'>
-      Name:
-  </label>
-  <%= user.escape('name') %>
-</div>
-
-<% if (user.escape('role') === 'fosterer') { %>
-<div>
-  <label class='profile-label'>
-    Nums Spots Available:
-  </label>
-  <h4><%=user.escape('num_animals_willing_to_foster')%></h4>
-</div>
-<% } %>
-
-<div>
-  <label class='profile-label'>
-    Email:
-  </label>
-  <%= user.escape('email') %>
-</div>
-
-<div>
-  <label class='profile-label'>
-    Location:
-  </label>
-  <%= user.escape('street_address') %>, <%= user.escape('city') %>, <%= user.escape('state') %> <%= user.escape('zip_code') %>
-</div>
-
-<div class='contact-btns'>
-</div>
 
 
 <!-- MODAL ===============================================================  -->
@@ -54,7 +16,6 @@
 			</div>
 
 
-
 			<div class='container edit-profile'>
 				<div class='row'>
 					<label class='col-md-4'>
@@ -65,7 +26,6 @@
 					</div>
 				</div>
 			</div>
-
 
 
 			<div class="modal-body">
@@ -80,6 +40,8 @@
 
 <script>
   $(function() {
+    $('.modal').modal();
+
     $('a.modal-off').on('click', function (event) {
       event.preventDefault();
       $('.modal').modal('hide');

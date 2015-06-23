@@ -11,8 +11,8 @@ FosterPals.Views.UserShow = Backbone.CompositeView.extend({
       model: this.user
     });
 
-    this.addSubview('.row', profileView);
-    this.addSubview('.row', aboutView);
+    this.addSubview('.profile-hook', profileView);
+    this.addSubview('.about-hook', aboutView);
     this.listenTo(this.user, 'sync', this.render);
   },
 
