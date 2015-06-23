@@ -1,6 +1,7 @@
 FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.currentUser = options.currentUser;
+    this.animals = options.animals;
     this.checkOutInputToggled = false;
 
     var animalRosterSelectorView = new FosterPals.Views.AnimalRosterSelector({
@@ -15,15 +16,21 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
   events: {
     'click input#indefinite-stay-checkbox' : 'lockCheckOutInput',
-    'click .selector-toggler': 'toggleAnimalRoster',
-    'mouseenter div.animal-selector-item': 'toggleAnimalItemHighlight',
-    'mouseleave div.animal-selector-item': 'toggleAnimalItemHighlight',
-    'click .animal-selector-item': 'addChosenAnimal',
-    // 'click .animal-selector-item': 'toggleSelectedColoring'
+    // 'click .selector-toggler': 'toggleAnimalRoster',
+    // // 'mouseenter .animal-selector-item': 'toggleAnimalItemHighlight',
+    // // 'mouseleave .animal-selector-item': 'toggleAnimalItemHighlight',
+    // 'click div.animal-selector-item': 'addChosenAnimal',
+    // 'click .animal-selector-item': 'toggleSelectedColoring',
+    'selectableselected #selector': 'addChosenAnimals'
   },
 
   addChosenAnimal: function (event) {
-    debugger
+    $selector = $(event.currentTarget);
+    var numSelected = $selector.find('.ui-selected');
+    if (numSelected > 0) {
+
+    }
+
   },
 
   lockCheckOutInput: function () {
@@ -42,41 +49,26 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     return this;
   },
 
-  populateChosenAnimals: function (event) {
-    debugger
-    // Clear previously chosen animals
-    var chosenAnimalViews = this.subviews('.chosen-animals-hook')._wrapped;
-    var startingLength = chosenAnimalViews.length;
-    if (chosenAnimalViews.length > 0) {
-      for (var i = 0; i < startingLength; i++) {
-        var chosenAnimalView = chosenAnimalViews[i];
-        this.removeSubview('.chosen-animals-hook', chosenAnimalView);
+  addChosenAnimals: function (event) {
+
+
+    $selector = $(event.currentTarget);
+    var $selected = $selector.find('.ui-selected');
+    var numSelected = $selected.length;
+
+    if (numSelected > 0 ) {
+      for (var i = 0; i < numSelected; i++) {
+        var $animal = $($selected[i]);
+        var animalId = parseInt($animal.attr('animal_id'));
+        var animal = this.animals.get(animalId);
+        // debugger
+        var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
+          model: animal
+        });
+        this.addSubview('.chosen-animals-hook', chosenAnimalView);
       }
-
     }
-    $chosenAnimals = $('.ui-selected');
 
-    if ($chosenAnimals.length > 0) {
-      successCallback = function (collection, response, options) {
-        $chosenAnimals = options.$chosenAnimals;
-        animals = collection;
-        for (var i = 0; i < $chosenAnimals.length; i++) {
-          $animal = $($chosenAnimals[i]);
-          var animalId = parseInt($animal.attr('animal_id'));
-          var animal = animals.where({id: animalId})[0];
-          var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
-            model: animal
-          });
-
-          this.addSubview('.chosen-animals-hook', chosenAnimalView);
-        }
-      }.bind(this);
-      var animals = this.currentUser.animals_as_org();
-      animals.fetch({
-        success: successCallback,
-        $chosenAnimals: $chosenAnimals
-      });
-    }
   },
 
   showConfirmation: function (stays) {
@@ -94,7 +86,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   toggleAnimalRoster: function (event) {
-    // this.populateChosenAnimals(event);
     $('.selector-toggler').toggleClass('display-none');
     $('.animal-roster-hook').toggleClass('display-none');
   },
@@ -103,7 +94,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     var $checkOut = $('#check-out');
     var checkOutInput = $checkOut.data("DateTimePicker");
     if (!this.checkOutInputToggled) {
-
+    // TODO: ask Laura for slides about resume
       checkOutInput.disable();
     } else {
       checkOutInput.enable();
@@ -112,7 +103,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   toggleSelectedColoring: function (event) {
-    debugger
+
     this.populateChosenAnimals(event);
     $div = $(event.currentTarget);
     $div.toggleClass('selected-item');

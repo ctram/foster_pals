@@ -2,6 +2,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   initialize: function (options) {
 
     this.currentUser = options.currentUser;
+    this.animals = options.animals;
 
     this.profileView = new FosterPals.Views.Profile({
       model: this.model,
@@ -12,7 +13,8 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     // FIXME: dates-picker-view added 8 times even though it is only initialized once?
     this.datesPickerView = new FosterPals.Views.DatesPicker({
       currentUser: this.currentUser,
-      model: this.model
+      model: this.model,
+      animals: this.animals
     });
     this.addSubview('.dates-picker-hook', this.datesPickerView);
 
