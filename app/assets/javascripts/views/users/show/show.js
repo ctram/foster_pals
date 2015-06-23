@@ -1,9 +1,4 @@
 FosterPals.Views.UserShow = Backbone.CompositeView.extend({
-
-  template: JST['users/show/show'],
-
-  className: 'show',
-
   initialize: function (options) {
     this.user = options.model;
     var profileView = new FosterPals.Views.Profile({
@@ -20,6 +15,10 @@ FosterPals.Views.UserShow = Backbone.CompositeView.extend({
     this.addSubview('.row', aboutView);
     this.listenTo(this.user, 'sync', this.render);
   },
+
+  template: JST['users/show/show'],
+
+  className: 'show',
 
   render: function () {
     var content = this.template({});

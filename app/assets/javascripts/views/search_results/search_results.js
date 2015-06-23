@@ -20,7 +20,6 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     'mouseleave div.user-item': 'stopBounceAndHighlight',
     'click div.go-to-user-profile': 'toUserShow',
     'click div.user-item': 'panToListing'
-
   },
 
   highlightUserItem: function (event) {

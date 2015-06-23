@@ -21,6 +21,10 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+p.map-modal-text {
+  text-align: left;
+}
+
 .scheduler-errors-hook {
   z-index: 1001;
   position: absolute;

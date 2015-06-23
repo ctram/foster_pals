@@ -6,3 +6,52 @@
 
 <div class='map-hook animated fadeInRight'>
 </div>
+
+
+
+<!-- MODAL ===============================================================  -->
+
+<div class="modal fade in slacker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
+	<div class="modal-dialog modal-slacker">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myLargeModalLabel">
+          The Map.
+          <span class="text-muted">Find Other FosterPals.</span>
+        </h4>
+			</div>
+			<div class="modal-body">
+				<div class="text-center modal-text">
+  				<p class='map-modal-text'>
+            Use the map to find fellow rescue organizations and fosterers. Enter a location in the search bar to check for Foster Pals nearby.
+          </p>
+
+          <p class='map-modal-text'>
+            If you are a rescue organization, go to a Foster Pal's profile page to schedule a stay for an animal.
+          </p>
+
+          <p class='map-modal-text'>
+            If you are a Foster Pal, go to your Reservation Requests to check on pending reservations that need confirmations.
+          </p>
+           
+   				<p>
+            <a class="btn btn-default modal-off" href="" data-toggle='modal' role="button">
+              Go To The Map! »
+            </a>
+          </p>
+  			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!-- END MODAL =========================================================== -->
+<script>
+  $(function () {
+    $('.modal').modal();
+
+    $('a.modal-off').on('click', function (event) {
+      event.preventDefault();
+      $('.modal').modal('hide');
+    });
+  });
+</script>

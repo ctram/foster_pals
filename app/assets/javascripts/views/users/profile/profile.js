@@ -1,12 +1,4 @@
 FosterPals.Views.Profile = Backbone.CompositeView.extend({
-  template: JST['users/profile/profile'],
-
-  className: 'profile-view col-md-4 well',
-
-  events: {
-    'click button.schedule-btn': 'toScheduler'
-  },
-
   initialize: function (options) {
     viewingFromScheduler = options.viewingFromScheduler;
 
@@ -23,7 +15,23 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     this.addSubview('.profile-photo', profilePhotoView);
 
     this.listenTo(this.model, 'sync', this.render);
+  },
 
+  template: JST['users/profile/profile'],
+
+  className: 'profile-view col-md-4 well',
+
+  events: {
+    'click button.schedule-btn': 'toScheduler',
+    'click button.edit-profile-btn': 'editProfile'
+  },
+
+  editProfile: function (event) {
+    event.preventDefault();
+    var editProfileView = new FosterPals.Views.EditProfile({
+      model: this.model
+    });
+    this.addSubview('.edit-profile-hook', editProfileView);
   },
 
   render: function () {
