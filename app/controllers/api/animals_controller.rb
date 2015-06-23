@@ -4,7 +4,7 @@ class Api::AnimalsController < ApplicationController
   def create
     @animal = Animal.create(animal_params)
     if !@animal.save
-      render json: @animal.errors.full_messages
+      render json: @animal.errors.full_messages, status: 422
       return
     end
 
@@ -14,6 +14,7 @@ class Api::AnimalsController < ApplicationController
       image.imageable_type = 'Animal'
       image.save
     end
+    render :show
   end
 
   def show

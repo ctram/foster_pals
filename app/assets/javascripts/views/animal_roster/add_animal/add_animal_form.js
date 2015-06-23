@@ -15,7 +15,7 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
 
   template: JST['animal_roster/add_animal/add_animal_form'],
 
-  className: 'add-animal',
+  className: 'add-animal-form-view',
 
   events: {
     // TODO: make all button elements have IDs instead of classes for your event listeners.
@@ -24,8 +24,15 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   },
 
   addAnimal: function (event) {
-    // TODO add images of users
-    // TODO: animals are being saved with out being associated with images, i.e. the animals have no images to display.
+    event.preventDefault();
+
+    var errorsView = this.subviews('.errors-hook')._wrapped[0];
+    if (errorsView) {
+      $('.validation-error').addClass('fadeOutLeftBig');
+      setTimeout(function () {
+        this.removeSubview('.errors-hook', errorsView);
+      }.bind(this), 1000);
+    }
 
     var $button = $(event.target);
     var $form = $button.closest('form');
@@ -38,9 +45,18 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
         data: animal,
         method: 'POST',
         // TODO: display error message if the animal was not added.
-        success: function () {
+        success: function (model, response, options) {
           var animal = new FosterPals.Models.Animal(attrs);
           this.animals.add(animal, {merge: true});
+          
+          this.render();
+        }.bind(this),
+        error: function (model, response, options) {
+
+          var errorsView = new FosterPals.Views.ValidationErrors({
+            model: model
+          });
+          this.addSubview('.errors-hook', errorsView, 'prepend');
         }.bind(this)
       }
     );

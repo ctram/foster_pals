@@ -21,6 +21,29 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.errors-hook {
+  position: relative;
+}
+
+.validation-errors-view {
+  z-index: 1001;
+  position: absolute;
+  top: 121px;
+  right: 12%;
+  .validation-error {
+    background-color: red;
+    border-radius: 10px;
+    display: block;
+    width: 200px;
+    padding: 8px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    z-index: inherit;
+  }
+}
 
 
 #myModal {
