@@ -21,6 +21,38 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+
+.modal {
+  .modal-content {
+    height: 100%;
+    .container {
+      padding: 5px;
+    }
+    label.col-md-2 {
+      text-align: right;
+      position: relative;
+      top: 19px;
+    }
+    div.input-group {
+      width: 40%;
+    }
+    select {
+      width: 33%;
+    }
+  }
+}
+
+.btns {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  button, a {
+    margin: auto;
+    display: inherit;
+  }
+}
+
+
 p.map-modal-text {
   text-align: left;
 }
