@@ -1,6 +1,6 @@
 <!-- MODAL ===============================================================  -->
 
-<div class="modal fade in slacker-modal animated fadeInLeft" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
+<div class="modal fade in slacker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
 	<div class="modal-dialog modal-slacker">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -26,7 +26,6 @@
 
     $('a.modal-off').on('click', function (event) {
       event.preventDefault();
-      $('.modal').addClass('fadeOutLeftBig');
       $('.modal').modal('hide');
     });
   });

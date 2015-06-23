@@ -8,7 +8,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     });
     this.addSubview('.contact-btns', this.contactIslandView);
 
-    // // TODO: codoe ProfilePhoto view and template
+    // // TODO: code ProfilePhoto view and template
     var profilePhotoView = new FosterPals.Views.ProfilePhoto({
       model: this.model
     });
