@@ -1,8 +1,5 @@
 FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   initialize: function (options) {
-    datesPickerGeneratedCounter++;
-    console.log('dates picker generated');
-    console.log(datesPickerGeneratedCounter);
     this.currentUser = options.currentUser;
     this.checkOutInputToggled = false;
 
@@ -18,10 +15,11 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
   events: {
     'click input#indefinite-stay-checkbox' : 'lockCheckOutInput',
-    'mouseover .selector-toggler': 'toggleAnimalRoster',
-    'mouseleave .animal-selector-item': 'toggleAnimalRoster',
-    // 'mouseenter div.animal-selector-item': 'toggleAnimalItemHighlight',
-    // 'mouseleave div.animal-selector-item': 'toggleAnimalItemHighlight',
+    'click .selector-toggler': 'toggleAnimalRoster',
+    // 'mouseleave .animal-selector-item': 'toggleAnimalRoster',
+    'mouseenter div.animal-selector-item': 'toggleAnimalItemHighlight',
+    'mouseleave div.animal-selector-item': 'toggleAnimalItemHighlight',
+    'click .animal-selector-item': 'toggleSelectedColoring'
   },
 
   lockCheckOutInput: function () {
@@ -41,6 +39,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   populateChosenAnimals: function (event) {
+    debugger
     // Clear previously chosen animals
     var chosenAnimalViews = this.subviews('.chosen-animals-hook')._wrapped;
     var startingLength = chosenAnimalViews.length;
@@ -51,9 +50,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
       }
 
     }
-
-
-
     $chosenAnimals = $('.ui-selected');
 
     if ($chosenAnimals.length > 0) {
@@ -77,8 +73,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
         $chosenAnimals: $chosenAnimals
       });
     }
-
-
   },
 
   showConfirmation: function (stays) {
@@ -91,13 +85,11 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   toggleAnimalItemHighlight: function (event) {
-    debugger
     $div = $(event.currentTarget);
     $div.toggleClass('active-item');
   },
 
   toggleAnimalRoster: function (event) {
-    debugger
     this.populateChosenAnimals(event);
     $('.selector-toggler').toggleClass('display-none');
     $('.animal-roster-hook').toggleClass('display-none');
@@ -114,13 +106,11 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     }
     this.checkOutInputToggled = !this.checkOutInputToggled;
   },
-  // toggleSelectedColoring: function (event) {
-  //
-  //   console.log('from toggle selected coloring');
-  //   this.toggleChosenAnimal(event);
-  //   $div = $(event.currentTarget);
-  //   $div.toggleClass('selected-item');
-  // },
-});
 
-datesPickerGeneratedCounter = 0;
+  toggleSelectedColoring: function (event) {
+    debugger
+    this.populateChosenAnimals(event);
+    $div = $(event.currentTarget);
+    $div.toggleClass('selected-item');
+  },
+});
