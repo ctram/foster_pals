@@ -23,61 +23,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     'click div.animal-selector-item': 'toggleSelectedColoring'
   },
 
-  //
-  // checkDates: function (event) {
-  //   var selectedItems = $('#selector').find('.ui-selected');
-  //   var animalIds = [];
-  //
-  //   for (var i = 0; i < selectedItems.length; i++) {
-  //     $item = $(selectedItems[i]);
-  //     var animalId = $item.attr('animal_id');
-  //     animalIds.push(parseInt(animalId));
-  //   }
-  //
-  //   var $checkIn = $('#check-in');
-  //   var $checkOut = $('#check-out');
-  //
-  //   var checkInDate = $checkIn.data("DateTimePicker").date()._d.toLocaleString();
-  //   var checkOutDate = $checkOut.data("DateTimePicker").date()._d.toLocaleString();
-  //
-  //   if ($('#indefinite-stay-checkbox:checked').length === 1) {
-  //     var indefiniteStay = true;
-  //   } else {
-  //     var indefiniteStay = false;
-  //   }
-  //
-  //   var stays = new FosterPals.Collections.Stays();
-  //   for (var i = 0; i < animalIds.length; i++) {
-  //     animalId = animalIds[i];
-  //
-  //     data = {
-  //       animal_id: animalId,
-  //       indefinite_stay: indefiniteStay,
-  //       check_in_date: checkInDate,
-  //       check_out_date: checkOutDate,
-  //       org_id: CURRENT_USER_ID,
-  //       fosterer_id: this.model.escape('id'),
-  //       status: 'rescued'
-  //     };
-  //
-  //     $.ajax( '/api/stays',{
-  //       data: {stay: data},
-  //       method: 'post',
-  //       dataType: 'json',
-  //       success: function (response) {
-  //         stays.add(reponse);
-  //       }
-  //     });
-  //
-  //     this.showConfirmation(stays);
-  //   }
-
-
-    // TODO: send info to Rails -- if indefiniteStay is true, then ignore the checkout date since it will be locked out in the app but may have a date selected before the user locked it.
-
-    // send to rails to generate a stay resource
-  // },
-
   toggleSelectedColoring: function (event) {
 
     $div = $(event.currentTarget);
@@ -116,7 +61,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   toggleAnimalRoster: function () {
-
+    // TODO: have roster close when mouseleave
     $('.selector-toggler').toggleClass('display-none');
     $('.animal-roster-hook').toggleClass('display-none');
 

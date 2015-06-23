@@ -27,6 +27,10 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   },
 
   checkDates: function (event) {
+    if (('.validation-errors-view').length !== 0 ) {
+      $('.validation-errors-view').addClass('fadeOutLeftBig');
+    }
+
     var selectedItems = $('#selector').find('.ui-selected');
     var animalIds = [];
 
@@ -44,21 +48,10 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       var errorsView = new FosterPals.Views.ValidationErrors({
         manualErrors: errors
       });
-      this.addSubview('.errors-hook', errorsView, 'prepend');
-      debugger
+      this.addSubview('.dates-picker', errorsView);
+
       return;
     }
-
-    var checkInDate = $checkIn.data("DateTimePicker").date()._d.toLocaleString();
-    var checkOutDate = $checkOut.data("DateTimePicker").date()._d.toLocaleString();
-
-
-    var errorsView = new FosterPals.Views.ValidationErrors({
-      model: model
-    });
-    this.addSubview('.errors-hook', errorsView, 'prepend');
-
-
 
     if ($('#indefinite-stay-checkbox:checked').length === 1) {
       var indefiniteStay = true;
@@ -66,7 +59,24 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       var indefiniteStay = false;
     }
 
+    var checkInDate = $checkIn.data("DateTimePicker").date()._d.toLocaleString();
+    var checkOutDate = $checkOut.data("DateTimePicker").date()._d.toLocaleString();
+
     this.stays = new FosterPals.Collections.Stays();
+
+    successCallback = function () {
+      var animal_id = model['animal_id'];
+      var animal = FosterPals.Collections.animals.getOrFetch(animal_id);
+      this.stays.add(animal);
+    }.bind(this);
+
+    errorCallback = function () {
+      var errorsView = new FosterPals.Views.ValidationErrors({
+        model: model
+      });
+      this.addSubview('.dates-picker', errorsView);
+    }.bind(this);
+
     for (var i = 0; i < animalIds.length; i++) {
       animalId = animalIds[i];
 
@@ -84,32 +94,9 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
         data: {stay: stayAttrs},
         method: 'post',
         dataType: 'json',
-        success: function (model, response, options) {
-          var animal_id = model['animal_id'];
-          var animal = FosterPals.Collections.animals.getOrFetch(animal_id);
-          this.stays.add(animal);
-        }.bind(this),
-        error: function (model, response, options) {
-          var errorsView = new FosterPals.Views.ValidationErrors({
-            model: model
-          });
-          this.addSubview('.errors-hook', errorsView, 'prepend');
-        }
+        success: successCallback,
+        error: errorCallback
       });
-
-      $.ajax(
-        '/api/animals',
-        {
-          data: animal,
-          method: 'POST',
-          // TODO: newly added animal not showing up in the roster immediately.
-          success: successCallback,
-          error: errorCallback
-        }
-      );
-
-
-
 
       this.showConfirmation();
     }
