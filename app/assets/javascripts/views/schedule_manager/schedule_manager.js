@@ -20,6 +20,8 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
         this.addSubview('.scheduled-animals', scheduleManagerItemView);
       } else if (stay.get("status") === 'pending') {
         this.addSubview('.pending-animals', scheduleManagerItemView);
+      } else {
+        this.addSubview('.denied-animals', scheduleManagerItemView);
       }
     }.bind(this));
 
@@ -147,7 +149,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     var stay = this.stays_as_fosterer.get(stayId);
 
     var orgId = stay.get('org_id');
-    var animalId = stay.get('id');
+    var animalId = stay.get('animal_id');
 
     var org = FosterPals.Collections.users.getOrFetch(orgId);
     var animal = FosterPals.Collections.animals.getOrFetch(animalId);
