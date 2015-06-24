@@ -18,12 +18,11 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     'click input#indefinite-stay-checkbox' : 'lockCheckOutInput',
     'mouseenter .animal-selector-item': 'toggleAnimalItemHighlight',
     'mouseleave .animal-selector-item': 'toggleAnimalItemHighlight',
-    // 'click .animal-selector-item': 'addChosenAnimals',
     'click .animal-selector-item': 'addChosenAnimal',
     'click .chosen-animal': 'removeChosenAnimal'
   },
 
-  addChosenAnimal: function (event, animal) {
+  addChosenAnimal: function (event) {
     var $div = $(event.currentTarget);
     var animalId = parseInt($div.attr('animal_id'));
     var animal = this.animals.getOrFetch(animalId);
@@ -33,19 +32,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
     FosterPals.Events.trigger('removeAnimal', animal);
     this.addSubview('.chosen-animals-hook', chosenAnimalView);
-  },
-
-  removeChosenAnimal: function (event) {
-    var $div = $(event.currentTarget);
-    var animalId = parseInt($div.data('animal-id'));
-    var animal = this.animals.getOrFetch(animalId);
-    // TODO: left off here - code the removal of the chosen animal  - place it back into the other list.
-
-    var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
-      model: animal
-    });
-    FosterPals.Events.trigger('addAnimal', animal);
-    this.removeModelSubview('.chosen-animals-hook', animal);
   },
 
 
@@ -65,6 +51,18 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     return this;
   },
 
+  removeChosenAnimal: function (event) {
+    var $div = $(event.currentTarget);
+    var animalId = parseInt($div.data('animal-id'));
+    var animal = this.animals.getOrFetch(animalId);
+    // TODO: left off here - code the removal of the chosen animal  - place it back into the other list.
+
+    var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
+      model: animal
+    });
+    FosterPals.Events.trigger('addAnimal', animal);
+    this.removeModelSubview('.chosen-animals-hook', animal);
+  },
 
   showConfirmation: function (stays) {
     animalRosterSelectorView = this.subviews('.animal-roster-hook');
@@ -96,11 +94,4 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     }
     this.checkOutInputToggled = !this.checkOutInputToggled;
   },
-
-  toggleSelectAnimal: function (event) {
-    $div = $(event.currentTarget);
-    $div.addClass('selected');
-
-    this.addChosenAnimals(event);
-  }
 });

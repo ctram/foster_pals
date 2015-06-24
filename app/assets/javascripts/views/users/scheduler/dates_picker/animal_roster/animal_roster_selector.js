@@ -11,7 +11,7 @@ FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
       this.addSubview('#selector', animalSelectorItemView);
     }
     this.listenTo(FosterPals.Events, 'removeAnimal', this.removeAnimalView);
-    this.listenTo(FosterPals.Events, 'addAnimal', this.addAnimalView)
+    this.listenTo(FosterPals.Events, 'addAnimal', this.addAnimalView);
   },
 
   template: JST['users/scheduler/dates_picker/animal_roster_selector/animal_roster_selector'],
@@ -23,13 +23,6 @@ FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
   },
 
   addAnimalView: function (animal) {
-    var animalSelectorItemView = new FosterPals.Views.AnimalSelectorItem({
-      model: animal
-    });
-    this.addSubview('#selector', animalSelectorItemView);
-  },
-
-  addAnimalToRosterSelector: function (animal) {
     var animalSelectorItemView = new FosterPals.Views.AnimalSelectorItem({
       model: animal
     });

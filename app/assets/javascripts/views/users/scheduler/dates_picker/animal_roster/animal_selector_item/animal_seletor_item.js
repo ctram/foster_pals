@@ -23,5 +23,4 @@ FosterPals.Views.AnimalSelectorItem = Backbone.CompositeView.extend({
     this.attachSubviews();
     return this;
   }
-
 });
