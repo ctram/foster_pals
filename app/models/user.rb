@@ -104,23 +104,19 @@ class User < ActiveRecord::Base
     end
   end
 
-  def overlapping_pending_stays
+  def overlapping_pending_stays stay
     p_stays = pending_stays
     if p_stays.length <= 1
       return []
     end
 
+    p_stays.delete stay
+
     overlapping_stays = []
 
-    p_stays.length.times do |i|
-      curr_stay = p_stays[i]
-      j = i + 1
-      while j < p_stays.length
-        next_stay = p_stays[j]
-        if overlapping_stays? curr_stay, next_stay
-          overlapping_stays.push next_stay
-        end
-        j += 1
+    p_stays.each do |other_stay|
+      if overlapping_stays? stay, other_stay
+        overlapping_stays.push other_stay
       end
     end
 
@@ -133,7 +129,7 @@ class User < ActiveRecord::Base
   end
 
   def pending_stays
-    stays.where(status: 'pending')
+    stays_as_fosterer.where(status: 'pending')
   end
 
 

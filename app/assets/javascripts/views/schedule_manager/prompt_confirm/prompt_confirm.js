@@ -21,7 +21,8 @@ FosterPals.Views.ConfirmStay = Backbone.CompositeView.extend({
     var content = this.template({
       stay: this.stay,
       animal: this.animal,
-      org: this.org
+      org: this.org,
+      overlappingReservations: {}
     });
     this.$el.html(content);
     this.attachSubviews();

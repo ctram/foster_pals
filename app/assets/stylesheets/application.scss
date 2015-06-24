@@ -20,10 +20,13 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
-back-to-profile-btn {
+.back-to-profile-btn {
   padding: 10px;
 }
 
+.confirmation-btns {
+    margin-top: 10px;
+}
 
 .modal {
   .modal-content {

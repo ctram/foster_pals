@@ -133,6 +133,20 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     var org = FosterPals.Collections.users.getOrFetch(orgId);
     var animal = FosterPals.Collections.animals.getOrFetch(animalId);
 
+
+    function successCallback (response) {
+      var overlappingStays = new FosterPals.Collections.Stays(overlappingStays);
+    // TODO: pull in overlapping stays
+
+    }
+
+    $.ajax('/api/users/check-overlapping-stays', {
+      method: 'get',
+      dataType: 'json',
+      success: successCallback,
+      data: {stay_id: stayId }
+    });
+
     var confirmStayView = new FosterPals.Views.ConfirmStay({
       stay: stay,
       animal: animal,

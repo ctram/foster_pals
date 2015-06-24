@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   delete '/session/new', to: 'sessions#new'
   get '/api/users/filter_by_location', to: 'api/users#filter_by_location'
   get '/api/search/location-to-geocode', to: 'api/search#location_to_geocode'
-  get '/test', to: 'static_pages#test'
+  get '/api/users/check-overlapping-stays', to: 'api/users#check_overlapping_stays'
 
   namespace :api, defaults: {format: :json} do
     resources :animals, only: [:show, :update, :create, :index ]

@@ -2,8 +2,8 @@ require 'date'
 
 Fabricator :stay do
   animal_id {Faker::Number.digit.to_i }
-  check_in_date {Date.new(2015, 1, 1)}
-  check_out_date {Date.new(2015, 2, 1)}
+  check_in_date {Date.new(2015, 6, 24)}
+  check_out_date {Date.new(2015, 7, 24)}
   org_id {Faker::Number.digit.to_i }
   status do
     x = [1,2,3].sample

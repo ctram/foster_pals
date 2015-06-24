@@ -4,8 +4,10 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     this.animals = options.animals;
     this.checkOutInputToggled = false;
 
+
     var animalRosterSelectorView = new FosterPals.Views.AnimalRosterSelector({
-      currentUser: this.currentUser
+      currentUser: this.currentUser,
+      animals: this.animals
     });
     this.addSubview('.animal-roster-hook', animalRosterSelectorView);
   },

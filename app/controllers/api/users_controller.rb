@@ -3,10 +3,12 @@ require 'json'
 class Api::UsersController < ApplicationController
   before_action :redirect_to_front_if_not_signed_in, except: [:new, :create]
 
-  def show
-    @user = User.find(params[:id])
-    @animals = @user.animals_as_org
-    render :show
+  def check_overlapping_stays
+    stay = Stay.find(params[:stay_id])
+    @overlapping_stays = current_user.overlapping_pending_stays stay
+    render :check_overlapping_stays
+    # TODO: next, overlapping stays should make their way to backbone
+    debugger
   end
 
   def edit
@@ -30,6 +32,13 @@ class Api::UsersController < ApplicationController
 
     render :filter_by_location
   end
+
+  def show
+    @user = User.find(params[:id])
+    @animals = @user.animals_as_org
+    render :show
+  end
+
 
     # TODO: add search feature - have the backbone query hit the users#index and return only the users that match the query
   def index
