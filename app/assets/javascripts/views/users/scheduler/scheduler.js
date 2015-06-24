@@ -35,12 +35,24 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       $('.validation-errors-view').addClass('fadeOutLeftBig');
     }
 
-    var selectedItems = $('#selector').find('.ui-selected');
+    var selectedAnimals = $('.chosen-animal');
     var animalIds = [];
 
-    for (var i = 0; i < selectedItems.length; i++) {
-      $item = $(selectedItems[i]);
-      var animalId = $item.attr('animal_id');
+    if (selectedAnimals.length === 0) {
+      var errors = ['Must pick at least one animal'];
+      var errorsView = new FosterPals.Views.ValidationErrors({
+        manualErrors: errors
+      });
+      this.addSubview('.dates-picker', errorsView);
+
+      return;
+    }
+
+
+    for (var i = 0; i < selectedAnimals.length; i++) {
+      $item = $(selectedAnimals[i]);
+      var animalId = $item.data('animal-id');
+
       animalIds.push(parseInt(animalId));
     }
 
@@ -57,14 +69,15 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       return;
     }
 
+    var checkInDate = $checkIn.data("DateTimePicker").date()._d.toLocaleString();
+
     if ($('#indefinite-stay-checkbox:checked').length === 1) {
       var indefiniteStay = true;
+      var checkOutDate = '';
     } else {
       var indefiniteStay = false;
+      var checkOutDate = $checkOut.data("DateTimePicker").date()._d.toLocaleString();
     }
-
-    var checkInDate = $checkIn.data("DateTimePicker").date()._d.toLocaleString();
-    var checkOutDate = $checkOut.data("DateTimePicker").date()._d.toLocaleString();
 
     this.stays = new FosterPals.Collections.Stays();
 
@@ -74,6 +87,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       this.stays.add(animal);
     }.bind(this);
 
+    // FIXME: validation errors not showing
     errorCallback = function (model, response, options) {
       var errorsView = new FosterPals.Views.ValidationErrors({
         model: model
