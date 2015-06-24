@@ -37,6 +37,9 @@ class Api::StaysController < ApplicationController
 
     @stay = Stay.create(stay_params)
     if @stay.save
+      animal = @stay.animal
+      animal.status = 'fostered'
+      animal.save
       render :show
     else
       render json: @stay.errors.full_messages, status: 422

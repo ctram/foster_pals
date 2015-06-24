@@ -13,7 +13,7 @@ Fabricator :animal do
     when 0
       'fostered'
     when 1
-      'rescued'
+      '-'
     else
       'adopted'
     end

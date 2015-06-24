@@ -34,7 +34,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     this.addSubview('.chosen-animals-hook', chosenAnimalView);
   },
 
-
   lockCheckOutInput: function () {
     var $checkOutGroup = $('.check-out-group');
     $checkOutGroup.toggleClass('lock-check-out');

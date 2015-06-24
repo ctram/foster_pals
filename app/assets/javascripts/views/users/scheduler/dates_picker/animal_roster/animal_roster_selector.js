@@ -6,7 +6,9 @@ FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
     for (var i = 0; i < this.animalRoster.length; i++) {
       var animal = this.animalRoster.models[i].attributes;
       // TODO: only include animals that have NOT been placed yet.
-      debugger
+      if (animal.status !== 'rescued') {
+        continue;
+      }
       var animalSelectorItemView = new FosterPals.Views.AnimalSelectorItem({
         model: this.animalRoster.models[i]
       });

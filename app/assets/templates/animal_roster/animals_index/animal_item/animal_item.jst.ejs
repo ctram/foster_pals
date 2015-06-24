@@ -27,19 +27,21 @@
   <%= animal.escape('weight') %>
 </div>
 
+<!--
 <div class='col-md-1 animal-status'>
-  <%= animal.escape('status') %>
+  <#%= animal.escape('status') %>
 </div>
+-->
 
-<div class='col-md-1 stay-status'>
-  <% if (stay.escape('status' === '')) { %>
-      No Reservations Made
+<div class='col-md-2 stay-status'>
+  <% if (stay.attributes.status === undefined) { %>
+    No Reservations Made
   <% } else { %>
-      <%= stay.escape('status') %>
+    Something else
   <% } %>
 </div>
 
-<div class='col-md-1 animal-fosterer'>
+<div class='col-md-2 animal-fosterer'>
   <% if (animal.escape('fosterer_id') === '') { %>
       Not Fostered
   <% } else { %>
