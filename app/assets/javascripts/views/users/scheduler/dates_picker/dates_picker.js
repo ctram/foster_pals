@@ -16,19 +16,27 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
   events: {
     'click input#indefinite-stay-checkbox' : 'lockCheckOutInput',
-    // 'click .selector-toggler': 'toggleAnimalRoster',
-    // // 'mouseenter .animal-selector-item': 'toggleAnimalItemHighlight',
-    // // 'mouseleave .animal-selector-item': 'toggleAnimalItemHighlight',
-    // 'click div.animal-selector-item': 'addChosenAnimal',
-    // 'click .animal-selector-item': 'toggleSelectedColoring',
-    'selectableselected #selector': 'addChosenAnimals'
+    'mouseenter .animal-selector-item': 'toggleAnimalItemHighlight',
+    'mouseleave .animal-selector-item': 'toggleAnimalItemHighlight',
+    // 'click .animal-selector-item': 'addChosenAnimals',
+    'click .animal-selector-item': 'toggleSelectAnimal'
   },
 
-  addChosenAnimal: function (event) {
-    $selector = $(event.currentTarget);
-    var numSelected = $selector.find('.ui-selected');
-    if (numSelected > 0) {
+  addChosenAnimals: function (event) {
+    var $selected = $('#selector').find('.selected');
+    var numSelected = $selected.length;
 
+    if (numSelected > 0 ) {
+      for (var i = 0; i < numSelected; i++) {
+        var $animal = $($selected[i]);
+        var animalId = parseInt($animal.attr('animal_id'));
+        var animal = this.animals.get(animalId);
+        var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
+          model: animal
+        });
+        this.addSubview('.chosen-animals-hook', chosenAnimalView);
+        FosterPals.Events.trigger('removeAnimal', event);
+      }
     }
 
   },
@@ -49,27 +57,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     return this;
   },
 
-  addChosenAnimals: function (event) {
-
-
-    $selector = $(event.currentTarget);
-    var $selected = $selector.find('.ui-selected');
-    var numSelected = $selected.length;
-
-    if (numSelected > 0 ) {
-      for (var i = 0; i < numSelected; i++) {
-        var $animal = $($selected[i]);
-        var animalId = parseInt($animal.attr('animal_id'));
-        var animal = this.animals.get(animalId);
-        // debugger
-        var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
-          model: animal
-        });
-        this.addSubview('.chosen-animals-hook', chosenAnimalView);
-      }
-    }
-
-  },
 
   showConfirmation: function (stays) {
     animalRosterSelectorView = this.subviews('.animal-roster-hook');
@@ -102,10 +89,10 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     this.checkOutInputToggled = !this.checkOutInputToggled;
   },
 
-  toggleSelectedColoring: function (event) {
-
-    this.populateChosenAnimals(event);
+  toggleSelectAnimal: function (event) {
     $div = $(event.currentTarget);
-    $div.toggleClass('selected-item');
-  },
+    $div.addClass('selected');
+
+    this.addChosenAnimals(event);
+  }
 });
