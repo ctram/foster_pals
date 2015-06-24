@@ -10,7 +10,6 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     });
     this.addSubview('.row', this.profileView);
 
-    // FIXME: dates-picker-view added 8 times even though it is only initialized once?
     this.datesPickerView = new FosterPals.Views.DatesPicker({
       currentUser: this.currentUser,
       model: this.model,
@@ -87,7 +86,6 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       this.stays.add(animal);
     }.bind(this);
 
-    // FIXME: validation errors not showing
     errorCallback = function (model, response, options) {
       var errorsView = new FosterPals.Views.ValidationErrors({
         model: model
