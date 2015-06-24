@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
   end
 
   def main_image_thumb_url
-    debugger
+    
     if images[0].nil?
       "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
     else
