@@ -6,10 +6,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
       var animalId = stay.get("animal_id");
       var orgId = stay.get('org_id');
-
-
       var animal = FosterPals.Collections.animals.getOrFetch(animalId);
-
       var org = FosterPals.Collections.users.getOrFetch(orgId);
 
       var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem ({
@@ -57,8 +54,9 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     var animal = FosterPals.Collections.animals.getOrFetch(animalId);
 
     stay.set({status: 'confirmed'});
-    animal.set({status: 'fostered'});
-
+    // TODO: need to set an animal's fosterer_id when a reservation is made.
+    animal.set({status: 'fostered', fosterer_id: CURRENT_USER_ID});
+    debugger
     stayAttrs = stay.attributes;
     animalAttrs = animal.attributes;
 

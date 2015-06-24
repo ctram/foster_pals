@@ -37,7 +37,7 @@
   <% if (stay.attributes.status === undefined) { %>
     No Reservations Made
   <% } else { %>
-    Something else
+    <%= capitalize(stay.attributes.status) %>
   <% } %>
 </div>
 

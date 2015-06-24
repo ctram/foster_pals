@@ -6,7 +6,7 @@ window.FosterPals = {
   SearchResults: {},
   UserId: null,
   Events: {},
-  map: {}, 
+  map: {},
   initialize: function() {
     var currentUser = FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID);
     var currentUserId = CURRENT_USER_ID;
@@ -35,4 +35,12 @@ function randomString(length, chars) {
     var result = '';
     for (var i = length; i > 0; --i) result += mask[Math.round(Math.random() * (mask.length - 1))];
     return result;
+}
+
+function capitalize (str) {
+  var splitStr = str.split('');
+  var firstChar = splitStr.shift();
+  firstChar = firstChar.toUpperCase();
+  splitStr.unshift(firstChar);
+  return splitStr.join('');
 }
