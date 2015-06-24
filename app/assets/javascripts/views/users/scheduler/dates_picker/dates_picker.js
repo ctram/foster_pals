@@ -19,27 +19,35 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     'mouseenter .animal-selector-item': 'toggleAnimalItemHighlight',
     'mouseleave .animal-selector-item': 'toggleAnimalItemHighlight',
     // 'click .animal-selector-item': 'addChosenAnimals',
-    'click .animal-selector-item': 'toggleSelectAnimal'
+    'click .animal-selector-item': 'addChosenAnimal',
+    'click .chosen-animal': 'removeChosenAnimal'
   },
 
-  addChosenAnimals: function (event) {
-    var $selected = $('#selector').find('.selected');
-    var numSelected = $selected.length;
+  addChosenAnimal: function (event, animal) {
+    var $div = $(event.currentTarget);
+    var animalId = parseInt($div.attr('animal_id'));
+    var animal = this.animals.getOrFetch(animalId);
+    var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
+      model: animal
+    });
 
-    if (numSelected > 0 ) {
-      for (var i = 0; i < numSelected; i++) {
-        var $animal = $($selected[i]);
-        var animalId = parseInt($animal.attr('animal_id'));
-        var animal = this.animals.get(animalId);
-        var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
-          model: animal
-        });
-        this.addSubview('.chosen-animals-hook', chosenAnimalView);
-        FosterPals.Events.trigger('removeAnimal', event);
-      }
-    }
-
+    FosterPals.Events.trigger('removeAnimal', animal);
+    this.addSubview('.chosen-animals-hook', chosenAnimalView);
   },
+
+  removeChosenAnimal: function (event) {
+    var $div = $(event.currentTarget);
+    var animalId = parseInt($div.data('animal-id'));
+    var animal = this.animals.getOrFetch(animalId);
+    // TODO: left off here - code the removal of the chosen animal  - place it back into the other list.
+
+    var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
+      model: animal
+    });
+    FosterPals.Events.trigger('addAnimal', animal);
+    this.removeModelSubview('.chosen-animals-hook', animal);
+  },
+
 
   lockCheckOutInput: function () {
     var $checkOutGroup = $('.check-out-group');
