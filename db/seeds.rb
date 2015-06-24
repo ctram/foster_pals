@@ -17,7 +17,7 @@ carl = Fabricate(
 )
 
 Fabricate(
-  :image, imageable_id: carl.id, imageable_type: 'User', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  :image, imageable_id: carl.id, imageable_type: 'User', thumb_url: "https://s3.amazonaws.com/uifaces/faces/twitter/carlfairclough/128.jpg"
 )
 
 
@@ -54,7 +54,7 @@ frosty = Fabricate(
 )
 
 Fabricate(
-  :image, imageable_id: frosty.id, imageable_type: 'User', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  :image, imageable_id: frosty.id, imageable_type: 'User', thumb_url: "https://s3.amazonaws.com/uifaces/faces/twitter/mimobase/128.jpg"
 )
 
 10.times do

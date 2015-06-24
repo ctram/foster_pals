@@ -1,3 +1,5 @@
+require 'net/http'
+
 class SessionsController < ApplicationController
   before_action :redirect_to_front_if_not_signed_in, except: [:new, :create, :destroy, :sign_in_as_guest]
   skip_before_filter :verify_authenticity_token, :only => [:destroy]
@@ -44,10 +46,14 @@ class SessionsController < ApplicationController
       user.last_name += ' Guest'
       user = generate_lat_and_long_for_user user
 
+      uri = URI("http://uifaces.com/api/v1/random")
+      random_user = JSON.parse(Net::HTTP.get(uri))
+      image_url = random_user['image_urls']['epic']
       image = Fabricate(
         :image,
         imageable_id: user.id,
-        imageable_type: 'User'
+        imageable_type: 'User',
+        thumb_url: image_url
       )
 
       other_user = (user == user1 ? user2 : user1)

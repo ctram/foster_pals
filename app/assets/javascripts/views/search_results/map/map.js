@@ -1,5 +1,6 @@
 FosterPals.Views.Map = Backbone.CompositeView.extend({
   initialize: function (options) {
+    // FIXME: map is broken, does not list users
     this._markers = {};
     this.listenTo(this.collection, 'add', this.addMarker);
     this.listenTo(this.collection, 'remove', this.removeMarker);
