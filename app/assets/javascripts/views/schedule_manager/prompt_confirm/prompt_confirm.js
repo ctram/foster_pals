@@ -1,4 +1,5 @@
 FosterPals.Views.ConfirmStay = Backbone.CompositeView.extend({
+  // TODO: DRY up confirmation and denial views -- both view are pretty much the same.
   initialize: function (options) {
     this.stay = options.stay;
     this.animal = options.animal;
@@ -11,7 +12,7 @@ FosterPals.Views.ConfirmStay = Backbone.CompositeView.extend({
 
   template: JST['schedule_manager/prompt_confirm/prompt_confirm'],
 
-  className: 'deny-stay-view well',
+  className: 'confirm-stay-view well',
 
   events: {
   },

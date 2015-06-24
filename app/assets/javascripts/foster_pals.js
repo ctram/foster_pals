@@ -38,6 +38,9 @@ function randomString(length, chars) {
 }
 
 function capitalize (str) {
+  if (str === '') {
+    return ''
+  }
   var splitStr = str.split('');
   var firstChar = splitStr.shift();
   firstChar = firstChar.toUpperCase();
