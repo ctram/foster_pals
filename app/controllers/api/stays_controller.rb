@@ -40,6 +40,7 @@ class Api::StaysController < ApplicationController
       animal = @stay.animal
       animal.status = 'fostered'
       animal.save
+      current_user.deny_overlapping_stays @stay
       render :show
     else
       render json: @stay.errors.full_messages, status: 422

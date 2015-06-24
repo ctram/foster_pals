@@ -63,7 +63,7 @@ class SessionsController < ApplicationController
         animal = Fabricate(
           :animal,
           org_id: user.id,
-          # fosterer_id: other_user.id,
+          fosterer_id: other_user.id,
           status: '-'
         )
 
@@ -72,14 +72,14 @@ class SessionsController < ApplicationController
           imageable_id: animal.id,
           imageable_type: 'Animal'
         )
-        #
-        # Fabricate(
-        #   :stay,
-        #   status: 'pending',
-        #   org_id: other_user.id,
-        #   fosterer_id: user.id,
-        #   animal_id: animal.id
-        # )
+
+        Fabricate(
+          :stay,
+          status: 'pending',
+          org_id: other_user.id,
+          fosterer_id: user.id,
+          animal_id: animal.id
+        )
       end
     end
 

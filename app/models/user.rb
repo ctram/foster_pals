@@ -46,33 +46,21 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
-  def name
-    if self.role == 'org'
-      org_name.capitalize
-    else
-      first_name.capitalize + ' ' + last_name.capitalize
-    end
-  end
-
-  def self.find_by_credentials(email, password)
+  def User.find_by_credentials(email, password)
     user = User.find_by(email: email)
     return nil unless user && user.valid_password?(password)
     user
   end
 
-  def password=(password)
-    @password = password
-    self.password_digest = BCrypt::Password.create(password)
-  end
-
-  def valid_password?(password)
-    BCrypt::Password.new(self.password_digest).is_password?(password)
-  end
-
-  def reset_token!
-    self.session_token = SecureRandom.urlsafe_base64(16)
-    self.save!
-    self.session_token
+  def deny_overlapping_stays stay
+    ol_stays = overlapping_pending_stays
+    if ol_stays.include? stay
+      ol_stays.delete stay
+      ol_stays.each do |stay|
+        stay.status = 'denied'
+        stay.save
+      end
+    end
   end
 
   # TODO: extract main_image code into a module -- animal class also uses it.
@@ -85,11 +73,10 @@ class User < ActiveRecord::Base
   end
 
   def main_image_thumb_url
-    
     if images[0].nil?
       "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
     else
-      images[0].thumb_url
+      images.last.thumb_url
 
       # url = images.last.thumb_url
       #
@@ -109,9 +96,70 @@ class User < ActiveRecord::Base
     end
   end
 
+  def name
+    if self.role == 'org'
+      org_name.capitalize
+    else
+      first_name.capitalize + ' ' + last_name.capitalize
+    end
+  end
+
+  def overlapping_pending_stays
+    p_stays = pending_stays
+    if p_stays.length <= 1
+      return []
+    end
+
+    overlapping_stays = []
+
+    p_stays.length.times do |i|
+      curr_stay = p_stays[i]
+      j = i + 1
+      while j < p_stays.length
+        next_stay = p_stays[j]
+        if overlapping_stays? curr_stay, next_stay
+          overlapping_stays.push next_stay
+        end
+        j += 1
+      end
+    end
+
+    overlapping_stays
+  end
+
+  def password=(password)
+    @password = password
+    self.password_digest = BCrypt::Password.create(password)
+  end
+
+  def pending_stays
+    stays.where(status: 'pending')
+  end
+
+
+  def reset_token!
+    self.session_token = SecureRandom.urlsafe_base64(16)
+    self.save!
+    self.session_token
+  end
+
+
+  def valid_password?(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
+  end
+
+
   private
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
+  end
+
+  def overlapping_stays? stay1, stay2
+    if stay1.check_in_date < stay2.check_out_date or stay1.check_out_date > stay2.check_in_date
+      true
+    else
+      false
+    end
   end
 
 end
