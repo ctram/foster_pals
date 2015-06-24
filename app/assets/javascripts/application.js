@@ -15,7 +15,6 @@
 
 //= require jquery.fancybox
 //= require jquery_ujs
-//= require jquery-ui/selectable
 //= require jquery-ui/effect-drop
 
 //= require moment
