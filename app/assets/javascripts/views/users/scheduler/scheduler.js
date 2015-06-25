@@ -60,7 +60,11 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     var $checkIn = $('#check-in');
     var $checkOut = $('#check-out');
 
-    if ($checkIn.find('input').val() === '' || ($checkOut.find('input').val() === '' && $('#indefinite-stay-checkbox:checked').length !== 1)) {
+    var checkInEmptyBool = ($checkIn.find('input').val() === '');
+    var checkOutEmptyBool = ($checkOut.find('input').val() === '');
+    var indefiniteStayBool = ($('#indefinite-stay-checkbox:checked').length !== 1);
+
+    if (checkInEmptyBool || (checkOutEmptyBool && indefiniteStayBool)) {
       var errors = ['Must enter check-in and check-out dates'];
       var errorsView = new FosterPals.Views.ValidationErrors({
         manualErrors: errors

@@ -13,6 +13,7 @@ class Api::StaysController < ApplicationController
 
   def create
     # 6/16/2015, 8:54:41 AM
+    debugger
     check_in_date_str = params[:stay][:check_in_date]
     check_out_date_str = params[:stay][:check_out_date]
 
@@ -36,11 +37,12 @@ class Api::StaysController < ApplicationController
     params[:stay][:check_out_date] = check_out_date
 
     @stay = Stay.create(stay_params)
+
     if @stay.save
       animal = @stay.animal
       animal.status = 'fostered'
       animal.save
-      current_user.deny_overlapping_stays @stay
+      current_user.overlapping_pending_stays @stay
       render :show
     else
       render json: @stay.errors.full_messages, status: 422

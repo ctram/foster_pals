@@ -90,8 +90,8 @@ p.map-modal-text {
 .validation-errors-view {
   z-index: 1001;
   position: absolute;
-  top: 121px;
-  right: 12%;
+  bottom: 300px;
+  right: -23%;
   .validation-error {
     background-color: red;
     border-radius: 10px;
