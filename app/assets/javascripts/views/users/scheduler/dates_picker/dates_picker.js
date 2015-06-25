@@ -4,7 +4,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     this.animals = options.animals;
     this.checkOutInputToggled = false;
 
-
     var animalRosterSelectorView = new FosterPals.Views.AnimalRosterSelector({
       currentUser: this.currentUser,
       animals: this.animals
@@ -21,7 +20,8 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     'mouseenter .animal-selector-item': 'toggleAnimalItemHighlight',
     'mouseleave .animal-selector-item': 'toggleAnimalItemHighlight',
     'click .animal-selector-item': 'addChosenAnimal',
-    'click .chosen-animal': 'removeChosenAnimal'
+    'click .chosen-animal': 'removeChosenAnimal',
+    'click .to-animal-roster-btn': 'toAnimalRoster'
   },
 
   addChosenAnimal: function (event) {
@@ -72,6 +72,10 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
       collection: stays
     });
     this.addSubview('.animal-roster-hook', confirmationView);
+  },
+
+  toAnimalRoster: function (event) {
+    Backbone.history.navigate('animal-roster', {trigger: true});
   },
 
   toggleAnimalItemHighlight: function (event) {

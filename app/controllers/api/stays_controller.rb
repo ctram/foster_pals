@@ -13,7 +13,7 @@ class Api::StaysController < ApplicationController
 
   def create
     # 6/16/2015, 8:54:41 AM
-    debugger
+    
     check_in_date_str = params[:stay][:check_in_date]
     check_out_date_str = params[:stay][:check_out_date]
 
