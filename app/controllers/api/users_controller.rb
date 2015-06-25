@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
     @overlapping_stays = current_user.overlapping_pending_stays stay
     render :check_overlapping_stays
     # TODO: next, overlapping stays should make their way to backbone
-    debugger
+    
   end
 
   def edit

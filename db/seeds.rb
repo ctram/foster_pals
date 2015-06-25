@@ -62,7 +62,7 @@ Fabricate(
     :animal,
     fosterer_id: frosty.id,
     org_id: carl.id,
-    status: 'rescued'
+    status: '-'
   )
 
   stay = Fabricate(
@@ -83,7 +83,7 @@ end
     :animal,
     fosterer_id: carl.id,
     org_id: frosty.id,
-    status: 'rescued'
+    status: '-'
   )
 
   Fabricate(

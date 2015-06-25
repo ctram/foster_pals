@@ -30,6 +30,8 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   },
 
   checkDates: function (event) {
+    // TODO: add validtion error when checkout date is earlier thanc
+
     if (('.validation-errors-view').length !== 0 ) {
       $('.validation-errors-view').addClass('fadeOutLeftBig');
     }
@@ -78,12 +80,12 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       var checkOutDate = $checkOut.data("DateTimePicker").date()._d.toLocaleString();
     }
 
-    this.stays = new FosterPals.Collections.Stays();
+    this.animals = new FosterPals.Collections.Animals();
 
     successCallback = function (model, response, options) {
       var animal_id = model['animal_id'];
       var animal = FosterPals.Collections.animals.getOrFetch(animal_id);
-      this.stays.add(animal);
+      this.animals.add(animal);
     }.bind(this);
 
     errorCallback = function (model, response, options) {
@@ -114,8 +116,8 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
         error: errorCallback
       });
 
-      this.showConfirmation();
     }
+    this.showConfirmation();
   },
 
   goToShow: function (event) {
@@ -137,7 +139,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     animalRosterSelectorView  = this.subviews()._wrapped['.dates-picker-hook']._wrapped[0]
     this.removeSubview('.dates-picker-hook', animalRosterSelectorView);
     var confirmationView = new FosterPals.Views.Confirmation({
-      collection: this.stays
+      collection: this.animals
     });
     this.addSubview('.dates-picker-hook', confirmationView);
   }
