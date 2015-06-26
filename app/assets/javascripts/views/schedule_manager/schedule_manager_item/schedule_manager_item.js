@@ -3,17 +3,48 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
     this.org = options.org;
     this.stay = options.stay;
 
-    debugger
+    var stayId = this.stay.id;
 
-    this.stay.fetch({
-      success: function (model, response, options) {
-        debugger
-        var animals = this.stay.animals();
-        for (var i = 0; i < animals.length; i++) {
-          this.addAnimalView(animals[i]);
-        }
-      }.bind(this)
+
+    $.ajax('/api/stays/' + stayId, {
+      statusCode: {
+        200: function(stay, status) {
+          var animals = stay.animals;
+          for (var i = 0; i < animals.length; i++) {
+            var animal = new FosterPals.Models.Animal(
+              animals[i]
+            );
+
+            this.addAnimalView(animal);
+          }
+        }.bind(this)
+      }
     });
+
+    // this.stay.fetch({
+    //   success: function (model, response, options) {
+    //
+    //   }.bind(this),
+    //   statusCode: {
+    //     304: function() {
+    //
+    //       var animals = this.stay.animals();
+    //       for (var i = 0; i < animals.length; i++) {
+    //         this.addAnimalView(animals[i]);
+    //       }
+    //     }.bind(this),
+    //     404: function () {
+    //
+    //     }
+    //   }
+    // });
+
+    // var animals = this.stay.animals();
+    //
+    // for (var i = 0; i < animals.length; i++) {
+    //   this.addAnimalView(animals.models[i]);
+    // }
+
 
     // TODO: a stay now has many animals - here, call stay.animals() and pull in the animals - iterate through the list of animals and add a line item for each animal.
 
@@ -27,15 +58,16 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
   className: 'schedule-manager-item-view',
 
   addAnimalView: function (animal) {
+
     var animalItemView = new FosterPals.Views.ScheduleAnimalItem({
       model: animal
     });
-    this.subviews('.animal-item-hook', animalItemView);
+    this.addSubview('.animal-item-hook', animalItemView);
   },
 
   render: function () {
     // TODO: re-do seed data, right now there is a stay associated with a user 7, but there is no user 7.
-    debugger
+
     var content = this.template({
       org: this.org,
       stay: this.stay

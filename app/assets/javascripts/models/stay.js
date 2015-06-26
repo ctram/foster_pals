@@ -1,5 +1,5 @@
 FosterPals.Models.Stay = Backbone.Model.extend({
-  urlRoot: '/api/stays',
+  urlRoot: '/api/stay',
 
   animals: function () {
     if(!this._animals) {

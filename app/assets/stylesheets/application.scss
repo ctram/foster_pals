@@ -20,6 +20,20 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.animal-name {
+  margin-top: 10%
+}
+
+.animal-img {
+  width: auto;
+}
+
+.animal-item-hook.well {
+  background-color: red;
+  width: 60%;
+  display: block;
+}
+
 .back-to-profile-btn {
   padding: 10px;
 }
