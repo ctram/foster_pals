@@ -3,9 +3,11 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
     this.org = options.org;
     this.stay = options.stay;
 
+    debugger
 
     this.stay.fetch({
       success: function (model, response, options) {
+        debugger
         var animals = this.stay.animals();
         for (var i = 0; i < animals.length; i++) {
           this.addAnimalView(animals[i]);
