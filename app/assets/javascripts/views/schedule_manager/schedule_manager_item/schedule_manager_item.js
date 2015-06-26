@@ -32,7 +32,8 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
   },
 
   render: function () {
-
+    // TODO: re-do seed data, right now there is a stay associated with a user 7, but there is no user 7.
+    debugger
     var content = this.template({
       org: this.org,
       stay: this.stay

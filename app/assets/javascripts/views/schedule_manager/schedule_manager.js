@@ -1,17 +1,14 @@
 FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.stays_as_fosterer = this.model.stays_as_fosterer();
-    debugger
+
 
     this.stays_as_fosterer.each( function (stay) {
 
-      var animalId = stay.get("animal_id");
       var orgId = stay.get('org_id');
-      var animal = FosterPals.Collections.animals.getOrFetch(animalId);
       var org = FosterPals.Collections.users.getOrFetch(orgId);
 
       var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem ({
-        animal: animal,
         org: org,
         stay: stay
       });
