@@ -21,7 +21,8 @@ class Animal < ActiveRecord::Base
   )
 
   has_many :images, as: :imageable
-  has_one :stay
+  has_many :reservations
+  has_many :stays, through: :reservations
 
   def main_image_url
     if images.empty?

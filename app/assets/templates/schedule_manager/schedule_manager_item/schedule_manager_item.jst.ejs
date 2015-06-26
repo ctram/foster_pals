@@ -1,14 +1,5 @@
 <div class='row schedule-manager-item'>
   <div class='schedule-manager-item col-md-2'>
-    <%= animal.escape('name') %>
-    <%= animal.escape('id') %>
-  </div>
-
-  <div class='schedule-manager-item col-md-2'>
-    <%= org.escape('org_name') %>
-  </div>
-
-  <div class='schedule-manager-item col-md-2'>
     <%= stay.escape('check_in_date') %>
   </div>
 
@@ -16,10 +7,13 @@
     <%= stay.escape('check_out_date') %>
   </div>
 
+  <div class='schedule-manager-item col-md-2'>
+    <%= org.escape('org_name') %>
+  </div>
 
   <% if (stay.escape('status') === 'pending') { %>
     <!-- TODO: hook up confirmation button with a page that confirms the stay. -->
-    <button class='btn btn-success prompt-confirm col-md-2'  data-stay-id="<%= stay.escape('id') %>" data-animal-id="<%= animal.escape('id') %>" >
+    <button class='btn btn-success prompt-confirm col-md-2'  data-stay-id="<%= stay.escape('id') %>">
       Confirm
     </button>
 
@@ -27,8 +21,11 @@
       Deny
     </button>
   <% } else { %>
-    <button class='btn btn-info contact-org col-md-1' data-animal-id="<%= animal.escape('id') %>" data-stay-id="<%= stay.escape('id')%>" >
+    <button class='btn btn-info contact-org col-md-1' data-stay-id="<%= stay.escape('id')%>" >
       Contact Rescue Org
     </button>
   <% } %>
+
+  <div class='animal-item-hook well'>
+  </div>
 </div>

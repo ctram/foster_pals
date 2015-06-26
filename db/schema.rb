@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616231525) do
+ActiveRecord::Schema.define(version: 20150626061401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,19 +83,21 @@ ActiveRecord::Schema.define(version: 20150616231525) do
   add_index "posts", ["id"], name: "index_posts_on_id", using: :btree
   add_index "posts", ["poster_id"], name: "index_posts_on_poster_id", using: :btree
 
+  create_table "reservations", force: :cascade do |t|
+    t.integer "animal_id"
+    t.integer "stay_id"
+  end
+
   create_table "stays", force: :cascade do |t|
-    t.integer  "animal_id",       null: false
     t.date     "check_in_date"
     t.date     "check_out_date"
-    t.string   "status",          null: false
+    t.string   "status",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "org_id"
     t.integer  "fosterer_id"
-    t.string   "indefinite_stay"
   end
 
-  add_index "stays", ["animal_id"], name: "index_stays_on_animal_id", using: :btree
   add_index "stays", ["check_in_date"], name: "index_stays_on_check_in_date", using: :btree
   add_index "stays", ["check_out_date"], name: "index_stays_on_check_out_date", using: :btree
   add_index "stays", ["fosterer_id"], name: "index_stays_on_fosterer_id", using: :btree

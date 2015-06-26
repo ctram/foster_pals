@@ -1,10 +1,11 @@
 require 'date'
 
 Fabricator :stay do
-  animal_id {Faker::Number.digit.to_i }
+  # animal_id {Faker::Number.digit.to_i }
   check_in_date {Date.new(2015, 6, 24)}
   check_out_date {Date.new(2015, 7, 24)}
   org_id {Faker::Number.digit.to_i }
+  fosterer_id {Faker::Number.digit.to_i }
   status do
     x = [1,2,3].sample
 
@@ -17,6 +18,5 @@ Fabricator :stay do
       'confirmed'
     end
   end
-  fosterer_id {Faker::Number.digit.to_i }
-  indefinite_stay {rand(0..1) == 1 ? 'true' : 'false'}
+  # indefinite_stay {rand(0..1) == 1 ? 'true' : 'false'}
 end

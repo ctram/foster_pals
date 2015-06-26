@@ -1,3 +1,5 @@
-json.extract! @stay, :animal_id, :fosterer_id, :org_id, :indefinite_stay, :check_in_date, :check_out_date, :status
+json.extract! @stay, :fosterer_id, :org_id, :check_in_date, :check_out_date, :status
 
-# TODO: continue with creating stay record.
+json.animals @stay.animals do |animal|
+  json.extract! animal, :name, :species, :sex, :breed, :color, :org_id, :fosterer_id, :weight, :status
+end

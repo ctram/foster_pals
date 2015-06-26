@@ -1,8 +1,8 @@
 class Stay < ActiveRecord::Base
-  validates_presence_of :animal_id
+  # validates_presence_of :animal_id
   validates_presence_of :fosterer_id
   validates_presence_of :org_id
-  validates_presence_of :indefinite_stay
+  # validates_presence_of :indefinite_stay
   validates_presence_of :check_in_date
   validates_presence_of :check_out_date
   validates_presence_of :status
@@ -19,10 +19,7 @@ class Stay < ActiveRecord::Base
     foreign_key: :org_id,
     primary_key: :id
   )
-  belongs_to(
-    :animal,
-    class_name: 'Animal',
-    foreign_key: :animal_id,
-    primary_key: :id
-  )
+
+  has_many :reservations
+  has_many :animals, through: :reservations
 end
