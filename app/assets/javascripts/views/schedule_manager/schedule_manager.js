@@ -141,7 +141,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
       $('.animal-stays').toggleClass('display-none');
       this.addSubview('.confirmation', promptConfirmView);
-    debugger
+    
   }.bind(this);
 
     $.ajax('/api/users/check-overlapping-stays', {

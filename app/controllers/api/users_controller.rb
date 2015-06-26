@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
 
   def check_overlapping_stays
     # FIXME logic is not providing the correct overlapping stays
-    debugger
+
     stay = Stay.find(params[:stay_id])
     @overlapping_stays = current_user.overlapping_pending_stays stay
     render :check_overlapping_stays

@@ -17,6 +17,7 @@ FosterPals.Views.PromptConfirm = Backbone.CompositeView.extend({
   },
 
   render: function () {
+    
     var content = this.template({
       stay: this.stay,
       org: this.org,

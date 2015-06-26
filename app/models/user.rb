@@ -105,22 +105,24 @@ class User < ActiveRecord::Base
   end
 
   def overlapping_pending_stays stay
-    p_stays = pending_stays
+    
+    p_stays = pending_stays.reject do |other_stay|
+      other_stay.id == stay.id
+    end
+
     if p_stays.length <= 1
       return []
     end
 
-    p_stays.delete stay
-
-    overlapping_stays = []
+    overlapping_stays_arr = []
 
     p_stays.each do |other_stay|
       if overlapping_stays? stay, other_stay
-        overlapping_stays.push other_stay
+        overlapping_stays_arr.push other_stay
       end
     end
 
-    overlapping_stays
+    overlapping_stays_arr
   end
 
   def password=(password)
