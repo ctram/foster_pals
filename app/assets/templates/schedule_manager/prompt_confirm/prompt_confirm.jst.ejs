@@ -2,9 +2,6 @@
 
 <div class='row table-header'>
   <div class='col-md-3'>
-    Name
-  </div>
-  <div class='col-md-3'>
     Rescue Org
   </div>
   <div class='col-md-3'>
@@ -17,13 +14,10 @@
 
 <div class='row'>
   <div class='col-md-3'>
-    <%=animal.escape('name') %>
-    <%=animal.escape('id') %>
-  </div>
-  <div class='col-md-3'>
     <%=org.escape('org_name') %>
   </div>
   <div class='col-md-3'>
+    <%=stay.escape('id') %>
     <%=stay.escape('check_in_date') %>
   </div>
   <div class='col-md-3'>
@@ -33,14 +27,11 @@
 
 
 <!-- overlapping reservations =========================== -->
-<% if (overlappingReservations.length !== 0) { %>
+<% if (overlappingStays.length !== 0) { %>
 
   <h3>The following reservations overlap and will automatically be denied</h3>
 
   <div class='row table-header'>
-    <div class='col-md-3'>
-      Name
-    </div>
     <div class='col-md-3'>
       Rescue Org
     </div>
@@ -54,13 +45,10 @@
 
   <div class='row'>
     <div class='col-md-3'>
-      <%=animal.escape('name') %>
-      <%=animal.escape('id') %>
-    </div>
-    <div class='col-md-3'>
       <%=org.escape('org_name') %>
     </div>
     <div class='col-md-3'>
+      <%=stay.escape('id') %>
       <%=stay.escape('check_in_date') %>
     </div>
     <div class='col-md-3'>

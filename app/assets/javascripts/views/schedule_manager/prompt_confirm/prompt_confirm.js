@@ -1,12 +1,11 @@
-FosterPals.Views.ConfirmStay = Backbone.CompositeView.extend({
+FosterPals.Views.PromptConfirm = Backbone.CompositeView.extend({
   // TODO: DRY up confirmation and denial views -- both view are pretty much the same.
   initialize: function (options) {
     this.stay = options.stay;
-    this.animal = options.animal;
     this.org = options.org;
+    this.overlappingStays = options.overlappingStays;
 
     this.listenTo(this.stay, 'sync', this.render);
-    this.listenTo(this.animal, 'sync', this.render);
     this.listenTo(this.org, 'sync', this.render);
   },
 
@@ -20,9 +19,8 @@ FosterPals.Views.ConfirmStay = Backbone.CompositeView.extend({
   render: function () {
     var content = this.template({
       stay: this.stay,
-      animal: this.animal,
       org: this.org,
-      overlappingReservations: {}
+      overlappingStays: this.overlappingStays
     });
     this.$el.html(content);
     this.attachSubviews();
