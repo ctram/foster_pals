@@ -50,12 +50,12 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     var stayId = $btn.data('stay-id');
     var stay = this.stays_as_fosterer.get(stayId);
 
-    var animalId = stay.get('animal_id');
-    var animal = FosterPals.Collections.animals.getOrFetch(animalId);
-
+    // var animalId = stay.get('animal_id');
+    // var animal = FosterPals.Collections.animals.getOrFetch(animalId);
+    debugger
     stay.set({status: 'confirmed'});
     // TODO: need to set an animal's fosterer_id when a reservation is made.
-    animal.set({status: 'fostered', fosterer_id: CURRENT_USER_ID});
+    // animal.set({status: 'fostered', fosterer_id: CURRENT_USER_ID});
 
     stayAttrs = stay.attributes;
     animalAttrs = animal.attributes;
@@ -78,13 +78,11 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
       }
     });
 
-    $.ajax('/api/animals/' + animalId, {
-      method: 'patch',
-      dataType: 'json',
-      data: {animal: animalAttrs}
-    });
-
-
+    // $.ajax('/api/animals/' + animalId, {
+    //   method: 'patch',
+    //   dataType: 'json',
+    //   data: {animal: animalAttrs}
+    // });
   },
 
   denyStay: function (event) {
@@ -141,7 +139,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
       $('.animal-stays').toggleClass('display-none');
       this.addSubview('.confirmation', promptConfirmView);
-    
+
   }.bind(this);
 
     $.ajax('/api/users/check-overlapping-stays', {
