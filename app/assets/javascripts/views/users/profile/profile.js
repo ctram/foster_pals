@@ -23,7 +23,8 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
 
   events: {
     'click button.schedule-btn': 'toScheduler',
-    'click button.edit-profile-btn': 'editProfile'
+    'click button.edit-profile-btn': 'editProfile',
+    'click button.update-profile-btn': 'updateProfile'
   },
 
   // TODO: finish user info update - right now a modal pops up but no data is saved -- or there is no change after button is clicked.
@@ -49,5 +50,13 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
       // Remove scheduler, after confirmation of reservation
       Backbone.history.loadUrl();
     }
+  },
+
+  updateProfile: function (event) {
+    event.preventDefault();
+    $form = $(event.currentTarget.closest('form'));
+    attrs = $form.serializeJSON().user;
+    this.model.save(attrs);
+    $('.modal').modal('hide');
   }
 });
