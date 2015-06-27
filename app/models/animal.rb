@@ -52,4 +52,16 @@ class Animal < ActiveRecord::Base
       completed_url = url_front + ',' + image_height + ',' + image_width + '/' + url_back
     end
   end
+
+  def status
+    if stays.empty?
+      return '-'
+    end
+
+    stays.each do |stay|
+      if stay.status == 'confirmed'
+        return 'fostered'
+      end
+    end
+  end
 end
