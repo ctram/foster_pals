@@ -26,6 +26,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     'click button.edit-profile-btn': 'editProfile'
   },
 
+  // TODO: finish user info update - right now a modal pops up but no data is saved -- or there is no change after button is clicked.
   editProfile: function (event) {
     event.preventDefault();
     $('.modal').modal();

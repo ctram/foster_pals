@@ -18,7 +18,7 @@ FosterPals.Views.UserShow = Backbone.CompositeView.extend({
 
   template: JST['users/show/show'],
 
-  className: 'show',
+  className: 'user-show-view',
 
   // events: {
   //   'click button.schedule-btn': 'refreshShow'

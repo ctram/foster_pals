@@ -42,8 +42,10 @@
 }
 
 .profile-hook {
+  width: auto;
   .profile-view {
     min-width: 341px;
+    width: auto;
   }
 }
 
@@ -321,7 +323,8 @@ button.register-featurette-btn {
 }
 
 .navbar-form.navbar-search {
-  width: 1000px;
+  width: 614px;
+  display: inline-block;
   margin: auto;
   margin-top: 9px;
 }
