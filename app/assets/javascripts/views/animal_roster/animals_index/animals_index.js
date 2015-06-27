@@ -11,7 +11,7 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
     }
     // this.listenTo(this.collection, 'sync', this.render);
   },
-
+// TODO: have mouse cursor change when hovering over an animal item -- also have a message that tells user to click on an animal to see images
   events: {
     'mouseenter .animal-item-view': 'hightlightAnimalItem',
     'mouseleave .animal-item-view': 'toggleHighlightAnimalItem',
@@ -44,6 +44,10 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   },
 
   hightlightAnimalItem: function (event) {
+    $('.gallery-help-msg').addClass('fadeInLeft').removeClass('display-none');
+    setTimeout(function () {
+      $('.gallery-help-msg').addClass('fadeOutRightBig');
+    }, 3000);
     var $div = $(event.currentTarget);
     this.toggleHighlightAnimalItem(null, $div);
   },

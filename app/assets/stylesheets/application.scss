@@ -20,9 +20,35 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+// .go-to-user-profile {
+//   a {
+//     cursor: pointer;
+//   }
+// }
+
+.user-item {
+  cursor: pointer;
+}
+
 .animal-item-view.row {
   margin-top:  20px;
   margin-bottom:  -20px;
+}
+
+.contact-btns {
+  button {
+    margin: 10px;
+  }
+}
+
+.profile-hook {
+  .profile-view {
+    min-width: 341px;
+  }
+}
+
+.animal-item-view.row:hover {
+  cursor: pointer;
 }
 
 .animal-item-view {
@@ -31,8 +57,19 @@
   }
 }
 
-.animal-name {
-  margin-top: 10%
+.animal-show-view {
+  .animal-name {
+    font-size: 48pt;
+    text-align: center;
+    margin-top: 21px;
+  }
+}
+
+.gallery-help-msg {
+  z-index: 1001;
+  position: absolute;
+  border-radius: 15px;
+  background-color: #904295;
 }
 
 .animal-img > img {

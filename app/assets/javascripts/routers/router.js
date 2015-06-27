@@ -19,16 +19,11 @@ FosterPals.Routers.Router = Backbone.Router.extend({
 
   animalRoster: function () {
 
-
-
     animalsCallback = function (animals) {
-
-
       var animalRosterView = new FosterPals.Views.AnimalRoster({
         model: this.currentUser,
         collection: animals
       });
-
 
       this._swapView(animalRosterView);
     }.bind(this);
@@ -47,12 +42,20 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   animalShow: function (id) {
-    // TODO: add animal show view page -- include an image gallery
-    var animal = FosterPals.Collections.animals.getOrFetch(id);
-    var animalShowView = new FosterPals.Views.AnimalShow({
-      model: animal
+    var animal = new FosterPals.Models.Animal({
+      id: id
     });
-    this._swapView(animalShowView);
+
+    animal.fetch({
+      success: function () {
+        var animalShowView = new FosterPals.Views.AnimalShow({
+          model: animal
+        });
+        this._swapView(animalShowView);
+
+      }.bind(this)
+    });
+
   },
 
   profile: function () {

@@ -1,5 +1,6 @@
 FosterPals.Views.AnimalShow = Backbone.CompositeView.extend({
   initialize: function (options) {
+
     var profileView = new FosterPals.Views.AnimalProfile({
       model: this.model
     });
@@ -27,7 +28,9 @@ FosterPals.Views.AnimalShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template({});
+    var content = this.template({
+      animal: this.model
+    });
     this.$el.html(content);
     this.attachSubviews();
 
