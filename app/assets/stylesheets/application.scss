@@ -20,11 +20,13 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
-// .go-to-user-profile {
-//   a {
-//     cursor: pointer;
-//   }
-// }
+
+.flashes {
+  position: absolute;
+  z-index: 1001;
+  top: 39%;
+  left: 48%;
+}
 
 .states {
   color: #464567;
@@ -35,8 +37,8 @@
 }
 
 .animal-item-view.row {
-  margin-top:  20px;
-  margin-bottom:  -20px;
+  // margin-top:  20px;
+  // margin-bottom:  -20px;
 }
 
 .contact-btns {
@@ -60,6 +62,7 @@
 .animal-item-view {
   .animal-name {
     margin: 0px;
+    margin-top: 19px;
   }
 }
 
@@ -78,17 +81,30 @@
   background-color: #904295;
 }
 
-.animal-img > img {
-  width: auto;
-  height: 78px;
+.schedule-manager-item-view {
+  width: 98%;
+  border-radius: 10px;
+  background-color: rgb(41, 65, 81);
+  margin-top: 16px;
+}
+
+.animal-img {
+  width: 15%;
+  img {
+    width: auto;
+    height: 61px;
+  }
 }
 
 .animal-item-hook.well {
-  background-color: red;
+  background-color: #143242;
   width: 60%;
   display: block;
-  margin-bottom: -28px;
-  margin-top: 10px;
+  margin: 0px;
+  margin-top: 40px;
+  margin-left: 14px;
+  height: 104px;
+  border-radius: 15px;
 }
 
 .back-to-profile-btn {

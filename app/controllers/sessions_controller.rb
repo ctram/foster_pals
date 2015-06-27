@@ -64,7 +64,6 @@ class SessionsController < ApplicationController
           :animal,
           org_id: user.id,
           fosterer_id: other_user.id,
-          status: '-'
         )
 
         Fabricate(
@@ -78,7 +77,6 @@ class SessionsController < ApplicationController
           status: 'pending',
           org_id: other_user.id,
           fosterer_id: user.id,
-          animal_id: animal.id
         )
       end
     end

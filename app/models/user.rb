@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_presence_of :email, uniqueness: true
-  validates_presence_of :num_animals_willing_to_foster
   validates_presence_of :street_address
   validates_presence_of :city
   validates_presence_of :state
@@ -105,7 +104,7 @@ class User < ActiveRecord::Base
   end
 
   def overlapping_pending_stays stay
-    
+
     p_stays = pending_stays.reject do |other_stay|
       other_stay.id == stay.id
     end

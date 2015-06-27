@@ -70,5 +70,8 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     this.model.save(attrs);
     $('.modal').modal('toggle');
     $('.modal-backdrop').remove();
+    setTimeout(function () {
+      location.reload();
+    }, 1000);
   }
 });

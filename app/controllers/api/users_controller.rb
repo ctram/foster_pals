@@ -99,8 +99,6 @@ class Api::UsersController < ApplicationController
       :city,
       :state,
       :zip_code,
-      :num_animals_willing_to_foster,
-      :about_info
     )
   end
 
