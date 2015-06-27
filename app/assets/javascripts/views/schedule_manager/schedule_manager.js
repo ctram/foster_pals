@@ -52,14 +52,13 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
     // var animalId = stay.get('animal_id');
     // var animal = FosterPals.Collections.animals.getOrFetch(animalId);
-    debugger
     stay.set({status: 'confirmed'});
     // TODO: need to set an animal's fosterer_id when a reservation is made.
     // animal.set({status: 'fostered', fosterer_id: CURRENT_USER_ID});
 
     stayAttrs = stay.attributes;
-    animalAttrs = animal.attributes;
-
+    // animalAttrs = animal.attributes;
+    debugger
     // TODO: move ajax calls to backbone save()
     $.ajax('/api/stays/' + stayId, {
       method: 'patch',

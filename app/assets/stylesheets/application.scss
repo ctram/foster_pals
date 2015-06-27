@@ -20,18 +20,26 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.animal-item-view.row {
+  margin-top:  -31px;
+  margin-bottom:  -20px;
+}
+
 .animal-name {
   margin-top: 10%
 }
 
-.animal-img {
+.animal-img > img {
   width: auto;
+  height: 78px;
 }
 
 .animal-item-hook.well {
   background-color: red;
   width: 60%;
   display: block;
+  margin-bottom: -28px;
+  margin-top: 10px;
 }
 
 .back-to-profile-btn {

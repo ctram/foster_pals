@@ -44,17 +44,17 @@
   </div>
 
   <% for (var i = 0; i < overlappingStays.length; i++) { %>
-    <% var stay = overlappingStays.models[i] %>
+    <% var otherStay = overlappingStays.models[i] %>
     <div class='row'>
       <div class='col-md-3'>
         <%= org.escape('org_name') %>
-        <%= stay.escape('id') %>
+        <%= otherStay.escape('id') %>
       </div>
       <div class='col-md-3'>
-        <%= stay.escape('check_in_date') %>
+        <%= otherStay.escape('check_in_date') %>
       </div>
       <div class='col-md-3'>
-        <%= stay.escape('check_out_date') %>
+        <%= otherStay.escape('check_out_date') %>
       </div>
     </div>
   <% } %>
