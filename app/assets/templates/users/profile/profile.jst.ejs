@@ -61,7 +61,7 @@
   						Organization Name
   					</label>
   					<div class='input-group form-group col-md-4'>
-  						<input type='text' class='form-control' name='user[org_name]' value=<%= user.escape('org_name')%>>
+  						<input type='text' class='form-control org-name' name='user[org_name]' value=<%= user.escape('org_name')%>>
   					</div>
   				</div>
   			</div>
@@ -72,7 +72,7 @@
   						First Name
   					</label>
   					<div class='input-group form-group col-md-4'>
-  						<input type='text' class='form-control' name='user[first_name]' value=<%= user.escape('first_name')%>>
+  						<input type='text' class='form-control first-name' name='user[first_name]' value=<%= user.escape('first_name')%>>
   					</div>
   				</div>
   			</div>
@@ -83,7 +83,7 @@
   						Last Name
   					</label>
   					<div class='input-group form-group col-md-4'>
-  						<input type='text' class='form-control' name='user[last_name]' value=<%= user.escape('last_name')%>>
+  						<input type='text' class='form-control last-name' name='user[last_name]' value=<%= user.escape('last_name')%>>
   					</div>
   				</div>
   			</div>
@@ -94,7 +94,7 @@
   						Street
   					</label>
   					<div class='input-group form-group col-md-4'>
-  						<input type='text' class='form-control' name='user[street_address]' value=<%= user.escape('street_address')%>>
+  						<input type='text' class='form-control street-address' name='user[street_address]' value=<%= user.escape('street_address')%>>
   					</div>
   				</div>
   			</div>
@@ -105,7 +105,7 @@
   						City
   					</label>
   					<div class='input-group form-group col-md-4'>
-  						<input type='text' class='form-control' name='user[city]' value=<%= user.escape('city')%>>
+  						<input type='text' class='form-control city' name='user[city]' value=<%= user.escape('city')%>>
   					</div>
   				</div>
   			</div>
@@ -115,7 +115,7 @@
             <label class='col-md-2'>
              State
             </label>
-            <select class='col-md-4'>
+            <select class='col-md-4 states'>
               <option value="AL">Alabama</option>
               	<option value="AK">Alaska</option>
               	<option value="AZ">Arizona</option>
@@ -180,13 +180,13 @@
                 Zip Code
               </label>
               <div class='input-group form-group col-md-4'>
-                <input type='text' class='form-control' name='user[zip_code]' value=<%= user.escape('zip_code')%>>
+                <input type='text' class='form-control zip-code' name='user[zip_code]' value=<%= user.escape('zip_code')%>>
               </div>
             </div>
           </div>
 
           <div class='btns'>
-            <button class='btn btn-primary update-profile-btn'>
+            <button class='btn btn-primary update-profile-btn modal-off' data-toggle='modal'>
               Update!
             </button>
      				<a class="btn btn-default modal-off cancel-btn" href="" data-toggle='modal' role="button">

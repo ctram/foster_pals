@@ -30,7 +30,8 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
   // TODO: finish user info update - right now a modal pops up but no data is saved -- or there is no change after button is clicked.
   editProfile: function (event) {
     event.preventDefault();
-    $('.modal').modal();
+    $('.modal').modal('toggle');
+    this.resetEditFormData();
   },
 
   render: function () {
@@ -38,6 +39,16 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     return this;
+  },
+
+  resetEditFormData: function () {
+    $('input.org-name').val(this.model.attributes.org_name);
+    $('input.first-name').val(this.model.attributes.first_name);
+    $('input.last-name').val(this.model.attributes.last_name);
+    $('input.street-address').val(this.model.attributes.street_address);
+    $('input.city').val(this.model.attributes.city);
+    $('select.states').val(this.model.attributes.state);
+    $('input.zip-code').val(this.model.attributes.zip_code);
   },
 
   toScheduler: function (event) {
@@ -57,6 +68,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     $form = $(event.currentTarget.closest('form'));
     attrs = $form.serializeJSON().user;
     this.model.save(attrs);
-    $('.modal').modal('hide');
+    $('.modal').modal('toggle');
+    $('.modal-backdrop').remove();
   }
 });
