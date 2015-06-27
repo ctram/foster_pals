@@ -58,7 +58,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
     stayAttrs = stay.attributes;
     // animalAttrs = animal.attributes;
-    debugger
+
     // TODO: move ajax calls to backbone save()
     $.ajax('/api/stays/' + stayId, {
       method: 'patch',

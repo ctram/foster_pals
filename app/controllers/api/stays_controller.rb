@@ -52,7 +52,7 @@ class Api::StaysController < ApplicationController
   def update
     @stay = Stay.find(params[:id])
     if @stay.update(stay_params)
-      debugger
+      
       overlapping_stays_arr = current_user.overlapping_pending_stays @stay
 
       overlapping_stays_arr.each do |stay|
@@ -62,7 +62,7 @@ class Api::StaysController < ApplicationController
 
       render :show
 
-      debugger
+      
     else
       render json: @stay.errors.full_messages
     end

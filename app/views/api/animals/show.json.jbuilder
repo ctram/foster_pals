@@ -1,4 +1,4 @@
-json.extract! @animal, :org_id, :name, :color, :weight, :species, :sex, :breed, :main_image_thumb_url, :main_image_url, :fosterer_id, :id,
+json.extract! @animal, :org_id, :name, :color, :weight, :species, :sex, :breed, :main_image_thumb_url, :main_image_url, :fosterer_id, :id
 
 json.images @animal.images do |image|
   json.extract! image, :url, :thumb_url
@@ -16,8 +16,11 @@ if @animal.org
   end
 end
 
-if @animal.stay
-  json.stay do
-    json.extract! @animal.stay, :id, :animal_id, :check_in_date, :check_out_date, :status, :org_id, :fosterer_id
+if @animal.stays
+  json.stays @animal.stays do |stay|
+    json.extract! stay, :id, :animal_id, :check_in_date, :check_out_date, :status, :org_id, :fosterer_id
   end
+  # json.stay do
+  #   json.extract! @animal.stay, :id, :animal_id, :check_in_date, :check_out_date, :status, :org_id, :fosterer_id
+  # end
 end

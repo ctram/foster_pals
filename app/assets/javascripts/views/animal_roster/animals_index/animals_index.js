@@ -1,5 +1,7 @@
 FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   initialize: function (options) {
+
+
     // HACK: Quick and dirty: have the newest animal at top of the list.
     // TODO: use collection comparators to flip the list.
     for (var i = this.collection.models.length - 1; i >= 0; i--) {
@@ -21,8 +23,10 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   className: 'animals-index-view well',
 
   addAnimalItemView: function (animal) {
+
     animal.fetch({
       success: function (model, response, options) {
+
         animal = model;
         var fosterer = animal.fosterer();
         var stay = animal.stay();
