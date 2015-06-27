@@ -119,9 +119,15 @@
   margin-left: auto;
   margin-right: auto;
   display: block;
-  button, a {
-    margin: auto;
-    display: inherit;
+  button {
+    position: relative;
+    margin: 15px;
+    left: 35%
+  }
+  a {
+    margin: 15px;
+    position: relative;
+    left: 36%;
   }
 }
 
