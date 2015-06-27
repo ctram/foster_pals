@@ -12,6 +12,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
         org: org,
         stay: stay
       });
+      debugger
 
       // TODO: move some of this code into separate functions, too much going on in the intialize.
       if (stay.get("status") === 'confirmed') {

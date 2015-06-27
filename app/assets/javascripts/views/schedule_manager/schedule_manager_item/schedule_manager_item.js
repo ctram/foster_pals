@@ -58,7 +58,7 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
   className: 'schedule-manager-item-view',
 
   addAnimalView: function (animal) {
-
+    debugger
     var animalItemView = new FosterPals.Views.ScheduleAnimalItem({
       model: animal
     });
