@@ -46,9 +46,9 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
       location.reload(true);
     }.bind(this);
 
-    errorCallback = function (model, response, options) {
+    errorCallback = function (response, responseText, options) {
       var errorsView = new FosterPals.Views.ValidationErrors({
-        model: model
+        response: response
       });
       this.addSubview('.errors-hook', errorsView, 'prepend');
     }.bind(this);

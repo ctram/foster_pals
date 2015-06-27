@@ -21,8 +21,14 @@
 @import 'bootstrap-datetimepicker';
 
 .animal-item-view.row {
-  margin-top:  -31px;
+  margin-top:  20px;
   margin-bottom:  -20px;
+}
+
+.animal-item-view {
+  .animal-name {
+    margin: 0px;
+  }
 }
 
 .animal-name {

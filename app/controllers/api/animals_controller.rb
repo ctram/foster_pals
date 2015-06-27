@@ -45,7 +45,6 @@ class Api::AnimalsController < ApplicationController
       :org_id,
       :fosterer_id,
       :weight,
-      :status,
       :image_set_id
     )
   end

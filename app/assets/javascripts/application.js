@@ -17,6 +17,7 @@
 //= require jquery_ujs
 //= require jquery-ui/effect-drop
 
+
 //= require moment
 //= require bootstrap-datetimepicker
 //= require underscore
