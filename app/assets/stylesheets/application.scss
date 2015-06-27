@@ -333,7 +333,12 @@ img.img-responsive {
   animation-duration: 5s;
 }
 
-
+#image-col {
+  width: 15%;
+  position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+}
 
 
 
@@ -421,10 +426,10 @@ button.register-featurette-btn {
 
 .container {
 }
-//
-// .animal-name, .org-name, .start-date, .end-date {
-//   margin: 15px;
-// }
+
+.table-header.animal-roster {
+
+}
 
 .table-header {
   border-bottom: red solid 1px;
