@@ -10,6 +10,7 @@ FosterPals.Views.EditProfile = Backbone.CompositeView.extend({
   },
 
   render: function () {
+    
     var content = this.template({user: this.model});
     this.$el.html(content);
     this.attachSubviews();

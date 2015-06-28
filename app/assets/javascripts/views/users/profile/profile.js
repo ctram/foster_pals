@@ -64,6 +64,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
   },
 
   updateProfile: function (event) {
+    // TODO: add validation errors
     event.preventDefault();
     $form = $(event.currentTarget.closest('form'));
     attrs = $form.serializeJSON().user;

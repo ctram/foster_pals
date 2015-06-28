@@ -3,3 +3,5 @@ TODO: add custom error messages to the registration form -- right now they don't
 TODO: check that all forms have error messages
 
 TODO: Redesign text to make it more obvious what to do on each page.
+
+TODO: survey app for n + 1 queries - go back and write manual SQL queries instead of using AR iterators.

@@ -39,6 +39,7 @@ FosterPals.Views.About = Backbone.CompositeView.extend({
   },
 
   updateAboutInfo: function(event){
+    //FIXME: update is not working - changed about info stays the same.
     event.preventDefault();
 
     var $form = $(event.currentTarget.parentElement);

@@ -32,6 +32,7 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
 
   addAnimalView: function (animal) {
 
+
     var animalItemView = new FosterPals.Views.ScheduleAnimalItem({
       model: animal
     });
@@ -39,7 +40,6 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
   },
 
   render: function () {
-
     var content = this.template({
       org: this.org,
       stay: this.stay

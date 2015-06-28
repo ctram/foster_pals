@@ -20,6 +20,11 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.static-page-content {
+  position: relative;
+  top:48px;
+}
+
 ul.navbar-nav.nav {
   height: inherit;
 }
