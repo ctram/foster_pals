@@ -4,8 +4,6 @@ class Api::UsersController < ApplicationController
   before_action :redirect_to_front_if_not_signed_in, except: [:new, :create]
 
   def check_overlapping_stays
-    # FIXME logic is not providing the correct overlapping stays
-
     stay = Stay.find(params[:stay_id])
     @overlapping_stays = current_user.overlapping_pending_stays stay
     render :check_overlapping_stays

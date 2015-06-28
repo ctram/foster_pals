@@ -13,7 +13,6 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
         stay: stay
       });
 
-      //  FIXME: animals not showing up for guests for the schedule manager
       // TODO: move some of this code into separate functions, too much going on in the intialize.
       if (stay.get("status") === 'confirmed') {
         this.addSubview('.scheduled-animals', scheduleManagerItemView);

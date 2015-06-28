@@ -41,14 +41,20 @@ class SessionsController < ApplicationController
     )
 
     [user1, user2].each do |user|
-      user.org_name += ' Guest'
-      user.first_name += ' Guest'
-      user.last_name += ' Guest'
+      user.org_name = "Guest Rescue Group"
+      user.first_name = ' Gus'
+      user.last_name = ' Guest'
       user = generate_lat_and_long_for_user user
 
       uri = URI("http://uifaces.com/api/v1/random")
-      random_user = JSON.parse(Net::HTTP.get(uri))
-      image_url = random_user['image_urls']['epic']
+
+      begin
+        random_user = JSON.parse(Net::HTTP.get(uri))
+        image_url = random_user['image_urls']['epic']
+      rescue
+        image_url = "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+      end
+
       image = Fabricate(
         :image,
         imageable_id: user.id,

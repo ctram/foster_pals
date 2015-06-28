@@ -189,7 +189,8 @@
               </li>
             </ul>
           </p>
-   				<p><a class="btn btn-default modal-off" href="" data-toggle='modal' role="button">Come Take Look! »</a></p>
+   				<p><a class="btn btn-default modal-off" href="" data-toggle='modal' role="button">Read About Us! »</a></p>
+   				<p><a class="btn btn-success sign-in" href="" data-toggle='modal' role="button">Sign in as a Guest! »</a></p>
   			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -218,6 +219,11 @@
     $('a.modal-off').on('click', function (event) {
       event.preventDefault();
       $('.modal').modal('hide');
+    });
+
+    $('a.sign-in').on('click', function (event) {
+      event.preventDefault();
+      window.location = '/sign-in-as-guest';
     });
   });
 </script>
