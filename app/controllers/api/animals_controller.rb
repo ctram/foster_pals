@@ -3,6 +3,7 @@ class Api::AnimalsController < ApplicationController
 
   def create
     @animal = Animal.create(animal_params)
+    
     if !@animal.save
       render json: @animal.errors.full_messages, status: 422
       return

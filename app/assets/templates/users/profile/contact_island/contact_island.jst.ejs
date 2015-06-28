@@ -1,4 +1,5 @@
 <% if (CURRENT_USER_ID !== parseInt(user.escape('id'))) { %>
+  <!--
   <button class='btn btn-primary'>
     <% if (user.escape('role') === 'fosterer') { %>
       Contact Fosterer
@@ -6,7 +7,8 @@
       Contact Rescue Organization
     <% } %>
   </button>
-
+  -->
+  
   <button class='btn btn-primary schedule-btn' data-user-id= <%= user.escape('id')%> >
     Schedule a Stay for an Animal
   </button>
