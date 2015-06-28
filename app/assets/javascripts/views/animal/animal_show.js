@@ -1,11 +1,13 @@
 FosterPals.Views.AnimalShow = Backbone.CompositeView.extend({
   initialize: function (options) {
 
+// FIXME: an animal with only the image does not show up in the gallery
     var profileView = new FosterPals.Views.AnimalProfile({
       model: this.model
     });
 
     var images = this.model.images();
+    debugger
     var imageGalleryView = new FosterPals.Views.ImageGallery({
       model: this.model,
       images: images

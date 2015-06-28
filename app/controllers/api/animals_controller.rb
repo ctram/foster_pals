@@ -8,11 +8,21 @@ class Api::AnimalsController < ApplicationController
       return
     end
 
+# "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
     animal_images = Image.where(image_set_id: @animal.image_set_id)
-    animal_images.each do |image|
-      image.imageable_id = @animal.id
-      image.imageable_type = 'Animal'
-      image.save
+    if animal_images.empty?
+      Image.create(
+        thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png",
+        url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png",
+        imageable_type: 'Animal',
+        imageable_id: @animal.id
+      )
+    else
+      animal_images.each do |image|
+        image.imageable_id = @animal.id
+        image.imageable_type = 'Animal'
+        image.save
+      end
     end
     render :show
   end

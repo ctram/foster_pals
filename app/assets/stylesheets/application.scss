@@ -122,8 +122,23 @@ ul.navbar-nav.nav {
   }
 }
 
+a.fancybox {
+  img {
+    width: 340px;
+  }
+}
+
 .animal-img.col-md-2 {
   margin-top: 10px;
+  img {
+    width: auto;
+    height: 61px;
+  }
+}
+
+.animal-img.reservation-item {
+  width: auto;
+  margin-top: 0px;
   img {
     width: auto;
     height: 61px;
