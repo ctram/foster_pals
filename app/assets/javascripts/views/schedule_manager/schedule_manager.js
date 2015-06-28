@@ -12,8 +12,8 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
         org: org,
         stay: stay
       });
-      debugger
 
+      //  FIXME: animals not showing up for guests for the schedule manager
       // TODO: move some of this code into separate functions, too much going on in the intialize.
       if (stay.get("status") === 'confirmed') {
         this.addSubview('.scheduled-animals', scheduleManagerItemView);
@@ -53,7 +53,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
     // var animalId = stay.get('animal_id');
     // var animal = FosterPals.Collections.animals.getOrFetch(animalId);
-    stay.set({status: 'confirmed'});
+    stay.set({status: 'confirmed', denyOthers: true});
     // TODO: need to set an animal's fosterer_id when a reservation is made.
     // animal.set({status: 'fostered', fosterer_id: CURRENT_USER_ID});
 
@@ -93,12 +93,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     stay.set({status: 'denied'});
 
     stayAttrs = stay.attributes;
-
-    // $.ajax('/api/stays/' + stayId, {
-    //   method: 'patch',
-    //   dataType: 'json',
-    //   data: {stay: stayAttrs}
-    // });
+    // FIXME: when a single reservation is denied, all other reservations are denied.
 
     $.ajax('/api/stays/' + stayId, {
       method: 'patch',

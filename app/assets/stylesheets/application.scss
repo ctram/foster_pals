@@ -22,13 +22,21 @@
 
 .prompt-deny {
   margin-left: 10px;
+  height: 32px;
   top: 1px;
 }
+
+
+
+.rtrn-to-manager {
+  margin-top: -1px;
+}
+
 
 .flashes {
   position: absolute;
   z-index: 1001;
-  top: 39%;
+  top: 25%;
   left: 48%;
 }
 
@@ -78,6 +86,10 @@
   }
 }
 
+.deny-btns {
+  margin: 11px;
+}
+
 .gallery-help-msg {
   z-index: 1001;
   position: absolute;
@@ -93,7 +105,7 @@
 }
 
 .animal-img {
-  width: 15%;
+  width: auto;
   img {
     width: auto;
     height: 61px;
@@ -316,8 +328,8 @@ img.img-responsive {
   font-size: 30px;
   position: absolute;
   z-index: 1000;
-  top: 292px;
-  right: 340px;
+  top: 33%;
+  right: 6%;
   color: white;
   background-color: green;
   border-radius: 10px;
@@ -344,8 +356,26 @@ img.img-responsive {
   padding-right: 15px;
 }
 
+input.role-radio-btns {
+  height: 23px;
+  top: -28px;
+  left: -303px;
+  position: absolute;
+}
 
+.radio-btn-label {
+  display: inline;
+  left: 65px;
+  position: relative;
+}
 
+.input-group > input.register-btn.form-horizontal.form-group {
+  margin-left: 11px;
+}
+
+select {
+  left: 11px;
+}
 
 .error-msg-hook {
   position: relative;
@@ -423,6 +453,9 @@ button.register-featurette-btn {
   z-index: 1000;
 }
 
+.radio-btns {
+  height: 129px;
+}
 
 .schedule-manager-item {
   display: inline;

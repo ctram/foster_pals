@@ -14,17 +14,16 @@
   %form{action: "#{users_url}", method: 'POST' }
     %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
 
-    <div class="input-group form-group">
-    <input type='radio' class='form-control' name='user[role]' value='org' id='org-radio-btn' checked>
-    Rescue Organization
-    </input>
-    </div>
+    .radio-btns
+      <div class="input-group form-group radio-btn-label">
+      Rescue Organizaton
+      <input type='radio' class='form-control role-radio-btns' name='user[role]' value='org' id='org-radio-btn' checked>
+      </div>
 
-    <div class="input-group form-group" >
-    <input type='radio' class='form-control' name='user[role]' value='fosterer' id='fosterer-radio-btn'>
-    Fosterer
-    </input>
-    </div>
+      <div class="input-group form-group radio-btn-label" >
+      Fosterer
+      <input type='radio' class='form-control role-radio-btns' name='user[role]' value='fosterer' id='fosterer-radio-btn'>
+      </div>
 
     %hr
 
@@ -172,7 +171,7 @@
     %input{type:"text", class:"form-control", placeholder:"Zipcode",name: "user[zip_code]", id: 'zip-code-input'}
     </div>
 
-    %input.form-group{type: 'submit', class:'btn btn-primary', value: 'Register!'}
+    %input.form-group{type: 'submit', class:'btn btn-primary register-btn', style: 'margin-left: 11px', value: 'Register!'}
 
 -# TODO: add transitions to registration page
 

@@ -46,15 +46,15 @@ class SessionsController < ApplicationController
       user.last_name += ' Guest'
       user = generate_lat_and_long_for_user user
 
-      # uri = URI("http://uifaces.com/api/v1/random")
-      # random_user = JSON.parse(Net::HTTP.get(uri))
-      # image_url = random_user['image_urls']['epic']
-      # image = Fabricate(
-      #   :image,
-      #   imageable_id: user.id,
-      #   imageable_type: 'User',
-      #   thumb_url: image_url
-      # )
+      uri = URI("http://uifaces.com/api/v1/random")
+      random_user = JSON.parse(Net::HTTP.get(uri))
+      image_url = random_user['image_urls']['epic']
+      image = Fabricate(
+        :image,
+        imageable_id: user.id,
+        imageable_type: 'User',
+        thumb_url: image_url
+      )
 
       other_user = (user == user1 ? user2 : user1)
 
@@ -72,11 +72,17 @@ class SessionsController < ApplicationController
           imageable_type: 'Animal'
         )
 
-        Fabricate(
+        stay = Fabricate(
           :stay,
           status: 'pending',
           org_id: other_user.id,
           fosterer_id: user.id,
+        )
+
+        Fabricate(
+          :reservation,
+          animal_id: animal.id,
+          stay_id: stay.id
         )
       end
     end

@@ -52,17 +52,16 @@ class Api::StaysController < ApplicationController
   def update
     @stay = Stay.find(params[:id])
     if @stay.update(stay_params)
-      
-      overlapping_stays_arr = current_user.overlapping_pending_stays @stay
 
-      overlapping_stays_arr.each do |stay|
-        stay.status = 'denied'
-        stay.save
+      if params[:stay][:denyOthers]
+        overlapping_stays_arr = current_user.overlapping_pending_stays @stay
+
+        overlapping_stays_arr.each do |stay|
+          stay.status = 'denied'
+          stay.save
+        end
       end
-
       render :show
-
-      
     else
       render json: @stay.errors.full_messages
     end
