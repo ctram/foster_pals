@@ -26,6 +26,10 @@
   top: 1px;
 }
 
+.register-form {
+  position: relative;
+}
+
 
 
 .rtrn-to-manager {
@@ -356,11 +360,11 @@ img.img-responsive {
   padding-right: 15px;
 }
 
-input.role-radio-btns {
-  height: 23px;
-  top: -28px;
-  left: -303px;
-  position: absolute;
+input.role-radio-btns.form-control {
+  width: auto;
+  position: relative;
+  top: -16px;
+  left: -16px;
 }
 
 .radio-btn-label {
@@ -371,6 +375,10 @@ input.role-radio-btns {
 
 .input-group > input.register-btn.form-horizontal.form-group {
   margin-left: 11px;
+}
+
+.role-label {
+  font-weight: inherit;
 }
 
 select {
@@ -454,6 +462,8 @@ button.register-featurette-btn {
 }
 
 .radio-btns {
+  position: relative;
+  left: 5px;
   height: 129px;
 }
 

@@ -9,20 +9,24 @@
 
 -# TODO: remove input asking for number of animals to foster.
 -# TODO: Have explanation of input fields
-.form-horizontal.well
+.form-horizontal.well.register-form
   = render partial: 'shared/flashes'
   %form{action: "#{users_url}", method: 'POST' }
     %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
 
     .radio-btns
       <div class="input-group form-group radio-btn-label">
-      Rescue Organizaton
+      <label class='role-label'>
       <input type='radio' class='form-control role-radio-btns' name='user[role]' value='org' id='org-radio-btn' checked>
+      Rescue Organization
+      </label>
       </div>
 
       <div class="input-group form-group radio-btn-label" >
+      <label class='role-label'>
       Fosterer
       <input type='radio' class='form-control role-radio-btns' name='user[role]' value='fosterer' id='fosterer-radio-btn'>
+      </label>
       </div>
 
     %hr
