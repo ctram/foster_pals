@@ -64,6 +64,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update
+
     @user = User.find(params[:id])
     @user.update(user_params)
     render :show
@@ -97,6 +98,7 @@ class Api::UsersController < ApplicationController
       :city,
       :state,
       :zip_code,
+      :about_info
     )
   end
 
