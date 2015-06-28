@@ -92,7 +92,6 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     stay.set({status: 'denied'});
 
     stayAttrs = stay.attributes;
-    // FIXME: when a single reservation is denied, all other reservations are denied.
 
     $.ajax('/api/stays/' + stayId, {
       method: 'patch',

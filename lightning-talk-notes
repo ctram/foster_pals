@@ -39,62 +39,8 @@ have the content position absolute, z-index 101
 
 &times;  --> to get an X symbol
 
-// algorithms //////////////////////////////////////////////////////////////
-
-implement these yourself:
-  hash map
-  lru cache
-
-time complexity
-  big 0 => performance, scalability and efficiency
-
-  1. latency, duration of process
-  2. throughput - volume of output
-
-cat match problem
-  1 - make profile of cats
-  2- compare pairs of cats.
-
-Why scale? Say you have a program with two main phases. The first phase takes
-10000 * n units of time to finish. The second takes 10 * n^2 units of time to finish,
-where n is the number of runs to perform. Initially for small n, the first phase
-takes the most amount of time percentage-wise. But as n increases, the second
-phase takes up more time until it takes up nearly 100% of the processing time.
-
-This is a scalability problem. As n increases, the processing time decreases by
-more than a porportional amount.
-
-Therefore, when optimizing, we want to target "bottlenecks", parts of the
-program where that takes up all of the processing time for large n.
-////////////////////////////////////////////////////////////////////////
-Big O
-
-  function f "dominates" g when g(n) / f(n) goes to zero as n goes to infinity
-
-  Big O(f) --> a set of functions that does NOT dominate function f()
-
-  A function that "is in Big O of n^2" is a function that runs no faster than
-  n^2 - it could run slower
-
-  Two sum problem
-
-  Time complexity
-
-  O(1)
-    adding two nums
-    subtracting nums
-    deleting
-    comparing
-    returning
-    calling a function
-    if / else statements
-
-  Each() is O(n), where n is the amount of elements in the array.
-
-  // TODO: look up how to use mathematical log -
 
 TODO: let animals be editable.
 TODO: remove "contact shelter" buttons
-TODO: some of the validation errors are for fields that are no longer there.
 TODO: add a floating modal that let's the guest log in as a guest.
 TODO: add real seed data

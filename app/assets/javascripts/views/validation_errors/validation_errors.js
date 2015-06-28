@@ -14,7 +14,6 @@ FosterPals.Views.ValidationErrors = Backbone.CompositeView.extend({
         error.shift();
         this.errors[i] = error.join('');
       }
-      // FIXME: errors message not showing up - well, it's hidden up top of page.
       
     }
   },

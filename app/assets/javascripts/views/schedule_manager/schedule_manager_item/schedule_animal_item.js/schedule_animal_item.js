@@ -1,6 +1,5 @@
 FosterPals.Views.ScheduleAnimalItem = Backbone.CompositeView.extend({
   initialize: function (options) {
-    // FIXME: fetch is never getting to success callback, even though the fetch seems to have worked.
 
     this.listenTo(this.model, 'sync', this.render)
   },
@@ -10,7 +9,7 @@ FosterPals.Views.ScheduleAnimalItem = Backbone.CompositeView.extend({
   className: 'animal-item-view row',
 
   render: function () {
-    
+
     var content = this.template({
       animal: this.model
     });

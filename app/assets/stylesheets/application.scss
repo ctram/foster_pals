@@ -20,10 +20,18 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+ul.navbar-nav.nav {
+  height: inherit;
+}
+
+.navbar-wrapper {
+  width: 100%;
+  position: fixed;
+}
+
 .prompt-deny {
   margin-left: 10px;
-  height: 32px;
-  top: 1px;
+  height: 30px;
 }
 
 .register-form {
@@ -108,8 +116,14 @@
   margin-top: 16px;
 }
 
-.animal-img {
-  width: auto;
+.animal-item-view {
+  .col-md-1, .col-md-2 {
+    margin-top: 22px;
+  }
+}
+
+.animal-img.col-md-2 {
+  margin-top: 10px;
   img {
     width: auto;
     height: 61px;
@@ -193,6 +207,12 @@ p.map-modal-text {
     margin-top: 5px;
     margin-bottom: 5px;
     z-index: inherit;
+  }
+}
+
+.navbar-nav {
+  li {
+    height: inherit;
   }
 }
 
@@ -396,25 +416,35 @@ button.register-featurette-btn {
 }
 
 .navbar-form.navbar-search {
-  width: 614px;
+  width: auto;
   display: inline-block;
   margin: auto;
-  margin-top: 9px;
+  margin-top: 12px;
 }
 
 .sex-radio-btns {
   width: 26px;
 }
 
+.navbar-nav {
+  font-size: 9pt;
+  height: 37px;
+}
+
 #search-btn {
-  width: initial;
+  width: 103px;
+  font-size: 9pt;
 }
 
 .navbar-tagline {
-  width: 622px;
+  position: absolute;
+  font-size: 9pt;
+  width: 451px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 21px;
   font-family: 'Inconsolata', ;
+  top: 21px;
+  left: -52px;
 }
 
 .marketing-header {
@@ -522,6 +552,9 @@ span.strong {
   background-color: #904295;
 }
 
+.navbar-view, .navbar {
+  height: inherit;
+}
 
 .active-item {
   border-color: #904295;
@@ -541,12 +574,17 @@ span.strong {
 }
 
 .navbar-wrapper {
+  height: 51px;
 }
 
 #content, #search-results-view, .map-view, .map-hook, #user-items{
   height: inherit;
 }
 
+#content {
+  top: 60px;
+  position: relative;
+}
 
 .user-items{
   float: left;
@@ -573,6 +611,10 @@ span.strong {
   border-radius: 5px;
   border-color: #A33D3D;
   border-style: solid;
+  top: 60px;
+  position: fixed;
+  left: 50%;
+
 }
 
 // div.container {
@@ -634,7 +676,10 @@ ul {
 }
 
 input.form-control.search-input {
-  width: 400px;
+  width: 267px;
+  font-size: 10pt;
+  height: 36px;
+
 }
 
 #myCarousel {
@@ -690,6 +735,7 @@ input.form-control.search-input {
 .well {
   margin: 32px;
 }
+
 
 .active-user-item {
   background-color: rgb(59, 41, 68);
