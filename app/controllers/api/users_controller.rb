@@ -64,10 +64,13 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-
     @user = User.find(params[:id])
-    @user.update(user_params)
-    render :show
+    debugger
+    if @user.update(user_params)
+      render :show
+    else
+      render @user.errors.full_messages
+    end
   end
 
 # TODO: move update_about_info into update() -- redundant

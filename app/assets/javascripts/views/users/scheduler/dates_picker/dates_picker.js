@@ -92,7 +92,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     var $checkOut = $('#check-out');
     var checkOutInput = $checkOut.data("DateTimePicker");
     if (!this.checkOutInputToggled) {
-    // TODO: ask Laura for slides about resume
       checkOutInput.disable();
     } else {
       checkOutInput.enable();

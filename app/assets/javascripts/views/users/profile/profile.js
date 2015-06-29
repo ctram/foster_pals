@@ -68,11 +68,18 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     event.preventDefault();
     $form = $(event.currentTarget.closest('form'));
     attrs = $form.serializeJSON().user;
-    this.model.save(attrs);
-    $('.modal').modal('toggle');
-    $('.modal-backdrop').remove();
-    setTimeout(function () {
-      location.reload();
-    }, 1000);
+    this.model.save(attrs, {
+      success: function () {
+        debugger
+        $('.modal').modal('toggle');
+        $('.modal-backdrop').remove();
+        setTimeout(function () {
+          location.reload();
+        }, 1000);
+      },
+      error: function (model, response, options) {
+        debugger
+      }
+    });
   }
 });

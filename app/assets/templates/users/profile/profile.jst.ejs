@@ -13,15 +13,6 @@
   <%= user.escape('name') %>
 </div>
 
-<% if (user.escape('role') === 'fosterer') { %>
-<div>
-  <label class='profile-label'>
-    Nums Spots Available:
-  </label>
-  <h4><%=user.escape('num_animals_willing_to_foster')%></h4>
-</div>
-<% } %>
-
 <div>
   <label class='profile-label'>
     Email:
