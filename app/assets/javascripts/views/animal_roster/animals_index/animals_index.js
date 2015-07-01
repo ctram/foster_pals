@@ -4,6 +4,8 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
 
     // HACK: Quick and dirty: have the newest animal at top of the list.
     // TODO: use collection comparators to flip the list.
+    // FIXME: animals index is not showing for guest users
+
     for (var i = this.collection.models.length - 1; i >= 0; i--) {
       var animal = this.collection.models[i];
       var org_id = animal.attributes.org_id;
