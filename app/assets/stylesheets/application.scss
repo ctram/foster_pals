@@ -245,7 +245,7 @@ p.map-modal-text {
 }
 
 .validation-errors-view {
-  z-index: 1001;
+  z-index: 1000;
   position: absolute;
   bottom: -295px;
   right: 9%;
@@ -599,6 +599,7 @@ span.strong {
 
 .navbar-wrapper {
   height: 51px;
+  z-index: 1001;
 }
 
 #content, #search-results-view, .map-view, .map-hook, #user-items{
@@ -658,6 +659,12 @@ select.new-user {
     border-color: #A33D3D;
     background-color: #76415F;
   }
+}
+
+.dates-picker.validation-errors-view {
+  position: relative;
+  top: 0%;
+  left: 0%;
 }
 
 .panel {

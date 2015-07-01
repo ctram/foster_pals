@@ -70,7 +70,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     attrs = $form.serializeJSON().user;
     this.model.save(attrs, {
       success: function () {
-        debugger
+        
         $('.modal').modal('toggle');
         $('.modal-backdrop').remove();
         setTimeout(function () {
@@ -78,7 +78,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
         }, 1000);
       },
       error: function (model, response, options) {
-        debugger
+        
       }
     });
   }

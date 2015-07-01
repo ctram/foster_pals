@@ -42,7 +42,8 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     if (selectedAnimals.length === 0) {
       var errors = ['Must pick at least one animal'];
       var errorsView = new FosterPals.Views.ValidationErrors({
-        manualErrors: errors
+        manualErrors: errors,
+        view: 'dates-picker'
       });
       this.addSubview('.dates-picker', errorsView);
 
@@ -67,7 +68,8 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     if (checkInEmptyBool || (checkOutEmptyBool && indefiniteStayBool)) {
       var errors = ['Must enter check-in and check-out dates'];
       var errorsView = new FosterPals.Views.ValidationErrors({
-        manualErrors: errors
+        manualErrors: errors,
+        view: 'dates-picker'
       });
       this.addSubview('.dates-picker', errorsView);
 
@@ -94,7 +96,8 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
 
     errorCallback = function (model, response, options) {
       var errorsView = new FosterPals.Views.ValidationErrors({
-        model: model
+        model: model,
+        view: 'dates-picker'
       });
       this.addSubview('.dates-picker', errorsView);
     }.bind(this);
