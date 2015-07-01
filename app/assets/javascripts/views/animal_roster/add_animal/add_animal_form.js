@@ -24,6 +24,7 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   },
 
   addAnimal: function (event) {
+    // FIXME: validation errors float above the navbar - lower its z-index
     event.preventDefault();
 
     var errorsView = this.subviews('.errors-hook')._wrapped[0];
