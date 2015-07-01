@@ -5,8 +5,9 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
     // HACK: Quick and dirty: have the newest animal at top of the list.
     // TODO: use collection comparators to flip the list.
     // FIXME: animals index is not showing for guest users
-
+      debugger
     for (var i = this.collection.models.length - 1; i >= 0; i--) {
+      debugger
       var animal = this.collection.models[i];
       var org_id = animal.attributes.org_id;
       this.addAnimalItemView(animal);
@@ -25,24 +26,40 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   className: 'animals-index-view well',
 
   addAnimalItemView: function (animal) {
+    debugger
 
-    animal.fetch({
-      success: function (model, response, options) {
+    // NOTE: fetch not needed?
+    // animal.fetch({
+    //   success: function (model, response, options) {
+    //
+    //     animal = model;
+    //     var fosterer = animal.fosterer();
+    //     var stay = animal.stay();
+    //     var org = animal.org();
+    //
+    //     var animalItemView = new FosterPals.Views.AnimalItem({
+    //       animal: animal,
+    //       fosterer: fosterer,
+    //       stay: stay,
+    //       org: org
+    //     });
+    //     this.addSubview('div.animals-list', animalItemView);
+    //   }.bind(this)
+    // });
+    //
 
-        animal = model;
-        var fosterer = animal.fosterer();
-        var stay = animal.stay();
-        var org = animal.org();
 
-        var animalItemView = new FosterPals.Views.AnimalItem({
-          animal: animal,
-          fosterer: fosterer,
-          stay: stay,
-          org: org
-        });
-        this.addSubview('div.animals-list', animalItemView);
-      }.bind(this)
+    var fosterer = animal.fosterer();
+    var stay = animal.stay();
+    var org = animal.org();
+
+    var animalItemView = new FosterPals.Views.AnimalItem({
+      animal: animal,
+      fosterer: fosterer,
+      stay: stay,
+      org: org
     });
+    this.addSubview('div.animals-list', animalItemView);
   },
 
   hightlightAnimalItem: function (event) {

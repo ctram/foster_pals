@@ -40,15 +40,19 @@ class ApplicationController < ActionController::Base
     location = location.split.join('+')
     complete_url = gmaps_api_url + location + '&key=' + api_key
     uri = URI(complete_url)
-    response = JSON.parse(Net::HTTP.get(uri))
-    if response['status'] == 'ZERO_RESULTS'
+    begin
+      response = JSON.parse(Net::HTTP.get(uri))
+      if response['status'] == 'ZERO_RESULTS'
+        user.lat = rand * 90 * [-1, 1].sample
+        user.long = rand * 180 * [-1, 1].sample
+      else
+        user.lat = response['results'][0]['geometry']['location']['lat']
+        user.long = response['results'][0]['geometry']['location']['lng']
+      end
+    rescue
       user.lat = rand * 90 * [-1, 1].sample
       user.long = rand * 180 * [-1, 1].sample
-    else
-      user.lat = response['results'][0]['geometry']['location']['lat']
-      user.long = response['results'][0]['geometry']['location']['lng']
     end
-
     user
   end
 
