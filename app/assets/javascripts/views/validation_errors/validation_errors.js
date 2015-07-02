@@ -18,7 +18,7 @@ FosterPals.Views.ValidationErrors = Backbone.CompositeView.extend({
     debugger
     if (options.view === 'dates-picker') {
       // Add custom css class to this view for styling
-      this.$el.addClass('dates-picker');
+      this.$el.addClass('dates-picker-errors' );
     }
   },
 

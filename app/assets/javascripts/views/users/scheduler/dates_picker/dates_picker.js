@@ -1,5 +1,6 @@
 FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   initialize: function (options) {
+    debugger
     this.currentUser = options.currentUser;
     this.animals = options.animals;
     this.checkOutInputToggled = false;
