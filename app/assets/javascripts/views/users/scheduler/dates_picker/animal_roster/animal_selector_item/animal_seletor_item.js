@@ -1,6 +1,6 @@
 FosterPals.Views.AnimalSelectorItem = Backbone.CompositeView.extend({
   initialize: function (options) {
-    debugger
+
   },
 
   template: JST['users/scheduler/dates_picker/animal_roster_selector/animal_selector_item/animal_selector_item'],

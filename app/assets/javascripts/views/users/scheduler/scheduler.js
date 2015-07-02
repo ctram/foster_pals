@@ -1,6 +1,6 @@
 FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   initialize: function (options) {
-    debugger
+    
     this.currentUser = options.currentUser;
     this.animals = options.animals;
 

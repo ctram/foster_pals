@@ -1,18 +1,18 @@
 FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
   initialize: function (options) {
-    debugger
-    this.currentUser = options.currentUser;
-    this.animalRoster = options.animals;
 
-    // FIXME: need to fix seed data(?) right now an org has animals in his roster, but his animals do not show up in the dates picker, probably because of the attributes of the seed data.
-    for (var i = 0; i < this.animalRoster.models.length; i++) {
-      var animal = this.animalRoster.models[i].attributes;
-      // TODO: only include animals that have NOT been placed yet.
-      if (animal.status !== '-') {
+    this.currentUser = options.currentUser;
+    this.animals = options.animals;
+
+    for (var i = 0; i < this.animals.models.length; i++) {
+
+      var animal = this.animals.models[i];
+
+      if (animal.stays.length > 0 ) {
         continue;
       }
       var animalSelectorItemView = new FosterPals.Views.AnimalSelectorItem({
-        model: this.animalRoster.models[i]
+        model: this.animals.models[i]
       });
       this.addSubview('#selector', animalSelectorItemView);
     }
@@ -25,7 +25,6 @@ FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
   className: 'animal-roster-selector',
 
   events: {
-
   },
 
   addAnimalView: function (animal) {

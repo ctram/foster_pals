@@ -18,7 +18,7 @@ end
 
 if @animal.stays
   json.stays @animal.stays do |stay|
-    json.extract! stay, :id, :animal_id, :check_in_date, :check_out_date, :status, :org_id, :fosterer_id
+    json.extract! stay, :id, :check_in_date, :check_out_date, :status, :org_id, :fosterer_id
   end
   # json.stay do
   #   json.extract! @animal.stay, :id, :animal_id, :check_in_date, :check_out_date, :status, :org_id, :fosterer_id

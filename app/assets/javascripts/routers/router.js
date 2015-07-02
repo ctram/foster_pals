@@ -91,7 +91,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     var user = this.users.getOrFetch(id);
 
     currentUserCallback = function () {
-      debugger
+      
       var animals = this.currentUser.animals_as_org();
 
       var userSchedulerView = new FosterPals.Views.UserScheduler({

@@ -22,11 +22,11 @@ FosterPals.Models.Animal = Backbone.Model.extend({
     return this._org;
   },
 
-  stay: function () {
-    if (!this._stay) {
-      this._stay = new FosterPals.Models.Stay();
+  stays: function () {
+    if (!this._stays) {
+      this._stays = new FosterPals.Models.Stays();
     }
-    return this._stay;
+    return this._stays;
   },
 
   parse: function (response) {
