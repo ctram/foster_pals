@@ -5,3 +5,27 @@ TODO: check that all forms have error messages
 TODO: Redesign text to make it more obvious what to do on each page.
 
 TODO: survey app for n + 1 queries - go back and write manual SQL queries instead of using AR iterators.
+
+
+
+TODO:Replace PlaceKitten (download to assets potentially as well)
+
+TODO:Fix the guest sign-in
+
+TODO:Add labels
+
+
+TODO:Add more seed data (or place within SF) -- fix them within a square area
+
+TODO:No information on randomly generated data?
+
+TODO:Fix showing users-- api/users/1 returns a 500 server error
+
+TODO:Add more padding everywhere
+
+TODO:“There are currently no animals in your roster” ⇐ change this term to make it clear what is next expected of them
+
+
+TODO:Animals in your roster is broken? Only shows ones that we add. (Fetching problem?)
+
+TODO:Front-load the work that you put in on stuff that’s immediately visible to employers. Make a little window pop up showing you the animal on the front page?
