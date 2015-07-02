@@ -36,15 +36,16 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     //
     // }.bind(this);
 
+
     currentUserCallback = function (currentUser, response, options) {
-      debugger
+
       var animals = currentUser.animals_as_org();
       var animalRosterView = new FosterPals.Views.AnimalRoster({
         model: this.currentUser,
         collection: animals
       });
       this._swapView(animalRosterView);
-    };
+    }.bind(this);
 
     this.currentUser.fetch({
       success: currentUserCallback

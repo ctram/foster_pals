@@ -92,12 +92,25 @@ ul.navbar-nav.nav {
   cursor: pointer;
 }
 
+.animal-item-stays.well {
+    display: block;
+    position: relative;
+    top: 39px;
+    left: 19%;
+    width: 61%;
+}
+
 .animal-item-view {
   .animal-name {
     margin: 0px;
     margin-top: 19px;
   }
 }
+
+.animal-item-view.well {
+  background-color: #354B5C;
+}
+
 
 .animal-show-view {
   .animal-name {

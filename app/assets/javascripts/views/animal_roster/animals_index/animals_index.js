@@ -26,13 +26,13 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
 
   addAnimalItemView: function (animal) {
     var fosterer = animal.fosterer();
-    var stay = animal.stay();
+    var stays = animal.attributes.stays;
     var org = animal.org();
 
     var animalItemView = new FosterPals.Views.AnimalItem({
       animal: animal,
       fosterer: fosterer,
-      stay: stay,
+      stays: stays,
       org: org
     });
     this.addSubview('div.animals-list', animalItemView);
