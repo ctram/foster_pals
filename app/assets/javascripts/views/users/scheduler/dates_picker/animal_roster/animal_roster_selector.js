@@ -24,7 +24,7 @@ FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
 
   className: 'animal-roster-selector',
 
-  events: {s
+  events: {
   },
 
   addAnimalView: function (animal) {
