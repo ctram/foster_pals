@@ -19,22 +19,32 @@ FosterPals.Routers.Router = Backbone.Router.extend({
 
   animalRoster: function () {
 
-    animalsCallback = function (animals) {
+    // animalsCallback = function (animals) {
+    //   var animalRosterView = new FosterPals.Views.AnimalRoster({
+    //     model: this.currentUser,
+    //     collection: animals
+    //   });
+    //
+    //   this._swapView(animalRosterView);
+    // }.bind(this);
+    //
+    // currentUserCallback = function () {
+    //   var animals_as_org = this.currentUser.animals_as_org();
+    //   animals_as_org.fetch({
+    //     success: animalsCallback(animals_as_org)
+    //   });
+    //
+    // }.bind(this);
+
+    currentUserCallback = function (currentUser, response, options) {
+      debugger
+      var animals = currentUser.animals_as_org();
       var animalRosterView = new FosterPals.Views.AnimalRoster({
         model: this.currentUser,
         collection: animals
       });
-
       this._swapView(animalRosterView);
-    }.bind(this);
-
-    currentUserCallback = function () {
-      var animals_as_org = this.currentUser.animals_as_org();
-      animals_as_org.fetch({
-        success: animalsCallback(animals_as_org)
-      });
-
-    }.bind(this);
+    };
 
     this.currentUser.fetch({
       success: currentUserCallback
@@ -91,7 +101,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     var user = this.users.getOrFetch(id);
 
     currentUserCallback = function () {
-      
+
       var animals = this.currentUser.animals_as_org();
 
       var userSchedulerView = new FosterPals.Views.UserScheduler({

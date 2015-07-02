@@ -25,29 +25,6 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
   className: 'animals-index-view well',
 
   addAnimalItemView: function (animal) {
-
-
-    // NOTE: fetch not needed?
-    // animal.fetch({
-    //   success: function (model, response, options) {
-    //
-    //     animal = model;
-    //     var fosterer = animal.fosterer();
-    //     var stay = animal.stay();
-    //     var org = animal.org();
-    //
-    //     var animalItemView = new FosterPals.Views.AnimalItem({
-    //       animal: animal,
-    //       fosterer: fosterer,
-    //       stay: stay,
-    //       org: org
-    //     });
-    //     this.addSubview('div.animals-list', animalItemView);
-    //   }.bind(this)
-    // });
-    //
-
-
     var fosterer = animal.fosterer();
     var stay = animal.stay();
     var org = animal.org();
