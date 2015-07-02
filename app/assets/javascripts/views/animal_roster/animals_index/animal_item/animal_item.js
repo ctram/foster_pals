@@ -17,6 +17,7 @@ FosterPals.Views.AnimalItem = Backbone.CompositeView.extend({
 
   render: function () {
     // FIXME: need to pull in the fosterer for each stay and display on the animal item template
+
     var content = this.template({
       animal: this.animal,
       fosterer: this.fosterer,

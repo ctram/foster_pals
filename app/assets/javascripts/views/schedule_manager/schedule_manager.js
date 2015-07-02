@@ -1,8 +1,7 @@
 FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.stays_as_fosterer = this.model.stays_as_fosterer();
-
-
+    
     this.stays_as_fosterer.each( function (stay) {
 
       var orgId = stay.get('org_id');

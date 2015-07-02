@@ -39,39 +39,38 @@
   <% if (stays.length === 0) { %>
     Animal has no reservations.
   <% } else { %>
-    <div class='row stays-header'>
-      <div class='col-md-1'>
+    <div class='row stays-header bold'>
+      <div class='col-md-2 stay-attr'>
         Fosterer
       </div>
-      <div class='col-md-1'>
-        Status
+      <div class='col-md-2 stay-attr'>
+        Reservation Status
       </div>
-      <div class='col-md-1'>
-        Check In
+      <div class='col-md-2 stay-attr'>
+        Check In Date
       </div>
-      <div class='col-md-1'>
-        Check Out
+      <div class='col-md-2 stay-attr'>
+        Check Out Date
       </div>
     </div>
 
-    <div class='row stay-item'>
-      <% for (var i = 0; i < stays.length; i++) { %>
-        <% var stay = stays[i] %>
-        <div class='col-md-1'>
-          <%= stay.fosterer_id %>
+    <% for (var i = 0; i < stays.length; i++) { %>
+      <% var stay = stays[i] %>
+      <div class='row stays-header'>
+        <div class='col-md-2 stay-attr'>
+          <%= stay.fosterer.first_name %>
         </div>
-        <div class='col-md-1'>
+        <div class='col-md-2 stay-attr'>
           <%= stay.status %>
         </div>
-        <div class='col-md-1'>
+        <div class='col-md-2 stay-attr'>
           <%= stay.check_in_date %>
         </div>
-        <div class='col-md-1'>
-          <% stay.check_out_date %>
+        <div class='col-md-2 stay-attr'>
+          <%= stay.check_out_date %>
         </div>
-      <% } %>
+      </div>
+    <% } %>
 
-    </div>
   <% } %>
-
 </div>
