@@ -20,6 +20,7 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     'mouseleave div.user-item': 'stopBounceAndHighlight',
     'click div.go-to-user-profile': 'toUserShow',
     'click div.user-item': 'panToListing'
+    // TODO: implement showing of the user's info when hovering over the user item in the users index
   },
 
   highlightUserItem: function (event) {
