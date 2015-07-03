@@ -6,17 +6,19 @@
 <div class='edit-profile-hook'>
 </div>
 
-<div>
-  <label class='profile-label'>
-      Organization:
-  </label>
-  <%= user.escape('org_name') %>
-</div>
+<% if (user.role === 'org') { %>
+  <div>
+    <label class='profile-label'>
+        Organization:
+    </label>
+    <%= user.escape('org_name') %>
+  </div>
+<% } %>
 
 
 <div>
   <label class='profile-label'>
-      Contact
+      Contact:
   </label>
   <%= user.escape('name') %>
 </div>
