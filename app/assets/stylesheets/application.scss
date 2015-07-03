@@ -20,6 +20,11 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+textarea {
+  max-width: 100%;
+  min-width: 80%;
+}
+
 .animal-item-stays.well {
     // display: block;
     position: relative;

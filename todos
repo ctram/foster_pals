@@ -6,7 +6,10 @@ TODO: Redesign text to make it more obvious what to do on each page.
 
 TODO: survey app for n + 1 queries - go back and write manual SQL queries instead of using AR iterators.
 
+TODO: depending on the role of the user, display organization name.
 
+
+TODO:Front-load the work that you put in on stuff that’s immediately visible to employers. Make a little window pop up showing you the animal on the front page?
 
 TODO:Replace PlaceKitten (download to assets potentially as well)
 
@@ -27,5 +30,3 @@ TODO:“There are currently no animals in your roster” ⇐ change this term to
 
 
 TODO:Animals in your roster is broken? Only shows ones that we add. (Fetching problem?)
-
-TODO:Front-load the work that you put in on stuff that’s immediately visible to employers. Make a little window pop up showing you the animal on the front page?
