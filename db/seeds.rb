@@ -111,3 +111,32 @@ end
   :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
   )
 end
+
+########################################################################
+# 30 seed users
+
+30.times do
+  user = Fabricate(
+    :user
+  )
+
+  # uifaces api for a random profile picture
+  uri = URI("http://uifaces.com/api/v1/random")
+
+  begin
+    random_user = JSON.parse(Net::HTTP.get(uri))
+    image_url = random_user['image_urls']['epic']
+  rescue
+    # backup profile picture
+    # TODO: add a stock profile pictures for humans
+    image_url = "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  end
+
+  Fabricate(
+    :image,
+    imageable_id: user.id,
+    imageable_type: 'User',
+    thumb_url: image_url
+  )
+
+end

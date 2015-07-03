@@ -1,14 +1,14 @@
 class User < ActiveRecord::Base
   validates_presence_of :org_name
+  validates_presence_of :email, uniqueness: true
+  validates :password, length: {minimum: 1, allow_nil: true}
   validates_presence_of :first_name
   validates_presence_of :last_name
-  validates_presence_of :email, uniqueness: true
   validates_presence_of :street_address
   validates_presence_of :city
   validates_presence_of :state
   validates_presence_of :zip_code, numericality: { only_integer: true }, length: {minimum:5, maximum: 5}
 
-  validates :password, length: {minimum: 1, allow_nil: true}
 
   after_initialize :ensure_session_token
 
@@ -86,8 +86,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  # TODO: re-code overlapping stays as a custom validation in the stay model, i.e. when a stay's status is updated to "confirmed", the validation denies all other stays.
   def overlapping_pending_stays stay
-
     p_stays = pending_stays.reject do |other_stay|
       other_stay.id == stay.id
     end

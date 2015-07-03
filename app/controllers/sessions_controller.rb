@@ -33,20 +33,26 @@ class SessionsController < ApplicationController
   def sign_in_as_guest
     carl = User.first
 
+    coords1 = generate_random_sf_coords
+    coords2 = generate_random_sf_coords
+
     user1 = Fabricate(
       :user,
-      password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y'
+      password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
+      lat: coords1[0],
+      long: coords1[1]
     )
 
     user2 = Fabricate(
-      :user
+      :user,
+      lat: coords2[0],
+      long: coords2[1]
     )
 
     [user1, user2].each do |user|
       user.org_name = "Guest Rescue Group"
       user.first_name = 'Gus'
       user.last_name = 'Guest'
-      user = generate_lat_and_long_for_user user
 
       uri = URI("http://uifaces.com/api/v1/random")
 
@@ -97,5 +103,21 @@ class SessionsController < ApplicationController
 
     sign_in(user1)
     redirect_to "/"
+  end
+
+  private
+
+  def generate_random_sf_coords
+    sf_southern_lat = 37.712764
+    sf_northern_lat = 37.780090
+    sf_lat_range = sf_northern_lat - sf_southern_lat
+    sf_lat = sf_lat_range * rand + sf_southern_lat
+
+    sf_western_long = -122.496652
+    sf_eastern_long = -122.400521
+    sf_long_range = sf_eastern_long - sf_western_long
+    sf_long = sf_long_range * rand + sf_western_long
+
+    [sf_lat, sf_long]
   end
 end
