@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701164913) do
+ActiveRecord::Schema.define(version: 20150703025934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,18 +104,17 @@ ActiveRecord::Schema.define(version: 20150701164913) do
   add_index "stays", ["org_id"], name: "index_stays_on_org_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "password_digest",               null: false
-    t.string   "session_token",                 null: false
-    t.string   "role",                          null: false
+    t.string   "password_digest", null: false
+    t.string   "session_token",   null: false
+    t.string   "role",            null: false
     t.string   "org_name"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "email",                         null: false
-    t.string   "street_address",                null: false
-    t.string   "city",                          null: false
-    t.string   "state",                         null: false
-    t.string   "zip_code",                      null: false
-    t.integer  "num_animals_willing_to_foster", null: false
+    t.string   "email",           null: false
+    t.string   "street_address",  null: false
+    t.string   "city",            null: false
+    t.string   "state",           null: false
+    t.string   "zip_code",        null: false
     t.text     "about_info"
     t.string   "image_set_id"
     t.float    "lat"
