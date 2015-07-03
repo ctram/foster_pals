@@ -9,6 +9,7 @@ FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
       var animal = this.animals.models[i];
 
       if (animal.stays.length > 0 ) {
+        // FIXME: do not show animals with confirmed stays
         continue;
       }
       var animalSelectorItemView = new FosterPals.Views.AnimalSelectorItem({

@@ -72,12 +72,12 @@ class SessionsController < ApplicationController
 
       other_user = (user == user1 ? user2 : user1)
 
-      # Set ten animals for user's roster / these animals will in the other user's schedule manager.
+      # Set five animals with requests for fostering.
       5.times do
         animal = Fabricate(
           :animal,
-          org_id: user.id,
-          fosterer_id: carl.id,
+          org_id: other_user.id,
+          fosterer_id: user.id,
         )
 
         Fabricate(
@@ -89,14 +89,29 @@ class SessionsController < ApplicationController
         stay = Fabricate(
           :stay,
           status: 'pending',
-          org_id: user.id,
-          fosterer_id: carl.id,
+          org_id: other_user.id,
+          fosterer_id: user.id,
         )
 
         Fabricate(
           :reservation,
           animal_id: animal.id,
           stay_id: stay.id
+        )
+      end
+
+      # Set five animals in roster.
+      5.times do
+        animal = Fabricate(
+          :animal,
+          org_id: user.id,
+          fosterer_id: other_user.id,
+        )
+
+        Fabricate(
+          :image,
+          imageable_id: animal.id,
+          imageable_type: 'Animal'
         )
       end
     end
