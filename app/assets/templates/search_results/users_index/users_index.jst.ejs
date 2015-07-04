@@ -5,6 +5,7 @@
 
 <% users.each(function (user) { %>
   <div class="user-item animated" data-user-id=<%= user.escape('id')%> >
+    <% var streetAddress = user.escape('street_address') %>
     <% var city = user.escape('city') %>
     <% var state = user.escape('state') %>
     <% var zip = user.escape('zip_code') %>
@@ -14,6 +15,9 @@
         <strong><%= user.escape('name') %></strong>
       </div>
 
+      <div class='user-item-location'>
+        <%= streetAddress %>
+      </div>
       <div class='user-item-location'>
         <%= city %>, <%= state%> <%= zip %>
       </div>

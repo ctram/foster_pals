@@ -8,15 +8,24 @@ def generate_postal_address lat, long
   gmaps_api_url += lat.to_s + ',' + long.to_s + '&key=' + api_key
   uri = URI(gmaps_api_url)
   response = JSON.parse(Net::HTTP.get(uri))
-  address = response["results"].first["address_components"]
-  debugger
+
   hsh_address = {}
-  hsh_address[:street_num] = address[0]["long_name"]
-  hsh_address[:street_address] = address[1]["long_name"]
-  hsh_address[:city] = address[3]["long_name"]
-  hsh_address[:state] = address[5]["short_name"]
-  hsh_address[:zip_code] = address[7]["short_name"]
+  address_components = ['street_number', 'street_address', 'route', 'locality', 'administrative_area_level_1', 'postal_code' ]
+  address = response["results"].first["address_components"]
+
+  address.each do |component|
+    type = component["types"].first
+    if address_components.include? type
+      if type == 'administrative_area_level_1'
+        hsh_address[type] = component['short_name']
+      else
+        hsh_address[type] = component['long_name']
+      end
+    end
+  end
+
   hsh_address
+
 end
 
 def generate_random_sf_coords
@@ -34,11 +43,28 @@ def generate_random_sf_coords
 end
 
 def set_postal_address user, hsh_address
-  debugger
-  user.street_address = hsh_address[:street_num] + ' ' + hsh_address[:street_address]
-  user.city = hsh_address[:city]
-  user.state = hsh_address[:state]
-  user.zip_code = hsh_address[:zip_code]
+  street_number = hsh_address["street_number"]
+  route = hsh_address["route"]
+  city = hsh_address["locality"]
+  state = hsh_address["administrative_area_level_1"]
+  zip_code = hsh_address["postal_code"]
+
+  arr_address = [street_number, route, city, state, zip_code]
+
+  if arr_address.any? {|component| component == nil}
+    # Set lat and long and address to default SF data
+    user.lat = 37.733795
+    user.long = -122.446747
+    user.street_address = '901Teresita Boulevard'
+    user.city = 'San Francisco'
+    user.state = 'CA'
+    user.zip_code = '94127'
+  else
+    user.street_address += hsh_address["route"]
+    user.city = hsh_address["locality"]
+    user.state = hsh_address["administrative_area_level_1"]
+    user.zip_code = hsh_address["postal_code"]
+  end
   user.save
 end
 
@@ -194,3 +220,5 @@ end
   )
 
 end
+
+# 39.443837207487924,-103.73344211601939
