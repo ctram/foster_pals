@@ -26,11 +26,13 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    debugger
     sign_out
     render json: {}
   end
 
   def sign_in_as_guest
+
     carl = User.first
 
     coords1 = generate_random_sf_coords
@@ -43,11 +45,17 @@ class SessionsController < ApplicationController
       long: coords1[1]
     )
 
+    hsh_address = generate_postal_address user1.lat, user1.long
+    set_postal_address user1, hsh_address
+
     user2 = Fabricate(
       :user,
       lat: coords2[0],
       long: coords2[1]
     )
+
+    hsh_address = generate_postal_address user2.lat, user2.long
+    set_postal_address user2, hsh_address
 
     [user1, user2].each do |user|
       user.org_name = "Guest Rescue Group"
@@ -122,6 +130,24 @@ class SessionsController < ApplicationController
 
   private
 
+  def generate_postal_address lat, long
+# https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyDeFDbJUJtdii9HUCJD4SLa852Zbij9BzY
+    api_key = ENV['GOOGLE_MAPS_API_KEY']
+    gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
+    gmaps_api_url += lat.to_s + ',' + long.to_s + '&key=' + api_key
+    uri = URI(gmaps_api_url)
+    response = JSON.parse(Net::HTTP.get(uri))
+    address = response["results"].first["address_components"]
+
+    hsh_address = {}
+    hsh_address[:street_num] = address[0]["long_name"]
+    hsh_address[:street_address] = address[1]["long_name"]
+    hsh_address[:city] = address[3]["long_name"]
+    hsh_address[:state] = address[5]["short_name"]
+    hsh_address[:zip_code] = address[7]["short_name"]
+    hsh_address
+  end
+
   def generate_random_sf_coords
     sf_southern_lat = 37.712764
     sf_northern_lat = 37.780090
@@ -135,4 +161,13 @@ class SessionsController < ApplicationController
 
     [sf_lat, sf_long]
   end
+
+  def set_postal_address user, hsh_address
+    user.street_address = hsh_address[:street_num] + ' ' + hsh_address[:street_address]
+    user.city = hsh_address[:city]
+    user.state = hsh_address[:state]
+    user.zip_code = hsh_address[:zip_code]
+    user.save
+  end
+
 end

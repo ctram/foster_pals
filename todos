@@ -1,6 +1,8 @@
-TODO: add custom error messages to the registration form -- right now they don't make sense in english
+TODO: have addresses match the lat and long
 
-TODO: check that all forms have error messages
+TODO: if uiface is broken, then use a stock profile picture
+
+TODO: only have the modal on the search page appear once per login.
 
 TODO: Give error message if user clicks on upload and cloudinary is down for some reason.
 
