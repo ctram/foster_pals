@@ -1,5 +1,3 @@
-TODO: if uiface is broken, then use a stock profile picture
-
 TODO: only have the modal on the search page appear once per login.
 
 TODO: Give error message if user clicks on upload and cloudinary is down for some reason.
