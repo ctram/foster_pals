@@ -1,3 +1,4 @@
+require 'net/http'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
@@ -70,9 +71,27 @@ end
 
 ## End gmaps api helpers ####################################################
 
-# Carl's place password_digest : $2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y -> 'w'
+## Sometimes UI face's image url's are broken - if so, give the user a default profile picture.
+def ensure_image_url_not_broken url
+  error_msg_str = "Access Denied"
+  uri = URI(url)
+  if Net::HTTP.get(uri).include? error_msg_str
+    pictures = [
+      'assets/profile-picture.jpg',
+      'assets/profile-picture2.jpg',
+      'assets/profile-picture3.jpg'
+    ]
+    url = pictures.sample
+  end
+  url
+
+# broken url sample:
+# "https://s3.amazonaws.com/uifaces/faces/twitter/fredfairclough/128.jpg"
+end
+
 
 ############################################
+# Carl's place password_digest : $2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y -> 'w'
 carl = Fabricate(
   :user,
   org_name: "Carl's Place",
@@ -109,6 +128,8 @@ set_postal_address fred, hsh_address
 Fabricate(
   :image, imageable_id: carl.id, imageable_type: 'User', thumb_url: "https://s3.amazonaws.com/uifaces/faces/twitter/carlfairclough/128.jpg"
 )
+
+carl.main_image_thumb_url = ensure_image_url_not_broken carl.main_image_thumb_url
 
 # Animals for Carl as a potential fosterer
 10.times do
@@ -151,6 +172,9 @@ end
 Fabricate(
   :image, imageable_id: fred.id, imageable_type: 'User', thumb_url: "https://s3.amazonaws.com/uifaces/faces/twitter/fredfairclough/128.jpg"
 )
+
+fred.main_image_thumb_url = ensure_image_url_not_broken fred.main_image_thumb_url
+
 
 # Animals for Fred as a potential fosterer
 10.times do
@@ -203,13 +227,16 @@ end
   # uifaces api for a random profile picture
   uri = URI("http://uifaces.com/api/v1/random")
 
+  # If UI Faces' api is broken, then set the image_url to a default image.
   begin
     random_user = JSON.parse(Net::HTTP.get(uri))
+
     image_url = random_user['image_urls']['epic']
+    image_url = ensure_image_url_not_broken image_url
   rescue
     # backup profile picture
     # TODO: add a stock profile pictures for humans
-    image_url = "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+    image_url = "assets/profile-picture3.jpg"
   end
 
   Fabricate(

@@ -78,6 +78,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def main_image_thumb_url= url
+    image = images.last
+    image.thumb_url = url
+    image.save
+  end
+
   def name
     if self.role == 'org'
       org_name.capitalize
