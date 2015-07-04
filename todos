@@ -1,8 +1,10 @@
 TODO: only have the modal on the search page appear once per login.
 
+TODO: stagger the seed data check in and check out dates so that not all the seed data overlap, so that the user can confirm a reservation and have Only some other res be overlapping
+
 TODO: Give error message if user clicks on upload and cloudinary is down for some reason.
 
-TODO: Redesign text to make it more obvious what to do on each page.
+TODO: Add modals that explain what to do on each page.
 
 TODO: survey app for n + 1 queries - go back and write manual SQL queries instead of using AR iterators.
 

@@ -2,7 +2,26 @@ require 'net/http'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-#### gmaps api helpers ######################################################
+## HELPERS ###################################################################
+
+## Sometimes UI face's image url's are broken - if so, give the user a default profile picture.
+def ensure_image_url_not_broken url
+  error_msg_str = "Access Denied"
+  uri = URI(url)
+  if Net::HTTP.get(uri).include? error_msg_str
+    pictures = [
+      'assets/profile-picture.jpg',
+      'assets/profile-picture2.jpg',
+      'assets/profile-picture3.jpg'
+    ]
+    url = pictures.sample
+  end
+  url
+
+# broken url sample:
+# "https://s3.amazonaws.com/uifaces/faces/twitter/fredfairclough/128.jpg"
+end
+
 def generate_postal_address lat, long
   api_key = ENV['GOOGLE_MAPS_API_KEY']
   gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
@@ -26,7 +45,6 @@ def generate_postal_address lat, long
   end
 
   hsh_address
-
 end
 
 def generate_random_sf_coords
@@ -41,6 +59,24 @@ def generate_random_sf_coords
   sf_long = sf_long_range * rand + sf_western_long
 
   [sf_lat, sf_long]
+end
+
+def random_profile_image_url
+  # uifaces api for a random profile picture
+  uri = URI("http://uifaces.com/api/v1/random")
+
+  # If UI Faces' api is broken, then set the image_url to a default image.
+  begin
+    random_user = JSON.parse(Net::HTTP.get(uri))
+
+    image_url = random_user['image_urls']['epic']
+    image_url = ensure_image_url_not_broken image_url
+  rescue
+    # backup profile picture
+    # TODO: add a stock profile pictures for humans
+    image_url = "assets/profile-picture3.jpg"
+  end
+  image_url
 end
 
 def set_postal_address user, hsh_address
@@ -69,25 +105,7 @@ def set_postal_address user, hsh_address
   user.save
 end
 
-## End gmaps api helpers ####################################################
-
-## Sometimes UI face's image url's are broken - if so, give the user a default profile picture.
-def ensure_image_url_not_broken url
-  error_msg_str = "Access Denied"
-  uri = URI(url)
-  if Net::HTTP.get(uri).include? error_msg_str
-    pictures = [
-      'assets/profile-picture.jpg',
-      'assets/profile-picture2.jpg',
-      'assets/profile-picture3.jpg'
-    ]
-    url = pictures.sample
-  end
-  url
-
-# broken url sample:
-# "https://s3.amazonaws.com/uifaces/faces/twitter/fredfairclough/128.jpg"
-end
+## END HELPERS ######################################################
 
 
 ############################################
@@ -223,21 +241,23 @@ end
   hsh_address = generate_postal_address user.lat, user.long
   set_postal_address user, hsh_address
 
+  #
+  # # uifaces api for a random profile picture
+  # uri = URI("http://uifaces.com/api/v1/random")
+  #
+  # # If UI Faces' api is broken, then set the image_url to a default image.
+  # begin
+  #   random_user = JSON.parse(Net::HTTP.get(uri))
+  #
+  #   image_url = random_user['image_urls']['epic']
+  #   image_url = ensure_image_url_not_broken image_url
+  # rescue
+  #   # backup profile picture
+  #   # TODO: add a stock profile pictures for humans
+  #   image_url = "assets/profile-picture3.jpg"
+  # end
 
-  # uifaces api for a random profile picture
-  uri = URI("http://uifaces.com/api/v1/random")
-
-  # If UI Faces' api is broken, then set the image_url to a default image.
-  begin
-    random_user = JSON.parse(Net::HTTP.get(uri))
-
-    image_url = random_user['image_urls']['epic']
-    image_url = ensure_image_url_not_broken image_url
-  rescue
-    # backup profile picture
-    # TODO: add a stock profile pictures for humans
-    image_url = "assets/profile-picture3.jpg"
-  end
+  image_url = random_profile_image_url
 
   Fabricate(
     :image,

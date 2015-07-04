@@ -10,6 +10,14 @@ class UsersController < ApplicationController
     @user = generate_lat_and_long_for_user @user
 
     if @user.save
+      image = Fabricate(
+        :image,
+        url: random_profile_image_url,
+        thumb_url: random_profile_image_url,
+        imageable_id: @user.id,
+        imageable_type: 'User'
+      )
+      
       sign_in(@user)
       redirect_to "/"
     else
@@ -17,7 +25,6 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
 
   private
 

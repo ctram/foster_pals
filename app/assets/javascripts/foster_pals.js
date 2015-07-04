@@ -7,6 +7,7 @@ window.FosterPals = {
   UserId: null,
   Events: {},
   map: {},
+  mapFirstVisit: true,
   initialize: function() {
     var currentUser = FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID);
     var currentUserId = CURRENT_USER_ID;

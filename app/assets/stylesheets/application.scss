@@ -20,6 +20,16 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.profile-photo-view {
+  img {
+    margin-bottom: 10px;
+  }
+}
+
+.about-update-button {
+  margin-top: 10px;
+}
+
 textarea {
   max-width: 100%;
   min-width: 80%;
@@ -190,7 +200,8 @@ a.fancybox {
   border-radius: 15px;
 }
 
-.back-to-profile-btn {
+#back-to-profile-btn {
+  margin-top: 15px;
   padding: 10px;
 }
 
