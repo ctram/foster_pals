@@ -1,4 +1,4 @@
-TODO: only have the modal on the search page appear once per login.
+TODO:
 
 TODO: stagger the seed data check in and check out dates so that not all the seed data overlap, so that the user can confirm a reservation and have Only some other res be overlapping
 
@@ -21,20 +21,6 @@ TODO:Front-load the work that you put in on stuff that’s immediately visible t
 
 TODO:Replace PlaceKitten (download to assets potentially as well)
 
-TODO:Fix the guest sign-in
-
-TODO:Add labels
-
-
 TODO:Add more seed data (or place within SF) -- fix them within a square area, no seed data in the ocean.
-
-TODO:No information on randomly generated data?
-
-TODO:Fix showing users-- api/users/1 returns a 500 server error
-
-TODO:Add more padding everywhere
-
-TODO:“There are currently no animals in your roster” ⇐ change this term to make it clear what is next expected of them
-
 
 TODO:Animals in your roster is broken? Only shows ones that we add. (Fetching problem?)

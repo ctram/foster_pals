@@ -356,7 +356,7 @@ p.map-modal-text {
 
 
 img.img-responsive {
-  width: 150px;
+  width: 296px;
 }
 
 .gallery {
@@ -470,6 +470,11 @@ select {
   top: 54px;
 }
 
+.featurette-image {
+  width: 296px;
+  border-radius: 10px;
+}
+
 button.register-featurette-btn {
   width: 162px;
   height: 38px;
@@ -505,6 +510,10 @@ button.register-featurette-btn {
   font-family: 'Inconsolata', ;
   top: 21px;
   left: -52px;
+}
+
+.container.marketing {
+  margin-top: 73px;
 }
 
 .marketing-header {
