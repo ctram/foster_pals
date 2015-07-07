@@ -1,27 +1,36 @@
-# Foster-Pals
+# FosterPals
+FosterPals is an app inspired by Airbnb. FosterPals aims to bring together those who tirelessly rescue animals from kill shelters and those who have space in their homes to temporarily care for a rescue animal until it finds a forever home.
 
-[Heroku link][heroku]
+Technologies used to build this application include:
+- Rails
+- Backbone.js
+- jQuery
+- jQuery-UI
+- Bootstrap
 
-[heroku]: http://foster-pals.herokuapp.com
+[Live link][fosterpals_live]
+
+[fosterpals_live]: http://www.fosterpals.com
+
+
 
 ## Minimum Viable Product
-FosterPals is an app inspired by AirBnb. FosterPals aims to bring together those who tirelessly rescue animals from kill shelters and those who have space in their homes to temporarily care for a rescue animal until it finds a forever home.
 
   Users can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [ ] Welcome Page
+- [x] Welcome Page
 - [x] Create accounts
 - [x] Create sessions (log in)
 - [x] Two kinds of users: fosters and rescuers
 - [x] Fosters create profiles with info on their homes
 - [x] Rescue organizations create profiles with info on their org
 - [x] Rescuer organizations can compile a list of rescue animals in their care.
-- [ ] Rescuers can submit a Foster a request for the Foster to house an animal for a period of time.
-- [ ] Fosters can choose whether or not to accept a stay request from a Rescue Organization.
-- [ ] Fosters can keep track of confirmed and pending stays.
-- [ ] Rescue Organizations can keep track of confirmed and pending stays.
+- [x] Rescuers can submit a Foster a request for the Foster to house an animal for a period of time.
+- [x] Fosters can choose whether or not to accept a stay request from a Rescue Organization.
+- [x] Fosters can keep track of confirmed and pending stays.
+- [x] Rescue Organizations can keep track of confirmed and pending stays.
 
 ## Design Docs
 * [View Wireframes][views]
@@ -29,7 +38,7 @@ FosterPals is an app inspired by AirBnb. FosterPals aims to bring together those
 
 [views]: ./docs/views.md
 [schema]: ./docs/schema.md
-
+<!--
 ## Implementation Timeline
 
 ### Phase 1: Welcome Page (~1 day)
@@ -76,19 +85,19 @@ In this phase, the Foster can review a list of pending requests for rescue anima
 
 This phase create a search feature for Rescue Organizations to find nearby Fosters for their rescue animals. Upon entering a location, the search engine will display a list of Fosters within a certain distance.
 
-[Details][phase-seven]
+[Details][phase-seven] -->
 
 
 ### Bonus Features (TBD)
 - [ ] Use slugs instead of user id numbers in the url
 - [ ] Mini google map of user's location on the user profile page
-- [ ] Integration with Google maps to show locations of search results
+- [x] Integration with Google maps to show locations of search results
 - [ ] Image gallery on profile pages
 - [ ] Ability for users to make posts on their profile pages
 - [ ] Ability for users to posts comments on other users profile pages
 - [ ] Ability for users to send private messages to each other.
 - [ ] Password recovery by email.
-- [ ] Rescuers can generate list of animals in need of a foster home.
+- [x] Rescuers can generate list of animals in need of a foster home.
 - [ ] Fosters can submit a request to foster a specific animal from a specific org
 
 [phase-one]: ./docs/phases/phase1.md
