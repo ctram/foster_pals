@@ -20,6 +20,13 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 
+.img-lift {
+  position: relative;
+  top: -337px;
+  width: 100%;
+  margin: 0px;
+}
+
 .profile-photo-view {
   img {
     margin-bottom: 10px;
