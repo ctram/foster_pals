@@ -1,3 +1,5 @@
+TODO: use a brighter swatch for the site.
+
 TODO: stagger the seed data check in and check out dates so that not all the seed data overlap, so that the user can confirm a reservation and have Only some other res be overlapping
 
 TODO: Give error message if user clicks on upload and cloudinary is down for some reason.
