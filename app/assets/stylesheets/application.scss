@@ -543,6 +543,9 @@ button.register-featurette-btn {
 
 .container.marketing {
   margin-top: 73px;
+  width: auto;
+  padding: 0px;
+
 }
 
 .marketing-header {
@@ -786,6 +789,10 @@ input.form-control.search-input {
   width: 267px;
   font-size: 10pt;
   height: 36px;
+}
+
+.even-featurette {
+  background-color: rgb(243, 243, 243);
 }
 
 .about-hook {
