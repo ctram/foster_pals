@@ -239,6 +239,7 @@ a.fancybox {
   border-radius: 15px;
 }
 
+
 .schedule-manager-item-view {
   .animal-item-hook.well {
     background-color: #ECF0F1;
@@ -250,6 +251,16 @@ a.fancybox {
     position: relative;
     top: 10px;
     width: 60%;
+  }
+}
+
+.scheduled-animals, .denied-animals {
+  .schedule-manager-item-view {
+    height: 181px;
+  }
+  .animal-item-hook.well {
+    position: relative;
+    top: 30px;
   }
 }
 
