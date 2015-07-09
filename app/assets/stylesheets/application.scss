@@ -118,11 +118,6 @@ ul.navbar-nav.nav {
   cursor: pointer;
 }
 
-.animal-item-view.row {
-  // margin-top:  20px;
-  // margin-bottom:  -20px;
-}
-
 .contact-btns {
   button {
     margin: 10px;
@@ -148,6 +143,13 @@ ul.navbar-nav.nav {
   .animal-name {
     margin: 0px;
     margin-top: 19px;
+  }
+}
+
+.animal-item-hook {
+  .animal-item-view {
+    position: relative;
+    top: -11px;
   }
 }
 
@@ -199,8 +201,7 @@ a.fancybox {
 .animal-img.col-md-2 {
   margin-top: 10px;
   img {
-    width: auto;
-    height: 61px;
+    height: 100%;
     border-radius: 5px;
   }
 }
@@ -224,11 +225,9 @@ a.fancybox {
   width: 65%;
   padding: 19px;
   padding-top: 5px;
+  margin-top: 2px;
+  margin-bottom: 9px;
 }
-
-
-
-
 
 .animal-item-hook.well {
   background-color: #ECF0F1;
@@ -239,6 +238,22 @@ a.fancybox {
   height: 104px;
   border-radius: 15px;
 }
+
+.schedule-manager-item-view {
+  .animal-item-hook.well {
+    background-color: #ECF0F1;
+    border-radius: 15px;
+    display: block;
+    height: 78px;
+    margin: 0px;
+    margin-left: 14px;
+    position: relative;
+    top: 10px;
+    width: 60%;
+  }
+}
+
+
 
 #back-to-profile-btn {
   margin-top: 15px;
@@ -536,6 +551,12 @@ button.register-featurette-btn {
 
 .sex-radio-btns {
   width: 26px;
+  position: relative;
+  display: inline;
+  left: 14px;
+  label {
+    margin-right: 12px;
+  }
 }
 
 .navbar-nav {
@@ -681,10 +702,10 @@ span.strong {
 }
 
 .active-item {
-  border-color: #904295;
+  border-color: #6A9FD3;
   border-style: solid;
   border-radius: 5px;
-  border-width: 5px;
+  border-width: 1px;
 }
 
 .gm-style-iw {
@@ -711,6 +732,13 @@ span.strong {
   position: relative;
   min-width: 1200px;
 
+}
+
+.animal-selector-item, .chosen-animal {
+  padding: 14px;
+  img {
+    border-radius: 5px;
+  }
 }
 
 .user-items{
@@ -774,7 +802,6 @@ select.new-user {
   height: auto;
   .panel {
     border-color: #A33D3D;
-    background-color: #76415F;
   }
 }
 
@@ -794,7 +821,6 @@ select.new-user {
 
 .panel {
   border-color: #321616;
-  background-color: #614646;
   padding: 15px;
 }
 

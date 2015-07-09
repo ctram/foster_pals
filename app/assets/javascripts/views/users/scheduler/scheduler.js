@@ -1,6 +1,6 @@
 FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   initialize: function (options) {
-    
+
     this.currentUser = options.currentUser;
     this.animals = options.animals;
 
@@ -89,8 +89,10 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     this.animals = new FosterPals.Collections.Animals();
 
     successCallback = function (model, response, options) {
-      var animal_id = model['animal_id'];
-      var animal = FosterPals.Collections.animals.getOrFetch(animal_id);
+
+      var animalId = model['id'];
+      // var animal_id = model['animal_id'];
+      var animal = FosterPals.Collections.animals.getOrFetch(animalId);
       this.animals.add(animal);
     }.bind(this);
 
@@ -102,12 +104,15 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       this.addSubview('.dates-picker', errorsView);
     }.bind(this);
 
+    var animalId;
+    var indefiniteStay;
+    var checkOutDate;
     for (var i = 0; i < animalIds.length; i++) {
       animalId = animalIds[i];
 
       stayAttrs = {
         animal_id: animalId,
-        indefinite_stay: indefiniteStay,
+        // indefinite_stay: indefiniteStay,
         check_in_date: checkInDate,
         check_out_date: checkOutDate,
         org_id: CURRENT_USER_ID,
@@ -120,10 +125,12 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
         method: 'post',
         dataType: 'json',
         success: successCallback,
-        error: errorCallback
+        error: errorCallback,
+        animalId: animalId
       });
 
     }
+
     this.showConfirmation();
   },
 
@@ -143,6 +150,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   },
 
   showConfirmation: function () {
+
     animalRosterSelectorView  = this.subviews()._wrapped['.dates-picker-hook']._wrapped[0]
     this.removeSubview('.dates-picker-hook', animalRosterSelectorView);
     var confirmationView = new FosterPals.Views.Confirmation({
