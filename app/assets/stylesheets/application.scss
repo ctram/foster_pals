@@ -150,6 +150,8 @@ ul.navbar-nav.nav {
   .animal-item-view {
     position: relative;
     top: -11px;
+    margin-top: 60px;
+    margin-left: 39px;
   }
 }
 
@@ -241,6 +243,10 @@ a.fancybox {
 
 
 .schedule-manager-item-view {
+  padding-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
   .animal-item-hook.well {
     background-color: #ECF0F1;
     border-radius: 15px;
@@ -248,19 +254,15 @@ a.fancybox {
     height: auto;
     margin: 0px;
     margin-left: 14px;
-    position: relative;
-    top: 10px;
     width: 60%;
   }
 }
 
 .scheduled-animals, .denied-animals {
   .schedule-manager-item-view {
-    height: 181px;
+    // height: 271px;
   }
   .animal-item-hook.well {
-    position: relative;
-    top: 30px;
   }
 }
 
@@ -648,7 +650,8 @@ button.register-featurette-btn {
 }
 
 .schedule-manager-item {
-  display: inline;
+  display: block;
+  // padding: 31px;
 }
 
 .container {
