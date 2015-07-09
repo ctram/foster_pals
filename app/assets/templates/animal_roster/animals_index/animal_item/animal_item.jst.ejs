@@ -39,17 +39,20 @@
   <% if (stays.length === 0) { %>
     Animal has no reservations.
   <% } else { %>
+    <div class='res-label'>
+      Reservations
+    </div>
     <div class='row stays-header bold'>
-      <div class='col-md-2 stay-attr'>
+      <div class='col-md-3 stay-attr'>
         Fosterer
       </div>
-      <div class='col-md-2 stay-attr'>
+      <div class='col-md-3 stay-attr'>
         Reservation Status
       </div>
-      <div class='col-md-2 stay-attr'>
+      <div class='col-md-3 stay-attr'>
         Check In Date
       </div>
-      <div class='col-md-2 stay-attr'>
+      <div class='col-md-3 stay-attr'>
         Check Out Date
       </div>
     </div>
@@ -57,16 +60,16 @@
     <% for (var i = 0; i < stays.length; i++) { %>
       <% var stay = stays[i] %>
       <div class='row stays-header'>
-        <div class='col-md-2 stay-attr'>
+        <div class='col-md-3 stay-attr'>
           <%= stay.fosterer.first_name %>
         </div>
-        <div class='col-md-2 stay-attr'>
+        <div class='col-md-3 stay-attr'>
           <%= stay.status %>
         </div>
-        <div class='col-md-2 stay-attr'>
+        <div class='col-md-3 stay-attr'>
           <%= stay.check_in_date %>
         </div>
-        <div class='col-md-2 stay-attr'>
+        <div class='col-md-3 stay-attr'>
           <%= stay.check_out_date %>
         </div>
       </div>

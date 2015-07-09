@@ -55,21 +55,22 @@ textarea {
   min-width: 80%;
 }
 
-.animal-item-stays.well {
-    // display: block;
-    position: relative;
-    top: 39px;
-    left: -5%;
-    width: 75%;
-    background-color: #283845;
-}
 
 .stays-header.bold {
   font-weight: bold;
 }
 
+.stay-attr {
+  width: 162px;
+}
+
 .front-nav {
   top: 0px;
+}
+
+.res-label {
+  text-align: center;
+  font-size: 18pt;
 }
 
 .static-page-content {
@@ -215,19 +216,25 @@ a.fancybox {
 
 .animal-item-stays.well {
   background-color: #ECF0F1;
-  width: 60%;
-  display: block;
+  display: inline-block;
   border-radius: 15px;
   position: relative;
-  left: 10%;
+  top: 10px;
+  left: -3%;
+  width: 65%;
+  padding: 19px;
+  padding-top: 5px;
 }
+
+
+
+
 
 .animal-item-hook.well {
   background-color: #ECF0F1;
   width: 60%;
   display: block;
   margin: 0px;
-  margin-top: 40px;
   margin-left: 14px;
   height: 104px;
   border-radius: 15px;
