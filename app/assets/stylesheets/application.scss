@@ -171,10 +171,11 @@ ul.navbar-nav.nav {
   z-index: 1001;
   position: absolute;
   border-radius: 15px;
-  background-color: #904295;
+  background-color: #618BA5;
+  color: white;
 }
 
-.schedule-manager-item-view {
+.schedule-manager-item-view, .animal-item-view.well {
   width: 98%;
   border-radius: 10px;
   background-color: white;
@@ -199,6 +200,7 @@ a.fancybox {
   img {
     width: auto;
     height: 61px;
+    border-radius: 5px;
   }
 }
 
@@ -209,6 +211,15 @@ a.fancybox {
     width: auto;
     height: 61px;
   }
+}
+
+.animal-item-stays.well {
+  background-color: #ECF0F1;
+  width: 60%;
+  display: block;
+  border-radius: 15px;
+  position: relative;
+  left: 10%;
 }
 
 .animal-item-hook.well {
@@ -608,6 +619,12 @@ button.register-featurette-btn {
 
 }
 
+.animal-roster {
+  h3 {
+    margin-top: 75px;
+  }
+}
+
 .table-header {
   border-bottom: red solid 1px;
   font-weight: bolder;
@@ -730,8 +747,9 @@ hr {
   left: 50%;
   border: 2px solid rgb(24, 188, 156);
   border-radius: 0px;
-  border-left: 0px;
+  border-right: 0px;
   border-bottom: 0px;
+  border-top: 0px;
 }
 
 // div.container {
@@ -758,6 +776,14 @@ select.new-user {
   top: 0%;
   left: 0%;
 }
+
+.add-animal-form {
+  .panel {
+    background-color: white;
+  }
+}
+
+
 
 .panel {
   border-color: #321616;
