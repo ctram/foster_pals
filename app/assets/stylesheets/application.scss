@@ -28,9 +28,6 @@
   width: 56%;
 }
 
-#content {
-  min-width: 1200px;
-}
 
 
 .sign-in-btn {
@@ -41,10 +38,11 @@
 .profile-photo-view {
   img {
     margin-bottom: 10px;
+    border-radius: 5px;
   }
 }
 
-.third-slide {
+.slide {
   width: 100%;
 }
 
@@ -135,6 +133,7 @@ ul.navbar-nav.nav {
   .profile-view {
     min-width: 341px;
     width: auto;
+    margin-right: 0px;
   }
 }
 
@@ -178,8 +177,9 @@ ul.navbar-nav.nav {
 .schedule-manager-item-view {
   width: 98%;
   border-radius: 10px;
-  background-color: rgb(41, 65, 81);
+  background-color: white;
   margin-top: 16px;
+  box-shadow: 3px 5px 20px black;
 }
 
 .animal-item-view {
@@ -212,7 +212,7 @@ a.fancybox {
 }
 
 .animal-item-hook.well {
-  background-color: #143242;
+  background-color: #ECF0F1;
   width: 60%;
   display: block;
   margin: 0px;
@@ -543,10 +543,8 @@ button.register-featurette-btn {
 }
 
 .container.marketing {
-  margin-top: 73px;
   width: auto;
   padding: 0px;
-
 }
 
 .marketing-header {
@@ -680,13 +678,15 @@ span.strong {
   z-index: 1001;
 }
 
-#content, #search-results-view, .map-view, .map-hook, #user-items{
-  height: inherit;
+ #content, #search-results-view, .map-view, .map-hook, #user-items{
+  height: 100%;
 }
 
 #content {
   top: 60px;
   position: relative;
+  min-width: 1200px;
+
 }
 
 .user-items{
@@ -704,8 +704,20 @@ span.strong {
 
 }
 
+hr {
+  border: 1px dashed rgb(24, 188, 156);
+}
+
 #map-hr {
   margin: 0px;
+}
+
+.address {
+  max-width: 55%;
+  top: -26px;
+  left: 66px;
+  position: relative;
+
 }
 
 .map-hook {
@@ -713,13 +725,13 @@ span.strong {
   margin: 0px;
   padding: 0px;
   float: right;
-  border-radius: 5px;
-  border-color: #A33D3D;
-  border-style: solid;
   top: 60px;
   position: fixed;
   left: 50%;
-
+  border: 2px solid rgb(24, 188, 156);
+  border-radius: 0px;
+  border-left: 0px;
+  border-bottom: 0px;
 }
 
 // div.container {
@@ -758,7 +770,7 @@ select.new-user {
 }
 
 li.welcome-text {
-  background-color: #5E007B;
+  text-shadow: 1px 1px 10px #3E73A8;
   a.welcome-text {
    pointer-events: none;
   }
@@ -874,7 +886,8 @@ footer {
 
 
 .active-user-item {
-  background-color: rgb(59, 41, 68);
+  background-color: #95D7E4;
+  border-radius: 10px;
 }
 
 .row > * { display: inline-block; }

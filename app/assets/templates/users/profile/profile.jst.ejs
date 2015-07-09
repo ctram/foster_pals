@@ -18,7 +18,7 @@
 
 <div>
   <label class='profile-label'>
-      Contact:
+      Name:
   </label>
   <%= user.escape('name') %>
 </div>
@@ -34,7 +34,9 @@
   <label class='profile-label'>
     Location:
   </label>
-  <%= user.escape('street_address') %>, <%= user.escape('city') %>, <%= user.escape('state') %> <%= user.escape('zip_code') %>
+  <div class='address'>
+    <%= user.escape('street_address') %>, <%= user.escape('city') %>, <%= user.escape('state') %> <%= user.escape('zip_code') %>
+  </div>
 </div>
 
 <div class='contact-btns'>
