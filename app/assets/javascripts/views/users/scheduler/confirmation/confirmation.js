@@ -13,9 +13,8 @@ FosterPals.Views.Confirmation = Backbone.CompositeView.extend({
 
   render: function () {
     // TODO: animals not showing on confirmation page of sent reservations
-    
     var content = this.template({
-      animals: this.collection
+      reservations: this.collection
     });
     this.$el.html(content);
     this.attachSubviews();

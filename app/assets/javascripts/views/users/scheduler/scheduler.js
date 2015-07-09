@@ -107,7 +107,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     this.reservations = new FosterPals.Collections.Reservations();
 
     resSuccessCallback = function (model, response, options) {
-      debugger
+
       this.reservations.add(model);
     }.bind(this);
 
@@ -143,7 +143,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
         reservations.push(res);
       }
 
-      debugger
+
       stayAttrs = {
         // animal_id: animalId,
         // indefinite_stay: indefiniteStay,
@@ -189,7 +189,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     animalRosterSelectorView  = this.subviews()._wrapped['.dates-picker-hook']._wrapped[0]
     this.removeSubview('.dates-picker-hook', animalRosterSelectorView);
     var confirmationView = new FosterPals.Views.Confirmation({
-      collection: this.animals
+      collection: this.reservations
     });
     this.addSubview('.dates-picker-hook', confirmationView);
   }

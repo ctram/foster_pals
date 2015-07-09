@@ -13,8 +13,6 @@ class Api::StaysController < ApplicationController
 
   def create
     # 6/16/2015, 8:54:41 AM
-
-
     check_in_date_str = params[:stay][:check_in_date]
     check_out_date_str = params[:stay][:check_out_date]
 
@@ -46,15 +44,18 @@ class Api::StaysController < ApplicationController
       # animal = @stay.animal
       # animal.status = 'fostered'
       # animal.save
-
-      Reservation.create(animal_id: animal_id, stay_id: @stay.id)
+      params[:stay][:reservations].each do |k, res|
+        animal_id =  res[:animal_id]
+        Reservation.create(animal_id: animal_id, stay_id: @stay.id)
+      end
 
       # Don't need this? not set to any variable.
       current_user.overlapping_pending_stays @stay
       ##########################
-      @animal = Animal.find animal_id
-      render 'api/animals/show'
+      # @animal = Animal.find animal_id
+      # render 'api/animals/show'
       # render :show
+      render :show
     else
       render json: @stay.errors.full_messages, status: 422
     end
