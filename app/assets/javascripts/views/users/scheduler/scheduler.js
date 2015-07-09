@@ -104,15 +104,50 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       this.addSubview('.dates-picker', errorsView);
     }.bind(this);
 
+    this.reservations = new FosterPals.Collections.Reservations();
+
+    resSuccessCallback = function (model, response, options) {
+      debugger
+      this.reservations.add(model);
+    }.bind(this);
+
     var animalId;
     var indefiniteStay;
     var checkOutDate;
+
     for (var i = 0; i < animalIds.length; i++) {
       animalId = animalIds[i];
 
+      // TODO: animals are being reserved as separate stays even when they are of the same dates -- a stay should have multiple animals - right now a stay has one animal - when multiple animals are being reserved, they are each getting a separate stay.
+
+      resAttrs = {
+        animal_id: animalId
+      };
+
+      $.ajax('api/reservations', {
+        method: 'post',
+        data: {reservation: resAttrs},
+        dataType: 'json',
+        success: resSuccessCallback
+      });
+
+    }
+
+
+    setTimeout(function () {
+      var reservations = [];
+      var res;
+
+      for (var i = 0; i < this.reservations.length; i++) {
+        res = this.reservations.models[i].attributes;
+        reservations.push(res);
+      }
+
+      debugger
       stayAttrs = {
-        animal_id: animalId,
+        // animal_id: animalId,
         // indefinite_stay: indefiniteStay,
+        reservations: reservations,
         check_in_date: checkInDate,
         check_out_date: checkOutDate,
         org_id: CURRENT_USER_ID,
@@ -120,18 +155,18 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
         status: 'pending'
       };
 
+      // TODO: should be ajax to make reservations with an empty stay.
       $.ajax( '/api/stays',{
         data: {stay: stayAttrs},
         method: 'post',
         dataType: 'json',
         success: successCallback,
-        error: errorCallback,
-        animalId: animalId
+        error: errorCallback
       });
 
-    }
-
-    this.showConfirmation();
+      // TODO: ajax to create stay
+      this.showConfirmation();
+    }.bind(this), 1000);
   },
 
   goToShow: function (event) {

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:show, :update, :create, :destroy ]
     resources :stays, only: [:show, :update, :create, :destroy ]
     resources :users, only: [:show, :edit, :index, :update]
+    resources :reservations, only: [:create]
   end
 
   resources :static_pages, only: [:front]
