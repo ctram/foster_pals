@@ -150,7 +150,7 @@ Fabricate(
 carl.main_image_thumb_url = ensure_image_url_not_broken carl.main_image_thumb_url
 
 # Animals for Carl as a potential fosterer
-3.times do
+1.times do
   animal = Fabricate(
     :animal,
     org_id: fred.id
@@ -175,7 +175,7 @@ carl.main_image_thumb_url = ensure_image_url_not_broken carl.main_image_thumb_ur
 end
 
 # Animals for Carl as org
-3.times do
+1.times do
   animal = Fabricate(
     :animal, org_id: carl.id
   )
@@ -195,7 +195,7 @@ fred.main_image_thumb_url = ensure_image_url_not_broken fred.main_image_thumb_ur
 
 
 # Animals for Fred as a potential fosterer
-3.times do
+1.times do
   animal = Fabricate(
     :animal,
     org_id: carl.id
@@ -220,7 +220,7 @@ fred.main_image_thumb_url = ensure_image_url_not_broken fred.main_image_thumb_ur
 end
 
 # Animals for Fred as org
-3.times do
+1.times do
   animal = Fabricate(
     :animal, org_id: fred.id
   )
@@ -233,7 +233,7 @@ end
 ########################################################################
 # 30 seed users
 
-30.times do
+15.times do
   user = Fabricate(
     :user
   )
