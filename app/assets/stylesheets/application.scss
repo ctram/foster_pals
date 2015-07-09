@@ -539,6 +539,7 @@ button.register-featurette-btn {
   font-family: 'Inconsolata', ;
   top: 21px;
   left: -52px;
+  color: white;
 }
 
 .container.marketing {
@@ -785,6 +786,10 @@ ul {
   width: 700px;
 }
 
+.featurette-divider.front {
+  margin: 0px;
+}
+
 input.form-control.search-input {
   width: 267px;
   font-size: 10pt;
@@ -793,6 +798,20 @@ input.form-control.search-input {
 
 .even-featurette {
   background-color: rgb(243, 243, 243);
+  padding: 3%;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.odd-featurette {
+  padding: 3%;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+footer {
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .about-hook {
