@@ -112,8 +112,8 @@ end
 # Carl's place password_digest : $2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y -> 'w'
 carl = Fabricate(
   :user,
-  org_name: "Carl's Place",
-  first_name: 'Carl',
+  org_name: "Chad's Rescue",
+  first_name: 'Chad',
   password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
   email: 'c@w',
   role: 'org',

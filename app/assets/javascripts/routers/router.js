@@ -77,6 +77,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   userScheduler: function (id) {
+
     if (id === null) {
       id = parseInt(this.currentUser.escape('id'));
     }
@@ -85,6 +86,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     currentUserCallback = function () {
 
       var animals = this.currentUser.animals_as_org();
+      
 
       var userSchedulerView = new FosterPals.Views.UserScheduler({
         model: user,

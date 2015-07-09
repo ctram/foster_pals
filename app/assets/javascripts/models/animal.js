@@ -24,7 +24,7 @@ FosterPals.Models.Animal = Backbone.Model.extend({
 
   stays: function () {
     if (!this._stays) {
-      this._stays = new FosterPals.Models.Stays();
+      this._stays = new FosterPals.Collections.Stays();
     }
     return this._stays;
   },
@@ -45,9 +45,9 @@ FosterPals.Models.Animal = Backbone.Model.extend({
       delete response.org;
     }
 
-    if (response.stay) {
-      this.stay().set(response.stay);
-      delete response.stay;
+    if (response.stays) {
+      this.stays().set(response.stays);
+      delete response.stays;
     }
     return response;
   }
