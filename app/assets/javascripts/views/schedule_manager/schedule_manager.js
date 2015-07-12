@@ -6,7 +6,6 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
       var orgId = stay.get('org_id');
       var org = FosterPals.Collections.users.getOrFetch(orgId);
-      // TODO: animals are being reserved as separate stays even when they are of the same dates -- a stay should have multiple animals - right now a stay has one animal - when multiple animals are being reserved, they are each getting a separate stay.
       var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem ({
         org: org,
         stay: stay
