@@ -10,15 +10,27 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap
  *= require jquery.fancybox
  *= require animate
  *= require modal
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";
-@import 'bootstrap';
 @import 'bootstrap-datetimepicker';
+
+.dates-picker {
+  .container {
+    width: 100%;
+    .col-sm-6 {
+      width: 100%;
+    }
+  }
+}
+
+#check-aval-btn {
+  width: 100%;
+}
 
 .lead {
   font-size: 12pt;
