@@ -1,0 +1,89 @@
+
+.user-item-info {
+  display: inline-block;
+  width: 200px;
+}
+
+
+.user-item {
+  padding: 10px;
+}
+
+
+.go-to-user-profile {
+  display: inline-block;
+  float: right;
+  padding: inherit;
+}
+
+.no-results-err {
+  font-size: 30px;
+  position: absolute;
+  z-index: 1000;
+  top: 292px;
+  right: 340px;
+  color: white;
+  background-color: red;
+  border-radius: 10px;
+  padding: 17px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  opacity: 0;
+}
+
+.no-results-err.fade-in {
+  opacity: 1;
+  transition: opacity 1000ms ease;
+}
+
+.no-results-err.fade-out {
+  opacity: 0;
+  transition: opacity 5000ms ease;
+
+}
+
+
+.error-msg-hook {
+  position: relative;
+  top: 54px;
+}
+
+
+
+.user-items{
+  float: left;
+  width: 50%;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.users-index {
+  float: left;
+  height: 100%;
+  width: 100%;
+
+}
+
+.address {
+  max-width: 55%;
+  top: -26px;
+  left: 66px;
+  position: relative;
+
+}
+
+.map-hook {
+  width: 50%;
+  margin: 0px;
+  padding: 0px;
+  float: right;
+  top: 60px;
+  position: fixed;
+  left: 50%;
+  border: 2px solid rgb(24, 188, 156);
+  border-radius: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-top: 0px;
+}

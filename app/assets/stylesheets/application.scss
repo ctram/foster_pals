@@ -19,19 +19,6 @@
  */
 @import 'bootstrap-datetimepicker';
 
-.dates-picker {
-  .container {
-    width: 100%;
-    .col-sm-6 {
-      width: 100%;
-    }
-  }
-}
-
-#check-aval-btn {
-  width: 100%;
-}
-
 .lead {
   font-size: 12pt;
 }
@@ -42,24 +29,9 @@
 
 
 
-.sign-in-btn {
-  position: relative;
-  left: 10px;
-}
-
-.profile-photo-view {
-  img {
-    margin-bottom: 10px;
-    border-radius: 5px;
-  }
-}
 
 .slide {
   width: 100%;
-}
-
-.about-update-button {
-  margin-top: 10px;
 }
 
 textarea {
@@ -67,14 +39,6 @@ textarea {
   min-width: 80%;
 }
 
-
-.stays-header.bold {
-  font-weight: bold;
-}
-
-.stay-attr {
-  width: 162px;
-}
 
 .front-nav {
   top: 0px;
@@ -99,20 +63,7 @@ ul.navbar-nav.nav {
   position: fixed;
 }
 
-.prompt-deny {
-  margin-left: 10px;
-  height: 30px;
-}
 
-.register-form {
-  position: relative;
-}
-
-
-
-.rtrn-to-manager {
-  margin-top: -1px;
-}
 
 
 .flashes {
@@ -122,94 +73,13 @@ ul.navbar-nav.nav {
   left: 48%;
 }
 
-.states {
-  color: #464567;
-}
 
 .user-item {
   cursor: pointer;
 }
 
-.contact-btns {
-  button {
-    margin: 10px;
-  }
-}
-
-.profile-hook {
-  width: auto;
-  .profile-view {
-    min-width: 341px;
-    width: auto;
-    margin-right: 0px;
-  }
-}
-
-.animal-item-view.row:hover {
-  cursor: pointer;
-}
-
-
-
-.animal-item-view {
-  .animal-name {
-    margin: 0px;
-    margin-top: 19px;
-  }
-}
-
-.animal-item-hook {
-  .animal-item-view {
-    position: relative;
-    top: -11px;
-    // margin-top: 60px;
-    // margin-left: 39px;
-
-  }
-}
-
-.animal-item-view.well.animated.row {
-  .col-md-1 {
-  }
-}
-
-.animal-item-view.well {
-  background-color: #354B5C;
-}
-
-
-.animal-show-view {
-  .animal-name {
-    font-size: 48pt;
-    text-align: center;
-    margin-top: 21px;
-  }
-}
-
 .deny-btns {
   margin: 11px;
-}
-
-.gallery-help-msg {
-  z-index: 1001;
-  position: absolute;
-  border-radius: 15px;
-  background-color: #618BA5;
-  color: white;
-}
-
-.schedule-manager-item-view, .animal-item-view.well {
-  width: 98%;
-  border-radius: 10px;
-  background-color: white;
-  margin-top: 16px;
-  box-shadow: 3px 5px 20px black;
-}
-
-.animal-item-view {
-  .col-md-1, .col-md-2 {
-    margin-top: 22px;
-  }
 }
 
 a.fancybox {
@@ -218,80 +88,8 @@ a.fancybox {
   }
 }
 
-.animal-img.col-md-2 {
-  margin-top: 10px;
-  img {
-    height: 100%;
-    border-radius: 5px;
-  }
-}
-
-.animal-img.reservation-item {
-  width: auto;
-  margin-top: 0px;
-  img {
-    width: auto;
-    height: 61px;
-  }
-}
-
-.animal-item-stays.well {
-  background-color: #ECF0F1;
-  display: inline-block;
-  border-radius: 15px;
-  position: relative;
-  top: 10px;
-  left: -3%;
-  width: 65%;
-  padding: 19px;
-  padding-top: 5px;
-  margin-top: 2px;
-  margin-bottom: 9px;
-}
-
-.animal-item-hook.well {
-  background-color: #ECF0F1;
-  width: 60%;
-  display: block;
-  margin: 0px;
-  margin-left: 14px;
-  // height: 104px;
-  border-radius: 15px;
-  margin-top: 13px;
-}
 
 
-.schedule-manager-item-view {
-  padding-top: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  .animal-item-hook.well {
-    background-color: #ECF0F1;
-    border-radius: 15px;
-    display: block;
-    height: auto;
-    margin-left: 14px;
-    width: 60%;
-  }
-}
-
-.scheduled-animals, .denied-animals {
-  .schedule-manager-item-view {
-    // height: 271px;
-  }
-}
-
-
-
-#back-to-profile-btn {
-  margin-top: 15px;
-  padding: 10px;
-}
-
-.confirmation-btns {
-    margin-top: 10px;
-}
 
 .modal {
   .modal-content {
@@ -334,26 +132,6 @@ p.map-modal-text {
   text-align: left;
 }
 
-.scheduler-errors-hook {
-  z-index: 1001;
-  position: absolute;
-  top: 121px;
-  right: 12%;
-  .validation-error {
-    background-color: red;
-    border-radius: 10px;
-    display: block;
-    width: 200px;
-    padding: 8px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    z-index: inherit;
-  }
-}
-
 .navbar-nav {
   li {
     height: inherit;
@@ -386,7 +164,6 @@ p.map-modal-text {
 
 
 #myModal {
-
   .modal-header {
     button.close {
       position: relative;
@@ -443,54 +220,13 @@ img.img-responsive {
   width: 296px;
 }
 
-.gallery {
-  margin-top: 20px;
-}
-
 .img-thumb {
 
 }
-
-.active-highlight {
-  background-color: rgb(59, 41, 68);
-}
-
-.user-item-info {
-  display: inline-block;
-  width: 200px;
-}
-
-.go-to-user-profile {
-  display: inline-block;
-  float: right;
-  padding: inherit;
-}
-
-.no-results-err {
-  font-size: 30px;
-  position: absolute;
-  z-index: 1000;
-  top: 292px;
-  right: 340px;
-  color: white;
-  background-color: red;
-  border-radius: 10px;
-  padding: 17px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  opacity: 0;
-}
-
-.no-results-err.fade-in {
-  opacity: 1;
-  transition: opacity 1000ms ease;
-}
-
-.no-results-err.fade-out {
-  opacity: 0;
-  transition: opacity 5000ms ease;
-
-}
+//
+// .active-highlight {
+//   background-color: rgb(59, 41, 68);
+// }
 
 .res-confirmation {
   font-size: 30px;
@@ -506,15 +242,6 @@ img.img-responsive {
   padding-bottom: 0px;
   opacity: 0;
   animation-duration: 1s;
-}
-
-.res-confirmation.fadeIn {
-  opacity: 1;
-}
-
-.res-confirmation.fadeOut {
-  opacity: 0;
-  animation-duration: 5s;
 }
 
 #image-col {
@@ -556,11 +283,6 @@ select {
   left: 11px;
 }
 
-.error-msg-hook {
-  position: relative;
-  top: 54px;
-}
-
 .featurette-image {
   width: 296px;
   border-radius: 10px;
@@ -588,40 +310,7 @@ button.register-featurette-btn {
   }
 }
 
-.navbar-nav {
-  font-size: 9pt;
-  height: 37px;
-}
 
-#search-btn {
-  width: 128px;
-  font-size: 9pt;
-}
-
-.navbar-tagline {
-  position: absolute;
-  font-size: 9pt;
-  width: 451px;
-  text-align: center;
-  margin-top: 21px;
-  font-family: 'Inconsolata', ;
-  top: 21px;
-  left: -52px;
-  color: white;
-}
-
-.container.marketing {
-  width: auto;
-  padding: 0px;
-}
-
-.marketing-header {
-  font-size: 30px;
-  border: 2px solid white;
-  border-radius: 13px;
-  padding: 6px;
-  margin-top: 22px;
-}
 
 .btn {
   padding: 2px 18px;
@@ -629,31 +318,6 @@ button.register-featurette-btn {
 }
 
 
-
-
-
-
-
-.m-backdrop {
-  display: block;
-  position: fixed;
-  opacity: .7;
-  height: 100%;
-  width: 100%;
-  z-index: 1000;
-  background-color: black;
-}
-
-.m-content {
-  position: fixed;
-  opacity: 1;
-  height: 800px;
-  width: 800px;
-  z-index: 10001;
-  top: 15%;
-  left: 32%;
-  background-color: red;
-}
 
 .high-z {
   z-index: 1000;
@@ -670,26 +334,9 @@ button.register-featurette-btn {
   // padding: 31px;
 }
 
-.container {
-}
-
-.table-header.animal-roster {
-
-}
-
-.animal-roster {
-  h3 {
-    margin-top: 75px;
-  }
-}
-
 .table-header {
   border-bottom: red solid 1px;
   font-weight: bolder;
-}
-
-.animal-stays {
-  margin-left: 25px;
 }
 
 li.alert {
@@ -705,16 +352,6 @@ li.alert {
   margin: 0px;
 }
 
-.add-image-btn {
-  margin: 5px;
-
-}
-
-.add-animal-btn {
-  margin-top: 15px;
-  margin-left: 184px;
-}
-
 span.strong {
   font-weight: bold;
 }
@@ -725,10 +362,6 @@ span.strong {
 
 .selected {
   background-color: #904295;
-}
-
-.navbar-view, .navbar {
-  height: inherit;
 }
 
 .active-item {

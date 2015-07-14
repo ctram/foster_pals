@@ -1,0 +1,79 @@
+
+.rtrn-to-manager {
+  margin-top: -1px;
+}
+
+
+.stays-header.bold {
+  font-weight: bold;
+}
+
+
+.scheduled-animals, .denied-animals {
+  .schedule-manager-item-view {
+    // height: 271px;
+  }
+}
+
+.confirmation-btns {
+    margin-top: 10px;
+}
+
+
+.animal-stays {
+  margin-left: 25px;
+}
+
+
+.res-confirmation.fadeIn {
+  opacity: 1;
+}
+
+.res-confirmation.fadeOut {
+  opacity: 0;
+  animation-duration: 5s;
+}
+
+
+.schedule-manager-item-view, .animal-item-view.well {
+  width: 98%;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 16px;
+  box-shadow: 3px 5px 20px black;
+}
+
+
+.animal-item-hook.well {
+  background-color: #ECF0F1;
+  width: 60%;
+  display: block;
+  margin: 0px;
+  margin-left: 14px;
+  // height: 104px;
+  border-radius: 15px;
+  margin-top: 13px;
+}
+
+
+.schedule-manager-item-view {
+  padding-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  .animal-item-hook.well {
+    background-color: #ECF0F1;
+    border-radius: 15px;
+    display: block;
+    height: auto;
+    margin-left: 14px;
+    width: 60%;
+  }
+}
+
+
+ul {
+  .animal-item {
+    height: 136px;
+  }
+}

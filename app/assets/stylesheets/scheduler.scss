@@ -1,0 +1,72 @@
+
+#check-aval-btn {
+  width: 100%;
+}
+
+
+
+#back-to-profile-btn {
+  margin-top: 15px;
+  padding: 10px;
+}
+
+
+.dates-picker {
+  border: 2px solid black;
+  width: 500px;
+  height: 900px;
+  .container {
+    width: 100%;
+    .col-sm-6 {
+      width: 100%;
+    }
+  }
+}
+
+.prompt-deny {
+  margin-left: 10px;
+  height: 30px;
+}
+
+
+.scheduler-errors-hook {
+  z-index: 1001;
+  position: absolute;
+  top: 121px;
+  right: 12%;
+  .validation-error {
+    background-color: red;
+    border-radius: 10px;
+    display: block;
+    width: 200px;
+    padding: 8px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    z-index: inherit;
+  }
+}
+
+
+.animal-selector-item, .chosen-animal {
+  padding: 14px;
+  img {
+    border-radius: 5px;
+  }
+}
+
+
+.dates-picker {
+  height: auto;
+  .panel {
+    border-color: #A33D3D;
+  }
+}
+
+.dates-picker-errors {
+  position: relative;
+  top: 0%;
+  left: 0%;
+}

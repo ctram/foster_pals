@@ -1,0 +1,49 @@
+.navbar-nav {
+  font-size: 9pt;
+  height: 37px;
+}
+
+#search-btn {
+  width: 128px;
+  font-size: 9pt;
+}
+
+
+.navbar-tagline {
+  position: absolute;
+  font-size: 9pt;
+  width: 451px;
+  text-align: center;
+  margin-top: 21px;
+  font-family: 'Inconsolata', ;
+  top: 21px;
+  left: -52px;
+  color: white;
+}
+
+
+.navbar-view, .navbar {
+  height: inherit;
+}
+
+
+.navbar-wrapper {
+  height: 51px;
+  z-index: 1001;
+}
+
+
+.navbar-brand {
+  font-family: 'Roboto Slab', serif;
+}
+
+
+.navbar-form {
+
+  margin-top: 8px;
+  width: 700px;
+}
+
+.navbar.navbar-inverse.navbar-static-top {
+  margin: 0px;
+}

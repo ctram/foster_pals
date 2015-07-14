@@ -1,0 +1,125 @@
+
+.animal-item-view.row:hover {
+  cursor: pointer;
+}
+
+
+.stay-attr {
+  width: 162px;
+}
+
+
+
+.animal-roster {
+  h3 {
+    margin-top: 75px;
+  }
+}
+
+
+.add-image-btn {
+  margin: 5px;
+
+}
+
+.add-animal-btn {
+  margin-top: 15px;
+  margin-left: 184px;
+}
+
+
+.animal-item-view {
+  .animal-name {
+    margin: 0px;
+    margin-top: 19px;
+  }
+}
+
+.animal-item-hook {
+  .animal-item-view {
+    position: relative;
+    top: -11px;
+    // margin-top: 60px;
+    // margin-left: 39px;
+
+  }
+}
+
+
+.gallery {
+  margin-top: 20px;
+}
+
+
+.animal-item-stays.well {
+  background-color: #ECF0F1;
+  display: inline-block;
+  border-radius: 15px;
+  position: relative;
+  top: 10px;
+  left: -3%;
+  width: 65%;
+  padding: 19px;
+  padding-top: 5px;
+  margin-top: 2px;
+  margin-bottom: 9px;
+}
+
+
+
+.animal-img.col-md-2 {
+  margin-top: 10px;
+  img {
+    height: 100%;
+    border-radius: 5px;
+  }
+}
+
+.animal-img.reservation-item {
+  width: auto;
+  margin-top: 0px;
+  img {
+    width: auto;
+    height: 61px;
+  }
+}
+
+
+.gallery-help-msg {
+  z-index: 1001;
+  position: absolute;
+  border-radius: 15px;
+  background-color: #618BA5;
+  color: white;
+}
+
+
+.animal-item-view.well.animated.row {
+  .col-md-1 {
+  }
+}
+
+.animal-item-view.well {
+  background-color: #354B5C;
+}
+
+
+
+.animal-item-view {
+  .col-md-1, .col-md-2 {
+    margin-top: 22px;
+  }
+}
+
+
+.animals-index-view {
+  .container {
+    width: 100%;
+  }
+}
+
+
+.animals-index-view.well {
+  max-width: inherit;
+  margin: auto;
+}

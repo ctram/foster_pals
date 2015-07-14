@@ -1,0 +1,94 @@
+
+.container.marketing {
+  width: auto;
+  padding: 0px;
+}
+
+.marketing-header {
+  font-size: 30px;
+  border: 2px solid white;
+  border-radius: 13px;
+  padding: 6px;
+  margin-top: 22px;
+}
+
+
+
+
+
+.m-backdrop {
+  display: block;
+  position: fixed;
+  opacity: .7;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+  background-color: black;
+}
+
+.m-content {
+  position: fixed;
+  opacity: 1;
+  height: 800px;
+  width: 800px;
+  z-index: 10001;
+  top: 15%;
+  left: 32%;
+  background-color: red;
+}
+
+
+.featurette-divider.front {
+  margin: 0px;
+}
+
+
+.even-featurette {
+  background-color: rgb(243, 243, 243);
+  padding: 3%;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.odd-featurette {
+  padding: 3%;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+
+#myCarousel {
+  min-height: 500px;
+
+  .carousel-inner {
+
+    height: 800px;
+
+    .item {
+      height: inherit;
+    }
+
+  }
+}
+
+
+
+.modal {
+  .modal-content {
+    height: 100%;
+    .container {
+      padding: 5px;
+    }
+    label.col-md-2 {
+      text-align: right;
+      position: relative;
+      top: 19px;
+    }
+    div.input-group {
+      width: 40%;
+    }
+    select {
+      width: 33%;
+    }
+  }
+}
