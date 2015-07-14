@@ -27,9 +27,6 @@
   width: 56%;
 }
 
-
-
-
 .slide {
   width: 100%;
 }
@@ -38,7 +35,6 @@ textarea {
   max-width: 100%;
   min-width: 80%;
 }
-
 
 .front-nav {
   top: 0px;
@@ -63,16 +59,12 @@ ul.navbar-nav.nav {
   position: fixed;
 }
 
-
-
-
 .flashes {
   position: absolute;
   z-index: 1001;
   top: 25%;
   left: 48%;
 }
-
 
 .user-item {
   cursor: pointer;
@@ -85,29 +77,6 @@ ul.navbar-nav.nav {
 a.fancybox {
   img {
     width: 340px;
-  }
-}
-
-
-
-
-.modal {
-  .modal-content {
-    height: 100%;
-    .container {
-      padding: 5px;
-    }
-    label.col-md-2 {
-      text-align: right;
-      position: relative;
-      top: 19px;
-    }
-    div.input-group {
-      width: 40%;
-    }
-    select {
-      width: 33%;
-    }
   }
 }
 
@@ -126,7 +95,6 @@ a.fancybox {
     left: 36%;
   }
 }
-
 
 p.map-modal-text {
   text-align: left;
@@ -161,7 +129,6 @@ p.map-modal-text {
     z-index: inherit;
   }
 }
-
 
 #myModal {
   .modal-header {
@@ -213,8 +180,6 @@ p.map-modal-text {
 .modal-slacker .modal-content {
   border-radius: 20px;
 }
-
-
 
 img.img-responsive {
   width: 296px;
@@ -310,14 +275,10 @@ button.register-featurette-btn {
   }
 }
 
-
-
 .btn {
   padding: 2px 18px;
   width: inherit;
 }
-
-
 
 .high-z {
   z-index: 1000;
@@ -377,15 +338,6 @@ span.strong {
   font-weight: bold;
 }
 
-.user-item {
-  padding: 10px;
-}
-
-.navbar-wrapper {
-  height: 51px;
-  z-index: 1001;
-}
-
  #content, #search-results-view, .map-view, .map-hook, #user-items{
   height: 100%;
 }
@@ -397,57 +349,12 @@ span.strong {
 
 }
 
-.animal-selector-item, .chosen-animal {
-  padding: 14px;
-  img {
-    border-radius: 5px;
-  }
-}
-
-.user-items{
-  float: left;
-  width: 50%;
-  height: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.users-index {
-  float: left;
-  height: 100%;
-  width: 100%;
-
-}
-
 hr {
   border: 1px dashed rgb(24, 188, 156);
 }
 
 #map-hr {
   margin: 0px;
-}
-
-.address {
-  max-width: 55%;
-  top: -26px;
-  left: 66px;
-  position: relative;
-
-}
-
-.map-hook {
-  width: 50%;
-  margin: 0px;
-  padding: 0px;
-  float: right;
-  top: 60px;
-  position: fixed;
-  left: 50%;
-  border: 2px solid rgb(24, 188, 156);
-  border-radius: 0px;
-  border-right: 0px;
-  border-bottom: 0px;
-  border-top: 0px;
 }
 
 // div.container {
@@ -461,34 +368,15 @@ select.new-user {
   color: #464545;
 }
 
-.dates-picker {
-  height: auto;
-  .panel {
-    border-color: #A33D3D;
-  }
-}
-
-.dates-picker-errors {
-  position: relative;
-  top: 0%;
-  left: 0%;
-}
-
 .add-animal-form {
   .panel {
     background-color: white;
   }
 }
 
-
-
 .panel {
   border-color: #321616;
   padding: 15px;
-}
-
-.navbar-brand {
-  font-family: 'Roboto Slab', serif;
 }
 
 li.welcome-text {
@@ -498,49 +386,14 @@ li.welcome-text {
   }
 }
 
-ul {
-  .animal-item {
-    height: 136px;
-  }
-}
-
-.animals-index-view {
-  .container {
-    width: 100%;
-  }
-}
-
 #sign-out-link {
   margin-left: 40px;
-}
-
-.navbar-form {
-
-  margin-top: 8px;
-  width: 700px;
-}
-
-.featurette-divider.front {
-  margin: 0px;
 }
 
 input.form-control.search-input {
   width: 267px;
   font-size: 10pt;
   height: 36px;
-}
-
-.even-featurette {
-  background-color: rgb(243, 243, 243);
-  padding: 3%;
-  padding-left: 7%;
-  padding-right: 7%;
-}
-
-.odd-featurette {
-  padding: 3%;
-  padding-left: 7%;
-  padding-right: 7%;
 }
 
 footer {
@@ -550,20 +403,6 @@ footer {
 
 .about-hook {
   max-width: 800px;
-}
-
-#myCarousel {
-  min-height: 500px;
-
-  .carousel-inner {
-
-    height: 800px;
-
-    .item {
-      height: inherit;
-    }
-
-  }
 }
 
 .invisible {
@@ -583,10 +422,6 @@ footer {
   display: none;
 }
 
-.navbar.navbar-inverse.navbar-static-top {
-  margin: 0px;
-}
-
 .page-header {
   margin: auto;
   display: table;
@@ -596,20 +431,15 @@ footer {
   margin: auto;
   width: 600px;
 }
-
-.animals-index-view.well {
-  max-width: inherit;
-  margin: auto;
-}
-
 .well {
   margin: 32px;
 }
-
 
 .active-user-item {
   background-color: #95D7E4;
   border-radius: 10px;
 }
 
-.row > * { display: inline-block; }
+.row > * {
+  display: inline-block;
+}
