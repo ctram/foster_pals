@@ -162,8 +162,8 @@ ul.navbar-nav.nav {
   .animal-item-view {
     position: relative;
     top: -11px;
-    margin-top: 60px;
-    margin-left: 39px;
+    // margin-top: 60px;
+    // margin-left: 39px;
 
   }
 }
@@ -257,6 +257,7 @@ a.fancybox {
   margin-left: 14px;
   // height: 104px;
   border-radius: 15px;
+  margin-top: 13px;
 }
 
 
@@ -270,7 +271,6 @@ a.fancybox {
     border-radius: 15px;
     display: block;
     height: auto;
-    margin: 0px;
     margin-left: 14px;
     width: 60%;
   }
@@ -279,8 +279,6 @@ a.fancybox {
 .scheduled-animals, .denied-animals {
   .schedule-manager-item-view {
     // height: 271px;
-  }
-  .animal-item-hook.well {
   }
 }
 
