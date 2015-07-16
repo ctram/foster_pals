@@ -15,7 +15,6 @@
   </div>
 <% } %>
 
-
 <div>
   <label class='profile-label'>
       Name:
@@ -35,7 +34,13 @@
     Location:
   </label>
   <div class='address'>
-    <%= user.escape('street_address') %>, <%= user.escape('city') %>, <%= user.escape('state') %> <%= user.escape('zip_code') %>
+    <div class='street-address'>
+      <%= user.escape('street_address') %>
+    </div>
+
+    <div class='city-state-zip'>
+      <%= user.escape('city') + ', ' + user.escape('state') + ' ' + user.escape('zip_code') %>
+    </div>
   </div>
 </div>
 
