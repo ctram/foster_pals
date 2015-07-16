@@ -1,12 +1,11 @@
 FosterPals.Views.ScheduleAnimalItem = Backbone.CompositeView.extend({
   initialize: function (options) {
-
-    this.listenTo(this.model, 'sync', this.render)
+    this.listenTo(this.model, 'sync', this.render);
   },
 
   template: JST['schedule_manager/schedule_manager_item/schedule_animal_item/schedule_animal_item'],
 
-  className: 'animal-item-view row',
+  className: 'row',
 
   render: function () {
 

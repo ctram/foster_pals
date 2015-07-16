@@ -14,11 +14,12 @@
   .animal-item-view {
     position: relative;
     top: -11px;
+    min-height: 223px;
     height: auto;
     .animal-reservations {
       position: absolute;
       left: 17%;
-      top: 31%;
+      top: 41%;
     }
     .animal-name {
       margin: 0px;
