@@ -1,3 +1,15 @@
+.add-animal-form-view {
+  .radio-btns {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: auto;
+    .radio-btn {
+      display: inline;
+      margin: 5px;
+    }
+  }
+}
+
 .animal-reservations {
   position: relative;
   left: 178px;
