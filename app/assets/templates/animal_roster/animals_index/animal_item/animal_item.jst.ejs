@@ -1,79 +1,84 @@
-<div class='col-md-2 animal-img'>
-  <img src="<%= animal.escape('main_image_thumb_url') %>" alt="" />
-</div>
+<div class='animal-stats row'>
+  <div class='col-md-2 animal-img'>
+    <img src="<%= animal.escape('main_image_thumb_url') %>" alt="" />
+  </div>
 
-<div class='col-md-1 animal-name' data-animal-id=<%= animal.escape('id')%> >
-  <%= animal.escape('name') %>
-</div>
+  <div class='col-md-1 animal-name' data-animal-id=<%= animal.escape('id')%> >
+    <%= animal.escape('name') %>
+  </div>
 
-<div class='col-md-1 animal-species'>
-  <%= animal.escape('species') %>
-</div>
+  <div class='col-md-1 animal-species'>
+    <%= animal.escape('species') %>
+  </div>
 
-<div class='col-md-1 animal-breed'>
-  <%= animal.escape('breed') %>
-</div>
+  <div class='col-md-1 animal-breed'>
+    <%= animal.escape('breed') %>
+  </div>
 
-<div class='col-md-1 animal-color'>
-  <%= animal.escape('color') %>
-</div>
+  <div class='col-md-1 animal-color'>
+    <%= animal.escape('color') %>
+  </div>
 
-<div class='col-md-1 animal-sex'>
-  <%= animal.escape('sex') %>
-</div>
+  <div class='col-md-1 animal-sex'>
+    <%= animal.escape('sex') %>
+  </div>
 
-<div class='col-md-1 animal-weight'>
-  <%= animal.escape('weight') %>
-</div>
+  <div class='col-md-1 animal-weight'>
+    <%= animal.escape('weight') %>
+  </div>
 
 
-<div class='col-md-2 animal-fosterer'>
-  <% if (animal.escape('fosterer_id') === '') { %>
-      Not Fostered
-  <% } else { %>
-    <%= fosterer.escape('first_name') %>
-  <% } %>
-</div>
-
-<div class='animal-item-stays well'>
-  <% if (stays.length === 0) { %>
-    Animal has no reservations.
-  <% } else { %>
-    <div class='res-label'>
-      Reservations
-    </div>
-    <div class='row stays-header bold'>
-      <div class='col-md-3 stay-attr'>
-        Fosterer
-      </div>
-      <div class='col-md-3 stay-attr'>
-        Reservation Status
-      </div>
-      <div class='col-md-3 stay-attr'>
-        Check In Date
-      </div>
-      <div class='col-md-3 stay-attr'>
-        Check Out Date
-      </div>
-    </div>
-
-    <% for (var i = 0; i < stays.length; i++) { %>
-      <% var stay = stays[i] %>
-      <div class='row stays-header'>
-        <div class='col-md-3 stay-attr'>
-          <%= stay.fosterer.first_name %>
-        </div>
-        <div class='col-md-3 stay-attr'>
-          <%= stay.status %>
-        </div>
-        <div class='col-md-3 stay-attr'>
-          <%= stay.check_in_date %>
-        </div>
-        <div class='col-md-3 stay-attr'>
-          <%= stay.check_out_date %>
-        </div>
-      </div>
+  <div class='col-md-2 animal-fosterer'>
+    <% if (animal.escape('fosterer_id') === '') { %>
+        Not Fostered
+    <% } else { %>
+      <%= fosterer.escape('first_name') %>
     <% } %>
+  </div>
 
-  <% } %>
+</div>
+
+<div class='animal-reservations'>
+  <div class='animal-item-stays well'>
+    <% if (stays.length === 0) { %>
+      Animal has no reservations.
+    <% } else { %>
+      <div class='res-label'>
+        Reservations
+      </div>
+      <div class='row stays-header bold'>
+        <div class='col-md-3 stay-attr'>
+          Fosterer
+        </div>
+        <div class='col-md-3 stay-attr'>
+          Reservation Status
+        </div>
+        <div class='col-md-3 stay-attr'>
+          Check In Date
+        </div>
+        <div class='col-md-3 stay-attr'>
+          Check Out Date
+        </div>
+      </div>
+
+      <% for (var i = 0; i < stays.length; i++) { %>
+        <% var stay = stays[i] %>
+        <div class='row stays-header'>
+          <div class='col-md-3 stay-attr'>
+            <%= stay.fosterer.first_name %>
+          </div>
+          <div class='col-md-3 stay-attr'>
+            <%= stay.status %>
+          </div>
+          <div class='col-md-3 stay-attr'>
+            <%= stay.check_in_date %>
+          </div>
+          <div class='col-md-3 stay-attr'>
+            <%= stay.check_out_date %>
+          </div>
+        </div>
+      <% } %>
+
+    <% } %>
+  </div>
 </div>

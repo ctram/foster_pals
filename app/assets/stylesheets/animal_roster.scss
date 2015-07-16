@@ -2,12 +2,17 @@
   cursor: pointer;
 }
 
+.animal-stats.row {
+  display: block;
+}
+
 .stay-attr {
   width: 162px;
 }
 
 
 .animal-roster {
+  padding-left: 68px;
   h3 {
     margin-top: 75px;
   }
@@ -49,13 +54,9 @@
   display: inline-block;
   border-radius: 15px;
   position: relative;
-  top: 10px;
-  left: -3%;
-  width: 65%;
-  padding: 19px;
-  padding-top: 5px;
-  margin-top: 2px;
-  margin-bottom: 9px;
+  left: 34%;
+  margin-right: auto;
+  margin: 0px;
 }
 
 .animal-img.col-md-2 {
