@@ -1,3 +1,4 @@
+# too much json - have backbone make more fetches when needed instead having an object front load all its relationships (?)
 json.extract! @animal, :org_id, :name, :color, :weight, :species, :sex, :breed, :main_image_thumb_url, :main_image_url, :fosterer_id, :id
 
 json.images @animal.images do |image|

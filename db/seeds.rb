@@ -1,4 +1,5 @@
 require 'net/http'
+require_relative '../app/controllers/application_controller'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
@@ -59,6 +60,38 @@ def generate_random_sf_coords
   sf_long = sf_long_range * rand + sf_western_long
 
   [sf_lat, sf_long]
+end
+
+def random_animal_image
+  path = 'assets/dogs/'
+  image = [
+    '035bbe68fe79229568cab6abcb5232a9.jpg',
+    '213291beae8a24c49293f3096d89096b.jpg',
+    '2c979bfe49db8a8b6f9947f9a30af9c7.jpg',
+    '3d36ca112cd1089caae9f4407e8d9c2a.jpg',
+    '408984e69daa7b91ed36a25517d2d958.jpg',
+    '48a1c7d6e976076fb538cbe57497292d.jpg',
+    '4a3d8f5ce7e652fc58852a07dc1b33b1.jpg',
+    '5284912be436e28ea418a55f502f95fc.jpg',
+    '5aee907a84347e1c3d018e14b2f3f67d.jpg',
+    '6a31b892a467425e810b5b7a83e86cf4.jpg',
+    '6afa2c688867e33640a8782f8d2fd44b.jpg',
+    '712774fff606398fd714267c818d0bf5.jpg',
+    '728dd83fcee334cff88817c7a40294d4.jpg',
+    '75083518757164472_mFMq4bI1_c_large.jpg',
+    '76179297bf80406a4ad804a22d0a885e.jpg',
+    '7ac1c7a80124a65b264541b3bdbc9cb3.jpg',
+    '7e9b56969839b0d6345e25a812f68ed9_0.jpg',
+    '83a27da3115e0f518609828ce7e651f2.jpg',
+    '8e0de51db09fbf96de30212b561674b6_1.jpg',
+    'a65febdebf0836e784ebe4a4fd95bab7.jpg',
+    'b97c3ba83fa25ce6c36ac3c94428d3f6.jpg',
+    'ca51696d167c71849455078f0ce69d58.jpg',
+    'd5b799dcbcf5522054d3e2c52763f861.jpg',
+    'f6ae67ff71124f5bde6b9cb7356dbb56.jpg',
+    'tumblr_ltgeds1Mgt1qibwfwo1_400.jpg'
+  ].sample
+  path + image
 end
 
 def random_profile_image_url
@@ -149,16 +182,22 @@ Fabricate(
 
 carl.main_image_thumb_url = ensure_image_url_not_broken carl.main_image_thumb_url
 
+
 # Animals for Carl as a potential fosterer
 1.times do
+  random_image = random_animal_image
+
   animal = Fabricate(
     :animal,
     org_id: fred.id
   )
 
   Fabricate(
-  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: random_image, url: random_image
   )
+
+  # stock animal image - cartoon dog.
+  # thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
 
   stay = Fabricate(
     :stay,
@@ -176,12 +215,14 @@ end
 
 # Animals for Carl as org
 1.times do
+  random_image = random_animal_image
+
   animal = Fabricate(
     :animal, org_id: carl.id
   )
 
   Fabricate(
-  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: random_image, url: random_image
   )
 end
 ############################################
@@ -196,13 +237,15 @@ fred.main_image_thumb_url = ensure_image_url_not_broken fred.main_image_thumb_ur
 
 # Animals for Fred as a potential fosterer
 1.times do
+  random_image = random_animal_image
+
   animal = Fabricate(
     :animal,
     org_id: carl.id
   )
 
   Fabricate(
-  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: random_animal_image, url: random_image
   )
 
   stay = Fabricate(
@@ -221,12 +264,14 @@ end
 
 # Animals for Fred as org
 1.times do
+  random_image = random_animal_image
+
   animal = Fabricate(
     :animal, org_id: fred.id
   )
 
   Fabricate(
-  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: random_animal_image, url: random_image
   )
 end
 
@@ -240,22 +285,6 @@ end
 
   hsh_address = generate_postal_address user.lat, user.long
   set_postal_address user, hsh_address
-
-  #
-  # # uifaces api for a random profile picture
-  # uri = URI("http://uifaces.com/api/v1/random")
-  #
-  # # If UI Faces' api is broken, then set the image_url to a default image.
-  # begin
-  #   random_user = JSON.parse(Net::HTTP.get(uri))
-  #
-  #   image_url = random_user['image_urls']['epic']
-  #   image_url = ensure_image_url_not_broken image_url
-  # rescue
-  #   # backup profile picture
-  #   # TODO: add a stock profile pictures for humans
-  #   image_url = "assets/profile-picture3.jpg"
-  # end
 
   image_url = random_profile_image_url
 

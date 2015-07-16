@@ -73,7 +73,7 @@ class SessionsController < ApplicationController
 
       other_user = (user == user1 ? user2 : user1)
 
-      # Set five animals with requests for fostering.
+      # Set animals with requests for fostering.
       2.times do
         animal = Fabricate(
           :animal,
@@ -81,11 +81,13 @@ class SessionsController < ApplicationController
           fosterer_id: user.id,
         )
 
-        Fabricate(
+        image = Fabricate(
           :image,
           imageable_id: animal.id,
           imageable_type: 'Animal'
         )
+        image.thumb_url = random_animal_image
+        image.save
 
         stay = Fabricate(
           :stay,
@@ -101,7 +103,7 @@ class SessionsController < ApplicationController
         )
       end
 
-      # Set five animals in roster.
+      # Set animals in roster.
       3.times do
         animal = Fabricate(
           :animal,
@@ -109,11 +111,14 @@ class SessionsController < ApplicationController
           fosterer_id: other_user.id,
         )
 
-        Fabricate(
+        image = Fabricate(
           :image,
           imageable_id: animal.id,
           imageable_type: 'Animal'
         )
+        image.thumb_url = random_animal_image
+        image.url = image.thumb_url
+        image.save
       end
     end
 

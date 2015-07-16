@@ -1,3 +1,25 @@
+.animal-reservations {
+  position: relative;
+  left: 178px;
+  top: -117px;
+}
+
+.animal-item-view {
+  height: 271px;
+  .animal-name {
+    margin: 0px;
+    margin-top: 19px;
+  }
+  .col-md-1, .col-md-2 {
+    margin-top: 22px;
+  }
+}
+
+.animal-item-view.well.animated.row {
+  .col-md-1 {
+  }
+}
+
 .animal-item-view.row:hover {
   cursor: pointer;
 }
@@ -28,13 +50,6 @@
   margin-left: 184px;
 }
 
-.animal-item-view {
-  .animal-name {
-    margin: 0px;
-    margin-top: 19px;
-  }
-}
-
 .animal-item-hook {
   .animal-item-view {
     position: relative;
@@ -53,7 +68,6 @@
   background-color: #ECF0F1;
   display: inline-block;
   border-radius: 15px;
-  position: relative;
   left: 34%;
   margin-right: auto;
   margin: 0px;
@@ -62,7 +76,7 @@
 .animal-img.col-md-2 {
   margin-top: 10px;
   img {
-    height: 100%;
+    width: 92%;
     border-radius: 5px;
   }
 }
@@ -84,19 +98,8 @@
   color: white;
 }
 
-.animal-item-view.well.animated.row {
-  .col-md-1 {
-  }
-}
-
 .animal-item-view.well {
   background-color: #354B5C;
-}
-
-.animal-item-view {
-  .col-md-1, .col-md-2 {
-    margin-top: 22px;
-  }
 }
 
 .animals-index-view {
