@@ -8,12 +8,22 @@
     <% } %>
   </button>
   -->
-  
+
   <button class='btn btn-primary schedule-btn' data-user-id= <%= user.escape('id')%> >
-    Schedule a Stay for an Animal
+    Click to Request a Reservation for your Pet!
   </button>
 <% } else { %>
   <button class='btn btn-primary edit-profile-btn'>
     Edit Profile
   </button>
 <% } %>
+
+<div class='highlight-request-btn animated well slideInRight'>
+  <<< Click here to request a reservation with this fosterer for your pet!
+</div>
+
+<script>
+  setTimeout(function () {
+    $('.highlight-request-btn').toggleClass('slideInRight').toggleClass('fadeOut');
+  }, 3000)
+</script>

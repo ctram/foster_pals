@@ -38,6 +38,12 @@
   box-shadow: 3px 5px 20px black;
 }
 
+.schedule-manager-item-view {
+  .animal-item-view {
+    height: auto;
+  }
+}
+
 .animal-item-hook.well {
   background-color: #ECF0F1;
   width: 60%;

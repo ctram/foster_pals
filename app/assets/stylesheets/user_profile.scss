@@ -8,6 +8,17 @@
   }
 }
 
+.highlight-request-btn {
+  z-index: 1;
+  position: absolute;
+  top: 76%;
+  left: 85%;
+  width: 100%;
+  background-color: rgb(41, 213, 41);
+  color: white;
+  box-shadow: 5px 5px 20px black;
+}
+
 .profile {
   border: 2px solid black;
   width: 500px;
@@ -28,4 +39,10 @@
     margin-bottom: 10px;
     border-radius: 5px;
   }
+}
+
+.schedule-btn {
+  background-color: rgb(41, 213, 41);
+  border-color: rgb(69, 202, 71);
+
 }

@@ -48,14 +48,9 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     var stayId = $btn.data('stay-id');
     var stay = this.stays_as_fosterer.get(stayId);
 
-    // var animalId = stay.get('animal_id');
-    // var animal = FosterPals.Collections.animals.getOrFetch(animalId);
     stay.set({status: 'confirmed', denyOthers: true});
-    // TODO: need to set an animal's fosterer_id when a reservation is made.
-    // animal.set({status: 'fostered', fosterer_id: CURRENT_USER_ID});
 
     stayAttrs = stay.attributes;
-    // animalAttrs = animal.attributes;
 
     // TODO: move ajax calls to backbone save()
     $.ajax('/api/stays/' + stayId, {
@@ -74,12 +69,6 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
         }, 3500);
       }
     });
-
-    // $.ajax('/api/animals/' + animalId, {
-    //   method: 'patch',
-    //   dataType: 'json',
-    //   data: {animal: animalAttrs}
-    // });
   },
 
   denyStay: function (event) {
