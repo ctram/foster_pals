@@ -4,7 +4,6 @@ FosterPals.Views.AnimalItem = Backbone.CompositeView.extend({
     this.stays = options.stays;
 
     this.fosterer = options.fosterer;
-    // FIXME: re-write animal roster page - an animal no longer has just one stay - it can have many stays,  -- but how do you display the information on your animal roster then? should an animal have only one stay at any given time? so a one to many association? a stay has many animals, an animal has only one stay? why would an animal have many stays? it has past, present and future stays. -- list all stays for an animal
 
     this.stay = options.stay;
     this.org = options.org;

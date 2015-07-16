@@ -27,6 +27,7 @@ window.FosterPals = {
   }
 };
 
+// helper functions ////////////////////////////////////////////////////////
 function randomString(length, chars) {
     var mask = '';
     if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
@@ -40,7 +41,7 @@ function randomString(length, chars) {
 
 function capitalize (str) {
   if (str === '') {
-    return ''
+    return '';
   }
   var splitStr = str.split('');
   var firstChar = splitStr.shift();

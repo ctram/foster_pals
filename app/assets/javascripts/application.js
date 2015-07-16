@@ -17,7 +17,6 @@
 //= require jquery_ujs
 //= require jquery-ui/effect-drop
 
-
 //= require moment
 //= require bootstrap-datetimepicker
 //= require underscore
@@ -25,9 +24,6 @@
 //= require foster_pals
 //= require composite_views
 //= require serializeJSON
-
-
-
 
 //= require_tree ../templates
 //= require_tree ./models

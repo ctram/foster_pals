@@ -10,22 +10,25 @@
   }
 }
 
-.animal-reservations {
-  position: relative;
-  left: 178px;
-  top: -117px;
-}
-
-.animal-item-view {
-  height: 271px;
-  .animal-name {
-    margin: 0px;
-    margin-top: 19px;
+// .animal-item-hook {
+  .animal-item-view {
+    position: relative;
+    top: -11px;
+    height: auto;
+    .animal-reservations {
+      position: absolute;
+      left: 17%;
+      top: 31%;
+    }
+    .animal-name {
+      margin: 0px;
+      margin-top: 19px;
+    }
+    .col-md-1, .col-md-2 {
+      margin-top: 22px;
+    }
   }
-  .col-md-1, .col-md-2 {
-    margin-top: 22px;
-  }
-}
+// }
 
 .animal-item-view.well.animated.row {
   .col-md-1 {
@@ -38,12 +41,14 @@
 
 .animal-stats.row {
   display: block;
+  .col-md-1, .col-md-2 {
+    vertical-align: top;
+  }
 }
 
 .stay-attr {
   width: 162px;
 }
-
 
 .animal-roster {
   padding-left: 68px;
@@ -62,16 +67,6 @@
   margin-left: 184px;
 }
 
-.animal-item-hook {
-  .animal-item-view {
-    position: relative;
-    top: -11px;
-    // margin-top: 60px;
-    // margin-left: 39px;
-
-  }
-}
-
 .gallery {
   margin-top: 20px;
 }
@@ -86,9 +81,9 @@
 }
 
 .animal-img.col-md-2 {
-  margin-top: 10px;
+  // margin-top: 10px;
   img {
-    width: 92%;
+    max-width: 145px;
     border-radius: 5px;
   }
 }

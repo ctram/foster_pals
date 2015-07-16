@@ -51,5 +51,4 @@ FosterPals.Models.Animal = Backbone.Model.extend({
     }
     return response;
   }
-
 });

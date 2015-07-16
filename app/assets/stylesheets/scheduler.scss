@@ -1,15 +1,16 @@
-
+.dates-picker-hook {
+  img {
+    max-width: 128px;
+  }
+}
 #check-aval-btn {
   width: 100%;
 }
-
-
 
 #back-to-profile-btn {
   margin-top: 15px;
   padding: 10px;
 }
-
 
 .dates-picker {
   border: 2px solid black;
@@ -27,7 +28,6 @@
   margin-left: 10px;
   height: 30px;
 }
-
 
 .scheduler-errors-hook {
   z-index: 1001;
@@ -49,14 +49,12 @@
   }
 }
 
-
 .animal-selector-item, .chosen-animal {
   padding: 14px;
   img {
     border-radius: 5px;
   }
 }
-
 
 .dates-picker {
   height: auto;

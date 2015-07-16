@@ -19,14 +19,15 @@ FosterPals.Routers.Router = Backbone.Router.extend({
 
   animalRoster: function () {
     currentUserCallback = function (currentUser, response, options) {
-
       var animals = currentUser.animals_as_org();
       var animalRosterView = new FosterPals.Views.AnimalRoster({
         model: this.currentUser,
         collection: animals
       });
       this._swapView(animalRosterView);
+    // TODO: add user's animals into a collection so that you don't need to fetch the animal again for animalShow();
     }.bind(this);
+
 
     this.currentUser.fetch({
       success: currentUserCallback
@@ -38,6 +39,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
       id: id
     });
 
+    // TODO: the currentUser has info of all animals from the get go because user would have landed on the animal_roster page first and at that point all animal data is fetched - so those animals should be added into an collection - then when animalShow() is called, the animal in question can be accessed from the collection instead of requiring a fetch.
     animal.fetch({
       success: function () {
         var animalShowView = new FosterPals.Views.AnimalShow({
@@ -47,7 +49,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
 
       }.bind(this)
     });
-
   },
 
   profile: function () {
@@ -77,16 +78,13 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   userScheduler: function (id) {
-
     if (id === null) {
       id = parseInt(this.currentUser.escape('id'));
     }
     var user = this.users.getOrFetch(id);
 
     currentUserCallback = function () {
-
       var animals = this.currentUser.animals_as_org();
-      
 
       var userSchedulerView = new FosterPals.Views.UserScheduler({
         model: user,

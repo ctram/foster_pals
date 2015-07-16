@@ -2,15 +2,11 @@ FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.user = options.model;
 
-    
-    // TODO: animal roster is broken -
     var addAnimalFormView = new FosterPals.Views.AddAnimalForm({
       model: this.user,
       animals: this.collection
     });
     this.addSubview('.add-animal', addAnimalFormView);
-
-    // TODO: add validation errors to animal add form
 
     var animalsIndexView = new FosterPals.Views.AnimalsIndex({
       model: this.user,
@@ -34,5 +30,4 @@ FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
 
     return this;
   }
-
 });
