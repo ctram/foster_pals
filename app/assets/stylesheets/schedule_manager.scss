@@ -1,49 +1,3 @@
-.rtrn-to-manager {
-  margin-top: -1px;
-}
-
-.stays-header.bold {
-  font-weight: bold;
-}
-
-.scheduled-animals, .denied-animals {
-  .schedule-manager-item-view {
-    // height: 271px;
-  }
-}
-
-.confirmation-btns {
-    margin-top: 10px;
-}
-
-
-.animal-stays {
-  margin-left: 25px;
-}
-
-.res-confirmation.fadeIn {
-  opacity: 1;
-}
-
-.res-confirmation.fadeOut {
-  opacity: 0;
-  animation-duration: 5s;
-}
-
-.schedule-manager-item-view, .animal-item-view.well {
-  width: 98%;
-  border-radius: 10px;
-  background-color: white;
-  margin-top: 16px;
-  box-shadow: 3px 5px 20px black;
-}
-
-.schedule-manager-item-view {
-  .animal-item-view {
-    height: auto;
-  }
-}
-
 .animal-item-hook.well {
   background-color: #ECF0F1;
   width: 60%;
@@ -55,6 +9,38 @@
   margin-top: 13px;
 }
 
+.animal-stays {
+  margin-left: 25px;
+}
+
+.confirmation-btns {
+    margin-top: 10px;
+}
+
+.res-confirmation.fadeIn {
+  opacity: 1;
+}
+
+.res-confirmation.fadeOut {
+  opacity: 0;
+  animation-duration: 5s;
+}
+
+.row.animal-with-res {
+  margin-bottom: 12px;
+}
+
+.rtrn-to-manager {
+  margin-top: -1px;
+}
+
+.schedule-manager-item-view, .animal-item-view.well {
+  width: 98%;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 16px;
+  box-shadow: 3px 5px 20px black;
+}
 .schedule-manager-item-view {
   padding-top: 20px;
   padding-top: 20px;
@@ -70,6 +56,24 @@
     margin-top: 28px;
   }
 }
+
+.schedule-manager-item-view {
+  .animal-item-view {
+    height: auto;
+  }
+}
+
+.scheduled-animals, .denied-animals {
+  .schedule-manager-item-view {
+    // height: 271px;
+  }
+}
+
+.stays-header.bold {
+  font-weight: bold;
+}
+
+
 
 ul {
   .animal-item {

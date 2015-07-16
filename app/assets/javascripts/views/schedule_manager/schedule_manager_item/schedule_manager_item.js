@@ -23,7 +23,6 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
     this.listenTo(this.stay, 'sync', this.render);
   },
 
-
   template: JST['schedule_manager/schedule_manager_item/schedule_manager_item'],
 
   className: 'schedule-manager-item-view animated fadeInRight',
