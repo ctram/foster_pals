@@ -8,7 +8,6 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     if (options.search_location) {
       this.pan(search_location);
     }
-
   },
 
   template: JST['search_results/map/map'],
@@ -38,7 +37,6 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   },
 
   initMap: function () {
-
     var mapOptions = {
       center: { lat: 37.7833, lng: -95.4167 },
       zoom: 5
@@ -52,7 +50,6 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   },
 
   pan: function (search_location) {
-
     // TODO: when map re-renders, it should set an appropriate zoom   to cover the current "subject", right now it retains the current zoom level.
     $.ajax('/api/search/location-to-geocode', {
       data: {search_location: search_location},
@@ -109,11 +106,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   },
 
   showMarkerInfo: function (event, marker) {
-    // This event will be triggered when a marker is clicked. Right now it
-    // simply opens an info window with the title of the marker. However, you
-    // could get fancier if you wanted (maybe use a template for the content of
-    // the window?)
-
+    // TODO: have a div of information show up when the marker is clicked on, perhaps a mini profile of the user clicked on.
     var infoWindow = new google.maps.InfoWindow({
       content: marker.title
     });

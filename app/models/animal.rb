@@ -38,20 +38,6 @@ class Animal < ActiveRecord::Base
       stock_image_url
     else
       images.first.thumb_url
-      # debugger
-      # url = images.first.thumb_url
-      # url_split = url.split(',')
-      # url_front = url_split[0]
-      #
-      # image_height = url_split[1]
-      # image_width = url_split[2].split('/')[0]
-      #
-      # url_back = url_split[2].split('/').drop(1).join('/')
-      #
-      # image_width = "w_120"
-      # image_height = "h_120"
-      #
-      # completed_url = url_front + ',' + image_height + ',' + image_width + '/' + url_back
     end
   end
 

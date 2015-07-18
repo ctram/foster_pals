@@ -12,7 +12,7 @@ class Api::StaysController < ApplicationController
   end
 
   def create
-    # 6/16/2015, 8:54:41 AM
+    # 6/16/2015, 8:54:41 AM - incoming from params
     check_in_date_str = params[:stay][:check_in_date]
     check_out_date_str = params[:stay][:check_out_date]
 
@@ -25,8 +25,6 @@ class Api::StaysController < ApplicationController
     check_out_month = check_out_date_str[0]
     check_out_day = check_out_date_str[1]
     check_out_year = check_out_date_str[2].split(',')[0]
-
-    Date.strptime('2001-02-03', '%Y-%m-%d')
 
     check_in_date = Date.strptime(check_in_year + '-' + check_in_month + '-' + check_in_month, '%Y-%m-%d')
     check_out_date = Date.strptime(check_out_year + '-' + check_out_month + '-' + check_out_month, '%Y-%m-%d')
@@ -41,20 +39,11 @@ class Api::StaysController < ApplicationController
     @stay = Stay.create(stay_params)
 
     if @stay.save
-      # animal = @stay.animal
-      # animal.status = 'fostered'
-      # animal.save
       params[:stay][:reservations].each do |k, res|
         animal_id =  res[:animal_id]
         Reservation.create(animal_id: animal_id, stay_id: @stay.id)
       end
 
-      # Don't need this? not set to any variable.
-      current_user.overlapping_pending_stays @stay
-      ##########################
-      # @animal = Animal.find animal_id
-      # render 'api/animals/show'
-      # render :show
       render :show
     else
       render json: @stay.errors.full_messages, status: 422
