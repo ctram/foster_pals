@@ -130,7 +130,6 @@ module ApplicationHelper
   end
 
   def set_postal_address user, hsh_address
-    street_address
     street_number = hsh_address["street_number"]
     route = hsh_address["route"]
     city = hsh_address["locality"]
