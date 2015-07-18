@@ -7,13 +7,13 @@ end
 
 if @animal.fosterer
   json.fosterer do
-    json.extract! @animal.fosterer, :first_name, :last_name, :email, :street_address, :city, :state, :zip_code, :about_info, :lat, :long, :id
+    json.extract! @animal.fosterer, :first_name, :last_name, :email, :street_address_white_spaced, :city, :state, :zip_code, :about_info, :lat, :long, :id
   end
 end
 
 if @animal.org
   json.org do
-    json.extract! @animal.org, :org_name, :first_name, :last_name, :email, :street_address, :city, :state, :zip_code, :about_info, :lat, :long, :id
+    json.extract! @animal.org, :org_name, :first_name, :last_name, :email, :street_address_white_spaced, :city, :state, :zip_code, :about_info, :lat, :long, :id
   end
 end
 

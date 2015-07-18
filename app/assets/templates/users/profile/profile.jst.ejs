@@ -35,7 +35,8 @@
   </label>
   <div class='address'>
     <div class='street-address'>
-      <%= user.escape('street_address') %>
+      <% var street%>
+      <%= user.escape('street_address_white_spaced') %>
     </div>
 
     <div class='city-state-zip'>
@@ -102,7 +103,7 @@
   						Street
   					</label>
   					<div class='input-group form-group col-md-4'>
-  						<input type='text' class='form-control street-address' name='user[street_address]' value=<%= user.escape('street_address')%>>
+  						<input type='text' class='form-control street-address' name='user[street_address]' value=<%= user.escape('street_address_white_spaced')%>>
   					</div>
   				</div>
   			</div>
