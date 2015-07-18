@@ -40,16 +40,15 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     var animalIds = [];
 
     if (selectedAnimals.length === 0) {
-      var errors = ['Must pick at least one animal'];
-      var errorsView = new FosterPals.Views.ValidationErrors({
-        manualErrors: errors,
-        view: 'dates-picker'
-      });
-      this.addSubview('.dates-picker', errorsView);
+      if ($('.no-animals-selected-err').length > 0) {
+        return;
+      }
+      $err = $('<div>').addClass('no-animals-selected-err animated slideInRight');
+      $err.text('You must choose at least one pet to make a reservation for!');
+      $('#check-aval-btn').append($err);
 
       return;
     }
-
 
     for (var i = 0; i < selectedAnimals.length; i++) {
       $item = $(selectedAnimals[i]);
