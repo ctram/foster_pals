@@ -1,8 +1,10 @@
-.dates-picker-hook {
+.animal-selector-item, .chosen-animal {
+  padding: 14px;
   img {
-    max-width: 128px;
+    border-radius: 5px;
   }
 }
+
 
 #back-to-profile-btn {
   margin-top: 15px;
@@ -23,16 +25,31 @@
 
 }
 
+.dates-picker-hook {
+  img {
+    max-width: 128px;
+  }
+}
+
 .dates-picker {
   border: 2px solid black;
   width: 500px;
-  height: 900px;
+  height: auto;
   .container {
     width: 100%;
     .col-sm-6 {
       width: 100%;
     }
   }
+  .panel {
+    border-color: #A33D3D;
+  }
+}
+
+.dates-picker-errors {
+  position: relative;
+  top: 0%;
+  left: 0%;
 }
 
 .prompt-deny {
@@ -60,22 +77,6 @@
   }
 }
 
-.animal-selector-item, .chosen-animal {
-  padding: 14px;
-  img {
-    border-radius: 5px;
-  }
-}
-
-.dates-picker {
-  height: auto;
-  .panel {
-    border-color: #A33D3D;
-  }
-}
-
-.dates-picker-errors {
-  position: relative;
-  top: 0%;
-  left: 0%;
+.to-animal-roster-btn {
+  background-color: #F11F25;
 }
