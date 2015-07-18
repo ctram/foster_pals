@@ -1,5 +1,10 @@
 require 'net/http'
 require_relative '../app/controllers/application_controller'
+
+require_relative '../app/helpers/animals_helper'
+
+test
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
@@ -130,10 +135,10 @@ def set_postal_address user, hsh_address
     user.state = 'CA'
     user.zip_code = '94127'
   else
-    user.street_address += hsh_address["route"]
-    user.city = hsh_address["locality"]
-    user.state = hsh_address["administrative_area_level_1"]
-    user.zip_code = hsh_address["postal_code"]
+    user.street_address = street_number + ' ' +  route
+    user.city = city
+    user.state = state
+    user.zip_code = zip_code
   end
   user.save
 end

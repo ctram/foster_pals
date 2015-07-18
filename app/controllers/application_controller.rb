@@ -149,6 +149,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_postal_address user, hsh_address
+    debugger
     street_number = hsh_address["street_number"]
     route = hsh_address["route"]
     city = hsh_address["locality"]

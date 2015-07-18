@@ -130,24 +130,24 @@ class User < ActiveRecord::Base
     self.session_token
   end
 
-  def street_address_white_spaced
-    nums = %w(1 2 3 4 5 6 7 8 9 0)
-    chars = street_address.split('')
-    chars_with_spaces = []
-    chars.each_with_index do |char, i|
-      if char == ' '
-        next
-      end
-
-      chars_with_spaces << char
-      if i + 1 < chars.length
-        if chars[i + 1].upcase == chars[i + 1] and char.downcase == char and !nums.include? char
-          chars_with_spaces << ' '
-        end
-      end
-    end
-    chars_with_spaces.join
-  end
+  # def street_address_white_spaced
+  #   nums = %w(1 2 3 4 5 6 7 8 9 0)
+  #   chars = street_address.split('')
+  #   chars_with_spaces = []
+  #   chars.each_with_index do |char, i|
+  #     if char == ' '
+  #       next
+  #     end
+  #
+  #     chars_with_spaces << char
+  #     if i + 1 < chars.length
+  #       if chars[i + 1].upcase == chars[i + 1] and char.downcase == char and !nums.include? char
+  #         chars_with_spaces << ' '
+  #       end
+  #     end
+  #   end
+  #   chars_with_spaces.join
+  # end
 
 
   def valid_password?(password)
