@@ -1,75 +1,16 @@
-.add-animal-form-view {
-  .radio-btns {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: auto;
-    .radio-btn {
-      display: inline;
-      margin: 5px;
-    }
+.animal-item-view.well {
+  background-color: #354B5C;
+}
+
+.animals-index-view {
+  .container {
+    width: 100%;
   }
 }
 
-// .animal-item-hook {
-  .animal-item-view {
-    position: relative;
-    top: -11px;
-    min-height: 223px;
-    height: auto;
-    .animal-reservations {
-      position: absolute;
-      left: 17%;
-      top: 41%;
-    }
-    .animal-name {
-      margin: 0px;
-      margin-top: 19px;
-    }
-    .col-md-1, .col-md-2 {
-      margin-top: 22px;
-    }
-  }
-// }
-
-.animal-item-view.well.animated.row {
-  .col-md-1 {
-  }
-}
-
-.animal-item-view.row:hover {
-  cursor: pointer;
-}
-
-.animal-stats.row {
-  display: block;
-  .col-md-1, .col-md-2 {
-    vertical-align: top;
-  }
-}
-
-.stay-attr {
-  width: 162px;
-}
-
-.animal-roster {
-  padding-left: 68px;
-  h3 {
-    margin-top: 75px;
-  }
-}
-
-.add-image-btn {
-  margin: 5px;
-
-}
-
-.add-animal-btn {
-  margin-top: 15px;
-  margin-left: 184px;
-}
-
-.gallery {
-  margin-top: 20px;
+.animals-index-view.well {
+  max-width: inherit;
+  margin: auto;
 }
 
 .animal-item-stays.well {
@@ -98,6 +39,85 @@
   }
 }
 
+.animal-roster {
+  padding-left: 68px;
+  .animal-item-view {
+    // min-height: 278px;
+  }
+  h3 {
+    margin-top: 75px;
+  }
+}
+
+.add-image-btn {
+  margin: 5px;
+
+}
+
+.add-animal-btn {
+  margin-top: 15px;
+  margin-left: 184px;
+}
+
+.animal-item-view {
+  position: relative;
+  top: -11px;
+  min-height: 223px;
+  height: auto;
+  .animal-reservations {
+    position: absolute;
+    left: 17%;
+    top: 32%;
+  }
+  .animal-name {
+    margin: 0px;
+    margin-top: 19px;
+  }
+  .col-md-1, .col-md-2 {
+    margin-top: 22px;
+  }
+}
+
+.animal-item-view.well.animated.row {
+  .col-md-1 {
+  }
+}
+
+.animal-item-view.row:hover {
+  cursor: pointer;
+}
+
+.animal-stats.row {
+  display: block;
+  min-height: 236px;
+  .col-md-1, .col-md-2 {
+    vertical-align: top;
+  }
+}
+
+.add-animal-form-view {
+  .radio-btns {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: auto;
+    .radio-btn {
+      display: inline;
+      margin: 5px;
+    }
+  }
+}
+
+div#add-animal {
+  margin: auto;
+}
+
+input.weight-input {
+  width: 180px;
+}
+
+.gallery {
+  margin-top: 20px;
+}
 .gallery-help-msg {
   z-index: 1001;
   position: absolute;
@@ -106,17 +126,6 @@
   color: white;
 }
 
-.animal-item-view.well {
-  background-color: #354B5C;
-}
-
-.animals-index-view {
-  .container {
-    width: 100%;
-  }
-}
-
-.animals-index-view.well {
-  max-width: inherit;
-  margin: auto;
+.stay-attr {
+  width: 162px;
 }
