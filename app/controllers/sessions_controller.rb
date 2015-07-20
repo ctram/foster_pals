@@ -74,7 +74,7 @@ class SessionsController < ApplicationController
       other_user = (user == user1 ? user2 : user1)
 
       # Set animals with requests for fostering.
-      2.times do
+      5.times do
         animal = Fabricate(
           :animal,
           org_id: other_user.id,
@@ -104,7 +104,7 @@ class SessionsController < ApplicationController
       end
 
       # Set animals in roster.
-      3.times do
+      5.times do
         animal = Fabricate(
           :animal,
           org_id: user.id,
