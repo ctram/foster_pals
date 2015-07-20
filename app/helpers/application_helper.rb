@@ -1,3 +1,5 @@
+# TODO: move this into concerns?
+
 module ApplicationHelper
   def ensure_image_url_not_broken url
     error_msg_str = "Access Denied"
@@ -176,6 +178,4 @@ module ApplicationHelper
     end
     user.save
   end
-
-
 end

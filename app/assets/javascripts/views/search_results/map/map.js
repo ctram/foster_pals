@@ -33,6 +33,11 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
       view.showMarkerInfo(event, marker);
     });
 
+    // TODO: show a mini profile preview when the mouse hovers over a marker.
+    google.maps.event.addListener(marker, 'hover', function (event) {
+      view.showMarkerInfo(event, marker);
+    });
+
     this._markers[user.id] = marker;
   },
 
@@ -81,7 +86,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   },
 
   reDrawMap: function () {
-    // TODO: have the current user's marker look special.
+    // TODO: have the current user's marker look unique.
     bounds = this._map.getBounds();
     NECoords = bounds.getNorthEast();
     SWCoords = bounds.getSouthWest();

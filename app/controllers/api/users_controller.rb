@@ -40,7 +40,7 @@ class Api::UsersController < ApplicationController
   end
 
 
-    # TODO: add search feature - have the backbone query hit the users#index and return only the users that match the query
+  # TODO: add search feature - have the backbone query hit the users#index and return only the users that match the query
   def index
     if params[:viewport_bounds]
       viewport_bounds = params[:viewport_bounds]
@@ -65,7 +65,7 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    
+
     if @user.update(user_params)
       render :show
     else
@@ -73,7 +73,7 @@ class Api::UsersController < ApplicationController
     end
   end
 
-# TODO: move update_about_info into update() -- redundant
+# TODO: move update_about_info into #update() -- redundant
   def update_about_info
     user_id = params[:user][:id]
     about_info = params[:user][:about_info]
@@ -83,6 +83,7 @@ class Api::UsersController < ApplicationController
     render :show
   end
 
+  # XXX: don't think this is used anymore - remove?
   def animal_roster
     @user = User.find(params[:id])
   end

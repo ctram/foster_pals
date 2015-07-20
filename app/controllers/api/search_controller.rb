@@ -2,7 +2,6 @@ class Api::SearchController < ApplicationController
   def location_to_geocode
     search_location = params[:search_location]
 
-
     api_key = ENV['GOOGLE_MAPS_API_KEY']
     gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?address="
 

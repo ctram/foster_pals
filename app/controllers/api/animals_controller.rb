@@ -3,13 +3,13 @@ class Api::AnimalsController < ApplicationController
 
   def create
     @animal = Animal.create(animal_params)
-    
+
     if !@animal.save
       render json: @animal.errors.full_messages, status: 422
       return
     end
 
-# "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
+# "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png" cartoon dog
     animal_images = Image.where(image_set_id: @animal.image_set_id)
     if animal_images.empty?
       Image.create(
@@ -59,5 +59,4 @@ class Api::AnimalsController < ApplicationController
       :image_set_id
     )
   end
-
 end

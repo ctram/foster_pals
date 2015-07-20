@@ -12,7 +12,7 @@ class Api::StaysController < ApplicationController
   end
 
   def create
-    # 6/16/2015, 8:54:41 AM - incoming from params
+    # 6/16/2015, 8:54:41 AM - date incoming from params
     check_in_date_str = params[:stay][:check_in_date]
     check_out_date_str = params[:stay][:check_out_date]
 
@@ -34,7 +34,6 @@ class Api::StaysController < ApplicationController
 
     animal_id = params[:stay][:animal_id]
     params[:stay].delete :animal_id
-
 
     @stay = Stay.create(stay_params)
 
