@@ -34,7 +34,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     });
 
     // TODO: show a mini profile preview when the mouse hovers over a marker.
-    google.maps.event.addListener(marker, 'hover', function (event) {
+    google.maps.event.addListener(marker, 'mouseover', function (event) {
       view.showMarkerInfo(event, marker);
     });
 
