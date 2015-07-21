@@ -29,23 +29,19 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
       title: user.get('name')
     });
 
-    // google.maps.event.addListener(marker, 'click', function (event) {
-    //   view.showMarkerInfo(event, marker);
-    // });
-
     // TODO: show a mini profile preview when the mouse hovers over a marker.
     google.maps.event.addListener(marker, 'mouseover', function (event) {
-      view.addProfilePreview(event, marker, user.id);
+      view.addProfilePreview(event, user.id);
     });
 
-    // google.maps.event.addListener(marker, 'mouseout', function (event) {
-    //   view.removeProfilePreview(event, marker);
-    // });
+    google.maps.event.addListener(marker, 'mouseout', function (event) {
+      view.removeProfilePreview(event, user.id);
+    });
 
     this._markers[user.id] = marker;
   },
 
-  addProfilePreview: function (evt, marker, userId) {
+  addProfilePreview: function (evt, userId) {
     FosterPals.Events.trigger('mouseOverMarker', userId);
   },
 
@@ -118,9 +114,12 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     delete this._markers[user.id];
   },
 
+  removeProfilePreview: function (evt, userId) {
+    FosterPals.Events.trigger('mouseOutMarker', userId);
+  },
+
   render: function () {
     var content = this.template();
-    debugger
     // var content = this.template();
     // this.$el.html(content);
     this.attachSubviews();

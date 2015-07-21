@@ -9,7 +9,7 @@ FosterPals.Views.ProfilePreview = Backbone.CompositeView.extend({
   events: {
   },
 
-  className: 'profile-preview-view',
+  className: 'profile-preview-view animated fadeIn',
 
   render: function () {
     var content = this.template({

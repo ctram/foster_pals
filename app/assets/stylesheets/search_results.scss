@@ -60,7 +60,17 @@
 }
 
 .profile-preview-view {
-
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  position: absolute;
+  z-index: 1;
+  min-height: 85%;
+  min-width: 80%;
+  img {
+    min-width: 40%;
+    max-height: 70%;
+    border-radius: 10px;
+  }
 }
 
 .user-item {

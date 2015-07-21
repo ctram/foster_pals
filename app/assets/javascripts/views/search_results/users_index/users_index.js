@@ -3,6 +3,8 @@ FosterPals.Views.UsersIndex = Backbone.CompositeView.extend({
     this.listenTo(this.collection, 'add remove sync', this.render);
     $(window).on('resize', this.setUsersHeight.bind(this));
     this.listenTo(FosterPals.Events, 'mouseOverMarker', this.showProfilePreview);
+    this.listenTo(FosterPals.Events, 'mouseOutMarker', this.removeProfilePreview);
+    this.profilePreviews = [];
   },
   // Initialization
   className: 'users-index-view',
@@ -13,6 +15,14 @@ FosterPals.Views.UsersIndex = Backbone.CompositeView.extend({
     // Removes the listener for dynamically sizing the users pane.
     $(window).unbind("resize.app");
     Backbone.View.prototype.remove.call(this);
+  },
+
+  removeProfilePreview: function (userId) {
+    var profilePreviewView = this.profilePreviews.shift();
+    profilePreviewView.$el.removeClass('fadeIn').addClass('fadeOut');
+    setTimeout(function () {
+      this.removeSubview('.profile-preview-hook', profilePreviewView);
+    }.bind(this), 3000);
   },
 
   render: function () {
@@ -36,6 +46,7 @@ FosterPals.Views.UsersIndex = Backbone.CompositeView.extend({
     var profilePreviewView = new FosterPals.Views.ProfilePreview({
       model: user
     });
+    this.profilePreviews.push(profilePreviewView);
     this.addSubview('.profile-preview-hook', profilePreviewView);
   }
 
