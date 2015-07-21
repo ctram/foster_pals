@@ -9,6 +9,10 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     this.usersIndex = new FosterPals.Views.UsersIndex({
       collection: this.collection
     });
+
+    this.listenTo(FosterPals.Events, 'mouseOverMarker', this.showProfilePreview);
+    this.listenTo(FosterPals.Events, 'mouseOutMarker', this.removeProfilePreview);
+    this.profilePreviews = [];
   },
 
   template: JST['search_results/search_results'],
@@ -51,6 +55,23 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
       this.mapView.initMap();
     }.bind(this), 0);
     return this;
+  },
+
+  removeProfilePreview: function (userId) {
+    var profilePreviewView = this.profilePreviews.shift();
+    profilePreviewView.$el.removeClass('fadeIn').addClass('fadeOut');
+    setTimeout(function () {
+      this.removeSubview('.profile-preview-hook', profilePreviewView);
+    }.bind(this), 3000);
+  },
+
+  showProfilePreview: function (userId) {
+    var user = FosterPals.Collections.users.getOrFetch(userId);
+    var profilePreviewView = new FosterPals.Views.ProfilePreview({
+      model: user
+    });
+    this.profilePreviews.push(profilePreviewView);
+    this.addSubview('.profile-preview-hook', profilePreviewView);
   },
 
   startBounceAndHightlight: function (event) {

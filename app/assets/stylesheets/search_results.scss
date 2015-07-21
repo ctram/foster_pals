@@ -35,7 +35,6 @@
 
 }
 
-
 .user-items{
   float: left;
   width: 50%;
@@ -59,17 +58,32 @@
   border-top: 0px;
 }
 
-.profile-preview-view {
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
+.profile-preview-hook {
   position: absolute;
-  z-index: 1;
-  min-height: 85%;
-  min-width: 80%;
+  top: 85px;
+}
+
+.profile-preview-view {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  border: 2px solid black;
+  position: fixed;
+  z-index: 100;
+  min-width: 500px;
+  min-height: 500px;
+  left: 50px;
   img {
-    min-width: 40%;
-    max-height: 70%;
+    min-width: 300px;
     border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .stats {
+    font-size: 17pt;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
   }
 }
 
@@ -86,5 +100,4 @@
   float: left;
   height: 100%;
   width: 100%;
-
 }
