@@ -9,6 +9,7 @@
   padding: inherit;
 }
 
+
 .no-results-err {
   font-size: 30px;
   position: absolute;
@@ -84,6 +85,20 @@
     color: white;
     text-align: center;
     margin-top: 10px;
+  }
+}
+
+.search-results-view {
+  .modal-slacker {
+    .modal-header {
+      margin-bottom: 0px;
+    }
+    .modal-body {
+      margin-top: 0px;
+    }
+    p:last-child {
+      margin-top: 33px;
+    }
   }
 }
 

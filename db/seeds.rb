@@ -19,7 +19,6 @@ carl = Fabricate(
   role: 'org',
   lat: 37.733795,
   long: -122.446747
-
 )
 
 hsh_address = helper.generate_postal_address carl.lat, carl.long
