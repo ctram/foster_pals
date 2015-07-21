@@ -29,16 +29,24 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
       title: user.get('name')
     });
 
-    google.maps.event.addListener(marker, 'click', function (event) {
-      view.showMarkerInfo(event, marker);
-    });
+    // google.maps.event.addListener(marker, 'click', function (event) {
+    //   view.showMarkerInfo(event, marker);
+    // });
 
     // TODO: show a mini profile preview when the mouse hovers over a marker.
     google.maps.event.addListener(marker, 'mouseover', function (event) {
-      view.showMarkerInfo(event, marker);
+      view.addProfilePreview(event, marker, user.id);
     });
 
+    // google.maps.event.addListener(marker, 'mouseout', function (event) {
+    //   view.removeProfilePreview(event, marker);
+    // });
+
     this._markers[user.id] = marker;
+  },
+
+  addProfilePreview: function (evt, marker, userId) {
+    FosterPals.Events.trigger('mouseOverMarker', userId);
   },
 
   initMap: function () {
@@ -109,6 +117,16 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     marker.setMap(null);
     delete this._markers[user.id];
   },
+
+  render: function () {
+    var content = this.template();
+    debugger
+    // var content = this.template();
+    // this.$el.html(content);
+    this.attachSubviews();
+    return this;
+  },
+
 
   showMarkerInfo: function (event, marker) {
     // TODO: have a div of information show up when the marker is clicked on, perhaps a mini profile of the user clicked on.

@@ -1,7 +1,6 @@
 FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
 
   initialize: function (options) {
-
     this.mapView = new FosterPals.Views.Map({
       collection: this.collection,
       search_location: options.search_location
@@ -20,7 +19,8 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     'mouseenter div.user-item': 'startBounceAndHightlight',
     'mouseleave div.user-item': 'stopBounceAndHighlight',
     'click div.go-to-user-profile': 'toUserShow',
-    'click div.user-item': 'panToListing'
+    'click div.user-item': 'panToListing',
+
     // TODO: implement showing of the user's info when hovering over the user item in the users index
   },
 
@@ -29,17 +29,6 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     $resultItem.addClass('active-user-item');
   },
 
-  render: function () {
-    //  TODO: insert into the template a script to populate map with markers of where fosterers and orgs are.
-    var content = this.template();
-    this.$el.html(content);
-    this.$('.user-items').html(this.usersIndex.render().$el);
-    this.$('.map-hook').html(this.mapView.$el);
-    setTimeout(function () {
-      this.mapView.initMap();
-    }.bind(this), 0);
-    return this;
-  },
 
   panToListing: function (event) {
     var userId = $(event.currentTarget).data('user-id');
@@ -52,7 +41,18 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     this.mapView.remove();
     this.usersIndex.remove();
   },
-    // Event handlers
+
+  render: function () {
+    var content = this.template();
+    this.$el.html(content);
+    this.$('.user-items').html(this.usersIndex.render().$el);
+    this.$('.map-hook').html(this.mapView.$el);
+    setTimeout(function () {
+      this.mapView.initMap();
+    }.bind(this), 0);
+    return this;
+  },
+
   startBounceAndHightlight: function (event) {
     this.highlightUserItem(event);
     var userId = $(event.currentTarget).data('user-id');
