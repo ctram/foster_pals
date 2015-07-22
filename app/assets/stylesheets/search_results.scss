@@ -7,6 +7,13 @@ a.btn.btn-default.modal-off {
   top: 54px;
 }
 
+.explain {
+  position: absolute;
+  border-radius: 10px;
+  background-color: grey;
+  z-index: 100; 
+}
+
 .go-to-user-profile {
   display: inline-block;
   float: right;

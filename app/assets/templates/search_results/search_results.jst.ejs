@@ -1,10 +1,14 @@
-<div class='explain-my-pets'>
-	
+<div class='explain explain-my-pets animated slideInTop well'>
+	Check on the status of requests you've made for a FosterPal to foster your pet. Also add more pets to your roster.
 </div>
 
-<div class='explain-reservations'></div>
+<div class='explain explain-reservations animated slideInTop well'>
+	Check on reservation requests made by other FosterPals, requesting you to foster their pets. Confirm or deny these requests.
+</div>
 
-<div class='explain-search-results-profiles'></div>
+<div class='explain explain-search-results-profiles animated slideInLeft well'>
+	Go to a FosterPal's profile page to request a reservation for your FosterPal to foster your animals.
+</div>
 
 
 
@@ -54,6 +58,11 @@
 <!-- END MODAL =========================================================== -->
 <script>
   $(function () {
+		// TODO: write up tour maps page.
+		var tour = function tour () {
+
+		}
+
 		if (FosterPals.mapFirstVisit) {
 	    $('.modal').modal();
 
