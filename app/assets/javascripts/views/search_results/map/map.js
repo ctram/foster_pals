@@ -95,11 +95,11 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     NECoords = bounds.getNorthEast();
     SWCoords = bounds.getSouthWest();
 
-    upperLong = NECoords.F;
-    lowerLong = SWCoords.F;
+    upperLong = NECoords.K;
+    lowerLong = SWCoords.K;
 
-    upperLat = NECoords.A;
-    lowerLat = SWCoords.A;
+    upperLat = NECoords.G;
+    lowerLat = SWCoords.G;
 
     viewport_bounds = {lat: [lowerLat, upperLat], long: [lowerLong, upperLong]};
 
