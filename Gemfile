@@ -5,7 +5,7 @@ gem 'backbone-on-rails'
 gem 'haml'
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
-gem 'figaro'
+gem 'figaro' # prevent environment access keys from getting pushed to git
 gem 'jquery-ui-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -42,7 +42,7 @@ gem 'faker'
 gem 'fabrication'
 
 group :development, :test do
-  gem 'factory_girl_rails'
+  # gem 'factory_girl_rails' # NOTE: pretty sure this isn't used, remove and test for break; using fabrication instead.
 
   gem 'better_errors'
   gem 'binding_of_caller'
