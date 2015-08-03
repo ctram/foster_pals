@@ -73,11 +73,6 @@ GEM
     erubis (2.7.0)
     execjs (2.5.2)
     fabrication (2.13.2)
-    factory_girl (4.5.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.5.0)
-      factory_girl (~> 4.5.0)
-      railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
     figaro (1.1.1)
@@ -184,7 +179,6 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   fabrication
-  factory_girl_rails
   faker
   figaro
   haml

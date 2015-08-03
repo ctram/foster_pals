@@ -39,8 +39,6 @@ class Api::UsersController < ApplicationController
     render :show
   end
 
-
-  # TODO: add search feature - have the backbone query hit the users#index and return only the users that match the query
   def index
     if params[:viewport_bounds]
       viewport_bounds = params[:viewport_bounds]
