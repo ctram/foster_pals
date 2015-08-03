@@ -7,7 +7,11 @@
 </div>
 
 <div class='explain explain-reservations animated slideInTop well hidden'>
-	Check on reservation requests made by other FosterPals, requesting you to foster their pets. Confirm or deny these requests.
+	Check on reservation requests made by other FosterPals, requesting you to foster their pets.
+	<br>
+	Confirm or deny these requests.
+	<br>
+	<b>Click for next tip.</b>
 </div>
 
 <!--
@@ -66,12 +70,20 @@
 		// TODO: write up tour maps page.
 		var tour = function tour () {
 			// start of tour, div explaining my pets is shown
+			$previousLink = $('#animal-roster-link');
+			$previousLink.addClass('nav-link-pop')
+
+			// TODO: set up a function that adds and removes divs and highlights link, iterating through an array of divs and links,instead of writing individual functions for each click;
 
 			// first click, remove explanation of my-pets, slide in explanation of reservations
 			$('.explain-my-pets').on('click', function (event) {
-				$previous = $(event.currentTarget);
-				$previous.removeClass('slideInLeft').addClass('fadeOut');
-				$next = $('.explain-reservations').removeClass('hidden').addClass('slideInRight');
+				$previousLink.removeClass('nav-link-pop');
+				$previousExplanation = $(event.currentTarget);
+				$previousExplanation.removeClass('slideInLeft').addClass('fadeOut');
+				setTimeout(function () {
+					$previousExplanation.remove();
+				}, 2000);
+				$nextExplanation = $('.explain-reservations').removeClass('hidden').addClass('slideInRight');
 			});
 
 			// TODO: second click.. remove explanation of reservations; slide in explanation of user profile page.

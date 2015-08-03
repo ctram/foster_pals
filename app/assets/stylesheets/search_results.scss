@@ -19,10 +19,20 @@ a.btn.btn-default.modal-off {
   right: 162px;
 }
 
+.explain-reservations {
+  top: -85px;
+  right: 306px;
+}
+
 .go-to-user-profile {
   display: inline-block;
   float: right;
   padding: inherit;
+}
+
+.nav-link-pop {
+  box-shadow: 0 1px 10px black;
+  transition-duration: 2s;
 }
 
 .no-results-err {
