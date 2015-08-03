@@ -11,7 +11,12 @@ a.btn.btn-default.modal-off {
   position: absolute;
   border-radius: 10px;
   background-color: grey;
-  z-index: 100; 
+  z-index: 1001;
+}
+
+.explain-my-pets {
+  top: -85px;
+  right: 162px;
 }
 
 .go-to-user-profile {
