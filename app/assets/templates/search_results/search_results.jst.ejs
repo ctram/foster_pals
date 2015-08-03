@@ -65,11 +65,16 @@
   $(function () {
 		// TODO: write up tour maps page.
 		var tour = function tour () {
+			// start of tour, div explaining my pets is shown
+
+			// first click, remove explanation of my-pets, slide in explanation of reservations
 			$('.explain-my-pets').on('click', function (event) {
 				$previous = $(event.currentTarget);
 				$previous.removeClass('slideInLeft').addClass('fadeOut');
 				$next = $('.explain-reservations').removeClass('hidden').addClass('slideInRight');
 			});
+
+			// TODO: second click.. remove explanation of reservations; slide in explanation of user profile page.
 
 		}
 
