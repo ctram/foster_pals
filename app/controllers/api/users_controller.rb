@@ -40,7 +40,6 @@ class Api::UsersController < ApplicationController
   end
 
   def index
-
     if params[:viewport_bounds]
       viewport_bounds = params[:viewport_bounds]
 
