@@ -9,19 +9,21 @@ a.btn.btn-default.modal-off {
 
 .explain {
   position: absolute;
-  border-radius: 10px;
-  background-color: grey;
+  border-radius: 3px;
+  background-color: #E0DC46;
+  box-shadow: -12px 15px 36px black;
   z-index: 1001;
+  box-shadow: 0
 }
 
 .explain-my-pets {
   top: -85px;
-  right: 162px;
+  right: 175px;
 }
 
 .explain-reservations {
   top: -85px;
-  right: 306px;
+  right: 337px;;
 }
 
 .go-to-user-profile {

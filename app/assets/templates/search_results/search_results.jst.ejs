@@ -1,4 +1,4 @@
-<div class='explain explain-my-pets animated slideInLeft well'>
+<div class='explain explain-my-pets animated well slideInLeft'>
 	Check status of your requests to foster your pet.
 	<br>
 	Add more pets to your roster.
@@ -6,7 +6,7 @@
 	<b>Click for next tip.</b>
 </div>
 
-<div class='explain explain-reservations animated slideInTop well hidden'>
+<div class='explain explain-reservations animated hidden well'>
 	Check on reservation requests made by other FosterPals, requesting you to foster their pets.
 	<br>
 	Confirm or deny these requests.
@@ -14,11 +14,11 @@
 	<b>Click for next tip.</b>
 </div>
 
-<!--
-<div class='explain explain-search-results-profiles animated slideInLeft well'>
+<div class='explain explain-search-results-profiles animated hidden well'>
 	Go to a FosterPal's profile page to request a reservation for your FosterPal to foster your animals.
+	<br>
+	<b>Click to exit tips.</b>
 </div>
--->
 
 
 <div class='profile-preview-hook'></div>
@@ -79,6 +79,33 @@
 				$('#schedule-manager-link'),
 				$('.go-to-user-profile').first()
 			];
+
+			var clickCounter = 1;
+			var $currentExplanation;
+			var $previousExplanation = explanationDivs[0];
+			var $currentLink;
+			var $previousLink = highlightedLinks[0];
+			$previousLink.addClass('nav-link-pop');
+
+			$('.explain').on('click', function (event) {
+				if (clickCounter < 3) {
+					$currentExplanation = explanationDivs[clickCounter];
+					$currentLink = highlightedLinks[clickCounter];
+					$currentExplanation.removeClass('hidden').addClass('slideInLeft');
+					$currentLink.addClass('nav-link-pop');
+				}
+				if ($previousExplanation !== undefined) {
+					$previousExplanation.removeClass('slideInLeft').addClass('fadeOutDown ');
+					$previousLink.removeClass('nav-link-pop');
+					setTimeout(function () {
+						$previousExplanation.remove();
+						$previousExplanation = $currentExplanation;
+						$previousLink = $currentLink;
+					}, 3000);
+				}
+				clickCounter++;
+			});
+
 // TODO: >>>>>>>>>>>
 			for (var i = 0; i < explanationDivs.length; i++) {
 				if (i !== 0) {
