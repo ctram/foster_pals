@@ -1,15 +1,17 @@
-.modal-body {
-  a {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 24%;
-  }
-}
-
 .container.marketing {
   width: auto;
   padding: 0px;
+}
+
+.even-featurette {
+  background-color: rgb(243, 243, 243);
+  padding: 3%;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.featurette-divider.front {
+  margin: 0px;
 }
 
 .marketing-header {
@@ -41,34 +43,12 @@
   background-color: red;
 }
 
-.featurette-divider.front {
-  margin: 0px;
-}
-
-.even-featurette {
-  background-color: rgb(243, 243, 243);
-  padding: 3%;
-  padding-left: 7%;
-  padding-right: 7%;
-}
-
-.odd-featurette {
-  padding: 3%;
-  padding-left: 7%;
-  padding-right: 7%;
-}
-
-#myCarousel {
-  min-height: 500px;
-
-  .carousel-inner {
-
-    height: 800px;
-
-    .item {
-      height: inherit;
-    }
-
+.modal-body {
+  a {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 24%;
   }
 }
 
@@ -86,8 +66,32 @@
     div.input-group {
       width: 40%;
     }
+    .modal-header {
+      margin-top: 2px;
+      margin-bottom: 14px;
+    }
     select {
       width: 33%;
     }
   }
+}
+
+#myCarousel {
+  min-height: 500px;
+
+  .carousel-inner {
+
+    height: 800px;
+
+    .item {
+      height: inherit;
+    }
+
+  }
+}
+
+.odd-featurette {
+  padding: 3%;
+  padding-left: 7%;
+  padding-right: 7%;
 }

@@ -134,8 +134,8 @@ p.map-modal-text {
   .modal-header {
     button.close {
       position: relative;
-      top: -27px;
-      right: 0px;
+      top: 5px;
+      right: 19px;
     }
     width: 100%;
     img {
@@ -156,15 +156,19 @@ p.map-modal-text {
     margin-top: -50px;
     width: auto;
     .modal-text {
-      ul {
-        list-style: none;
-        margin-left: 94px;
+      .btn {
+        padding: 3px;
+        display: inline-block;
       }
-      width: 100%;
       text-align: left;
+      width: 100%;
       p {
         text-align: center;
         margin: 28px;
+      }
+      ul {
+        list-style: none;
+        margin-left: 94px;
       }
     }
   }
