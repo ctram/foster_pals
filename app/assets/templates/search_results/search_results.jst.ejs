@@ -69,25 +69,32 @@
   $(function () {
 		// TODO: write up tour maps page.
 		var tour = function tour () {
-			// start of tour, div explaining my pets is shown
-			$previousLink = $('#animal-roster-link');
-			$previousLink.addClass('nav-link-pop')
+			var explanationDivs = [
+				$('.explain-my-pets'),
+				$('.explain-reservations'),
+				$('.explain-search-results-profiles')
+			];
+			var highlightedLinks = [
+				$('#animal-roster-link'),
+				$('#schedule-manager-link'),
+				$('.go-to-user-profile').first()
+			];
+// TODO: >>>>>>>>>>>
+			for (var i = 0; i < explanationDivs.length; i++) {
+				if (i !== 0) {
+					$explanationDiv.removeClass('slideInLeft').addClass('fadeOut');
+					$previousLink.removeClass('.nav-link-pop');
+					setTimeOut(function () {
+						$explainDiv.remove();
+					}, 3000);
+				}
 
-			// TODO: set up a function that adds and removes divs and highlights link, iterating through an array of divs and links,instead of writing individual functions for each click;
+				var $explanationDiv = explanationDivs[i];
+				var $highlightedLink = highlightedLinks[i];
 
-			// first click, remove explanation of my-pets, slide in explanation of reservations
-			$('.explain-my-pets').on('click', function (event) {
-				$previousLink.removeClass('nav-link-pop');
-				$previousExplanation = $(event.currentTarget);
-				$previousExplanation.removeClass('slideInLeft').addClass('fadeOut');
-				setTimeout(function () {
-					$previousExplanation.remove();
-				}, 2000);
-				$nextExplanation = $('.explain-reservations').removeClass('hidden').addClass('slideInRight');
-			});
-
-			// TODO: second click.. remove explanation of reservations; slide in explanation of user profile page.
-
+				var $previousDiv  = explanationDiv.removeClass('hidden').addClass('slideInLeft');
+				var $previousLink = highlightedLink.addClass('.nav-link-pop');
+			}
 		}
 
 		tour();
