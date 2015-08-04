@@ -97,6 +97,7 @@
 				if ($previousExplanation !== undefined) {
 					$previousExplanation.removeClass('slideInLeft').addClass('fadeOutDown ');
 					$previousLink.removeClass('nav-link-pop');
+					// FIXME: second div is not fading - has to do with the setTimeout()
 					setTimeout(function () {
 						$previousExplanation.remove();
 						$previousExplanation = $currentExplanation;
