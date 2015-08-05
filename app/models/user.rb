@@ -154,7 +154,6 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
-
   private
 
   def ensure_session_token
@@ -168,5 +167,4 @@ class User < ActiveRecord::Base
       false
     end
   end
-
 end

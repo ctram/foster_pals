@@ -68,46 +68,74 @@
 <script>
   $(function () {
 		// TODO: write up tour maps page.
-		var tour = function tour () {
+
+		function removeExplanationDiv ($div) {
+			if ($div.classList[0] === 'explain') {
+				// div is an explanation
+				$div.removeClass('slideInRight').addClass('fadeOutDown');
+				setTimeout(function ($div) {
+					$div.remove();
+				}, 3000);
+			} else {
+				// div is a link
+				$div.removeClass('nav-link-pop');
+			}
+		}
+
+		function tour () {
+			// explanation divs
 			var explanationDivs = [
 				$('.explain-my-pets'),
 				$('.explain-reservations'),
 				$('.explain-search-results-profiles')
 			];
+
+			// link divs that the explanations are referring to
 			var highlightedLinks = [
 				$('#animal-roster-link'),
 				$('#schedule-manager-link'),
 				$('.go-to-user-profile').first()
 			];
 
-			var clickCounter = 1;
+			var idx = 1;
 			var $currentExplanation;
 			var $previousExplanation = explanationDivs[0];
 			var $currentLink;
 			var $previousLink = highlightedLinks[0];
 			$previousLink.addClass('nav-link-pop');
+			var queueRemoval = [null];
 
 			$('.explain').on('click', function (event) {
-				if (clickCounter < 3) {
-					$currentExplanation = explanationDivs[clickCounter];
-					$currentLink = highlightedLinks[clickCounter];
+				if (idx < 3) {
+					$currentExplanation = explanationDivs[idx];
+					$currentLink = highlightedLinks[idx];
 					$currentExplanation.removeClass('hidden').addClass('slideInLeft');
 					$currentLink.addClass('nav-link-pop');
+					queueRemoval.push($currentLink)
 				}
+
+				if (queueRemoval[0] === null) {
+					queue.shift();
+				} else {
+					removeExplanationDiv(queue.shift());
+				}
+
+				/*
 				if ($previousExplanation !== undefined) {
-					$previousExplanation.removeClass('slideInLeft').addClass('fadeOutDown ');
+					$previousExplanation.removeClass('slideInLeft').addClass('fadeOutDown');
 					$previousLink.removeClass('nav-link-pop');
 					// FIXME: second div is not fading - has to do with the setTimeout()
 					setTimeout(function () {
 						$previousExplanation.remove();
 						$previousExplanation = $currentExplanation;
 						$previousLink = $currentLink;
-					}, 3000);
+					}, 1500);
 				}
-				clickCounter++;
+				*/
+				idx++;
 			});
 
-// TODO: >>>>>>>>>>>
+			/*
 			for (var i = 0; i < explanationDivs.length; i++) {
 				if (i !== 0) {
 					$explanationDiv.removeClass('slideInLeft').addClass('fadeOut');
@@ -120,9 +148,10 @@
 				var $explanationDiv = explanationDivs[i];
 				var $highlightedLink = highlightedLinks[i];
 
-				var $previousDiv  = explanationDiv.removeClass('hidden').addClass('slideInLeft');
-				var $previousLink = highlightedLink.addClass('.nav-link-pop');
+				var $previousDiv  = $explanationDiv.removeClass('hidden').addClass('slideInLeft');
+				var $previousLink = $highlightedLink.addClass('.nav-link-pop');
 			}
+			*/
 		}
 
 		tour();
