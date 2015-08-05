@@ -70,6 +70,7 @@
 		// TODO: write up tour maps page.
 
 		function removeExplanationDiv ($div) {
+			debugger
 			if ($div.classList[0] === 'explain') {
 				// div is an explanation
 				$div.removeClass('slideInRight').addClass('fadeOutDown');
@@ -85,9 +86,9 @@
 		function tour () {
 			// explanation divs
 			var explanationDivs = [
-				$('.explain-my-pets'),
-				$('.explain-reservations'),
-				$('.explain-search-results-profiles')
+				$('.explain-my-pets')[0],
+				$('.explain-reservations')[0],
+				$('.explain-search-results-profiles')[0]
 			];
 
 			// link divs that the explanations are referring to
@@ -103,11 +104,12 @@
 			var $currentLink;
 			var $previousLink = highlightedLinks[0];
 			$previousLink.addClass('nav-link-pop');
-			var queueRemoval = [null];
+			var queueRemoval = [explanationDivs.shift()];
 
 			$('.explain').on('click', function (event) {
+				debugger
 				if (idx < 3) {
-					$currentExplanation = explanationDivs[idx];
+					$currentExplanation = $(explanationDivs[idx]);
 					$currentLink = highlightedLinks[idx];
 					$currentExplanation.removeClass('hidden').addClass('slideInLeft');
 					$currentLink.addClass('nav-link-pop');
@@ -117,7 +119,7 @@
 				if (queueRemoval[0] === null) {
 					queue.shift();
 				} else {
-					removeExplanationDiv(queue.shift());
+					removeExplanationDiv(queueRemoval.shift());
 				}
 
 				/*
