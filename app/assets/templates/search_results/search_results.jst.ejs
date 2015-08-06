@@ -109,7 +109,7 @@
 			var $nextLink;
 
 			$('.explain').on('click', function (event) {
-				debugger
+				
 				// if ($previousDiv !== undefined) {
 					$previousDiv = $(event.currentTarget);
 					$previousDiv.removeClass('slideInRight');
@@ -147,6 +147,7 @@
 				var observer = new MutationObserver(function () {
 					$(explanationDivs.shift()).removeClass('hidden').addClass('slideInRight');
 					$(highlightedLinks.shift()).addClass('nav-link-pop');
+					observer.disconnect();
 					// $('.explain-my-pets').removeClass('hidden').addClass('slideInRight');
 					// $('#animal-roster-link').addClass('nav-link-pop');
 				})
