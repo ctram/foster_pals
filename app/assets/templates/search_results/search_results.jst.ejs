@@ -1,5 +1,5 @@
 <div class='explain explain-my-pets animated well hidden' data-link-id='animal-roster-link'>
-	Check status of your requests to foster your pet.
+	Check status of your requests to foster your pets.
 	<br>
 	Add more pets to your roster.
 	<br>
@@ -109,12 +109,16 @@
 			var $nextLink;
 
 			$('.explain').on('click', function (event) {
-debugger
+
 				// if ($previousDiv !== undefined) {
 					$previousDiv = $(event.currentTarget);
 					$previousDiv.removeClass('slideInRight');
 					$previousDiv.addClass('fadeOutDown');
-					$previousLink = $('#' + $previousDiv.data('link-id'));
+					if (explanationDivs.length === 0) {
+						$previousLink = $($('.go-to-user-profile')[0]);
+					} else {
+						$previousLink = $('#' + $previousDiv.data('link-id'));
+					}
 					$previousLink.removeClass('nav-link-pop pulse');
 					setTimeout(function () {
 						$previousDiv.remove();
@@ -124,7 +128,7 @@ debugger
 				if (explanationDivs.length > 1) {
 					$nextDiv = $(explanationDivs.shift());
 					$nextLink = $(highlightedLinks.shift());
-					debugger
+
 					$nextDiv.removeClass('hidden').addClass('slideInRight');
 					$nextLink.addClass('nav-link-pop pulse');
 				} else if (explanationDivs.length === 1) {
