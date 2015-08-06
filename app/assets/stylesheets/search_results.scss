@@ -92,6 +92,21 @@ a.btn.btn-default.modal-off {
   border-top: 0px;
 }
 
+.pulse {
+  -webkit-animation-name: pulsate;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite
+}
+
+@-webkit-keyframes pulsate {
+ 30% { opacity: .60 }
+ 40% { opacity: .80 }
+ 50% { opacity: 1.0}
+ 60% { opacity: .80}
+ 70% { opacity: .60}
+ }
+
 .profile-preview-hook {
   position: absolute;
   top: 85px;

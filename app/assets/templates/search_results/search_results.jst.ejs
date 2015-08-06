@@ -79,7 +79,7 @@
 		var highlightedLinks = [
 			$('#animal-roster-link'),
 			$('#schedule-manager-link'),
-			$('.go-to-user-profile').first()
+			$('.go-to-user-profile')
 		];
 
 		function removeExplanationDiv ($div) {
@@ -109,23 +109,29 @@
 			var $nextLink;
 
 			$('.explain').on('click', function (event) {
-				
+debugger
 				// if ($previousDiv !== undefined) {
 					$previousDiv = $(event.currentTarget);
 					$previousDiv.removeClass('slideInRight');
 					$previousDiv.addClass('fadeOutDown');
 					$previousLink = $('#' + $previousDiv.data('link-id'));
-					$previousLink.removeClass('nav-link-pop');
+					$previousLink.removeClass('nav-link-pop pulse');
 					setTimeout(function () {
 						$previousDiv.remove();
 					}, 3000);
 				// }
 
-				if (explanationDivs.length > 0) {
+				if (explanationDivs.length > 1) {
 					$nextDiv = $(explanationDivs.shift());
 					$nextLink = $(highlightedLinks.shift());
+					debugger
 					$nextDiv.removeClass('hidden').addClass('slideInRight');
-					$nextLink.addClass('nav-link-pop');
+					$nextLink.addClass('nav-link-pop pulse');
+				} else if (explanationDivs.length === 1) {
+					$nextDiv = $(explanationDivs.shift());
+					$nextLink = $($('.go-to-user-profile')[0]);
+					$nextDiv.removeClass('hidden').addClass('slideInRight');
+					$nextLink.addClass('nav-link-pop pulse');
 				}
 			})
 		}
@@ -146,7 +152,7 @@
 			setTimeout(function () {
 				var observer = new MutationObserver(function () {
 					$(explanationDivs.shift()).removeClass('hidden').addClass('slideInRight');
-					$(highlightedLinks.shift()).addClass('nav-link-pop');
+					$(highlightedLinks.shift()).addClass('nav-link-pop pulse');
 					observer.disconnect();
 					// $('.explain-my-pets').removeClass('hidden').addClass('slideInRight');
 					// $('#animal-roster-link').addClass('nav-link-pop');
