@@ -1,4 +1,4 @@
-<div class='explain explain-my-pets animated well slideInLeft'>
+<div class='explain explain-my-pets animated well hidden' data-link-id='animal-roster-link'>
 	Check status of your requests to foster your pet.
 	<br>
 	Add more pets to your roster.
@@ -6,7 +6,7 @@
 	<b>Click for next tip.</b>
 </div>
 
-<div class='explain explain-reservations animated hidden well'>
+<div class='explain explain-reservations animated hidden well' data-link-id ='schedule-manager-link'>
 	Check on reservation requests made by other FosterPals, requesting you to foster their pets.
 	<br>
 	Confirm or deny these requests.
@@ -14,7 +14,7 @@
 	<b>Click for next tip.</b>
 </div>
 
-<div class='explain explain-search-results-profiles animated hidden well'>
+<div class='explain explain-search-results-profiles animated hidden well' data-link-id='profile-link'>
 	Go to a FosterPal's profile page to request a reservation for your FosterPal to foster your animals.
 	<br>
 	<b>Click to exit tips.</b>
@@ -69,8 +69,20 @@
   $(function () {
 		// TODO: write up tour maps page.
 
+		var explanationDivs = [
+			$('.explain-my-pets')[0],
+			$('.explain-reservations')[0],
+			$('.explain-search-results-profiles')[0]
+		];
+
+		// link divs that the explanations are referring to
+		var highlightedLinks = [
+			$('#animal-roster-link'),
+			$('#schedule-manager-link'),
+			$('.go-to-user-profile').first()
+		];
+
 		function removeExplanationDiv ($div) {
-			debugger
 			if ($div.classList[0] === 'explain') {
 				// div is an explanation
 				$div.removeClass('slideInRight').addClass('fadeOutDown');
@@ -85,75 +97,37 @@
 
 		function tour () {
 			// explanation divs
-			var explanationDivs = [
-				$('.explain-my-pets')[0],
-				$('.explain-reservations')[0],
-				$('.explain-search-results-profiles')[0]
-			];
 
-			// link divs that the explanations are referring to
-			var highlightedLinks = [
-				$('#animal-roster-link'),
-				$('#schedule-manager-link'),
-				$('.go-to-user-profile').first()
-			];
+			// var divRemovalQueue = explanationDivs.shift();
+			// var linkRemovalQueue = highlightedLinks.shift().addClass('nav-link-pop');
 
-			var idx = 1;
-			var $currentExplanation;
-			var $previousExplanation = explanationDivs[0];
-			var $currentLink;
-			var $previousLink = highlightedLinks[0];
-			$previousLink.addClass('nav-link-pop');
-			var queueRemoval = [explanationDivs.shift()];
+			var divRemovalQueue;
+			var linkRemovalQueue;
+			var $previousDiv;
+			var $previousLink;
+			var $nextDiv;
+			var $nextLink;
 
 			$('.explain').on('click', function (event) {
 				debugger
-				if (idx < 3) {
-					$currentExplanation = $(explanationDivs[idx]);
-					$currentLink = highlightedLinks[idx];
-					$currentExplanation.removeClass('hidden').addClass('slideInLeft');
-					$currentLink.addClass('nav-link-pop');
-					queueRemoval.push($currentLink)
-				}
-
-				if (queueRemoval[0] === null) {
-					queue.shift();
-				} else {
-					removeExplanationDiv(queueRemoval.shift());
-				}
-
-				/*
-				if ($previousExplanation !== undefined) {
-					$previousExplanation.removeClass('slideInLeft').addClass('fadeOutDown');
+				// if ($previousDiv !== undefined) {
+					$previousDiv = $(event.currentTarget);
+					$previousDiv.removeClass('slideInRight');
+					$previousDiv.addClass('fadeOutDown');
+					$previousLink = $('#' + $previousDiv.data('link-id'));
 					$previousLink.removeClass('nav-link-pop');
-					// FIXME: second div is not fading - has to do with the setTimeout()
 					setTimeout(function () {
-						$previousExplanation.remove();
-						$previousExplanation = $currentExplanation;
-						$previousLink = $currentLink;
-					}, 1500);
-				}
-				*/
-				idx++;
-			});
-
-			/*
-			for (var i = 0; i < explanationDivs.length; i++) {
-				if (i !== 0) {
-					$explanationDiv.removeClass('slideInLeft').addClass('fadeOut');
-					$previousLink.removeClass('.nav-link-pop');
-					setTimeOut(function () {
-						$explainDiv.remove();
+						$previousDiv.remove();
 					}, 3000);
+				// }
+
+				if (explanationDivs.length > 0) {
+					$nextDiv = $(explanationDivs.shift());
+					$nextLink = $(highlightedLinks.shift());
+					$nextDiv.removeClass('hidden').addClass('slideInRight');
+					$nextLink.addClass('nav-link-pop');
 				}
-
-				var $explanationDiv = explanationDivs[i];
-				var $highlightedLink = highlightedLinks[i];
-
-				var $previousDiv  = $explanationDiv.removeClass('hidden').addClass('slideInLeft');
-				var $previousLink = $highlightedLink.addClass('.nav-link-pop');
-			}
-			*/
+			})
 		}
 
 		tour();
@@ -165,6 +139,24 @@
 	      event.preventDefault();
 	      $('.modal').modal('hide');
 	    });
+			// $('html').on('click', function () {
+			// 	$('.explain-my-pets').removeClass('hidden').addClass('slideInRight');
+			// 	$('#animal-roster-link').addClass('nav-link-pop');
+			// });
+			setTimeout(function () {
+				var observer = new MutationObserver(function () {
+					$(explanationDivs.shift()).removeClass('hidden').addClass('slideInRight');
+					$(highlightedLinks.shift()).addClass('nav-link-pop');
+					// $('.explain-my-pets').removeClass('hidden').addClass('slideInRight');
+					// $('#animal-roster-link').addClass('nav-link-pop');
+				})
+				observer.observe($('.modal')[0], {
+					'attributes': true,
+					'childList': true,
+					'characterData': true
+				})
+			}, 500);
+
 			FosterPals.mapFirstVisit = false;
 		}
   });
