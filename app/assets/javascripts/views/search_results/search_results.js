@@ -87,7 +87,8 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   },
 
   toUserShow: function (event) {
-    // TODO: add new relic APM
+    // safety, make sure links in the navbar are not wearing tour classes if the user navigates to a new page before the tour is over.
+    $('a').removeClass('nav-link-pop');
 
     var $div = $(event.currentTarget);
     var userId = $div.data('user-id');
