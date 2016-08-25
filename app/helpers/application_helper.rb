@@ -43,8 +43,9 @@ module ApplicationHelper
     user
   end
 
-  def generate_postal_address lat, long
+  def generate_postal_address(lat, long)
     api_key = ENV['GOOGLE_MAPS_API_KEY']
+
     gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
     gmaps_api_url += lat.to_s + ',' + long.to_s + '&key=' + api_key
     uri = URI(gmaps_api_url)

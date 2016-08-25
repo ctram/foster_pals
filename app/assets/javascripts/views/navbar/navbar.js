@@ -38,15 +38,13 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   },
 
   signOut: function (event) {
-    $.ajax(
-      {
-        url: '/session',
-        type: 'DELETE',
-        success: function () {
-          window.location = '/session/new';
-        }
+    $.ajax({
+      url: '/session',
+      type: 'DELETE',
+      success: function () {
+        window.location = '/session/new';
       }
-    );
+    });
   },
 
   render: function () {

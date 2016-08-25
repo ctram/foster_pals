@@ -14,9 +14,7 @@ window.FosterPals = {
     var router = new FosterPals.Routers.Router({
       $rootEl: $('#content'),
       users: FosterPals.Collections.users,
-      currentUser: currentUser,
-      //  TODO: remove currentUserId -- not needed because you already have currentUser -- make sure nothing breaks after the remove.
-      currentUserId: currentUserId
+      currentUser: currentUser
     });
     var navbarView = new FosterPals.Views.Navbar({
       router: router
@@ -29,14 +27,14 @@ window.FosterPals = {
 
 // Helper functions ////////////////////////////////////////////////
 function randomString(length, chars) {
-    var mask = '';
-    if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
-    if (chars.indexOf('A') > -1) mask += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    if (chars.indexOf('#') > -1) mask += '0123456789';
-    if (chars.indexOf('!') > -1) mask += '~`!@#$%^&*()_+-={}[]:";\'<>?,./|\\';
-    var result = '';
-    for (var i = length; i > 0; --i) result += mask[Math.round(Math.random() * (mask.length - 1))];
-    return result;
+  var mask = '';
+  if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
+  if (chars.indexOf('A') > -1) mask += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if (chars.indexOf('#') > -1) mask += '0123456789';
+  if (chars.indexOf('!') > -1) mask += '~`!@#$%^&*()_+-={}[]:";\'<>?,./|\\';
+  var result = '';
+  for (var i = length; i > 0; --i) result += mask[Math.round(Math.random() * (mask.length - 1))];
+  return result;
 }
 
 function capitalize (str) {
