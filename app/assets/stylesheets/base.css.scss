@@ -127,64 +127,56 @@ p.map-modal-text {
 }
 
 #myModal {
-  .modal-header {
+  .modal-slacker {
+    margin: auto;
+    height: auto;
+    border-radius: 20px;
+    width: 47em;
 
-    img {
-      // width: auto;
-      position: relative;
-      left: 18%;
-      height: 289px;
+
+    .modal-content {
       border-radius: 5px;
-      display: block;
-      // margin: 0px;
-      // margin-left: auto;
-      // margin-right: auto;
-    }
 
-    .modal-title {
-      text-align: center;
-      padding-top: 15px;
-    }
-  }
+      .modal-header {
+        width: 100%;
 
-  .modal-body {
+        img {
+          height: 289px;
+          border-radius: 5px;
+          display: block;
+        }
 
-    .modal-text {
-      text-align: left;
-      width: 100%;
-
-      .btn {
-        padding: 3px;
-        display: inline-block;
-        width: 140px;
+        .modal-title {
+          text-align: center;
+          padding-top: 15px;
+        }
       }
 
+      .modal-body {
 
-      p {
-        text-align: center;
-        margin: 28px;
-      }
+        .modal-text {
+          text-align: left;
+          width: 100%;
 
-      ul {
-        list-style: none;
-        margin-left: 94px;
-      }
+          .btn {
+            padding: 3px;
+            display: inline-block;
+            width: 140px;
+          }
+
+
+          p {
+            text-align: center;
+            margin: 28px;
+          }
+
+          ul {
+            list-style: none;
+            margin-left: 94px;
+          }
+        }
+      }    
     }
-  }
-}
-
-.modal-dialog {
-  margin:auto;
-  width: 900px;
-  height: auto;
-  border-radius: 20px;
-}
-
-.modal-slacker {
-  width: 33em;
-
-  .modal-content {
-    border-radius: 5px;
   }
 }
 

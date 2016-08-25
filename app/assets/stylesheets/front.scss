@@ -1,97 +1,107 @@
-.container.marketing {
-  width: auto;
-  padding: 0px;
-}
+.page-front {
 
-.even-featurette {
-  background-color: rgb(243, 243, 243);
-  padding: 3%;
-  padding-left: 7%;
-  padding-right: 7%;
-}
+  .container.marketing {
+    width: auto;
+    padding: 0px;
+  }
 
-.featurette-divider.front {
-  margin: 0px;
-}
+  .even-featurette {
+    background-color: rgb(243, 243, 243);
+    padding: 3%;
+    padding-left: 7%;
+    padding-right: 7%;
+  }
 
-.marketing-header {
-  font-size: 30px;
-  border: 2px solid white;
-  border-radius: 13px;
-  padding: 6px;
-  margin-top: 22px;
-}
+  .featurette-divider.front {
+    margin: 0px;
+  }
 
-.m-backdrop {
-  display: block;
-  position: fixed;
-  opacity: .7;
-  height: 100%;
-  width: 100%;
-  z-index: 1000;
-  background-color: black;
-}
+  .marketing-header {
+    font-size: 30px;
+    border: 2px solid white;
+    border-radius: 13px;
+    padding: 6px;
+    margin-top: 22px;
+  }
 
-.m-content {
-  position: fixed;
-  opacity: 1;
-  height: 800px;
-  width: 800px;
-  z-index: 10001;
-  top: 15%;
-  left: 32%;
-  background-color: red;
-}
-
-.modal-body {
-  a {
+  .m-backdrop {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 24%;
-  }
-}
-
-.modal {
-  .modal-content {
+    position: fixed;
+    opacity: .7;
     height: 100%;
-    .container {
-      padding: 5px;
-    }
-    label.col-md-2 {
-      text-align: right;
-      position: relative;
-      top: 19px;
-    }
-    div.input-group {
-      width: 40%;
-    }
-    .modal-header {
-      margin-top: 2px;
-      margin-bottom: 14px;
-    }
-    select {
-      width: 33%;
-    }
+    width: 100%;
+    z-index: 1000;
+    background-color: black;
   }
-}
 
-#myCarousel {
-  min-height: 500px;
-
-  .carousel-inner {
-
+  .m-content {
+    position: fixed;
+    opacity: 1;
     height: 800px;
+    width: 800px;
+    z-index: 10001;
+    top: 15%;
+    left: 32%;
+    background-color: red;
+  }
 
-    .item {
-      height: inherit;
+  .modal-body {
+    a {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 24%;
     }
+  }
 
+  .modal {
+    .modal-content {
+      height: 100%;
+      .container {
+        padding: 5px;
+      }
+      label.col-md-2 {
+        text-align: right;
+        position: relative;
+        top: 19px;
+      }
+      div.input-group {
+        width: 40%;
+      }
+      .modal-header {
+        margin-top: 2px;
+        margin-bottom: 14px;
+      }
+      select {
+        width: 33%;
+      }
+    }
+  }
+
+  #myCarousel {
+    min-height: 500px;
+
+    .carousel-inner {
+
+      height: 800px;
+
+      .item {
+        height: inherit;
+      }
+
+    }
+  }
+
+  .odd-featurette {
+    padding: 3%;
+    padding-left: 7%;
+    padding-right: 7%;
   }
 }
 
-.odd-featurette {
-  padding: 3%;
-  padding-left: 7%;
-  padding-right: 7%;
+
+.modal-front-page {
+  img {
+    margin: 0;
+  }
 }
