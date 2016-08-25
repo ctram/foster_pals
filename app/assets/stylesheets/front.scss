@@ -101,6 +101,17 @@
 
 
 .modal-front-page {
+
+  .modal-header {
+    padding: 0;
+
+    .btn.btn-close {
+      position: relative;
+      top: -30px;
+      right: 18px;
+    }
+  }
+
   img {
     margin: 0;
   }
