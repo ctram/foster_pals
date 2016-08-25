@@ -15,5 +15,4 @@ FosterPals.Models.Reservation = Backbone.Model.extend({
     }
     return response;
   }
-
 });

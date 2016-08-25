@@ -30,7 +30,6 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
     search_location = $('form').find('input').val();
 
     if ($('.map-hook').length === 0) {
-
       this.router.search(search_location);
     } else {
 

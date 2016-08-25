@@ -41,6 +41,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
 gem 'fabrication'
 
+gem 'react-rails'
+
 group :development, :test do
   # gem 'factory_girl_rails' # NOTE: pretty sure this isn't used, remove and test for break; using fabrication instead.
 

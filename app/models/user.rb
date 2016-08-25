@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   validates_presence_of :state
   validates_presence_of :zip_code, numericality: { only_integer: true }, length: {minimum:5, maximum: 5}
 
-
   after_initialize :ensure_session_token
 
   has_many(
@@ -129,26 +128,6 @@ class User < ActiveRecord::Base
     self.save!
     self.session_token
   end
-
-  # def street_address_white_spaced
-  #   nums = %w(1 2 3 4 5 6 7 8 9 0)
-  #   chars = street_address.split('')
-  #   chars_with_spaces = []
-  #   chars.each_with_index do |char, i|
-  #     if char == ' '
-  #       next
-  #     end
-  #
-  #     chars_with_spaces << char
-  #     if i + 1 < chars.length
-  #       if chars[i + 1].upcase == chars[i + 1] and char.downcase == char and !nums.include? char
-  #         chars_with_spaces << ' '
-  #       end
-  #     end
-  #   end
-  #   chars_with_spaces.join
-  # end
-
 
   def valid_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)

@@ -15,7 +15,7 @@ window.FosterPals = {
       $rootEl: $('#content'),
       users: FosterPals.Collections.users,
       currentUser: currentUser,
-      //  TODO: remove currentUserId -- not needed because you already have currentUser -- make sure it doesn't break after the remove.
+      //  TODO: remove currentUserId -- not needed because you already have currentUser -- make sure nothing breaks after the remove.
       currentUserId: currentUserId
     });
     var navbarView = new FosterPals.Views.Navbar({
@@ -27,7 +27,7 @@ window.FosterPals = {
   }
 };
 
-// helper functions ////////////////////////////////////////////////////////
+// Helper functions ////////////////////////////////////////////////
 function randomString(length, chars) {
     var mask = '';
     if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';

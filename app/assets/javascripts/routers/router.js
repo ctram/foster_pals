@@ -1,9 +1,8 @@
 FosterPals.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
-
     this.$rootEl = options.$rootEl;
     this.currentUser = options.currentUser;
-    this.currentUserId = options.currentUserId;
+    this.currentUserId = options.currentUserId; // TODO: is this still used?
     this.users = options.users;
   },
 
@@ -28,7 +27,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
       this._swapView(animalRosterView);
     // TODO: add user's animals into a collection so that you don't need to fetch the animal again for animalShow();
     }.bind(this);
-
 
     this.currentUser.fetch({
       success: currentUserCallback
