@@ -10,6 +10,7 @@
 		border-right-width: 0px;
 		height: 80%;
 		overflow: auto;
+		padding: 3em 4em 4em 4em;
 
 		.modal-header {
 
@@ -43,7 +44,8 @@
 			.modal-text {
 
 				ul {
-					margin: 0 5em;
+					margin: 0 5em 3em 5em;
+					padding: 0;
 				}
 
 				.btn-group {
