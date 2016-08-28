@@ -9,16 +9,14 @@
 }
 
 .navbar-tagline {
-  position: absolute;
   font-size: 9pt;
-  width: 451px;
+  width: 41em;
   text-align: center;
   margin-top: 21px;
-  font-family: 'Inconsolata', ;
-  top: 21px;
-  left: -52px;
+  font-family: "Inconsolata";
   color: white;
-}
+  line-height: 22px;
+}   
 
 .navbar-view, .navbar {
   height: inherit;

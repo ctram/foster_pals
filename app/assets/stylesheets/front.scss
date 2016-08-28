@@ -97,6 +97,20 @@
     padding-left: 7%;
     padding-right: 7%;
   }
+
+  .who-made-this {
+    position: initial;
+    float: right;
+    background: initial;
+    box-shadow: none;
+    padding: 0;
+
+    & :hover {
+      text-decoration: none;
+      color: #2c3e50;
+    }
+  }
+
 }
 
 
@@ -115,4 +129,4 @@
   img {
     margin: 0;
   }
-}
+} 
