@@ -42,8 +42,17 @@
 
 			.modal-text {
 
-				p {
-					margin: 0 4em;
+				ul {
+					margin: 0 5em;
+				}
+
+				.btn-group {
+					text-align: center;
+					display: block;
+
+					.btn {
+						float: none;
+					}
 				}
 			}
 		}
