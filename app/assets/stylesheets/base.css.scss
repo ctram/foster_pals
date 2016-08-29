@@ -402,7 +402,8 @@ footer {
 
 .input-group {
   padding: 10px;
-  min-width: 229px;
+  /*min-width: 229px;*/
+  width: 26em;
 
   input {
     border: 2px solid grey;
@@ -417,11 +418,18 @@ footer {
 .page-header {
   margin: auto;
   display: table;
+  padding-top: 3em;
 }
 
 .form-horizontal.well {
   margin: auto;
   width: 600px;
+  text-align: center;
+  padding: 3em;
+
+  .form {
+    padding-left: 0;
+  }
 }
 
 .well {

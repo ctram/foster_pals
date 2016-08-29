@@ -2,7 +2,7 @@
 
 -# TODO: add validation errors for new user page
 
-.static-page-content
+.static-page-content.page-regis
 
   .page-header
     %h1
@@ -15,10 +15,10 @@
     %form{action: "#{users_url}", method: 'POST' }
       %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
 
-      .radio-btns
+      .radio-btns.form-group
         <div class="input-group form-group radio-btn-label">
         <label class='role-label'>
-        <input type='radio' class='form-control role-radio-btns' name='user[role]' value='org' id='org-radio-btn' checked>
+        <input type='radio' class='form-control role-radio-btns' name='user[role]' value='org' id='org-radio-btn' checked />
         Rescue Organization
         </label>
         </div>
@@ -26,7 +26,7 @@
         <div class="input-group form-group radio-btn-label" >
         <label class='role-label'>
         Fosterer
-        <input type='radio' class='form-control role-radio-btns' name='user[role]' value='fosterer' id='fosterer-radio-btn'>
+        <input type='radio' class='form-control role-radio-btns' name='user[role]' value='fosterer' id='fosterer-radio-btn' />
         </label>
         </div>
 
