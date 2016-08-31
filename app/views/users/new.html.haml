@@ -17,7 +17,7 @@
       .fosterer-or-organization
         .form-group
           %label
-            %input{ type: 'radio', class: 'form-control', name: 'user[role]', value:'org', id:'org-radion-btn', checked: true }
+            %input{ type: 'radio', class: 'form-control', name: 'user[role]', value:'org', id:'org-radio-btn', checked: true }
             %span
               Rescue Organization
 
@@ -29,7 +29,7 @@
 
       %hr
 
-      #org-name.form-group
+      #org-name.form-group.animated
         %input{type:"text", class:"form-control", placeholder:"Organization Name",name: "user[org_name]", id:'org-name-input'}
 
       .form-group
@@ -169,22 +169,14 @@
     var $fostererRadioDiv = $('#num-animals');
     var $orgRadioBtn = $('#org-radio-btn');
 
-    $fostererRadioBtn.on('click', function (event) {
-        $('#num-animals').removeClass('invisible');
-
-        $fostererRadioBtn.prop('checked', true);
-        $orgRadioBtn.prop('checked', false);
-        $orgName.addClass('fadeOutRight');
-      if ($fostererRadioDiv.hasClass('invisible')) {
-      }
+    $fostererRadioBtn.on('click', function () {
+      $fostererRadioBtn.prop('checked', true);
+      $orgRadioBtn.prop('checked', false);
+      $orgName.addClass('fadeOutRight');
     });
 
-    $orgRadioBtn.on('click', function (event) {
-        $('#num-animals').addClass('invisible');
-        $orgRadioBtn.prop('checked', true);
-        $fostererRadioBtn.prop('checked', false);
-        $orgName.removeClass('invisible fadeOutRight');
-        $orgName.addClass('fadeInLeft');
-      if (!$fostererRadioBtn.hasClass('invisible')) {
-      }
+    $orgRadioBtn.on('click', function () {
+      $orgRadioBtn.prop('checked', true);
+      $fostererRadioBtn.prop('checked', false);
+      $orgName.removeClass('fadeOutRight fadeInRight').addClass('fadeInRight');
     });
