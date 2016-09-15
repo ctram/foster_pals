@@ -1,61 +1,50 @@
 .modal-slacker {
 	width: 50%;
 	margin: 10em auto 0 auto;
+}
 
-	.modal-content {
+.modal-slacker__content {}
 
-		.btn-close-container {
-			width: 100%;
-			padding: 1.5em;
-		}
+.modal-slacker__header {
+	margin: 0 auto;
+}
 
-		.btn-close-container__btn-close {
-	    width: 32px;
-	    height: 32px;
-			color: #fff;
-			background-color: #428bca;
-			border-color: #357ebd;
-			opacity: 1;
-			font-size: 27px;
-			float: right;
-			line-height: 0;
-			padding: 0;
-		}
+.modal-slacker__title {
+	font-size: 34px;
+	font-weight: bold;
+	text-align: center;
+}
 
-		.modal-header {
-			margin: 0 auto;
+.modal-slacker__body {
+	margin: auto;
+}
 
-			.modal-title {
-				font-size: 34px;
-				font-weight: bold;
-			}
+.modal-slacker__img {
+	margin: auto;
+}
 
-			img {
-				display: block;
-				margin: auto;
-			}
-		}
+.modal-slacker__footer {
+	margin-bottom: 2.5em;
+	text-align: center;
+}
 
-		.modal-body {
+.btn-close-container {
+	width: 100%;
+	padding: 1.5em;
+	text-align: right
+}
 
-			.modal-text {
-
-				ul {
-					margin: 0 5em 3em 5em;
-					padding: 0;
-				}
-
-				.btn-group {
-					text-align: center;
-					display: block;
-
-					.btn {
-						float: none;
-					}
-				}
-			}
-		}
-	}
+.btn.btn-close-container__btn-close {
+  width: 32px;
+  height: 32px;
+	color: #fff;
+	background-color: #428bca;
+	border-color: #357ebd;
+	opacity: 1;
+	font-size: 27px;
+	float: right;
+	line-height: 0;
+	padding: 0;
 }
 
 @media (min-width: 992px) {
@@ -71,6 +60,5 @@
 	.modal-slacker .modal-body,
 	.modal-slacker .modal-footer {
 		width: 600px;
-		margin: 30px auto;
 	}
 }

@@ -80,10 +80,6 @@ a.fancybox {
   }
 }
 
-p.map-modal-text {
-  text-align: left;
-}
-
 .navbar-nav {
   li {
     height: inherit;
@@ -123,53 +119,6 @@ p.map-modal-text {
     position: absolute;
     top: 16px;
     right: 40px;
-  }
-}
-
-#myModal {
-  .modal-slacker {
-    margin: auto;
-    height: auto;
-    border-radius: 20px;
-    width: 47em;
-
-
-    .modal-content {
-      border-radius: 5px;
-
-      .modal-header {
-        width: 100%;
-
-        img {
-          height: 289px;
-          border-radius: 5px;
-          display: block;
-        }
-
-        .modal-title {
-          text-align: center;
-          padding-top: 15px;
-        }
-      }
-
-      .modal-body {
-
-        .modal-text {
-          text-align: left;
-          width: 100%;
-
-          p {
-            text-align: center;
-            margin: 28px;
-          }
-
-          ul {
-            list-style: none;
-            margin-left: 94px;
-          }
-        }
-      }    
-    }
   }
 }
 

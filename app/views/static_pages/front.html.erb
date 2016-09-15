@@ -169,45 +169,45 @@
 
 <div id='myModal' class="modal fade in slacker-modal modal-front-page" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
   <div class="modal-dialog modal-slacker">
-  	<div class="modal-content">
+  	<div class="modal-content modal-slacker__content">
       <div class="btn-group btn-close-container">
   			<button type="button" class="btn btn-close btn-close-container__btn-close" data-dismiss="modal" aria-hidden="true">
           ×
         </button>
       </div>
-      <div class="modal-header">
-  			<img class="modal-img" alt="140x140" src='assets/suki-in-your-face.JPG' />
+      <div class="modal-header modal-slacker__header">
+  			<img class="modal-slacker__img" alt="140x140" src='assets/suki-in-your-face.JPG' />
         <!-- suki's image on cloudinary http://res.cloudinary.com/dt6ccpxqd/image/upload/v1435029050/xanrvdmtah0asnkijhfc.jpg -->
 
-  			<h4 class="modal-title" id="myLargeModalLabel">
+  			<h4 class="modal-title modal-slacker__title" id="myLargeModalLabel">
           FosterPals.
           <span class="text-muted"> What we do:</span>
         </h4>
   		</div>
-  		<div class="modal-body">
-  			<div class="col-md-6 text-center modal-text">
-          <ul>
-            <li>
-              We. Love. Animals.
-            </li>
-            <li>
-              We connect animal rescue organizations with people who want to foster animals.
-            </li>
-            <li>
-              So that an animal will one day find a forever home.
-            </li>
-            <li>
-              That's what we are about.
-            </li>
-          </ul>
-          <!-- These need to be anchors, not buttons? -->
-          <div class="btn-group">
-            <a class="btn btn-default modal-off" href="" data-toggle='modal' role="button">Read About Us!</a>
-     				<a class="btn btn-success sign-in" href="" data-toggle='modal' role="button">Sign in as a Guest!</a>
-          </div>
+  		<div class="modal-body modal-slacker__body">
+        <ul class="modal-slacker__list">
+          <li>
+            We. Love. Animals.
+          </li>
+          <li>
+            We connect animal rescue organizations with people who want to foster animals.
+          </li>
+          <li>
+            So that an animal will one day find a forever home.
+          </li>
+          <li>
+            That's what we are about.
+          </li>
+        </ul>
+        <!-- These need to be anchors, not buttons? -->
+      </div>
+      <div class="modal-slacker__footer">
+        <div class="btn-group">
+          <a class="btn btn-default modal-off" href="" data-toggle='modal' role="button">Read About Us!</a>
+   				<a class="btn btn-success sign-in" href="" data-toggle='modal' role="button">Sign in as a Guest!</a>
   			</div>
-  		</div><!-- /.modal-content -->
-  	</div><!-- /.modal-dialog -->
+      </div>
+  	</div>
   </div>
 </div>
 <!-- END MODAL =========================================================== -->

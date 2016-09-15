@@ -99,20 +99,40 @@
   }
 }
 
-
 .modal-front-page {
+  .modal-slacker {}
 
-  .modal-header {
-    padding: 0;
+  .modal-slacker__content {}
 
-    .btn.btn-close {
-      position: relative;
-      top: -30px;
-      right: 18px;
+  .modal-slacker__header {}
+
+  .modal-slacker__title {
+  }
+
+  .modal-slacker__body {
+    text-align: left;
+  }
+
+  .modal-slacker__img {
+    height: 289px;
+    border-radius: 5px;
+    display: block;
+  }
+
+  .modal-slacker__list {
+    list-style: none;
+  }
+
+  .btn-group {
+    text-align: center;
+    display: block;
+
+    &.btn-close-container {
+      text-align: right;
+    }
+
+    .btn {
+      float: none;
     }
   }
-
-  img {
-    margin: 0;
-  }
-} 
+}
