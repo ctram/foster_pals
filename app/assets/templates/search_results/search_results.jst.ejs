@@ -20,7 +20,6 @@
 	<b>Click to exit tips.</b>
 </div>
 
-
 <div class='profile-preview-hook'></div>
 
 <div class='user-items animated fadeInLeft'></div>
@@ -152,17 +151,11 @@
 	      event.preventDefault();
 	      $('.modal').modal('hide');
 	    });
-			// $('html').on('click', function () {
-			// 	$('.explain-my-pets').removeClass('hidden').addClass('slideInRight');
-			// 	$('#animal-roster-link').addClass('nav-link-pop');
-			// });
 			setTimeout(function () {
 				var observer = new MutationObserver(function () {
 					$(explanationDivs.shift()).removeClass('hidden').addClass('slideInRight');
 					$(highlightedLinks.shift()).addClass('nav-link-pop pulse');
 					observer.disconnect();
-					// $('.explain-my-pets').removeClass('hidden').addClass('slideInRight');
-					// $('#animal-roster-link').addClass('nav-link-pop');
 				})
 				observer.observe($('.modal')[0], {
 					'attributes': true,
