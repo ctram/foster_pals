@@ -1,20 +1,32 @@
 .modal-slacker {
-	width: 100%;
-	height: 100%;
-	margin: 0px;
+	width: 50%;
+	margin: 10em auto 0 auto;
 
 /* TODO: Clean up this mess*/
 
 	.modal-content {
-		/*margin-top: 5%;*/
-		border-radius: 0px;
-		border-left-width: 0px;
-		border-right-width: 0px;
-		height: 80%;
-		overflow: auto;
-		padding: 3em 4em 4em 4em;
+
+		.btn-close-container {
+			width: 100%;
+			padding: 1.5em;
+		}
+
+		.btn-close-container__btn-close {
+	    width: 32px;
+	    height: 32px;
+			color: #fff;
+			background-color: #428bca;
+			border-color: #357ebd;
+			opacity: 1;
+			font-size: 27px;
+			float: right;
+			line-height: 0;
+			padding: 0;
+		}
+
 
 		.modal-header {
+			margin: 0 auto;
 
 			.modal-title {
 				font-size: 34px;
@@ -24,20 +36,6 @@
 			img {
 				display: block;
 				margin: auto;
-			}
-
-			.btn.btn-close {
-				/*position: absolute;*/
-				top: 0.5em;
-		    padding: 0;
-		    width: 32px;
-		    height: 32px;
-    		line-height: 0;
-				color: #fff;
-				background-color: #428bca;
-				border-color: #357ebd;
-				opacity: 1;
-				font-size: 27px;
 			}
 		}
 
