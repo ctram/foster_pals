@@ -6,10 +6,9 @@
 .explain {
   position: absolute;
   border-radius: 3px;
-  background-color: #E0DC46;
-  box-shadow: -12px 15px 36px black;
   z-index: 1001;
-  box-shadow: 0
+  background-color: #48ba58;
+  border: 2px black solid
 }
 
 .explain-my-pets {
@@ -36,8 +35,8 @@
 }
 
 .nav-link-pop {
-  box-shadow: 0 1px 10px black;
-  transition-duration: 2s;
+  height: inherit;
+  border: 2px solid white;
 }
 
 .no-results-err {
@@ -63,7 +62,6 @@
 .no-results-err.fade-out {
   opacity: 0;
   transition: opacity 5000ms ease;
-
 }
 
 .user-items{
