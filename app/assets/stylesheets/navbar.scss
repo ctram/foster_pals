@@ -27,8 +27,12 @@
 }
 
 .navbar-wrapper {
+  top: 0;
   height: 51px;
   z-index: 1001;
+  width: 100%;
+  position: fixed;
+  height: auto;
 }
 
 .navbar-brand {

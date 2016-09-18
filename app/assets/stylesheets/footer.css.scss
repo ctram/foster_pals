@@ -1,12 +1,20 @@
-  .who-made-this {
-    position: initial;
-    float: right;
-    background: initial;
-    box-shadow: none;
-    padding: 0;
+.footer {
+  background: #18bc9c;
+}
+
+.footer__who-made-this {
+  position: initial;
+  float: right;
+  background: initial;
+  box-shadow: none;
+  padding: 0;
+
+  a {
+    color: white;
+    text-decoration: none;
 
     & :hover {
-      text-decoration: none;
       color: #2c3e50;
     }
   }
+}
