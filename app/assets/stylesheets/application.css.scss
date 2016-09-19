@@ -14,6 +14,10 @@
  *= require jquery.fancybox
  *= require animate
  *= require modal
- *= require_tree .
- *= require_self
  */
+
+ @import 'bootstrap-datetimepicker';
+ @import  "variables";
+ 
+ @import "**/*";
+
