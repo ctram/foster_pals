@@ -64,28 +64,6 @@
   transition: opacity 5000ms ease;
 }
 
-.user-items{
-  float: left;
-  width: 50%;
-  height: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.map-hook {
-  width: 50%;
-  margin: 0px;
-  padding: 0px;
-  float: right;
-  top: 60px;
-  position: fixed;
-  left: 50%;
-  border: 2px solid rgb(24, 188, 156);
-  border-radius: 0px;
-  border-right: 0px;
-  border-bottom: 0px;
-  border-top: 0px;
-}
 
 .pulse {
   -webkit-animation-name: pulsate;
@@ -159,4 +137,31 @@
   float: left;
   height: 100%;
   width: 100%;
+}
+
+.results-and-map {
+  display: flex;
+  flex-direction: row;
+}
+
+.results-and-map__user-items-hook {
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-shrink: 1;
+}
+
+.results-and-map__map-hook {
+  width: 76%;
+  margin: 0px;
+  padding: 0px;
+  /*float: right;*/
+  /*top: 60px;*/
+  position: fixed;
+  left: 23%;
+  border: 2px solid rgb(24, 188, 156);
+  border-radius: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-top: 0px;
 }
