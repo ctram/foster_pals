@@ -67,7 +67,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
         if ((response.status === 'ZERO_RESULTS') && ($('.no-results-err').length === 0)) {
 
           $errMsg = $('<div>').addClass('no-results-err').html('Location not found');
-          $('.results-and-map__map-hook').prepend($errMsg);
+          $('.map-hook').prepend($errMsg);
           setTimeout(function () {
             $('.no-results-err').toggleClass('fade-in');
           }, 0);
