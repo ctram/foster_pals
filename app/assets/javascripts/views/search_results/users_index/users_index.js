@@ -5,7 +5,7 @@ FosterPals.Views.UsersIndex = Backbone.CompositeView.extend({
     $(window).on('resize', this.setUsersHeight.bind(this));
   },
 
-  className: 'user-items',
+  className: 'user-items-wrapper',
 
   template: JST['search_results/users_index/users_index'],
 

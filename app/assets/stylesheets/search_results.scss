@@ -125,8 +125,10 @@
 }
 
 .user-items {
-  height: 100%;
-  overflow: hidden;
+  /*height: 100%;*/
+  /*overflow: hidden;*/
+  padding-top: 5em;
+  margin-bottom: 5em;
 }
 
 .user-item {
@@ -171,3 +173,15 @@
   border-bottom: 0px;
   border-top: 0px;
 */}
+
+
+.sidebar-info {
+  background: white;
+  position: fixed;
+  width: 24em;
+  text-align: center;
+  
+  hr {
+    margin: 0;
+  }
+}
