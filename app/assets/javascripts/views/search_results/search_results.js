@@ -31,7 +31,6 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     $resultItem.addClass('active-user-item');
   },
 
-
   panToListing: function (event) {
     var userId = $(event.currentTarget).data('user-id');
     var marker = this.mapView._markers[userId];
