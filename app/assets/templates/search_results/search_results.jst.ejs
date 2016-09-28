@@ -145,27 +145,27 @@
 
 		// tour();
 
-		if (FosterPals.mapFirstVisit) {
-	    $('.modal').modal();
+		// if (FosterPals.mapFirstVisit) {
+	 //    $('.modal').modal();
 
-	    $('a.modal-off').on('click', function (event) {
-	      event.preventDefault();
-	      $('.modal').modal('hide');
-	    });
-			setTimeout(function () {
-				var observer = new MutationObserver(function () {
-					$(explanationDivs.shift()).removeClass('hidden').addClass('slideInRight');
-					$(highlightedLinks.shift()).addClass('nav-link-pop pulse');
-					observer.disconnect();
-				})
-				observer.observe($('.modal')[0], {
-					'attributes': true,
-					'childList': true,
-					'characterData': true
-				})
-			}, 500);
+	 //    $('a.modal-off').on('click', function (event) {
+	 //      event.preventDefault();
+	 //      $('.modal').modal('hide');
+	 //    });
+		// 	setTimeout(function () {
+		// 		var observer = new MutationObserver(function () {
+		// 			$(explanationDivs.shift()).removeClass('hidden').addClass('slideInRight');
+		// 			$(highlightedLinks.shift()).addClass('nav-link-pop pulse');
+		// 			observer.disconnect();
+		// 		})
+		// 		observer.observe($('.modal')[0], {
+		// 			'attributes': true,
+		// 			'childList': true,
+		// 			'characterData': true
+		// 		})
+		// 	}, 500);
 
-			FosterPals.mapFirstVisit = false;
-		}
+		// 	FosterPals.mapFirstVisit = false;
+		// }
   });
 </script>
