@@ -1,5 +1,6 @@
 .animal-selector-item, .chosen-animal {
   padding: 14px;
+
   img {
     border-radius: 5px;
   }
@@ -8,6 +9,15 @@
 #back-to-profile-btn {
   margin-top: 15px;
   padding: 10px;
+}
+
+.btn-group {
+  padding-left: 1em;
+}
+
+.scheduler-view {
+  display: flex;
+  margin-bottom: 5em;
 }
 
 #check-aval-btn {
@@ -34,12 +44,15 @@
   border: 2px solid black;
   width: 500px;
   height: auto;
+
   .container {
     width: 100%;
+
     .col-sm-6 {
       width: 100%;
     }
   }
+
   .panel {
     border-color: #A33D3D;
   }
@@ -49,7 +62,6 @@
   position: relative;
   top: 0%;
   left: 0%;
-
 }
 
 .no-animals-selected-err {
@@ -72,6 +84,7 @@
   position: absolute;
   top: 121px;
   right: 12%;
+
   .validation-error {
     background-color: red;
     border-radius: 10px;

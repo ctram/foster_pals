@@ -12,8 +12,18 @@
 }
 
 .btn {
-	padding: 0.5em;
 	line-height: 1em;
-	border-radius: 5px;
+	border-radius: 2px;
+	border: 0;
+}
+
+.btn-primary {
+  background: rgba(116, 131, 169, 0.74);
+  transition: all 0.25s ease-in;
+
+  &:hover {
+  	background: rgba(45, 143, 71, 0.61);
+  	transition: all 0.25s ease-in;
+  }
 }
 

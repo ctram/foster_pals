@@ -260,11 +260,8 @@ span.strong {
 }
 
 #content {
-  /*top: 60px;*/
-  /*position: relative;*/
   margin-top: 4em;
   min-width: 1200px;
-
 }
 
 hr {
@@ -292,6 +289,7 @@ select.new-user {
 
 li.welcome-text {
   text-shadow: 1px 1px 10px #3E73A8;
+  font-size: 23px;
 
   a.welcome-text {
    pointer-events: none;
@@ -314,6 +312,7 @@ footer {
   background-color: #ffffff;
   line-height: 4em;
   height: 4em;
+  z-index: 11111111111;
 }
 
 .about-hook {
@@ -366,4 +365,8 @@ footer {
 
 .row > * {
   display: inline-block;
+}
+
+a {
+  transition: all 0.25s ease-in;
 }
