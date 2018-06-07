@@ -9,7 +9,7 @@ gem 'figaro' # prevent environment access keys from getting pushed to git
 gem 'jquery-ui-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -44,8 +44,6 @@ gem 'fabrication'
 gem 'react-rails'
 
 group :development, :test do
-  # gem 'factory_girl_rails' # NOTE: pretty sure this isn't used, remove and test for break; using fabrication instead.
-
   gem 'better_errors'
   gem 'binding_of_caller'
   # Call 'byebug' anywhere in the code to stop execution and get a  console
