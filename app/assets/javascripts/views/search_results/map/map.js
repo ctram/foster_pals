@@ -1,5 +1,5 @@
 FosterPals.Views.Map = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  initialize: function(options) {
     this._markers = {};
     this.listenTo(this.collection, 'add', this.addMarker);
     this.listenTo(this.collection, 'remove', this.removeMarker);
@@ -13,10 +13,9 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
 
   className: 'map-view',
 
-  events: {
-  },
+  events: {},
 
-  addMarker: function (user) {
+  addMarker: function(user) {
     if (this._markers[user.id]) {
       return;
     }
@@ -29,22 +28,30 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     });
 
     // TODO: show a mini profile preview when the mouse hovers over a marker.
-    google.maps.event.addListener(marker, 'mouseover', function (event) {
-      this.addProfilePreview(event, user.id);
-    }.bind(this));
+    google.maps.event.addListener(
+      marker,
+      'mouseover',
+      function(event) {
+        this.addProfilePreview(event, user.id);
+      }.bind(this)
+    );
 
-    google.maps.event.addListener(marker, 'mouseout', function (event) {
-      this.removeProfilePreview(event, user.id);
-    }.bind(this));
+    google.maps.event.addListener(
+      marker,
+      'mouseout',
+      function(event) {
+        this.removeProfilePreview(event, user.id);
+      }.bind(this)
+    );
 
     this._markers[user.id] = marker;
   },
 
-  addProfilePreview: function (evt, userId) {
+  addProfilePreview: function(evt, userId) {
     FosterPals.Events.trigger('mouseOverMarker', userId);
   },
 
-  initMap: function () {
+  initMap: function() {
     var mapOptions = {
       center: { lat: 37.7833, lng: -95.4167 },
       zoom: 5
@@ -57,38 +64,39 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     google.maps.event.addDomListener(this._map, 'idle', this.reDrawMap.bind(this));
   },
 
-  pan: function (search_location) {
+  pan: function(search_location) {
     // TODO: when map re-renders, it should set an appropriate zoom   to cover the current "subject", right now it retains the current zoom level.
     $.ajax('/api/search/location-to-geocode', {
-      data: {search_location: search_location},
+      data: { search_location: search_location },
       method: 'get',
       dataType: 'json',
-      success: function (response) {
-        if ((response.status === 'ZERO_RESULTS') && ($('.no-results-err').length === 0)) {
-
-          $errMsg = $('<div>').addClass('no-results-err').html('Location not found');
+      success: function(response) {
+        if (response.status === 'ZERO_RESULTS' && $('.no-results-err').length === 0) {
+          $errMsg = $('<div>')
+            .addClass('no-results-err')
+            .html('Location not found');
           $('.map-hook').prepend($errMsg);
-          setTimeout(function () {
+          setTimeout(function() {
             $('.no-results-err').toggleClass('fade-in');
           }, 0);
-          setTimeout(function () {
+          setTimeout(function() {
             $('.no-results-err').toggleClass('fade-in');
             $('.no-results-err').toggleClass('fade-out');
           }, 2000);
-          setTimeout(function () {
+          setTimeout(function() {
             $('.no-results-err').remove();
           }, 6000);
         } else {
           var lat = response.results[0].geometry.location.lat;
           var long = response.results[0].geometry.location.lng;
-          var coords = {lat: lat, lng: long};
+          var coords = { lat: lat, lng: long };
           this._map.panTo(coords);
         }
       }.bind(this)
     });
   },
 
-  reDrawMap: function () {
+  reDrawMap: function() {
     // TODO: have the current user's marker look unique.
     bounds = this._map.getBounds();
     NECoords = bounds.getNorthEast();
@@ -100,24 +108,24 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     upperLat = NECoords.G;
     lowerLat = SWCoords.G;
 
-    viewport_bounds = {lat: [lowerLat, upperLat], long: [lowerLong, upperLong]};
+    viewport_bounds = { lat: [lowerLat, upperLat], long: [lowerLong, upperLong] };
 
     this.collection.fetch({
       data: { viewport_bounds: viewport_bounds }
     });
   },
 
-  removeMarker: function (user) {
+  removeMarker: function(user) {
     var marker = this._markers[user.id];
     marker.setMap(null);
     delete this._markers[user.id];
   },
 
-  removeProfilePreview: function (evt, userId) {
+  removeProfilePreview: function(evt, userId) {
     FosterPals.Events.trigger('mouseOutMarker', userId);
   },
 
-  showMarkerInfo: function (event, marker) {
+  showMarkerInfo: function(event, marker) {
     // TODO: have a div of information show up when the marker is clicked on, perhaps a mini profile of the user clicked on.
     var infoWindow = new google.maps.InfoWindow({
       content: marker.title
@@ -126,12 +134,12 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     infoWindow.open(this._map, marker);
   },
 
-  startBounce: function (id) {
+  startBounce: function(id) {
     var marker = this._markers[id];
     marker.setAnimation(google.maps.Animation.BOUNCE);
   },
 
-  stopBounce: function (id) {
+  stopBounce: function(id) {
     var marker = this._markers[id];
     marker.setAnimation(null);
   }
