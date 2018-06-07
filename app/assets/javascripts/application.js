@@ -15,7 +15,7 @@
 
 //= require jquery.fancybox
 //= require jquery_ujs
-//= require jquery-ui/effect-drop
+////////////////////////////// require jquery-ui/effect-drop
 
 //= require moment
 //= require bootstrap-datetimepicker
