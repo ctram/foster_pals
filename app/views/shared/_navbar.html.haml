@@ -1,15 +1,18 @@
-.navbar-wrapper
-  %nav.navbar.navbar-inverse.navbar-static-top
-    .navbar-header
-      %a{class:"navbar-brand", href:"/front"}
-        FosterPals
-      .navbar-tagline
-        Connecting rescue organizations with people like you.
-    %div{id:"navbar", class:"navbar-collapse collapse pull-right"}
-      %ul.nav.navbar-nav
-        %li
-          %a{href:"#{other_url}"}
-            #{other_link_text}
-        %li
-          %a{href:"/sign-in-as-guest"}
-            Guest Login
+%nav.navbar.navbar-expand-lg.sticky-top
+  %a.navbar-brand{href: '/front'}
+    FosterPals
+  .navbar-tagline.d-none.d-md-block
+    Connecting rescue organizations with people like you.
+  %button.navbar-toggler{type: "button", 'data-toggle':"collapse", 'data-target': "#navbarSupportedContent"}
+    %span.navbar-toggler-icon
+  .collapse.navbar-collapse{id: "navbarSupportedContent"}
+    %ul.navbar-nav.float-right
+      %li.nav-item
+        %a.nav-link{href: "/register"}
+          Register
+      %li.nav-item
+        %a.nav-link{href:"/session/new"}
+          Login
+      %li.nav-item
+        %a.nav-link{href:"/sign-in-as-guest"}
+          Login As Guest

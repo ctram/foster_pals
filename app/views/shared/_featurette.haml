@@ -1,0 +1,17 @@
+%section.featurette.m-5.row
+  %div.col-xl.text-center
+    %img.img-fluid{src: img_src, alt:"500x500"}
+  .col.d-xl-none.mt-4.mb-2
+    %h2{class:"featurette-heading", id:'featurette-1'}
+      = heading_text
+    %h2{class: "text-muted"} 
+      = heading_muted_text
+  .col-xl
+    .d-none.d-xl-block
+      %h2{class: "featurette-heading", id:'featurette-1'}
+        = heading_text
+        %span{class:"text-muted"}
+          = heading_muted_text
+    %p
+      = feature_description
+

@@ -1,0 +1,14 @@
+.front-page {
+  .featurette {
+    min-height: 38em;
+    img {
+      border-radius: 5px;
+      border: 1px solid black;
+      max-width: 570px;
+    }
+  }
+
+  .featurette-divider {
+    margin: 0px;
+  }
+}
