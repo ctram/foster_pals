@@ -2,6 +2,11 @@ html, body {
   height: 100%;
 }
 
+main {
+  // so fixed navbar and footer do not over lap with content.
+  padding-bottom: 3.5em;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -350,9 +355,6 @@ a {
   transition: all 0.25s ease-in;
 }
 
-.img-fluid {
-  width: 100%;
-}
 
 @include media-breakpoint-up(xs) {  
 }
