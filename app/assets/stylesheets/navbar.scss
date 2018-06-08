@@ -1,50 +1,12 @@
-.navbar-collapse.collapse {
-  height: 100% !important;
+.navbar {
+  background: $brand-green;
+  color: $white;
+
+  a {
+    color: $white;
+  }
 }
 
-.navbar-nav {
-  font-size: 12pt;
-  height: 37px;
-}
-
-#search-btn {
-  width: 11em;
-  font-size: 12px;
-  margin-left: 1em;
-}
-
-.navbar-tagline {
-  font-size: 9pt;
-  width: 41em;
-  text-align: center;
-  margin-top: 21px;
-  font-family: "Inconsolata";
-  color: white;
-  line-height: 22px;
-}   
-
-.navbar-view, .navbar {
-  height: inherit;
-}
-
-.navbar-wrapper {
-  top: 0;
-  height: 51px;
-  z-index: 1001;
-  width: 100%;
-  position: fixed;
-  height: auto;
-}
-
-.navbar-brand {
-  font-family: 'Roboto Slab', serif;
-}
-
-.navbar-form {
-  margin-top: 8px;
-  width: 700px;
-}
-
-.navbar.navbar-inverse.navbar-static-top {
-  margin: 0px;
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }

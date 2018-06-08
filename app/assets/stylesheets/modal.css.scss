@@ -4,3 +4,33 @@
     border: 1px solid black;
   }
 }
+
+.m-backdrop {
+  display: block;
+  position: fixed;
+  opacity: .7;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+  background-color: black;
+}
+
+.m-content {
+  position: fixed;
+  opacity: 1;
+  height: 800px;
+  width: 800px;
+  z-index: 10001;
+  top: 15%;
+  left: 32%;
+  background-color: red;
+}
+
+.modal-body {
+  a {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 24%;
+  }
+}
