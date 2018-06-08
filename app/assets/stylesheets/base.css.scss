@@ -7,18 +7,6 @@ body {
   flex-direction: column;
 }
 
-.lead {
-  font-size: 12pt;
-}
-
-.lead.first-paragraph {
-  width: 56%;
-}
-
-.slide {
-  width: 100%;
-}
-
 textarea {
   max-width: 100%;
   min-width: 80%;
@@ -255,15 +243,6 @@ span.strong {
   font-weight: bold;
 }
 
- #content, #search-results-view, .map-view, .map-hook {
-  height: 100%;
-}
-
-#content {
-  margin-top: 4em;
-  min-width: 1200px;
-}
-
 hr {
   border: 1px dashed rgb(24, 188, 156);
 }
@@ -370,3 +349,11 @@ footer {
 a {
   transition: all 0.25s ease-in;
 }
+
+
+@include media-breakpoint-up(xs) {  
+}
+@include media-breakpoint-up(sm) {  }
+@include media-breakpoint-up(md) {  }
+@include media-breakpoint-up(lg) {  }
+@include media-breakpoint-up(xl) {  }
