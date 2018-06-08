@@ -1,15 +1,13 @@
 .page-front {
-
-  .container.marketing {
-    width: auto;
-    padding: 0px;
-  }
-
   .even-featurette {
     background-color: rgb(243, 243, 243);
     padding: 3%;
     padding-left: 7%;
     padding-right: 7%;
+  }
+
+  .featurette {
+    min-height: 38em;
   }
 
   .featurette-divider.front {
@@ -54,30 +52,6 @@
     }
   }
 
-  .modal {
-    .modal-content {
-      height: 100%;
-      .container {
-        padding: 5px;
-      }
-      label.col-md-2 {
-        text-align: right;
-        position: relative;
-        top: 19px;
-      }
-      div.input-group {
-        width: 40%;
-      }
-      .modal-header {
-        margin-top: 2px;
-        margin-bottom: 14px;
-      }
-      select {
-        width: 33%;
-      }
-    }
-  }
-
   #myCarousel {
     min-height: 500px;
 
@@ -88,7 +62,6 @@
       .item {
         height: inherit;
       }
-
     }
   }
 
@@ -96,34 +69,5 @@
     padding: 3%;
     padding-left: 7%;
     padding-right: 7%;
-  }
-}
-
-.modal-front-page {
-  .modal-slacker__body {
-    text-align: left;
-  }
-
-  .modal-slacker__img {
-    height: 289px;
-    border-radius: 5px;
-    display: block;
-  }
-
-  .modal-slacker__list {
-    list-style: none;
-  }
-
-  .btn-group {
-    text-align: center;
-    display: block;
-
-    &.btn-close-container {
-      text-align: right;
-    }
-
-    .btn {
-      float: none;
-    }
   }
 }
