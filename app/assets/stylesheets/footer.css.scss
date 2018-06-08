@@ -1,25 +1,18 @@
-.footer {
+footer {
   background: $brand-green;
-  color: white;
-  font-size: 12pt;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
+  color: $white;
+  font-size: 1em;
+  line-height: 3.5em;
+  height: 3.5em;
 
-.footer__who-made-this {
-  position: initial;
-  float: right;
-  background: initial;
-  box-shadow: none;
-  padding: 0;
+  .who-made-this {
+    a {
+      color: $white;
+      text-decoration: none;
 
-  a {
-    color: white;
-    text-decoration: none;
-
-    &:hover {
-      color: $font-color-hover;
+      &:hover {
+        color: $font-color-hover;
+      }
     }
   }
 }
