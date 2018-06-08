@@ -350,6 +350,9 @@ a {
   transition: all 0.25s ease-in;
 }
 
+.img-fluid {
+  width: 100%;
+}
 
 @include media-breakpoint-up(xs) {  
 }
