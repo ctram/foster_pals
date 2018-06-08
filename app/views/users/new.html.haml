@@ -2,8 +2,6 @@
 -# TODO: add validation errors for new user page
 
 .static-page-content.page-register
-  = render partial: 'shared/flashes'
-
   %h1.text-center
     Register
 
@@ -28,25 +26,25 @@
             %input{type:"text", class:"form-control", placeholder:"Organization Name", name: "user[org_name]", id:'org-name-input'}
 
         .form-group
-          %input{type:"email", class:"form-control", placeholder:"Email", name: "user[email]", id:'email-input'}
+          %input{type:"email", class:"form-control", placeholder:"Email", name: "user[email]", id:'email-input', required: true}
 
         .form-group
-          %input{type:"password", class:"form-control", placeholder:"Password", name: "user[password]", id: 'password-input'}
+          %input{type:"password", class:"form-control", placeholder:"Password", name: "user[password]", id: 'password-input', required: true}
 
         .form-group
-          %input{type:"text", class:"form-control", placeholder:"First Name", name: "user[first_name]", id: 'first-name-input'}
+          %input{type:"text", class:"form-control", placeholder:"First Name", name: "user[first_name]", id: 'first-name-input', required: true}
 
         .form-group
-          %input{type:"text", class:"form-control", placeholder:"Last Name", name: "user[last_name]", id: 'last-name-input'}
+          %input{type:"text", class:"form-control", placeholder:"Last Name", name: "user[last_name]", id: 'last-name-input', required: true}
 
         .form-group
-          %input{type:"text", class:"form-control", placeholder:"Street Address", name: "user[street_address]", id: 'street-address-input'}
+          %input{type:"text", class:"form-control", placeholder:"Street Address", name: "user[street_address]", id: 'street-address-input', required: true}
 
         .form-group
-          %input{type:"text", class:"form-control", placeholder:"City", name: "user[city]", id: 'city-input'}
+          %input{type:"text", class:"form-control", placeholder:"City", name: "user[city]", id: 'city-input', required: true}
           
         .form-group
-          %select{class:'form-control new-user', name:"user[state]"}
+          %select{class:'form-control new-user', name:"user[state]", required: true}
             %option{ value:"AL", checked: true}
               Alabama
             %option{ value:"AK"}
@@ -151,7 +149,7 @@
               Wyoming
 
         .form-group
-          %input{type:"text", class:"form-control", placeholder:"Zipcode",name: "user[zip_code]", id: 'zip-code-input'}
+          %input{type:"text", class:"form-control", placeholder:"Zipcode",name: "user[zip_code]", id: 'zip-code-input', required: true}
 
         %button{type: 'submit', class:'btn btn-primary'}
           Register!
