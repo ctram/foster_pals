@@ -11,10 +11,10 @@
 // about supported directives.
 
 //= require jquery
-//= require bootstrap
-
 //= require jquery.fancybox
 //= require jquery_ujs
+//= require bootstrap
+
 ////////////////////////////// require jquery-ui/effect-drop
 
 //= require moment
