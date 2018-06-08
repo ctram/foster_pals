@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.1.1'
 gem 'backbone-on-rails'
 gem 'haml'
 gem 'momentjs-rails', '>= 2.8.1'
