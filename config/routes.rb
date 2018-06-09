@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/', to: 'static_pages#home', as: :home
+  get '/', to: 'static_pages#app', as: :app
   get '/register', to: 'users#new', as: :register
   get '/sign-in', to: 'sessions#new', as: :sign_in
   get '/front', to: 'static_pages#front', as: :front
