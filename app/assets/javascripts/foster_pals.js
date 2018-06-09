@@ -12,14 +12,14 @@ window.FosterPals = {
     var currentUser = FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID);
     var currentUserId = CURRENT_USER_ID;
     var router = new FosterPals.Routers.Router({
-      $rootEl: $('#content'),
+      $rootEl: jQuery('.app-container'),
       users: FosterPals.Collections.users,
       currentUser: currentUser
     });
     var navbarView = new FosterPals.Views.Navbar({
       router: router
     });
-    $('.navbar-wrapper').html(navbarView.render().$el);
+    jQuery('.navbar-wrapper').html(navbarView.render().$el);
     _.extend(FosterPals.Events, Backbone.Events);
     Backbone.history.start();
   }
