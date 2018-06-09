@@ -1,5 +1,5 @@
 FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  initialize: function(options) {
     this.user = options.model;
     this.animals = options.animals;
     this.imageSetId = randomString(25, 'aA#');
@@ -20,19 +20,22 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   events: {
     // TODO: make all button elements have IDs instead of classes for your event listeners.
     'click button.add-animal-btn': 'addAnimal',
-    'click button.add-image-btn' : 'addImage'
+    'click button.add-image-btn': 'addImage'
   },
 
-  addAnimal: function (event) {
+  addAnimal: function(event) {
     // FIXME: validation errors float above the navbar - lower its z-index
     event.preventDefault();
 
     var errorsView = this.subviews('.errors-hook')._wrapped[0];
     if (errorsView) {
       $('.validation-error').addClass('fadeOutLeftBig');
-      setTimeout(function () {
-        this.removeSubview('.errors-hook', errorsView);
-      }.bind(this), 1000);
+      setTimeout(
+        function() {
+          this.removeSubview('.errors-hook', errorsView);
+        }.bind(this),
+        1000
+      );
     }
 
     var $button = $(event.target);
@@ -41,55 +44,58 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     var attrs = animal.animal;
     attrs.image_set_id = this.imageSetId;
 
-    successCallback = function (model, response, options) {
+    successCallback = function(model, response, options) {
       var animal = new FosterPals.Models.Animal(attrs);
-      this.animals.add(animal, {merge:  true});
+      this.animals.add(animal, { merge: true });
       location.reload(true);
     }.bind(this);
 
-    errorCallback = function (response, responseText, options) {
-        var errorsView = new FosterPals.Views.ValidationErrors({
+    errorCallback = function(response, responseText, options) {
+      var errorsView = new FosterPals.Views.ValidationErrors({
         response: response
       });
       this.addSubview('.errors-hook', errorsView, 'prepend');
     }.bind(this);
 
-    $.ajax(
-      '/api/animals',
-      {
-        data: animal,
-        method: 'POST',
-        // TODO: newly added animal not showing up in the roster immediately.
-        success: successCallback,
-        error: errorCallback
-      }
-    );
+    $.ajax('/api/animals', {
+      data: animal,
+      method: 'POST',
+      // TODO: newly added animal not showing up in the roster immediately.
+      success: successCallback,
+      error: errorCallback
+    });
   },
 
-  addImage: function(e){
+  addImage: function(e) {
     // TODO: right now, when an image is uploaded - it is immediately saved to the database - perhaps delete the images if the animal does not end up being saved.
     // TODO: Right now the whole page refreshes when an image is upload, losing all previously inputted data. If the user than saves, no animal will be added.
 
     var image = new FosterPals.Models.Image();
     e.preventDefault();
-    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result){
-      var data = result[0];
-      image.set({
-        url: data.url,
-        thumb_url: data.thumbnail_url,
-        imageable_id: id,
-        image_set_id: this.imageSetId
-      });
-      image.save({}, {
-        success: function(){
-          FosterPals.Collections.addFormImages.add(image);
-        }
-      });
-    }.bind(this));
+    cloudinary.openUploadWidget(
+      CLOUDINARY_OPTIONS,
+      function(error, result) {
+        var data = result[0];
+        image.set({
+          url: data.url,
+          thumb_url: data.thumbnail_url,
+          imageable_id: id,
+          image_set_id: this.imageSetId
+        });
+        image.save(
+          {},
+          {
+            success: function() {
+              FosterPals.Collections.addFormImages.add(image);
+            }
+          }
+        );
+      }.bind(this)
+    );
   },
 
-  render: function () {
-    var content = this.template({imageSetId: this.imageSetId});
+  render: function() {
+    var content = this.template({ imageSetId: this.imageSetId });
     this.$el.html(content);
     this.attachSubviews();
 

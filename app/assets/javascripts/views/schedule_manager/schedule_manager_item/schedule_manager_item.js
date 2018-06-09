@@ -1,5 +1,5 @@
 FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  initialize: function(options) {
     this.org = options.org;
     this.stay = options.stay;
 
@@ -10,9 +10,7 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
         200: function(stay, status) {
           var animals = stay.animals;
           for (var i = 0; i < animals.length; i++) {
-            var animal = new FosterPals.Models.Animal(
-              animals[i]
-            );
+            var animal = new FosterPals.Models.Animal(animals[i]);
             this.addAnimalView(animal);
           }
         }.bind(this)
@@ -27,16 +25,14 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
 
   className: 'schedule-manager-item-view animated fadeInRight',
 
-  addAnimalView: function (animal) {
-
-
+  addAnimalView: function(animal) {
     var animalItemView = new FosterPals.Views.ScheduleAnimalItem({
       model: animal
     });
     this.addSubview('.animal-item-hook', animalItemView);
   },
 
-  render: function () {
+  render: function() {
     var content = this.template({
       org: this.org,
       stay: this.stay
@@ -45,6 +41,5 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
     this.attachSubviews();
 
     return this;
-  },
-
+  }
 });

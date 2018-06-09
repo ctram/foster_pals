@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
   def front
   end
 
-  def home
+  def app
   end
 
 end

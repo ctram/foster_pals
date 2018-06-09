@@ -10,10 +10,10 @@
 </div>
 
 <div class=''>
-  <h3>Animals for this Reservation</h3>
-  <div class='chosen-animals-hook panel panel-default'>
+    <h3>Animals for this Reservation</h3>
+    <div class='chosen-animals-hook panel panel-default'>
 
-  </div>
+    </div>
 </div>
 
 
@@ -33,26 +33,27 @@
     </div>
 </div>
 
-<br><BR>
+<br>
+<BR>
 
 <!-- <h3>Undetermined Check-out</h3> -->
 
 <div class='check-out-group'>
-  <h3>Check-out</h3>
-  <div class="container">
-      <div class="row">
-          <div class='col-sm-6'>
-              <div class="form-group">
-                  <div class='input-group date' id='check-out'>
-                      <input type='text' class="form-control" />
-                      <span class="input-group-addon">
-                          <span class="glyphicon glyphicon-calendar"></span>
-                      </span>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <h3>Check-out</h3>
+    <div class="container">
+        <div class="row">
+            <div class='col-sm-6'>
+                <div class="form-group">
+                    <div class='input-group date' id='check-out'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <BR>
@@ -71,12 +72,12 @@
 
 
 <script type="text/javascript">
-  $(function () {
-    $('#check-in').datetimepicker({
-      format: "MM/DD/YYYY"
+    $(function () {
+        $('#check-in').datetimepicker({
+            format: "MM/DD/YYYY"
+        });
+        $('#check-out').datetimepicker({
+            format: "MM/DD/YYYY"
+        });
     });
-    $('#check-out').datetimepicker({
-      format: "MM/DD/YYYY"
-    });
-  });
 </script>

@@ -1,52 +1,40 @@
-
-
-
-
-<!-- MODAL ===============================================================  -->
-
 <div class="modal fade in slacker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
 	<div class="modal-dialog modal-slacker">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 				<h4 class="modal-title" id="myLargeModalLabel">
-          Edit Your Profile.
-          <span class="text-muted">Tell Us About Yourself</span>
-        </h4>
+					Edit Your Profile.
+					<span class="text-muted">Tell Us About Yourself</span>
+				</h4>
 			</div>
-
-
 			<div class='container edit-profile'>
 				<div class='row'>
 					<label class='col-md-4'>
 						Organization Name
 					</label>
 					<div class='input-group form-group col-md-6'>
-						<input type='text' class='form-control' name='user[org_name]' value=<%= user.escape('org_name')%>>
+						<input type='text' class='form-control' name='user[org_name]' value=<%= user.escape( 'org_name')%>>
 					</div>
 				</div>
 			</div>
-
-
 			<div class="modal-body">
 				<div class="text-center modal-text">
-   				<p>
+					<p>
 						<a class="btn btn-default cancel-btn modal-off" href="" data-toggle='modal' role="button">Cancel » </a>
 					</p>
-  			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div>
-<!-- END MODAL =========================================================== -->
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<script>
+		$(function () {
+			$('.modal').modal();
 
-<script>
-  $(function() {
-    $('.modal').modal();
-
-    $('a.modal-off').on('click', function (event) {
-      event.preventDefault();
-      $('.modal').modal('hide');
-    });
-  });
-</script>
+			$('a.modal-off').on('click', function (event) {
+				event.preventDefault();
+				$('.modal').modal('hide');
+			});
+		});
+	</script>

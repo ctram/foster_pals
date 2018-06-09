@@ -1,15 +1,13 @@
 <div class='explain explain-my-pets animated well hidden' data-link-id='animal-roster-link'>
 	Check status of your requests to foster your pets.
-	<br>
-	Add more pets to your roster.
+	<br> Add more pets to your roster.
 	<br>
 	<b>Click for next tip.</b>
 </div>
 
-<div class='explain explain-reservations animated hidden well' data-link-id ='schedule-manager-link'>
+<div class='explain explain-reservations animated hidden well' data-link-id='schedule-manager-link'>
 	Check on reservation requests made by other FosterPals, requesting you to foster their pets.
-	<br>
-	Confirm or deny these requests.
+	<br> Confirm or deny these requests.
 	<br>
 	<b>Click for next tip.</b>
 </div>
@@ -21,7 +19,6 @@
 </div>
 
 <div class='profile-preview-hook'></div>
-
 <div class='error-msg-hook'></div>
 
 <div class="results-and-map">
@@ -29,47 +26,48 @@
 	<div class='map-hook animated fadeInRight'></div>
 </div>
 
-<!-- MODAL ===============================================================  -->
-
 <div class="modal fade in slacker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
 	<div class="modal-dialog modal-slacker">
 		<div class="modal-content modal-slacker__content">
 			<div class="btn-group btn-close-container">
-				<button type="button" class="btn btn-close btn-close-container__btn-close" data-dismiss="modal" aria-hidden="true">	×
+				<button type="button" class="btn btn-close btn-close-container__btn-close" data-dismiss="modal" aria-hidden="true"> ×
 				</button>
 			</div>
 			<div class="modal-header modal-slacker__header" id='map-modal-header'>
 				<h4 class="modal-title modal-slacker__title" id="myLargeModalLabel">
-          The Map.
-          <span class="text-muted">Find Other FosterPals.</span>
-        </h4>
+					The Map.
+					<span class="text-muted">Find Other FosterPals.</span>
+				</h4>
 			</div>
 			<div class="modal-body modal-slacker__body">
 				<p>
-          Enter a location in the search bar to check for FosterPals nearby. Follow a link from <b>Search Results</b> to reach a FosterPal's profile page, where you can submit a request to have your pets fostered.
-        </p>
+					Enter a location in the search bar to check for FosterPals nearby. Follow a link from
+					<b>Search Results</b> to reach a FosterPal's profile page, where you can submit a request to have your pets fostered.
+				</p>
 
-        <p>
-          Go to <b>My Pets</b> to check on the reservation status of your pets and to add pets to your roster.
-        </p>
+				<p>
+					Go to
+					<b>My Pets</b> to check on the reservation status of your pets and to add pets to your roster.
+				</p>
 
-        <p>
-          Go to <b>Reservation Requests</b> to see requests made by other FosterPals, asking you to foster a pet.
-        </p>
+				<p>
+					Go to
+					<b>Reservation Requests</b> to see requests made by other FosterPals, asking you to foster a pet.
+				</p>
 			</div>
 			<div class="modal-slacker__footer">
-	    	<div class="btn-group">
-	      	<a class="btn btn-default modal-off" href="" data-toggle='modal' role="button">
-	        	Go To The Map!
-	      	</a>
-	    	</div>
-	    </div>
+				<div class="btn-group">
+					<a class="btn btn-default modal-off" href="" data-toggle='modal' role="button">
+						Go To The Map!
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>	
-<!-- END MODAL =========================================================== -->
+</div>
+
 <script>
-  $(function () {
+	$(function () {
 		// TODO: write up tour maps page.
 
 		var explanationDivs = [
@@ -85,7 +83,7 @@
 			$('.go-to-user-profile')
 		];
 
-		function removeExplanationDiv ($div) {
+		function removeExplanationDiv($div) {
 			if ($div.classList[0] === 'explain') {
 				// div is an explanation
 				$div.removeClass('slideInRight').addClass('fadeOutDown');
@@ -99,11 +97,6 @@
 		}
 
 		function tour() {
-			// explanation divs
-
-			// var divRemovalQueue = explanationDivs.shift();
-			// var linkRemovalQueue = highlightedLinks.shift().addClass('nav-link-pop');
-
 			var divRemovalQueue;
 			var linkRemovalQueue;
 			var $previousDiv;
@@ -112,26 +105,24 @@
 			var $nextLink;
 
 			$('.explain').on('click', function (event) {
+				$previousDiv = $(event.currentTarget);
+				$previousDiv.removeClass('slideInRight');
+				$previousDiv.addClass('fadeOutDown');
+				
+				if (explanationDivs.length === 0) {
+					$previousLink = $($('.go-to-user-profile')[0]);
+				} else {
+					$previousLink = $('#' + $previousDiv.data('link-id'));
+				}
 
-				// if ($previousDiv !== undefined) {
-					$previousDiv = $(event.currentTarget);
-					$previousDiv.removeClass('slideInRight');
-					$previousDiv.addClass('fadeOutDown');
-					if (explanationDivs.length === 0) {
-						$previousLink = $($('.go-to-user-profile')[0]);
-					} else {
-						$previousLink = $('#' + $previousDiv.data('link-id'));
-					}
-					$previousLink.removeClass('nav-link-pop pulse');
-					setTimeout(function () {
-						$previousDiv.remove();
-					}, 3000);
-				// }
+				$previousLink.removeClass('nav-link-pop pulse');
+				setTimeout(function () {
+					$previousDiv.remove();
+				}, 3000);
 
 				if (explanationDivs.length > 1) {
 					$nextDiv = $(explanationDivs.shift());
-					$nextLink = $(highlightedLinks.shift());
-
+					$nextLink = $(thighlightedLinks.shift());
 					$nextDiv.removeClass('hidden').addClass('slideInRight');
 					$nextLink.addClass('nav-link-pop pulse');
 				} else if (explanationDivs.length === 1) {
@@ -142,30 +133,5 @@
 				}
 			})
 		}
-
-		// tour();
-
-		// if (FosterPals.mapFirstVisit) {
-	 //    $('.modal').modal();
-
-	 //    $('a.modal-off').on('click', function (event) {
-	 //      event.preventDefault();
-	 //      $('.modal').modal('hide');
-	 //    });
-		// 	setTimeout(function () {
-		// 		var observer = new MutationObserver(function () {
-		// 			$(explanationDivs.shift()).removeClass('hidden').addClass('slideInRight');
-		// 			$(highlightedLinks.shift()).addClass('nav-link-pop pulse');
-		// 			observer.disconnect();
-		// 		})
-		// 		observer.observe($('.modal')[0], {
-		// 			'attributes': true,
-		// 			'childList': true,
-		// 			'characterData': true
-		// 		})
-		// 	}, 500);
-
-		// 	FosterPals.mapFirstVisit = false;
-		// }
-  });
+	});
 </script>
