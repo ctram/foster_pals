@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -28,18 +29,11 @@ textarea {
 
 .static-page-content {
   position: relative;
-  top:48px;
+  top: 48px;
 }
 
 ul.navbar-nav.nav {
   height: inherit;
-}
-
-.flashes {
-  position: absolute;
-  z-index: 1001;
-  top: 25%;
-  left: 48%;
 }
 
 .user-item {
@@ -51,7 +45,6 @@ ul.navbar-nav.nav {
 }
 
 a.fancybox {
-
   img {
     width: 340px;
   }
@@ -65,7 +58,7 @@ a.fancybox {
   button {
     position: relative;
     margin: 15px;
-    left: 35%
+    left: 35%;
   }
 
   a {
@@ -191,7 +184,6 @@ button.register-featurette-btn {
   }
 }
 
-
 .high-z {
   z-index: 1000;
 }
@@ -237,7 +229,7 @@ span.strong {
 }
 
 .active-item {
-  border-color: #6A9FD3;
+  border-color: #6a9fd3;
   border-style: solid;
   border-radius: 5px;
   border-width: 1px;
@@ -269,19 +261,6 @@ select.new-user {
 .panel {
   border-color: #321616;
   padding: 15px;
-}
-
-li.welcome-text {
-  text-shadow: 1px 1px 10px #3E73A8;
-  font-size: 23px;
-
-  a.welcome-text {
-   pointer-events: none;
-  }
-}
-
-#sign-out-link {
-  margin-left: 40px;
 }
 
 input.form-control.search-input {
@@ -338,7 +317,7 @@ footer {
 }
 
 .active-user-item {
-  background-color: #95D7E4;
+  background-color: #95d7e4;
 }
 
 .row > * {
@@ -349,10 +328,13 @@ a {
   transition: all 0.25s ease-in;
 }
 
-
-@include media-breakpoint-up(xs) {  
+@include media-breakpoint-up(xs) {
 }
-@include media-breakpoint-up(sm) {  }
-@include media-breakpoint-up(md) {  }
-@include media-breakpoint-up(lg) {  }
-@include media-breakpoint-up(xl) {  }
+@include media-breakpoint-up(sm) {
+}
+@include media-breakpoint-up(md) {
+}
+@include media-breakpoint-up(lg) {
+}
+@include media-breakpoint-up(xl) {
+}

@@ -1,9 +1,18 @@
 .navbar {
   background: $brand-green;
   color: $white;
-
+  
   a {
     color: $white;
+  }
+  
+  ul {
+    line-height: 1em;
+  }
+
+  .welcome-text {
+    font-size: 1.1em;
+    line-height: 1.1em;
   }
 }
 

@@ -8,7 +8,7 @@
   border-radius: 3px;
   z-index: 1001;
   background-color: #48ba58;
-  border: 2px black solid
+  border: 2px black solid;
 }
 
 .explain-my-pets {
@@ -18,7 +18,7 @@
 
 .explain-reservations {
   top: -85px;
-  right: 337px;;
+  right: 337px;
 }
 
 .explain-search-results-profiles {
@@ -64,21 +64,30 @@
   transition: opacity 5000ms ease;
 }
 
-
 .pulse {
   -webkit-animation-name: pulsate;
   -webkit-animation-duration: 3s;
   -webkit-animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: infinite
+  -webkit-animation-iteration-count: infinite;
 }
 
 @-webkit-keyframes pulsate {
- 30% { opacity: .60 }
- 40% { opacity: .80 }
- 50% { opacity: 1.0}
- 60% { opacity: .80}
- 70% { opacity: .60}
- }
+  30% {
+    opacity: 0.6;
+  }
+  40% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.6;
+  }
+}
 
 .profile-preview-hook {
   position: absolute;
@@ -153,7 +162,7 @@
 }
 
 .user-items-hook {
-  flex-shrink: 1; 
+  flex-shrink: 1;
 }
 
 .map-hook {
@@ -168,7 +177,12 @@
   position: fixed;
   width: 24em;
   text-align: center;
-  
+  height: 7em;
+
+  h2 {
+    line-height: 2em;
+  }
+
   hr {
     margin: 0;
   }
