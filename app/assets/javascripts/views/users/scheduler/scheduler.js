@@ -33,7 +33,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     // TODO: add validtion error when checkout date is earlier thanc
 
     if (('.validation-errors-view').length !== 0 ) {
-      $('.validation-errors-view').addClass('fadeOutLeftBig');
+      $('.validation-errors-view')
     }
 
     var selectedAnimals = $('.chosen-animal');
@@ -43,7 +43,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       if ($('.no-animals-selected-err').length > 0) {
         return;
       }
-      $err = $('<div>').addClass('no-animals-selected-err animated slideInRight');
+      $err = $('<div>').addClass('no-animals-selected-err');
       $err.text('You must choose at least one pet to make a reservation for!');
       $('#check-aval-btn').append($err);
 

@@ -24,7 +24,7 @@ FosterPals.Views.ValidationErrors = Backbone.CompositeView.extend({
 
   template: JST['validation_errors/validation_errors'],
 
-  className: 'validation-errors-view animated fadeInRight',
+  className: 'validation-errors-view',
 
   events: {
   },

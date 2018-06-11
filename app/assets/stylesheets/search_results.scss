@@ -5,24 +5,12 @@
 
 .explain {
   position: absolute;
-  border-radius: 3px;
   z-index: 1001;
-  background-color: #48ba58;
-  border: 2px black solid;
-}
-
-.explain-my-pets {
-  top: -85px;
-  right: 175px;
-}
-
-.explain-reservations {
-  top: -85px;
-  right: 337px;
+  top: 10em;
+  left: 50%;
 }
 
 .explain-search-results-profiles {
-  top: 73px;
   left: 589px;
   width: 283px;
 }
@@ -74,6 +62,12 @@
   animation-iteration-count: infinite;
 }
 
+.go-to-user-profile__pal {
+  a {
+    color: $brand-green;
+  }
+}
+
 @-webkit-keyframes pulsate {
   30% {
     opacity: 0.6;
@@ -102,9 +96,6 @@
 }
 
 .profile-preview-view {
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  border: 2px solid black;
   position: fixed;
   z-index: 100;
   min-width: 500px;
@@ -112,16 +103,10 @@
   left: 50px;
   img {
     min-width: 300px;
-    border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    border-radius: 5px;
   }
   .stats {
-    font-size: 17pt;
-    color: white;
-    text-align: center;
-    margin-top: 10px;
+    font-size: 1em;
   }
 }
 
