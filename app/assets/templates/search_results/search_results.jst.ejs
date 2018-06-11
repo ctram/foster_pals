@@ -26,20 +26,21 @@
 	<div class='map-hook animated fadeInRight col-9'></div>
 </div>
 
-<div class="modal fade in slacker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
-	<div class="modal-dialog modal-slacker">
-		<div class="modal-content modal-slacker__content">
-			<div class="btn-group btn-close-container">
-				<button type="button" class="btn btn-close btn-close-container__btn-close" data-dismiss="modal" aria-hidden="true"> ×
-				</button>
-			</div>
-			<div class="modal-header modal-slacker__header" id='map-modal-header'>
-				<h4 class="modal-title modal-slacker__title" id="myLargeModalLabel">
+
+
+<div class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">
 					The Map.
 					<span class="text-muted">Find Other FosterPals.</span>
-				</h4>
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
-			<div class="modal-body modal-slacker__body">
+			<div class="modal-body">
 				<p>
 					Enter a location in the search bar to check for FosterPals nearby. Follow a link from
 					<b>Search Results</b> to reach a FosterPal's profile page, where you can submit a request to have your pets fostered.
@@ -55,12 +56,10 @@
 					<b>Reservation Requests</b> to see requests made by other FosterPals, asking you to foster a pet.
 				</p>
 			</div>
-			<div class="modal-slacker__footer">
-				<div class="btn-group">
-					<a class="btn btn-default modal-off" href="" data-toggle='modal' role="button">
-						Go To The Map!
-					</a>
-				</div>
+			<div class="modal-footer">
+				<a class="btn btn-default modal-off" href="" data-toggle='modal' role="button">
+					Go To The Map!
+				</a>
 			</div>
 		</div>
 	</div>
@@ -105,10 +104,11 @@
 			var $nextLink;
 
 			$('.explain').on('click', function (event) {
+				debugger
 				$previousDiv = $(event.currentTarget);
 				$previousDiv.removeClass('slideInRight');
 				$previousDiv.addClass('fadeOutDown');
-				
+
 				if (explanationDivs.length === 0) {
 					$previousLink = $($('.go-to-user-profile')[0]);
 				} else {
@@ -133,5 +133,31 @@
 				}
 			})
 		}
+
+		tour();
+
+		if (FosterPals.mapFirstVisit) {
+			$('.modal').modal();
+
+			$('a.modal-off').on('click', function (event) {
+				event.preventDefault();
+				$('.modal').modal('hide');
+			});
+			setTimeout(function () {
+				var observer = new MutationObserver(function () {
+					$(explanationDivs.shift()).removeClass('hidden').addClass('slideInRight');
+					$(highlightedLinks.shift()).addClass('nav-link-pop pulse');
+					observer.disconnect();
+				})
+				observer.observe($('.modal')[0], {
+					'attributes': true,
+					'childList': true,
+					'characterData': true
+				})
+			}, 500);
+
+			FosterPals.mapFirstVisit = false;
+		}
+
 	});
 </script>
