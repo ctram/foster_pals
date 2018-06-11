@@ -20,12 +20,11 @@ class SessionsController < ApplicationController
       redirect_to "/"
     else
       flash.now[:errors] = ["Invalid username or password"]
-      render :new
+      render 'new'
     end
   end
 
   def destroy
-
     sign_out
     render json: {}
   end
