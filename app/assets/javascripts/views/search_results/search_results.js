@@ -10,7 +10,7 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     });
 
     this.listenTo(FosterPals.Events, 'mouseOverMarker', this.showProfilePreview);
-    this.listenTo(FosterPals.Events, 'mouseOutMarker', this.removeProfilePreview);
+    this.listenTo(FosterPals.Events, 'mouseOutMarker', this.removeAllProfilePreviews);
     this.profilePreviews = [];
   },
 
@@ -57,15 +57,12 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     return this;
   },
 
-  removeProfilePreview: function(userId) {
-    var profilePreviewView = this.profilePreviews.shift();
-    profilePreviewView.$el.removeClass('fadeIn').addClass('fadeOut');
-    setTimeout(
-      function() {
-        this.removeSubview('.profile-preview-hook', profilePreviewView);
-      }.bind(this),
-      3000
-    );
+  removeAllProfilePreviews: function() {
+    var _this = this;
+    this.profilePreviews.forEach(function(profilePreview) {
+      profilePreview.$el.removeClass('fadeIn').addClass('fadeOut');
+      _this.removeSubview('.profile-preview-hook', profilePreview);
+    });
   },
 
   showProfilePreview: function(userId) {

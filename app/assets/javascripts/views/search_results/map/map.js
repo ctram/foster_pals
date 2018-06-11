@@ -32,6 +32,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
       marker,
       'mouseover',
       function(event) {
+        this.removeAllProfilePreviews();
         this.addProfilePreview(event, user.id);
       }.bind(this)
     );
@@ -40,7 +41,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
       marker,
       'mouseout',
       function(event) {
-        this.removeProfilePreview(event, user.id);
+        this.removeAllProfilePreviews();
       }.bind(this)
     );
 
@@ -121,7 +122,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     delete this._markers[user.id];
   },
 
-  removeProfilePreview: function(evt, userId) {
+  removeAllProfilePreviews: function(evt, userId) {
     FosterPals.Events.trigger('mouseOutMarker', userId);
   },
 
