@@ -1,18 +1,18 @@
-<div class='explain explain-my-pets animated well hidden' data-link-id='animal-roster-link'>
+<div class='explain text-left p-3 explain-my-pets card' data-link-id='animal-roster-link'>
 	Check status of your requests to foster your pets.
 	<br /> Add more pets to your roster.
 	<br />
 	<b>Click for next tip.</b>
 </div>
 
-<div class='explain explain-reservations animated hidden well' data-link-id='schedule-manager-link'>
+<div class='explain text-left p-3 explain-reservations card invisible' data-link-id='schedule-manager-link'>
 	Check on reservation requests made by other FosterPals, requesting you to foster their pets.
 	<br /> Confirm or deny these requests.
 	<br />
 	<b>Click for next tip.</b>
 </div>
 
-<div class='explain explain-search-results-profiles animated hidden well' data-link-id='profile-link'>
+<div class='explain text-left p-3 explain-search-results-profiles card invisible' data-link-id='profile-link'>
 	Go to a FosterPal's profile page to request a reservation for your FosterPal to foster your animals.
 	<br />
 	<b>Click to exit tips.</b>
@@ -22,11 +22,9 @@
 <div class='error-msg-hook'></div>
 
 <div class="results-and-map row">
-	<div class='user-items-hook animated fadeInLeft col-3'></div>
-	<div class='map-hook animated fadeInRight col-9'></div>
+	<div class='user-items-hookfadeInLeft col-3'></div>
+	<div class='map-hookfadeInRight col-9'></div>
 </div>
-
-
 
 <div class="modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
@@ -67,8 +65,6 @@
 
 <script>
 	$(function () {
-		// TODO: write up tour maps page.
-
 		var explanationDivs = [
 			$('.explain-my-pets')[0],
 			$('.explain-reservations')[0],
@@ -104,7 +100,7 @@
 			var $nextLink;
 
 			$('.explain').on('click', function (event) {
-				debugger
+				
 				$previousDiv = $(event.currentTarget);
 				$previousDiv.removeClass('slideInRight');
 				$previousDiv.addClass('fadeOutDown');
@@ -122,13 +118,13 @@
 
 				if (explanationDivs.length > 1) {
 					$nextDiv = $(explanationDivs.shift());
-					$nextLink = $(thighlightedLinks.shift());
-					$nextDiv.removeClass('hidden').addClass('slideInRight');
+					$nextLink = $(highlightedLinks.shift());
+					$nextDiv.removeClass('invisible').addClass('slideInRight');
 					$nextLink.addClass('nav-link-pop pulse');
 				} else if (explanationDivs.length === 1) {
 					$nextDiv = $(explanationDivs.shift());
 					$nextLink = $($('.go-to-user-profile')[0]);
-					$nextDiv.removeClass('hidden').addClass('slideInRight');
+					$nextDiv.removeClass('invisible').addClass('slideInRight');
 					$nextLink.addClass('nav-link-pop pulse');
 				}
 			})
