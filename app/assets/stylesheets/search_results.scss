@@ -10,11 +10,6 @@
   left: 50%;
 }
 
-.explain-search-results-profiles {
-  left: 589px;
-  width: 283px;
-}
-
 .go-to-user-profile {
   display: inline-block;
   padding: inherit;
@@ -97,10 +92,10 @@
 
 .profile-preview-view {
   position: fixed;
-  z-index: 100;
+  z-index: 10000000000;
   min-width: 500px;
   min-height: 500px;
-  left: 50px;
+  left: 10em;
   img {
     min-width: 300px;
     border-radius: 5px;
