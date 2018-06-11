@@ -19,7 +19,7 @@ window.FosterPals = {
     var navbarView = new FosterPals.Views.Navbar({
       router: router
     });
-    jQuery('.navbar-wrapper').html(navbarView.render().$el);
+    jQuery('.navbar-hook').html(navbarView.render().$el);
     _.extend(FosterPals.Events, Backbone.Events);
     Backbone.history.start();
   }
@@ -37,7 +37,7 @@ function randomString(length, chars) {
   return result;
 }
 
-function capitalize (str) {
+function capitalize(str) {
   if (str === '') {
     return '';
   }
