@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
     coords1 = generate_random_sf_coords
     coords2 = generate_random_sf_coords
 
-    about_info = "Hey everyone! I've always loved animals since I was a child. But it wasn't until I rescued my Pekingese dog named Hugh, that I realized how much animals bring into our lives! There are currently so many animals out in the world that how so much to give to us and so many people who are willing to add another memeber to the family -- I'm so glad this site exists to help that process along by giving all these animals a place to be while they find their perfect family to go live with!/nI live on the Peninsula but am open to traveling to transport animals to and from my place; do please check in with me about that! If anyone is interested in setting up a get together, let me know!"
+    about_info = "Hey everyone! I've always loved animals. But it wasn't until I rescued my Pekingese dog named Hugh, that I realized how much animals bring into our lives! There are currently so many animals out in the world that how so much to give to us and so many people who are willing to add another memeber to the family -- I'm so glad this site exists to help that process along by giving all these animals a place to be while they find their perfect family to go live with!/nI live on the Peninsula but am open to traveling to transport animals to and from my place; do please check in with me about that! If anyone is interested in setting up a get together, let me know!"
 
     user1 = Fabricate(
       :user,

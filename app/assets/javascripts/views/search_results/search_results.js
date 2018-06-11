@@ -1,6 +1,5 @@
 FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
-
-  initialize: function (options) {
+  initialize: function(options) {
     this.mapView = new FosterPals.Views.Map({
       collection: this.collection,
       search_location: options.search_location
@@ -23,46 +22,53 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     'mouseenter div.user-item': 'startBounceAndHightlight',
     'mouseleave div.user-item': 'stopBounceAndHighlight',
     'click div.go-to-user-profile': 'toUserShow',
-    'click div.user-item': 'panToListing',
+    'click div.user-item': 'panToListing'
   },
 
-  highlightUserItem: function (event) {
+  highlightUserItem: function(event) {
     $resultItem = $(event.currentTarget);
     $resultItem.addClass('active-user-item');
   },
 
-  panToListing: function (event) {
+  panToListing: function(event) {
     var userId = $(event.currentTarget).data('user-id');
     var marker = this.mapView._markers[userId];
     this.mapView._map.panTo(marker.getPosition());
   },
 
-  remove: function () {
+  remove: function() {
     Backbone.View.prototype.remove.call(this);
     this.mapView.remove();
     this.usersIndex.remove();
   },
 
-  render: function () {
+  render: function() {
     var content = this.template();
     this.$el.html(content);
+
     this.$('.user-items-hook').html(this.usersIndex.render().$el);
     this.$('.map-hook').html(this.mapView.$el);
-    setTimeout(function () {
-      this.mapView.initMap();
-    }.bind(this), 0);
+    setTimeout(
+      function() {
+        this.mapView.initMap();
+      }.bind(this),
+      0
+    );
     return this;
   },
 
-  removeProfilePreview: function (userId) {
+  removeProfilePreview: function(userId) {
     var profilePreviewView = this.profilePreviews.shift();
     profilePreviewView.$el.removeClass('fadeIn').addClass('fadeOut');
-    setTimeout(function () {
-      this.removeSubview('.profile-preview-hook', profilePreviewView);
-    }.bind(this), 3000);
+    setTimeout(
+      function() {
+        this.removeSubview('.profile-preview-hook', profilePreviewView);
+      }.bind(this),
+      3000
+    );
   },
 
-  showProfilePreview: function (userId) {
+  showProfilePreview: function(userId) {
     var user = FosterPals.Collections.users.getOrFetch(userId);
     var profilePreviewView = new FosterPals.Views.ProfilePreview({
       model: user
@@ -71,19 +77,19 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     this.addSubview('.profile-preview-hook', profilePreviewView);
   },
 
-  startBounceAndHightlight: function (event) {
+  startBounceAndHightlight: function(event) {
     this.highlightUserItem(event);
     var userId = $(event.currentTarget).data('user-id');
     this.mapView.startBounce(userId);
   },
 
-  stopBounceAndHighlight: function (event) {
+  stopBounceAndHighlight: function(event) {
     this.unhighlightUserItem(event);
     var userId = $(event.currentTarget).data('user-id');
     this.mapView.stopBounce(userId);
   },
 
-  toUserShow: function (event) {
+  toUserShow: function(event) {
     // safety, make sure links in the navbar are not wearing tour classes if the user navigates to a new page before the tour is over.
     $('a').removeClass('nav-link-pop');
 
@@ -92,11 +98,11 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     var destUrl = 'users/' + userId;
     // HACK: to pass the user id to the router userShow action. Otherwise, Backbone.history.navigate is not passing the id for some reason.
     FosterPals.UserId = parseInt(userId);
-    Backbone.history.navigate(destUrl, {trigger: true});
+    Backbone.history.navigate(destUrl, { trigger: true });
   },
 
-  unhighlightUserItem: function (event) {
+  unhighlightUserItem: function(event) {
     $resultItem = $(event.currentTarget);
     $resultItem.removeClass('active-user-item');
-  },
+  }
 });

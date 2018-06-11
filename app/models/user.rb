@@ -93,7 +93,6 @@ class User < ActiveRecord::Base
 
   # TODO: re-code overlapping stays as a custom validation in the stay model, i.e. when a stay's status is updated to "confirmed", the validation denies all other stays.
   def overlapping_pending_stays stay
-
     p_stays = pending_stays.reject do |other_stay|
       other_stay.id == stay.id
     end
