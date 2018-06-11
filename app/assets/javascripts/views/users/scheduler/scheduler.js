@@ -30,12 +30,6 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   },
 
   checkDates: function (event) {
-    // TODO: add validtion error when checkout date is earlier thanc
-
-    if (('.validation-errors-view').length !== 0 ) {
-      $('.validation-errors-view')
-    }
-
     var selectedAnimals = $('.chosen-animal');
     var animalIds = [];
 
