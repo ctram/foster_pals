@@ -1,31 +1,22 @@
 .static-page-content.page-sign-in
-  = render partial: 'shared/flashes'
+  .text-center
+    .page-header
+      %h1
+        Sign In!
 
+    .row.justify-content-center
+      %form{action: "#{session_url}", method: 'POST', class: 'col-10 col-lg-6 col-xl-5 text-left' }
+        %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
 
-  .page-header
-    %h1
-      Sign In!
-
-  .form-horizontal.well
-    %form{action: "#{session_url}", method: 'POST' }
-      %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
-
-      %field-set.form-group
-        %label
-
-          <div class="input-group form-group">
+        .form-group
+          %label
+            Email
           %input{type:"email", class:"form-control", placeholder:"Email",name: "user[email]"}
-          </div>
 
-        %br
-
-        %label
-
-          <div class="input-group form-group">
+        .form-group
+          %label
+            Password
           %input{type:"password", class:"form-control", placeholder:"Password",name: "user[password]"}
-          </div>
 
-        %br
-
-        %button{class:'btn btn-primary sign-in-btn'}
+        %button{class:'btn btn-primary'}
           Sign In!
