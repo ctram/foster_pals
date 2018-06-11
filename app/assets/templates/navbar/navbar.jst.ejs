@@ -10,7 +10,8 @@
     <ul class="navbar-nav">
       <li class='welcome-text nav-item'>
         <a class="nav-link" href="#">
-          Welcome, <%= CURRENT_USER %>!
+          Welcome,
+          <%= CURRENT_USER %>!
         </a>
       </li>
       <li class="nav-item">
@@ -41,11 +42,3 @@
     </form>
   </div>
 </nav>
-
-<script>
-  var $ = jQuery;
-  // safety listener with a callback to remove the nav-link-pop class in case the user navigates to a different page before the tour at the search results page is complete.
-  $('a').on('click', function () {
-    $('a').removeClass('nav-link-pop pulse');
-  });
-</script>

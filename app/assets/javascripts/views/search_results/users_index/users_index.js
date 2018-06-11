@@ -1,5 +1,4 @@
 FosterPals.Views.UsersIndex = Backbone.CompositeView.extend({
-
   initialize: function () {
     this.listenTo(this.collection, 'add remove sync', this.render);
     $(window).on('resize', this.setUsersHeight.bind(this));
