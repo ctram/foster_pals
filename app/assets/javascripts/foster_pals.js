@@ -9,6 +9,7 @@ window.FosterPals = {
   map: {},
   mapFirstVisit: true,
   initialize: function() {
+    window.$ = jQuery;
     var currentUser = FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID);
     var currentUserId = CURRENT_USER_ID;
     var router = new FosterPals.Routers.Router({
