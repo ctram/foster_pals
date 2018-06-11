@@ -33,6 +33,7 @@
       </script>
     <% end %>
     <div id='content' class="container-fluid px-0">
+      <%= render partial: 'shared/navbar', locals: {other_url: '/sign-in', other_link_text: 'Sign In'} %>
       <%= render partial: 'shared/flashes' %>
       <%= yield %>
     </div>
