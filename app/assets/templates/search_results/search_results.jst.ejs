@@ -102,8 +102,7 @@
 			$('.explain').on('click', function (event) {
 				
 				$previousDiv = $(event.currentTarget);
-				$previousDiv.removeClass('slideInRight');
-				$previousDiv.addClass('fadeOutDown');
+				$previousDiv.addClass('invisible');
 
 				if (explanationDivs.length === 0) {
 					$previousLink = $($('.go-to-user-profile')[0]);
@@ -119,12 +118,12 @@
 				if (explanationDivs.length > 1) {
 					$nextDiv = $(explanationDivs.shift());
 					$nextLink = $(highlightedLinks.shift());
-					$nextDiv.removeClass('invisible').addClass('slideInRight');
+					$nextDiv.removeClass('invisible')
 					$nextLink.addClass('nav-link-pop pulse');
 				} else if (explanationDivs.length === 1) {
 					$nextDiv = $(explanationDivs.shift());
 					$nextLink = $($('.go-to-user-profile')[0]);
-					$nextDiv.removeClass('invisible').addClass('slideInRight');
+					$nextDiv.removeClass('invisible')
 					$nextLink.addClass('nav-link-pop pulse');
 				}
 			})
