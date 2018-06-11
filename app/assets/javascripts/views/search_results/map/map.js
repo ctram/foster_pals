@@ -65,7 +65,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   },
 
   pan: function(search_location) {
-    // TODO: when map re-renders, it should set an appropriate zoom   to cover the current "subject", right now it retains the current zoom level.
+    // TODO: when map re-renders, it should set an appropriate zoom to cover the current "subject", right now it retains the current zoom level.
     $.ajax('/api/search/location-to-geocode', {
       data: { search_location: search_location },
       method: 'get',

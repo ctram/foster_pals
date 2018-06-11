@@ -1,11 +1,13 @@
 html,
-body {
+body,
+#content {
   height: 100%;
 }
 
 main {
   // so fixed navbar and footer do not over lap with content.
   padding-bottom: 3.5em;
+  height: inherit;
 }
 
 body {

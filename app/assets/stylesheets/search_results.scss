@@ -29,7 +29,6 @@
 
 .go-to-user-profile {
   display: inline-block;
-  float: right;
   padding: inherit;
   border-radius: 10px;
 }
@@ -69,6 +68,10 @@
   -webkit-animation-duration: 3s;
   -webkit-animation-timing-function: ease-in-out;
   -webkit-animation-iteration-count: infinite;
+  animation-name: pulsate;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 @-webkit-keyframes pulsate {
@@ -87,6 +90,10 @@
   70% {
     opacity: 0.6;
   }
+}
+
+.user-items-hook {
+  overflow: scroll;
 }
 
 .profile-preview-hook {
@@ -118,19 +125,8 @@
   }
 }
 
-.search-results-view {
-  .modal-slacker {
-    .modal-header {
-      margin-bottom: 0px;
-      // width: 822px;
-    }
-    .modal-body {
-      margin-top: 0px;
-    }
-    p:last-child {
-      margin-top: 33px;
-    }
-  }
+#search-results-view, .results-and-map {
+  height: inherit;
 }
 
 .user-items {
