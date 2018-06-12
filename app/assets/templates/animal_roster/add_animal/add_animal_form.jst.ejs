@@ -1,79 +1,53 @@
 <!-- TODO: create animal rosterers css -->
 
-<div class='form-horizontal well' id='add-animal'>
-  <div class='errors-hook'>
-  </div>
+<div id="add-animal">
+  <div class="errors-hook" />
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <form class="add-animal-form">
+        <input type="hidden" name="animal[org_id]" value="<%= CURRENT_USER_ID %>">
+        <input type="hidden" name="animal[status]" value="rescued">
 
-  <form class='form-horizontal add-animal-form'>
+        <div class="form-group image-list" />
 
-    <input type='hidden' name='animal[org_id]' value=<%= CURRENT_USER_ID %>>
-    <input type='hidden' name='animal[status]' value='rescued'>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Name" name="animal[name]" />
+        </div>
 
-    <div class='panel'>
-      <div class="form-group">
-        <button class='btn btn-primary add-image-btn' id='add-image-btn'>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Species" name="animal[species]" />
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="animal[sex]" id="radio-male" value="m" checked>
+          <label class="form-check-label" for="radio-male">
+            Male
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="animal[sex]" id="radio-female" value="f">
+          <label class="form-check-label" for="radio-female">
+            Female
+          </label>
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Breed" name="animal[breed]" />
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Color" name="animal[color]" />
+        </div>
+
+        <div class="form-group">
+          <input type="number" class="form-control weight-input" placeholder="Weight in Pounds" name="animal[weight]" min="1" max="500" />
+        </div>
+
+        <button class="btn btn-primary add-animal-btn">Add Animal to Roster</button>
+        <button class="btn btn-secondary add-image-btn" id="add-image-btn">
           Upload Image
         </button>
-      </div>
-
-      <div class="form-group image-list"></div>
-
-      <hr>
-
-      <div class="form-group">
-        <label>
-          <input type="text" class="form-control" placeholder="Name" name="animal[name]">
-          </input>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          <input type="text" class="form-control" placeholder="Species" name="animal[species]">
-          </input>
-        </label>
-      </div>
-
-      <div class="radio-btns">
-        <div class='radio-btn'>
-          <label>Male
-            <input type='radio' class='' name='animal[sex]' value='m'></input>
-          </label>
-        </div>
-
-        <div class='radio-btn'>
-          <label>Female
-            <input type='radio' class='' name='animal[sex]' value='f'></input>
-          </label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>
-          <input type="text" class="form-control" placeholder="Breed" name="animal[breed]">
-          </input>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          <input type="text" class="form-control" placeholder="Color" name="animal[color]">
-          </input>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          <input type="number" class="form-control weight-input" placeholder="Weight in Pounds" name="animal[weight]" min='1' max='500'>
-          </input>
-        </label>
-      </div>
-
+      </form>
     </div>
-    <hr>
-
-    <div class="form-group">
-      <button class='btn btn-danger add-animal-btn'>Add Animal to Roster</button>
-    </div>
-  </form>
+  </div>
 </div>

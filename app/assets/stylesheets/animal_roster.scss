@@ -48,22 +48,9 @@
 
 .animal-roster {
   padding-left: 68px;
-  .animal-item-view {
-    // min-height: 278px;
-  }
   h3 {
     margin-top: 75px;
   }
-}
-
-.add-image-btn {
-  margin: 5px;
-
-}
-
-.add-animal-btn {
-  margin-top: 15px;
-  margin-left: 184px;
 }
 
 .animal-item-view {
@@ -82,11 +69,6 @@
   }
   .col-md-1, .col-md-2 {
     margin-top: 22px;
-  }
-}
-
-.animal-item-view.well.animated.row {
-  .col-md-1 {
   }
 }
 

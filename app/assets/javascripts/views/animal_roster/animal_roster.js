@@ -1,5 +1,5 @@
 FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  initialize: function(options) {
     this.user = options.model;
 
     var addAnimalFormView = new FosterPals.Views.AddAnimalForm({
@@ -21,7 +21,7 @@ FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
 
   className: 'animal-roster-view',
 
-  render: function () {
+  render: function() {
     var content = this.template({
       org: this.model
     });
