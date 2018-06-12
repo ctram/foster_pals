@@ -1,217 +1,159 @@
 <div class='profile-photo' />
-
 <hr />
-
 <div class='edit-profile-hook' />
 
-<% if (user.role === 'org') { %>
+<div>
 	<div>
-		<label class='profile-label'>
-			Organization:
-		</label>
-		<%= user.escape('org_name') %>
+		<%= user.role === 'org' ? user.escape('org_name') : null %>
 	</div>
-	<% } %>
+	<div>
+		<%= user.escape('name') %>
+	</div>
+	<div>
+		<%= user.escape('email') %>
+	</div>
+	<div>
+		<%= user.escape('street_address') %>
+	</div>
+	<div>
+	</div>
+	<div>
+		<%= user.escape('city') + ', ' + user.escape('state') + ' ' + user.escape('zip_code') %>
+	</div>
+</div>
 
-		<div>
-			<label class='profile-label'>
-				Name:
-			</label>
-			<%= user.escape('name') %>
-		</div>
+<div class='contact-btns' />
 
-		<div>
-			<label class='profile-label'>
-				Email:
-			</label>
-			<%= user.escape('email') %>
-		</div>
+<div class="modal modal-update-profile" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">
+					Edit Your Profile.
+					<span class="text-muted">Tell Us About Yourself</span>
 
-		<div>
-			<label class='profile-label'>
-				Location:
-			</label>
-			<div class='address'>
-				<div class='street-address'>
-					<% var street%>
-						<%= user.escape('street_address') %>
-				</div>
-
-				<div class='city-state-zip'>
-					<%= user.escape('city') + ', ' + user.escape('state') + ' ' + user.escape('zip_code') %>
-				</div>
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
-		</div>
-
-		<div class='contact-btns' />
-		
-		<!-- MODAL ===============================================================  -->
-		<div class="modal fade in slacker-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
-			<div class="modal-dialog modal-slacker">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h4 class="modal-title" id="myLargeModalLabel">
-							Edit Your Profile.
-							<span class="text-muted">Tell Us About Yourself</span>
-						</h4>
+			<div class="modal-body">
+				<form class="form-update-profile">
+					<div class="form-group">
+						<label>
+							Organization Name
+							<input type='text' class='form-control org-name' name='user[org_name]' value="<%= user.escape( 'org_name')%>" />
+						</label>
 					</div>
-					<form>
-						<div class=' edit-profile'>
-							<div class='row'>
-								<label class='col-md-2'>
-									Organization Name
-								</label>
-								<div class='input-group form-group col-md-4'>
-									<input type='text' class='form-control org-name' name='user[org_name]' value=<%= user.escape( 'org_name')%>>
-								</div>
-							</div>
-						</div>
-						<div class=' edit-profile'>
-							<div class='row'>
-								<label class='col-md-2'>
-									First Name
-								</label>
-								<div class='input-group form-group col-md-4'>
-									<input type='text' class='form-control first-name' name='user[first_name]' value=<%= user.escape( 'first_name')%>>
-								</div>
-							</div>
-						</div>
-						<div class=' edit-profile'>
-							<div class='row'>
-								<label class='col-md-2'>
-									Last Name
-								</label>
-								<div class='input-group form-group col-md-4'>
-									<input type='text' class='form-control last-name' name='user[last_name]' value=<%= user.escape( 'last_name')%>>
-								</div>
-							</div>
-						</div>
-						<div class=' edit-profile'>
-							<div class='row'>
-								<label class='col-md-2'>
-									Street
-								</label>
-								<div class='input-group form-group col-md-4'>
-									<input type='text' class='form-control street-address' name='user[street_address]' value=<%= user.escape(
-									 'street_address')%>>
-								</div>
-							</div>
-						</div>
-						<div class='edit-profile'>
-							<div class='row'>
-								<label class='col-md-2'>
-									City
-								</label>
-								<div class='input-group form-group col-md-4'>
-									<input type='text' class='form-control city' name='user[city]' value=<%= user.escape( 'city')%>>
-								</div>
-							</div>
-						</div>
 
-						<div class=' edit-profile'>
-							<div class='row'>
-								<label class='col-md-2'>
-									State
-								</label>
-								<select class='col-md-4 states'>
-									<option value="AL">Alabama</option>
-									<option value="AK">Alaska</option>
-									<option value="AZ">Arizona</option>
-									<option value="AR">Arkansas</option>
-									<option value="CA">California</option>
-									<option value="CO">Colorado</option>
-									<option value="CT">Connecticut</option>
-									<option value="DE">Delaware</option>
-									<option value="DC">District Of Columbia</option>
-									<option value="FL">Florida</option>
-									<option value="GA">Georgia</option>
-									<option value="HI">Hawaii</option>
-									<option value="ID">Idaho</option>
-									<option value="IL">Illinois</option>
-									<option value="IN">Indiana</option>
-									<option value="IA">Iowa</option>
-									<option value="KS">Kansas</option>
-									<option value="KY">Kentucky</option>
-									<option value="LA">Louisiana</option>
-									<option value="ME">Maine</option>
-									<option value="MD">Maryland</option>
-									<option value="MA">Massachusetts</option>
-									<option value="MI">Michigan</option>
-									<option value="MN">Minnesota</option>
-									<option value="MS">Mississippi</option>
-									<option value="MO">Missouri</option>
-									<option value="MT">Montana</option>
-									<option value="NE">Nebraska</option>
-									<option value="NV">Nevada</option>
-									<option value="NH">New Hampshire</option>
-									<option value="NJ">New Jersey</option>
-									<option value="NM">New Mexico</option>
-									<option value="NY">New York</option>
-									<option value="NC">North Carolina</option>
-									<option value="ND">North Dakota</option>
-									<option value="OH">Ohio</option>
-									<option value="OK">Oklahoma</option>
-									<option value="OR">Oregon</option>
-									<option value="PA">Pennsylvania</option>
-									<option value="RI">Rhode Island</option>
-									<option value="SC">South Carolina</option>
-									<option value="SD">South Dakota</option>
-									<option value="TN">Tennessee</option>
-									<option value="TX">Texas</option>
-									<option value="UT">Utah</option>
-									<option value="VT">Vermont</option>
-									<option value="VA">Virginia</option>
-									<option value="WA">Washington</option>
-									<option value="WV">West Virginia</option>
-									<option value="WI">Wisconsin</option>
-									<option value="WY">Wyoming</option>
-								</select>
-							</div>
-						</div>
+					<div class="form-group">
+						<label>
+							First Name
+							<input type='text' class='form-control first-name' name='user[first_name]' value="<%= user.escape( 'first_name')%>" />
+						</label>
+					</div>
+					<div class="form-group">
+						<label>
+							Last Name
+							<input type='text' class='form-control last-name' name='user[last_name]' value="<%= user.escape( 'last_name')%>" />
+						</label>
+					</div>
+					<div class="form-group">
+						<label>
+							Street
+							<input type='text' class='form-control street-address' name='user[street_address]' value="<%= user.escape(
+							 'street_address')%>" />
+						</label>
+					</div>
+					<div class="form-group">
+						<label>
+							City
+							<input type='text' class='form-control city' name='user[city]' value="<%= user.escape( 'city')%>" />
+						</label>
+					</div>
 
-
-
-
-						<div class=' edit-profile'>
-							<div class='row'>
-								<label class='col-md-2'>
-									Zip Code
-								</label>
-								<div class='input-group form-group col-md-4'>
-									<input type='text' class='form-control zip-code' name='user[zip_code]' value=<%= user.escape( 'zip_code')%>>
-								</div>
-							</div>
-						</div>
-
-						<div class='btns'>
-							<button class='btn btn-primary update-profile-btn modal-off' data-toggle='modal'>
-								Update!
-							</button>
-							<a class="btn btn-default modal-off cancel-btn" href="" data-toggle='modal' role="button">
-								Cancel »
-							</a>
-						</div>
-				</div>
+					<div class="form-group">
+						<label>
+							State
+						</label>
+						<select class='states'>
+							<option value="AL">Alabama</option>
+							<option value="AK">Alaska</option>
+							<option value="AZ">Arizona</option>
+							<option value="AR">Arkansas</option>
+							<option value="CA">California</option>
+							<option value="CO">Colorado</option>
+							<option value="CT">Connecticut</option>
+							<option value="DE">Delaware</option>
+							<option value="DC">District Of Columbia</option>
+							<option value="FL">Florida</option>
+							<option value="GA">Georgia</option>
+							<option value="HI">Hawaii</option>
+							<option value="ID">Idaho</option>
+							<option value="IL">Illinois</option>
+							<option value="IN">Indiana</option>
+							<option value="IA">Iowa</option>
+							<option value="KS">Kansas</option>
+							<option value="KY">Kentucky</option>
+							<option value="LA">Louisiana</option>
+							<option value="ME">Maine</option>
+							<option value="MD">Maryland</option>
+							<option value="MA">Massachusetts</option>
+							<option value="MI">Michigan</option>
+							<option value="MN">Minnesota</option>
+							<option value="MS">Mississippi</option>
+							<option value="MO">Missouri</option>
+							<option value="MT">Montana</option>
+							<option value="NE">Nebraska</option>
+							<option value="NV">Nevada</option>
+							<option value="NH">New Hampshire</option>
+							<option value="NJ">New Jersey</option>
+							<option value="NM">New Mexico</option>
+							<option value="NY">New York</option>
+							<option value="NC">North Carolina</option>
+							<option value="ND">North Dakota</option>
+							<option value="OH">Ohio</option>
+							<option value="OK">Oklahoma</option>
+							<option value="OR">Oregon</option>
+							<option value="PA">Pennsylvania</option>
+							<option value="RI">Rhode Island</option>
+							<option value="SC">South Carolina</option>
+							<option value="SD">South Dakota</option>
+							<option value="TN">Tennessee</option>
+							<option value="TX">Texas</option>
+							<option value="UT">Utah</option>
+							<option value="VT">Vermont</option>
+							<option value="VA">Virginia</option>
+							<option value="WA">Washington</option>
+							<option value="WV">West Virginia</option>
+							<option value="WI">Wisconsin</option>
+							<option value="WY">Wyoming</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>
+							<input type='text' class='form-control zip-code' name='user[zip_code]' value="<%= user.escape( 'zip_code')%>" />
+						</label>
+					</div>
 				</form>
-
-				<div class="modal-body">
-					<div class="text-center modal-text">
-					</div>
-				</div>
 			</div>
-			<!-- /.modal-content -->
+			<div class="modal-footer">
+				<button class='btn btn-primary update-profile-btn modal-off' data-toggle='modal'>
+					Update!
+				</button>
+				<button class="btn btn-secondary modal-off cancel-btn" data-toggle='modal'>
+					Cancel
+				</button>
+			</div>
 		</div>
-		<!-- /.modal-dialog -->
-		</div>
-		<!-- END MODAL =========================================================== -->
+	</div>
+</div>
 
-
-		<script>
-			$(function () {
-				$('a.modal-off').on('click', function (event) {
-					event.preventDefault();
-					$('.modal').modal('hide');
-				});
-			});
-		</script>
+<script>
+	$(function () {
+		$('.modal-update-profile button').on('click', function (event) {
+			event.preventDefault();
+			$('.modal').modal('hide');
+		});
+	});
+</script>
