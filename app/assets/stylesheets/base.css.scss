@@ -6,13 +6,8 @@ body,
 
 main {
   // so fixed navbar and footer do not over lap with content.
-  padding-bottom: 3.5em;
+  padding: 56px 0 !important;
   height: inherit;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
 }
 
 textarea {
@@ -134,13 +129,6 @@ img.img-responsive {
   padding-bottom: 0px;
   opacity: 0;
   animation-duration: 1s;
-}
-
-#image-col {
-  width: 15%;
-  position: relative;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 
 .input-group > input.register-btn.form-horizontal.form-group {

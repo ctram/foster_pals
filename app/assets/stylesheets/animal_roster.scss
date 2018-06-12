@@ -1,99 +1,18 @@
-.animal-item-view.well {
-  background-color: #354B5C;
-}
-
-.animals-index-view {
-  .container {
-    width: 100%;
-  }
-}
-
-.animals-index-view.well {
-  max-width: inherit;
-  margin: auto;
-}
-
-.animal-item-stays.well {
-  background-color: #ECF0F1;
-  display: inline-block;
-  border-radius: 15px;
-  left: 34%;
-  margin-right: auto;
-  margin: 0px;
-}
-
-.animal-img.col-md-2 {
-  // margin-top: 10px;
-  img {
-    max-width: 145px;
-    border-radius: 5px;
-  }
-}
-
-.animal-img.reservation-item {
-  width: auto;
-  margin-top: 0px;
-  img {
-    width: auto;
-    height: 61px;
-  }
+.animal-img {
+  border-radius: 5px;
+  max-height: 10em;
+  max-width: 10em;
 }
 
 .animal-item-view {
-  position: relative;
-  top: -11px;
-  min-height: 223px;
-  height: auto;
-  .animal-reservations {
-    position: absolute;
-    left: 17%;
-    top: 32%;
-  }
-  .animal-name {
-    margin: 0px;
-    margin-top: 19px;
-  }
-  .col-md-1, .col-md-2 {
-    margin-top: 22px;
-  }
-}
-
-.animal-item-view.row:hover {
   cursor: pointer;
-}
 
-.animal-stats.row {
-  display: block;
-  min-height: 236px;
-  .col-md-1, .col-md-2 {
-    vertical-align: top;
+  &:hover {
+    border-radius: 5px;
+    border: 1px solid black;
   }
 }
 
-.add-animal-form-view {
-  .radio-btns {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: auto;
-    .radio-btn {
-      display: inline;
-      margin: 5px;
-    }
-  }
-}
-
-div#add-animal {
-  margin: auto;
-}
-
-input.weight-input {
-  width: 180px;
-}
-
-.gallery {
-  margin-top: 20px;
-}
-
-.stay-attr {
-  width: 162px;
+.reservations-header {
+  color: $brand-green;
 }
