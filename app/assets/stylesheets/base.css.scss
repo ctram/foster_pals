@@ -2,11 +2,12 @@ html,
 body,
 #content {
   height: 100%;
+  overflow: auto;
 }
 
 main {
   // so fixed navbar and footer do not over lap with content.
-  padding: 56px 0 !important;
+  padding-bottom: 97px !important;
   height: inherit;
 }
 
