@@ -39,20 +39,6 @@
   }
 }
 
-.animal-roster.page-header {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding: 0px;
-}
-
-.animal-roster {
-  padding-left: 68px;
-  h3 {
-    margin-top: 75px;
-  }
-}
-
 .animal-item-view {
   position: relative;
   top: -11px;
@@ -106,13 +92,6 @@ input.weight-input {
 
 .gallery {
   margin-top: 20px;
-}
-.gallery-help-msg {
-  z-index: 1001;
-  position: absolute;
-  border-radius: 15px;
-  background-color: #618BA5;
-  color: white;
 }
 
 .stay-attr {

@@ -51,7 +51,6 @@ FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
     var content = this.template({animals: this.collection});
     this.$el.html(content);
     this.attachSubviews();
-
     return this;
   },
 

@@ -12,7 +12,7 @@ FosterPals.Views.AnimalItem = Backbone.CompositeView.extend({
 
   template: JST['animal_roster/animals_index/animal_item/animal_item'],
 
-  className: 'animal-item-view row animated well',
+  className: 'animal-item-view',
 
   render: function () {
     // FIXME: need to pull in the fosterer for each stay and display on the animal item template
