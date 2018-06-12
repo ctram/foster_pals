@@ -1,16 +1,14 @@
-<div class='animal-name'>
-  <%= animal.escape('name') %>
-</div>
-
-<div class='container-fluid well'>
-  <button class='btn btn-primary to-animal-roster-btn'>
-    Back to Animals
-  </button>
-
-  <div class='row'>
-    <div class='profile-hook'>
-    </div>
-    <div class='image-gallery-hook'>
-    </div>
+<div class="p-5">
+  <div>
+    <button class="btn btn-primary to-animal-roster-btn">
+      Back to Animals
+    </button>
   </div>
+  
+  <h1 class="text-center my-3">
+    <%= animal.escape("name") %>
+  </h1>
+  
+  <div class="profile-hook" />
+  <div class="image-gallery-hook" />
 </div>

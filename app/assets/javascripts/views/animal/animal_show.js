@@ -37,7 +37,4 @@ FosterPals.Views.AnimalShow = Backbone.CompositeView.extend({
 
     return this;
   },
-
-
-
 });

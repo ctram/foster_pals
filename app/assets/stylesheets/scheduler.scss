@@ -45,14 +45,6 @@
   width: 500px;
   height: auto;
 
-  .container {
-    width: 100%;
-
-    .col-sm-6 {
-      width: 100%;
-    }
-  }
-
   .panel {
     border-color: #A33D3D;
   }
@@ -98,8 +90,4 @@
     margin-bottom: 5px;
     z-index: inherit;
   }
-}
-
-.to-animal-roster-btn {
-  background-color: #53697F;
 }
