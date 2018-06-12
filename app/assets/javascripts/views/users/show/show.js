@@ -20,15 +20,11 @@ FosterPals.Views.UserShow = Backbone.CompositeView.extend({
 
   className: 'user-show-view',
 
-  // events: {
-  //   'click button.schedule-btn': 'refreshShow'
-  // },
 
   render: function () {
     var content = this.template({});
     this.$el.html(content);
     this.attachSubviews();
-
     return this;
   },
 

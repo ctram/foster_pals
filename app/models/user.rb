@@ -70,7 +70,8 @@ class User < ActiveRecord::Base
   end
 
   def main_image_thumb_url
-    if images[0].nil?
+    
+    if images.empty?
       "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
     else
       images.last.thumb_url

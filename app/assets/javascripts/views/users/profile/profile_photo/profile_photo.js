@@ -49,10 +49,6 @@ FosterPals.Views.ProfilePhoto = Backbone.CompositeView.extend({
     cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, cloudinaryCallback);
   },
 
-  ensureImage: function () {
-
-  },
-
   render: function () {
     // this.model.attributes.main_image_thumb_url = this.ensureImage();
     var content = this.template({user: this.model});
