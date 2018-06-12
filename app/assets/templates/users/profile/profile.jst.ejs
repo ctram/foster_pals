@@ -1,28 +1,50 @@
-<div class='profile-photo' />
-<hr />
-<div class='edit-profile-hook' />
+<div class="row">
+	<div class="col-6">
+		<div class="profile-photo" />
+	</div>
+	<div class="col-6">
+		<div class="row">
+			<div class="col-3">
+				<% if (user.role === "org") { %>
+					<div>
+						<strong>Organization Name:</strong>
+					</div>
+					<% } %>
+						<div>
+							<strong>Name:</strong>
+						</div>
+						<div>
+							<strong>Email:</strong>
+						</div>
+						<div>
+							<strong>Address:</strong>
+						</div>
+			</div>
 
-<div>
-	<div>
-		<%= user.role === 'org' ? user.escape('org_name') : null %>
-	</div>
-	<div>
-		<%= user.escape('name') %>
-	</div>
-	<div>
-		<%= user.escape('email') %>
-	</div>
-	<div>
-		<%= user.escape('street_address') %>
-	</div>
-	<div>
-	</div>
-	<div>
-		<%= user.escape('city') + ', ' + user.escape('state') + ' ' + user.escape('zip_code') %>
+			<div class="col-9">
+				<% if (user.role === "org") { %>
+					<div>
+						<%= user.escape("org_name") %>
+					</div>
+					<% } %>
+						<div>
+							<%= user.escape("name") %>
+						</div>
+						<div>
+							<%= user.escape("email") %>
+						</div>
+						<div>
+							<%= user.escape("street_address") %>
+						</div>
+						<div>
+							<%= user.escape("city") + ", " + user.escape("state") + " " + user.escape("zip_code") %>
+						</div>
+			</div>
+		</div>
 	</div>
 </div>
 
-<div class='contact-btns' />
+<div class="contact-btns mt-3" />
 
 <div class="modal modal-update-profile" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
@@ -39,43 +61,41 @@
 			<div class="modal-body">
 				<form class="form-update-profile">
 					<div class="form-group">
-						<label>
+						<label for="profile-org-name">
 							Organization Name
-							<input type='text' class='form-control org-name' name='user[org_name]' value="<%= user.escape( 'org_name')%>" />
 						</label>
+						<input type="text" class="form-control org-name" id="profile-org-name" name="user[org_name]" value="<%= user.escape( "org_name")%>" />
 					</div>
-
 					<div class="form-group">
-						<label>
+						<label for="profile-first-name">
 							First Name
-							<input type='text' class='form-control first-name' name='user[first_name]' value="<%= user.escape( 'first_name')%>" />
 						</label>
+						<input type="text" class="form-control first-name" id="profile-first-name" name="user[first_name]" value="<%= user.escape( "first_name")%>" />
 					</div>
 					<div class="form-group">
-						<label>
+						<label for="profile-last-name">
 							Last Name
-							<input type='text' class='form-control last-name' name='user[last_name]' value="<%= user.escape( 'last_name')%>" />
 						</label>
+						<input type="text" class="form-control last-name" id="profile-last-name" name="user[last_name]" value="<%= user.escape( "last_name")%>" />
 					</div>
 					<div class="form-group">
-						<label>
+						<label for="profile-street">
 							Street
-							<input type='text' class='form-control street-address' name='user[street_address]' value="<%= user.escape(
-							 'street_address')%>" />
 						</label>
+						<input type="text" class="form-control street-address" id="profile-street" name="user[street_address]" value="<%= user.escape("street_address")%>" />
 					</div>
 					<div class="form-group">
-						<label>
+						<label for="profile-city">
 							City
-							<input type='text' class='form-control city' name='user[city]' value="<%= user.escape( 'city')%>" />
 						</label>
+						<input type="text" class="form-control city" name="user[city]" id="profile-city" value="<%= user.escape( "city")%>" />
 					</div>
 
 					<div class="form-group">
 						<label>
 							State
 						</label>
-						<select class='states'>
+						<select class="states">
 							<option value="AL">Alabama</option>
 							<option value="AK">Alaska</option>
 							<option value="AZ">Arizona</option>
@@ -131,16 +151,16 @@
 					</div>
 					<div class="form-group">
 						<label>
-							<input type='text' class='form-control zip-code' name='user[zip_code]' value="<%= user.escape( 'zip_code')%>" />
+							<input type="text" class="form-control zip-code" name="user[zip_code]" value="<%= user.escape( "zip_code")%>" />
 						</label>
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button class='btn btn-primary update-profile-btn modal-off' data-toggle='modal'>
+				<button class="btn btn-primary update-profile-btn modal-off" data-toggle="modal">
 					Update!
 				</button>
-				<button class="btn btn-secondary modal-off cancel-btn" data-toggle='modal'>
+				<button class="btn btn-secondary modal-off cancel-btn" data-toggle="modal">
 					Cancel
 				</button>
 			</div>
@@ -150,9 +170,9 @@
 
 <script>
 	$(function () {
-		$('.modal-update-profile button').on('click', function (event) {
+		$(".modal-update-profile button").on("click", function (event) {
 			event.preventDefault();
-			$('.modal').modal('hide');
+			$(".modal").modal("hide");
 		});
 	});
 </script>
