@@ -1,29 +1,29 @@
-<div class='explain text-left p-3 explain-my-pets card invisible' data-link-id='animal-roster-link'>
+<div class="explain text-left p-3 explain-my-pets card invisible" data-link-id="animal-roster-link">
 	Check status of your requests to foster your pets.
 	<br /> Add more pets to your roster.
 	<br />
 	<b>Click for next tip.</b>
 </div>
 
-<div class='explain text-left p-3 explain-reservations card invisible' data-link-id='schedule-manager-link'>
+<div class="explain text-left p-3 explain-reservations card invisible" data-link-id="schedule-manager-link">
 	Check on reservation requests made by other FosterPals, requesting you to foster their pets.
 	<br /> Confirm or deny these requests.
 	<br />
 	<b>Click for next tip.</b>
 </div>
 
-<div class='explain text-left p-3 explain-search-results-profiles card invisible' data-link-id='profile-link'>
-	Go to a FosterPal's profile page to request a reservation for your FosterPal to foster your animals.
+<div class="explain text-left p-3 explain-search-results-profiles card invisible" data-link-id="profile-link">
+	Go to a FosterPal"s profile page to request a reservation for your FosterPal to foster your animals.
 	<br />
 	<b>Click to exit tips.</b>
 </div>
 
-<div class='profile-preview-hook'></div>
-<div class='error-msg-hook'></div>
+<div class="profile-preview-hook"></div>
+<div class="error-msg-hook"></div>
 
 <div class="results-and-map row">
-	<div class='user-items-hook col-3'></div>
-	<div class='map-hook col-9'></div>
+	<div class="user-items-hook col-3"></div>
+	<div class="map-hook col-9"></div>
 </div>
 
 <div class="modal" tabindex="-1" role="dialog">
@@ -41,7 +41,7 @@
 			<div class="modal-body">
 				<p>
 					Enter a location in the search bar to check for FosterPals nearby. Follow a link from
-					<b>Search Results</b> to reach a FosterPal's profile page, where you can submit a request to have your pets fostered.
+					<b>Search Results</b> to reach a FosterPal"s profile page, where you can submit a request to have your pets fostered.
 				</p>
 
 				<p>
@@ -55,9 +55,9 @@
 				</p>
 			</div>
 			<div class="modal-footer">
-				<a class="btn btn-default modal-off" href="" data-toggle='modal' role="button">
-					Go To The Map!
-				</a>
+				<button class="btn btn-default modal-off" href="" data-toggle="modal" role="button" data-dismiss="modal">
+					Go To  Map!
+				</button>
 			</div>
 		</div>
 	</div>
@@ -66,28 +66,28 @@
 <script>
 	$(function () {
 		var explanationDivs = [
-			$('.explain-my-pets')[0],
-			$('.explain-reservations')[0],
-			$('.explain-search-results-profiles')[0]
+			$(".explain-my-pets")[0],
+			$(".explain-reservations")[0],
+			$(".explain-search-results-profiles")[0]
 		];
 
 		// link divs that the explanations are referring to
 		var highlightedLinks = [
-			$('#animal-roster-link'),
-			$('#schedule-manager-link'),
-			$('.go-to-user-profile')
+			$("#animal-roster-link"),
+			$("#schedule-manager-link"),
+			$(".go-to-user-profile")
 		];
 
 		function removeExplanationDiv($div) {
-			if ($div.classList[0] === 'explain') {
+			if ($div.classList[0] === "explain") {
 				// div is an explanation
-				$div.removeClass('slideInRight').addClass('fadeOutDown');
+				$div.removeClass("slideInRight").addClass("fadeOutDown");
 				setTimeout(function ($div) {
 					$div.remove();
 				}, 3000);
 			} else {
 				// div is a link
-				$div.removeClass('nav-link-pop');
+				$div.removeClass("nav-link-pop");
 			}
 		}
 		function tour() {
@@ -98,37 +98,37 @@
 			var $nextDiv;
 			var $nextLink;
 
-			var $explainMyPets = $($('.explain-my-pets'));
-			$explainMyPets.removeClass('invisible');
-			$('#' + $explainMyPets.data('link-id')).addClass('pulse nav-link-pop');
+			var $explainMyPets = $($(".explain-my-pets"));
+			$explainMyPets.removeClass("invisible");
+			$("#" + $explainMyPets.data("link-id")).addClass("pulse nav-link-pop");
 
 			function removePulses() {
-				var elements = $('.pulse');
+				var elements = $(".pulse");
 				elements.each(function (idx, element) {
-					$(element).removeClass('pulse nav-link-pop');
+					$(element).removeClass("pulse nav-link-pop");
 				});
 			}
 
-			$('*').on('click', function() {
-				var urlFragment = Backbone.history.location.href.split('/')[3];
+			$("*").on("click", function() {
+				var urlFragment = Backbone.history.location.href.split("/")[3];
 
-				if (!urlFragment || !urlFragment.includes('search')) {
+				if (!urlFragment || !urlFragment.includes("search")) {
 					removePulses();
-					$('*').off();
+					$("*").off();
 				}
 			});
 
-			$('.explain').on('click', function (event) {
+			$(".explain").on("click", function (event) {
 				$previousDiv = $(event.currentTarget);
-				$previousDiv.addClass('invisible');
+				$previousDiv.addClass("invisible");
 
 				if (explanationDivs.length === 0) {
-					$previousLink = $($('.go-to-user-profile')[0]);
+					$previousLink = $($(".go-to-user-profile")[0]);
 				} else {
-					$previousLink = $('#' + $previousDiv.data('link-id'));
+					$previousLink = $("#" + $previousDiv.data("link-id"));
 				}
 
-				$previousLink.removeClass('nav-link-pop pulse');
+				$previousLink.removeClass("nav-link-pop pulse");
 				setTimeout(function () {
 					$previousDiv.remove();
 				}, 3000);
@@ -136,32 +136,32 @@
 				if (explanationDivs.length > 1) {
 					$nextDiv = $(explanationDivs.shift());
 					$nextLink = $(highlightedLinks.shift());
-					$nextDiv.removeClass('invisible')
-					$nextLink.addClass('nav-link-pop pulse');
+					$nextDiv.removeClass("invisible")
+					$nextLink.addClass("nav-link-pop pulse");
 				} else if (explanationDivs.length === 1) {
 					$nextDiv = $(explanationDivs.shift());
-					$nextLink = $($('.go-to-user-profile')[0]);
-					$nextDiv.removeClass('invisible')
-					$nextLink.addClass('nav-link-pop pulse');
+					$nextLink = $($(".go-to-user-profile")[0]);
+					$nextDiv.removeClass("invisible")
+					$nextLink.addClass("nav-link-pop pulse");
 				}
 			});
 		}
 
 		if (FosterPals.mapFirstVisit) {
-			$('.modal').modal();
-			$('.modal').on('hidden.bs.modal', function () {
+			$(".modal").modal();
+			$(".modal").on("hidden.bs.modal", function () {
 				tour();
 			});
 			setTimeout(function () {
 				var observer = new MutationObserver(function () {
-					$(explanationDivs.shift()).removeClass('hidden').addClass('slideInRight');
-					$(highlightedLinks.shift()).addClass('nav-link-pop pulse');
+					$(explanationDivs.shift()).removeClass("hidden").addClass("slideInRight");
+					$(highlightedLinks.shift()).addClass("nav-link-pop pulse");
 					observer.disconnect();
 				})
-				observer.observe($('.modal')[0], {
-					'attributes': true,
-					'childList': true,
-					'characterData': true
+				observer.observe($(".modal")[0], {
+					"attributes": true,
+					"childList": true,
+					"characterData": true
 				})
 			}, 500);
 
