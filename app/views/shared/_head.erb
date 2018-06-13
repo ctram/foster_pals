@@ -1,0 +1,16 @@
+  <head>
+    <title>FosterPals</title>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%>
+    <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+    <script defer src="http://widget.cloudinary.com/global/all.js" type="text/javascript" charset="utf-8"></script>
+    <script defer type="text/javascript" charset="utf-8">
+      window.CLOUDINARY_OPTIONS = {
+        cloud_name: "<%= ENV['CLOUDINARY_CLOUD_NAME']%>",
+        upload_preset: "<%= ENV['CLOUDINARY_UPLOAD_PRESET']%>"
+      };
+    </script>
+    <script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>"></script>
+  </head>

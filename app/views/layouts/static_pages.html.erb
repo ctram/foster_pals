@@ -4,7 +4,10 @@
   <%= render 'shared/helper_scripts' %>
   <body>
     <%= render partial: 'shared/flashes' %>
-    <%= yield %>
-    <%= render 'shared/footer' %>
+    <%= render 'shared/navbar' %>
+    <main class="static-pages">
+      <%= yield %>
+    </main>
+    <%= render "shared/footer" %>
   </body>
 </html>

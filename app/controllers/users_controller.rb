@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    render layout: 'static_pages'
   end
 
   def create
