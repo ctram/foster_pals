@@ -1,31 +1,39 @@
-<!-- TODO: add validation errors for date pickers -->
+<h2>
+    Request a Stay with a
+    <%= fosterer.escape('name')%>!
+</h2>
 
-<h2>Request a Stay with a Fosterer!</h2>
-
-<hr>
+<hr />
 
 <h3>Select Animals for this Stay</h3>
+<div class="animal-roster-hook" />
 
-<div class='animal-roster-hook'>
-</div>
+<h3>Animals for this Reservation</h3>
+<div class="chosen-animals-hook" />
 
-<div class=''>
-    <h3>Animals for this Reservation</h3>
-    <div class='chosen-animals-hook panel panel-default'>
-
+<h3>Check-in</h3>
+<div class="row">
+    <div class="col-6">
+        <div class="form-group">
+            <div class="input-group date" id="check-in">
+                <input type="text" class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar" />
+                </span>
+            </div>
+        </div>
     </div>
 </div>
 
-
-<h3>Check-in</h3>
-<div class="container">
+<div class="check-out-group">
+    <h3>Check-out</h3>
     <div class="row">
-        <div class='col-sm-6'>
+        <div class="col-6">
             <div class="form-group">
-                <div class='input-group date' id='check-in'>
-                    <input type='text' class="form-control" />
+                <div class="input-group date" id="check-out">
+                    <input type="text" class="form-control" />
                     <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                        <span class="glyphicon glyphicon-calendar" />
                     </span>
                 </div>
             </div>
@@ -33,50 +41,14 @@
     </div>
 </div>
 
-<br>
-<BR>
-
-<!-- <h3>Undetermined Check-out</h3> -->
-
-<div class='check-out-group'>
-    <h3>Check-out</h3>
-    <div class="container">
-        <div class="row">
-            <div class='col-sm-6'>
-                <div class="form-group">
-                    <div class='input-group date' id='check-out'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<BR>
-
-
-<!--
-<fieldset id='indefinite_stay-field'>
-  <label>
-    <input id ='indefinite-stay-checkbox' type='checkbox' name='indefinite_stay' value='true'> Undetermined Check-out Date</input>
-  </label>
-</fieldset>
-<BR><BR>
--->
-
-<button class='btn btn-primary' id='check-aval-btn'>Check Availability</button>
-
+<button class="btn btn-primary" id="check-aval-btn">Check Availability</button>
 
 <script type="text/javascript">
     $(function () {
-        $('#check-in').datetimepicker({
+        $("#check-in").datetimepicker({
             format: "MM/DD/YYYY"
         });
-        $('#check-out').datetimepicker({
+        $("#check-out").datetimepicker({
             format: "MM/DD/YYYY"
         });
     });

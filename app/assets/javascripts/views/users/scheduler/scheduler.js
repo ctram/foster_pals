@@ -1,9 +1,17 @@
 FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  
+  template: JST['users/scheduler/scheduler'],
 
+  className: 'scheduler-view',
+
+  events: {
+    'click button#back-to-profile-btn': 'goToShow',
+    'click button#check-aval-btn': 'checkDates'
+  },
+
+  initialize: function(options) {
     this.currentUser = options.currentUser;
     this.animals = options.animals;
-
     this.profileView = new FosterPals.Views.Profile({
       model: this.model,
       viewingFromScheduler: true
@@ -16,20 +24,10 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       animals: this.animals
     });
     this.addSubview('.dates-picker-hook', this.datesPickerView);
-
     this.listenTo(this.model, 'sync', this.render);
   },
 
-  template: JST['users/scheduler/scheduler'],
-
-  className: 'scheduler-view',
-
-  events: {
-    'click button#back-to-profile-btn': 'goToShow',
-    'click button#check-aval-btn' : 'checkDates',
-  },
-
-  checkDates: function (event) {
+  checkDates: function(event) {
     var selectedAnimals = $('.chosen-animal');
     var animalIds = [];
 
@@ -54,9 +52,9 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     var $checkIn = $('#check-in');
     var $checkOut = $('#check-out');
 
-    var checkInEmptyBool = ($checkIn.find('input').val() === '');
-    var checkOutEmptyBool = ($checkOut.find('input').val() === '');
-    var indefiniteStayBool = ($('#indefinite-stay-checkbox:checked').length !== 1);
+    var checkInEmptyBool = $checkIn.find('input').val() === '';
+    var checkOutEmptyBool = $checkOut.find('input').val() === '';
+    var indefiniteStayBool = $('#indefinite-stay-checkbox:checked').length !== 1;
 
     if (checkInEmptyBool || (checkOutEmptyBool && indefiniteStayBool)) {
       var errors = ['Must enter check-in and check-out dates'];
@@ -69,27 +67,32 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       return;
     }
 
-    var checkInDate = $checkIn.data("DateTimePicker").date()._d.toLocaleString();
+    var checkInDate = $checkIn
+      .data('DateTimePicker')
+      .date()
+      ._d.toLocaleString();
 
     if ($('#indefinite-stay-checkbox:checked').length === 1) {
       var indefiniteStay = true;
       var checkOutDate = '';
     } else {
       var indefiniteStay = false;
-      var checkOutDate = $checkOut.data("DateTimePicker").date()._d.toLocaleString();
+      var checkOutDate = $checkOut
+        .data('DateTimePicker')
+        .date()
+        ._d.toLocaleString();
     }
 
     this.animals = new FosterPals.Collections.Animals();
 
-    successCallback = function (model, response, options) {
-
+    successCallback = function(model, response, options) {
       var animalId = model['id'];
       // var animal_id = model['animal_id'];
       var animal = FosterPals.Collections.animals.getOrFetch(animalId);
       this.animals.add(animal);
     }.bind(this);
 
-    errorCallback = function (model, response, options) {
+    errorCallback = function(model, response, options) {
       var errorsView = new FosterPals.Views.ValidationErrors({
         model: model,
         view: 'dates-picker'
@@ -99,8 +102,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
 
     this.reservations = new FosterPals.Collections.Reservations();
 
-    resSuccessCallback = function (model, response, options) {
-
+    resSuccessCallback = function(model, response, options) {
       this.reservations.add(model);
     }.bind(this);
 
@@ -119,56 +121,65 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
 
       $.ajax('api/reservations', {
         method: 'post',
-        data: {reservation: resAttrs},
+        data: { reservation: resAttrs },
         dataType: 'json',
         success: resSuccessCallback
       });
-
     }
 
+    setTimeout(
+      function() {
+        var reservations = [];
+        var res;
 
-    setTimeout(function () {
-      var reservations = [];
-      var res;
+        for (var i = 0; i < this.reservations.length; i++) {
+          res = this.reservations.models[i].attributes;
+          reservations.push(res);
+        }
 
-      for (var i = 0; i < this.reservations.length; i++) {
-        res = this.reservations.models[i].attributes;
-        reservations.push(res);
-      }
+        stayAttrs = {
+          // animal_id: animalId,
+          // indefinite_stay: indefiniteStay,
+          reservations: reservations,
+          check_in_date: checkInDate,
+          check_out_date: checkOutDate,
+          org_id: CURRENT_USER_ID,
+          fosterer_id: this.model.escape('id'),
+          status: 'pending'
+        };
 
+        // TODO: should be ajax to make reservations with an empty stay.
+        $.ajax('/api/stays', {
+          data: { stay: stayAttrs },
+          method: 'post',
+          dataType: 'json',
+          success: successCallback,
+          error: errorCallback
+        });
 
-      stayAttrs = {
-        // animal_id: animalId,
-        // indefinite_stay: indefiniteStay,
-        reservations: reservations,
-        check_in_date: checkInDate,
-        check_out_date: checkOutDate,
-        org_id: CURRENT_USER_ID,
-        fosterer_id: this.model.escape('id'),
-        status: 'pending'
-      };
-
-      // TODO: should be ajax to make reservations with an empty stay.
-      $.ajax( '/api/stays',{
-        data: {stay: stayAttrs},
-        method: 'post',
-        dataType: 'json',
-        success: successCallback,
-        error: errorCallback
-      });
-
-      // TODO: ajax to create stay
-      this.showConfirmation();
-    }.bind(this), 1000);
+        // TODO: ajax to create stay
+        this.showConfirmation();
+      }.bind(this),
+      1000
+    );
   },
 
-  goToShow: function (event) {
+  goToShow: function(event) {
     var id = this.model.escape('id');
     var url = 'users/' + id;
-    Backbone.history.navigate(url, {trigger: true});
+    Backbone.history.navigate(url, { trigger: true });
   },
+  
+  showConfirmation: function() {
+    animalRosterSelectorView = this.subviews()._wrapped['.dates-picker-hook']._wrapped[0];
+    this.removeSubview('.dates-picker-hook', animalRosterSelectorView);
+    var confirmationView = new FosterPals.Views.Confirmation({
+      collection: this.reservations
+    });
+    this.addSubview('.dates-picker-hook', confirmationView);
+  }, 
 
-  render: function () {
+  render: function() {
     var content = this.template({
       model: this.model
     });
@@ -176,15 +187,4 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     this.attachSubviews();
     return this;
   },
-
-  showConfirmation: function () {
-
-    animalRosterSelectorView  = this.subviews()._wrapped['.dates-picker-hook']._wrapped[0]
-    this.removeSubview('.dates-picker-hook', animalRosterSelectorView);
-    var confirmationView = new FosterPals.Views.Confirmation({
-      collection: this.reservations
-    });
-    this.addSubview('.dates-picker-hook', confirmationView);
-  }
-
 });

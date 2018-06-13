@@ -1,4 +1,15 @@
 FosterPals.Views.Profile = Backbone.CompositeView.extend({
+
+  template: JST['users/profile/profile'],
+
+  className: 'profile-view',
+
+  events: {
+    'click button.schedule-btn': 'toScheduler',
+    'click button.edit-profile-btn': 'editProfile',
+    'click button.update-profile-btn': 'updateProfile'
+  },
+
   initialize: function(options) {
     viewingFromScheduler = options.viewingFromScheduler;
 
@@ -14,16 +25,6 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     this.addSubview('.profile-photo', profilePhotoView);
 
     this.listenTo(this.model, 'sync', this.render);
-  },
-
-  template: JST['users/profile/profile'],
-
-  className: 'profile-view',
-
-  events: {
-    'click button.schedule-btn': 'toScheduler',
-    'click button.edit-profile-btn': 'editProfile',
-    'click button.update-profile-btn': 'updateProfile'
   },
 
   // TODO: finish user info update - right now a modal pops up but no data is saved -- or there is no change after button is clicked.
