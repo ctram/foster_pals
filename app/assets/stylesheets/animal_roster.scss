@@ -8,8 +8,9 @@
   cursor: pointer;
 
   &:hover {
-    border-radius: 5px;
-    border: 1px solid black;
+    border-radius: 2px;
+    border: 1px solid $dark-grey;
+    background: $dark-grey;
   }
 }
 

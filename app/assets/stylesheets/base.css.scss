@@ -13,9 +13,10 @@ main {
   // so fixed navbar and footer do not over lap with content.
   height: inherit;
 
-  &.front-page {
-    // margin-top: -30px;
+  &.app-container {
+    padding-top: 4em;
   }
+
 }
 
 textarea {

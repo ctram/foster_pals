@@ -105,7 +105,8 @@
   }
 }
 
-#search-results-view, .results-and-map {
+#search-results-view,
+.results-and-map {
   height: inherit;
   padding-top: 1em;
 }
@@ -136,15 +137,8 @@
 
 .sidebar-info {
   width: 24em;
-  text-align: center;
-  height: 7em;
-  padding-top: 8em;
-
-  h2 {
-    line-height: 2em;
-  }
-
-  hr {
-    margin: 0;
-  }
+  background: $body-color;
+  top: 4em;
+  height: 6em;
+  padding-top: 2em;
 }
