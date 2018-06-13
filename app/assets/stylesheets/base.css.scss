@@ -132,17 +132,6 @@ img.img-responsive {
   animation-duration: 1s;
 }
 
-.input-group > input.register-btn.form-horizontal.form-group {
-  margin-left: 11px;
-}
-
-.input-group {
-  .register-btn {
-    position: relative;
-    top: 10px;
-  }
-}
-
 select {
   left: 11px;
 }
@@ -164,36 +153,6 @@ button.register-featurette-btn {
   margin-top: 12px;
 }
 
-.sex-radio-btns {
-  width: 26px;
-  position: relative;
-  display: inline-block;
-  left: 14px;
-
-  label {
-    margin-right: 12px;
-  }
-}
-
-.high-z {
-  z-index: 1000;
-}
-
-.radio-btns {
-  position: relative;
-  left: 5px;
-  height: 129px;
-}
-
-.schedule-manager-item {
-  display: block;
-}
-
-.table-header {
-  border-bottom: red solid 1px;
-  font-weight: bolder;
-}
-
 li.alert {
   width: 256px;
   padding: 8px;
@@ -201,14 +160,6 @@ li.alert {
   list-style-type: none;
   margin: auto;
   margin-top: 11px;
-}
-
-.form-horizontal .form-group {
-  margin: 0px;
-}
-
-span.strong {
-  font-weight: bold;
 }
 
 .ui-selected {
@@ -239,21 +190,6 @@ hr {
   margin: 0px;
 }
 
-select.new-user {
-  color: #464545;
-}
-
-.add-animal-form {
-  .panel {
-    background-color: white;
-  }
-}
-
-.panel {
-  border-color: #321616;
-  padding: 15px;
-}
-
 input.form-control.search-input {
   width: 294px;
   font-size: 10pt;
@@ -279,7 +215,6 @@ footer {
 
 .input-group {
   padding: 10px;
-  /*min-width: 229px;*/
   width: 26em;
 
   input {
@@ -292,27 +227,16 @@ footer {
   display: none;
 }
 
-.form-horizontal.well {
-  margin: auto;
-  width: 600px;
-  text-align: center;
-  padding: 3em;
-
-  .form {
-    padding-left: 0;
-  }
-}
-
-.well {
-  margin: 32px;
-}
-
 .active-user-item {
   background-color: #95d7e4;
 }
 
 .row > * {
   display: inline-block;
+}
+
+ul {
+  list-style-type: none;
 }
 
 a {

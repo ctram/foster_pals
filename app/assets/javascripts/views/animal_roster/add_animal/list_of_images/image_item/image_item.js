@@ -1,7 +1,7 @@
 FosterPals.Views.ImageItem = Backbone.CompositeView.extend({
   template: JST['animal_roster/add_animal/list_of_images/image_item/image_item'],
 
-  className: 'li.image-item',
+  className: 'image-item',
 
   initialize: function(options) {},
 
