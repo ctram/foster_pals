@@ -19,7 +19,7 @@ FosterPals.Views.AnimalRoster = Backbone.CompositeView.extend({
 
   template: JST['animal_roster/animal_roster'],
 
-  className: 'animal-roster-view',
+  className: 'animal-roster-view pt-5',
 
   render: function() {
     var content = this.template({
