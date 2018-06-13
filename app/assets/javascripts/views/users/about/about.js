@@ -40,15 +40,13 @@ FosterPals.Views.About = Backbone.CompositeView.extend({
 
   updateAboutInfo: function(event){
     event.preventDefault();
-
-    var $form = $(event.currentTarget.parentElement);
-    var aboutInfoData = $form.serializeJSON();
+    var $btn = $(event.currentTarget);
+    var aboutInfoData = $('#' + $btn.data('form-id')).serializeJSON();
     this.user.set(aboutInfoData);
     this.user.save({}, {
       success: function () {
         this.addSubview('section', this.aboutTextView);
         this.removeSubview('section', this.aboutFormView);
-        //
       }.bind(this)
     });
   }

@@ -8,7 +8,6 @@ FosterPals.Views.AboutForm = Backbone.CompositeView.extend({
   render: function () {
     var content = this.template({user: this.user});
     this.$el.html(content);
-    // this.attachSubviews();
     return this;
   }
 });

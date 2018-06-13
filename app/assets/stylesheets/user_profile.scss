@@ -1,37 +1,11 @@
-.about-update-button {
-  margin-top: 10px;
-}
-
-
-.highlight-request-btn {
-  z-index: 1;
-  position: absolute;
-  top: 76%;
-  left: 85%;
-  width: 100%;
-  background-color: rgb(41, 213, 41);
-  color: white;
-  box-shadow: 5px 5px 20px black;
-}
-
-.profile {
-  border: 2px solid black;
-  width: 500px;
-  min-height: 600px;
-}
-
-.profile-hook {
-  width: auto;
-  .profile-view {
-    min-width: 341px;
-    width: auto;
-    margin-right: 0px;
-  }
-}
-
-.profile-photo-view {
-  img {
-    margin-bottom: 10px;
+.user-show-view {
+  .profile-photo-view img {
     border-radius: 5px;
+    border: 1px solid black;
+  }
+  
+  .about_info {
+    min-height: 15em;
   }
 }
+

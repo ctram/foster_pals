@@ -1,9 +1,6 @@
-<!--  FIXME: textarea can resize beyond the parent well. -->
-
-Update your info:
-<form class='about-info-form'>
-  <textarea name='about_info'><%= user.escape('about_info') %></textarea>
-
-  <button class='about-info-save-btn btn btn-primary'>Save</button>
-
+<form id='about-info-form'>
+  <textarea class="about_info" name='about_info'><%= user.escape('about_info') %></textarea>
+  <div class="mt-3">
+    <button class='about-info-save-btn btn btn-primary' data-form-id="about-info-form">Save</button>
+  </div>
 </form>
