@@ -1,4 +1,4 @@
-<div class='explain text-left p-3 explain-my-pets card' data-link-id='animal-roster-link'>
+<div class='explain text-left p-3 explain-my-pets card invisible' data-link-id='animal-roster-link'>
 	Check status of your requests to foster your pets.
 	<br /> Add more pets to your roster.
 	<br />
@@ -90,7 +90,6 @@
 				$div.removeClass('nav-link-pop');
 			}
 		}
-
 		function tour() {
 			var divRemovalQueue;
 			var linkRemovalQueue;
@@ -99,8 +98,27 @@
 			var $nextDiv;
 			var $nextLink;
 
+			var $explainMyPets = $($('.explain-my-pets'));
+			$explainMyPets.removeClass('invisible');
+			$('#' + $explainMyPets.data('link-id')).addClass('pulse nav-link-pop');
+
+			function removePulses() {
+				var elements = $('.pulse');
+				elements.each(function (idx, element) {
+					$(element).removeClass('pulse nav-link-pop');
+				});
+			}
+
+			$('*').on('click', function() {
+				var urlFragment = Backbone.history.location.href.split('/')[3];
+
+				if (!urlFragment || !urlFragment.includes('search')) {
+					removePulses();
+					$('*').off();
+				}
+			});
+
 			$('.explain').on('click', function (event) {
-				
 				$previousDiv = $(event.currentTarget);
 				$previousDiv.addClass('invisible');
 
@@ -126,17 +144,13 @@
 					$nextDiv.removeClass('invisible')
 					$nextLink.addClass('nav-link-pop pulse');
 				}
-			})
+			});
 		}
-
-		tour();
 
 		if (FosterPals.mapFirstVisit) {
 			$('.modal').modal();
-
-			$('a.modal-off').on('click', function (event) {
-				event.preventDefault();
-				$('.modal').modal('hide');
+			$('.modal').on('hidden.bs.modal', function () {
+				tour();
 			});
 			setTimeout(function () {
 				var observer = new MutationObserver(function () {

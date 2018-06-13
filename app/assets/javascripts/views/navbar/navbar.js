@@ -1,5 +1,5 @@
 FosterPals.Views.Navbar = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  initialize: function(options) {
     this.router = options.router;
     this.listenTo(this.router, '', this.render);
   },
@@ -15,45 +15,46 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
     'submit form': 'invokeSearch'
   },
 
-  followLink: function (event) {
+  followLink: function(event) {
     $('li').removeClass('active');
     var $destLink = $(event.currentTarget);
     var $destLi = $(event.currentTarget.parentElement);
     $destLi.addClass('active');
     var dest = $destLink.attr('id');
-    Backbone.history.navigate(dest, {trigger: true});
+    Backbone.history.navigate(dest, { trigger: true });
   },
 
-  invokeSearch: function (event) {
+  invokeSearch: function(event) {
     event.preventDefault();
     $('li').removeClass('active');
-    search_location = $('form').find('input').val();
+    search_location = $('form')
+      .find('input')
+      .val();
 
     if ($('.map-hook').length === 0) {
       this.router.search(search_location);
     } else {
-
       FosterPals.Events.trigger('pan', search_location);
     }
   },
 
-  signOut: function (event) {
+  signOut: function(event) {
     $.ajax({
       url: '/session',
       type: 'DELETE',
-      success: function () {
+      success: function() {
         window.location = '/session/new';
       }
     });
   },
 
-  render: function () {
+  render: function() {
     var content = this.template({});
     this.$el.html(content);
     return this;
   },
 
-  toggleLinkHighlight: function ($link) {
+  toggleLinkHighlight: function($link) {
     if ($link.hasClass('active')) {
       $link.removeClass('active');
     } else {
