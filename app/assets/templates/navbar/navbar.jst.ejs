@@ -3,16 +3,19 @@
   <a class="navbar-brand" href="/front">
     FosterPals
   </a>
+  <div class="navbar-tagline d-none d-lg-block">
+    Connecting rescue organizations with people like you.
+  </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
     <span class="navbar-toggler-icon" />
   </button>
-  <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
     <ul class="navbar-nav">
-      <li class='welcome-text nav-item'>
-        <a class="nav-link" href="#">
+      <li class="nav-item">
+        <strong class="welcome-text">
           Welcome,
           <%= CURRENT_USER %>!
-        </a>
+        </strong>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#profile" id="<%= CURRENT_USER_ID %>">
@@ -20,24 +23,24 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#schedule-manager" id='schedule-manager-link'>
+        <a class="nav-link" href="#schedule-manager" id="schedule-manager-link">
           Reservation Requests
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#animal-roster" id='animal-roster-link'>
+        <a class="nav-link" href="#animal-roster" id="animal-roster-link">
           My Pets
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#sign-out" id='sign-out-link'>
+        <a class="nav-link" href="#sign-out" id="sign-out-link">
           Sign Out
         </a>
       </li>
     </ul>
     <form class="form-inline">
-      <input type="text" class="form-control search-input" placeholder='"New York, NY", "New Orleans, LA", etc...' name='location_query'
-        id='search-input' />
+      <input type="text" class="form-control search-input" placeholder=""New York, NY", "New Orleans, LA", etc..." name="location_query"
+        id="search-input" />
       <button class="ml-1 btn btn-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
