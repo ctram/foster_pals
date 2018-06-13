@@ -60,7 +60,6 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   removeAllProfilePreviews: function() {
     var _this = this;
     this.profilePreviews.forEach(function(profilePreview) {
-      profilePreview.$el.removeClass('fadeIn').addClass('fadeOut');
       _this.removeSubview('.profile-preview-hook', profilePreview);
     });
   },
