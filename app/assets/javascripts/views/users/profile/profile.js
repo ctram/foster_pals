@@ -62,20 +62,23 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     }
   },
 
-  updateProfile: function(event) {
-    // TODO: add validation errors
-    event.preventDefault();
-    $form = $('.form-update-profile');
-    attrs = $form.serializeJSON().user;
+  updateProfile: function() {
+    form = $('#form-update-profile')[0];
+    if (!form.checkValidity()) {
+      return;
+    }
+
+    attrs = $(form).serializeJSON().user;
     this.model.save(attrs, {
       success: function() {
-        $('.modal').modal('toggle');
-        $('.modal-backdrop').remove();
+        $('.modal').modal('hide');
         setTimeout(function() {
           location.reload();
         }, 1000);
       },
-      error: function(model, response, options) {}
+      error: function (model, response, options) {
+        console.error(response);
+      }
     });
   }
 });

@@ -51,7 +51,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">
-					Edit Your Profile.
+					Edit Profile.
 					<span class="text-muted">Tell Us About Yourself</span>
 				</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -59,110 +59,121 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form class="form-update-profile">
-					<div class="form-group">
-						<label for="profile-org-name">
-							Organization Name
-						</label>
-						<input type="text" class="form-control org-name" id="profile-org-name" name="user[org_name]" value="<%= user.escape( "org_name")%>" />
-					</div>
-					<div class="form-group">
-						<label for="profile-first-name">
-							First Name
-						</label>
-						<input type="text" class="form-control first-name" id="profile-first-name" name="user[first_name]" value="<%= user.escape( "first_name")%>" />
-					</div>
-					<div class="form-group">
-						<label for="profile-last-name">
-							Last Name
-						</label>
-						<input type="text" class="form-control last-name" id="profile-last-name" name="user[last_name]" value="<%= user.escape( "last_name")%>" />
-					</div>
-					<div class="form-group">
-						<label for="profile-street">
-							Street
-						</label>
-						<input type="text" class="form-control street-address" id="profile-street" name="user[street_address]" value="<%= user.escape("street_address")%>" />
-					</div>
-					<div class="form-group">
-						<label for="profile-city">
-							City
-						</label>
-						<input type="text" class="form-control city" name="user[city]" id="profile-city" value="<%= user.escape( "city")%>" />
-					</div>
+				<form id="form-update-profile">
+					<% if (user.role === "org") { %>
+						<div class="form-group">
+							<label for="profile-org-name">
+								Organization Name
+							</label>
+							<input type="text" class="form-control org-name" id="profile-org-name" name="user[org_name]" value="<%= user.escape('org_name ')%>"
+							 required />
+						</div>
+						<% } %>
+							<div class="form-group">
+								<label for="profile-first-name">
+									First Name
+								</label>
+								<input type="text" class="form-control first-name" id="profile-first-name" name="user[first_name]" value="<%= user.escape('first_name')%>"
+								 required />
+							</div>
+							<div class="form-group">
+								<label for="profile-last-name">
+									Last Name
+								</label>
+								<input type="text" class="form-control last-name" id="profile-last-name" name="user[last_name]" value="<%= user.escape('last_name')%>"
+								 required />
+							</div>
+							<div class="form-group">
+								<label for="profile-street">
+									Street
+								</label>
+								<input type="text" class="form-control street-address" id="profile-street" name="user[street_address]" value="<%= user.escape('street_address')%>"
+								 required />
+							</div>
+							<div class="form-group">
+								<label for="profile-city">
+									City
+								</label>
+								<input type="text" class="form-control city" name="user[city]" id="profile-city" value="<%= user.escape('city')%>" required
+								/>
+							</div>
 
-					<div class="form-group">
-						<label>
-							State
-						</label>
-						<select class="states">
-							<option value="AL">Alabama</option>
-							<option value="AK">Alaska</option>
-							<option value="AZ">Arizona</option>
-							<option value="AR">Arkansas</option>
-							<option value="CA">California</option>
-							<option value="CO">Colorado</option>
-							<option value="CT">Connecticut</option>
-							<option value="DE">Delaware</option>
-							<option value="DC">District Of Columbia</option>
-							<option value="FL">Florida</option>
-							<option value="GA">Georgia</option>
-							<option value="HI">Hawaii</option>
-							<option value="ID">Idaho</option>
-							<option value="IL">Illinois</option>
-							<option value="IN">Indiana</option>
-							<option value="IA">Iowa</option>
-							<option value="KS">Kansas</option>
-							<option value="KY">Kentucky</option>
-							<option value="LA">Louisiana</option>
-							<option value="ME">Maine</option>
-							<option value="MD">Maryland</option>
-							<option value="MA">Massachusetts</option>
-							<option value="MI">Michigan</option>
-							<option value="MN">Minnesota</option>
-							<option value="MS">Mississippi</option>
-							<option value="MO">Missouri</option>
-							<option value="MT">Montana</option>
-							<option value="NE">Nebraska</option>
-							<option value="NV">Nevada</option>
-							<option value="NH">New Hampshire</option>
-							<option value="NJ">New Jersey</option>
-							<option value="NM">New Mexico</option>
-							<option value="NY">New York</option>
-							<option value="NC">North Carolina</option>
-							<option value="ND">North Dakota</option>
-							<option value="OH">Ohio</option>
-							<option value="OK">Oklahoma</option>
-							<option value="OR">Oregon</option>
-							<option value="PA">Pennsylvania</option>
-							<option value="RI">Rhode Island</option>
-							<option value="SC">South Carolina</option>
-							<option value="SD">South Dakota</option>
-							<option value="TN">Tennessee</option>
-							<option value="TX">Texas</option>
-							<option value="UT">Utah</option>
-							<option value="VT">Vermont</option>
-							<option value="VA">Virginia</option>
-							<option value="WA">Washington</option>
-							<option value="WV">West Virginia</option>
-							<option value="WI">Wisconsin</option>
-							<option value="WY">Wyoming</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label>
-							<input type="text" class="form-control zip-code" name="user[zip_code]" value="<%= user.escape( "zip_code")%>" />
-						</label>
-					</div>
+							<div class="form-group">
+								<label for="profile-state">
+									State
+								</label>
+								<div>
+									<select class="states" id="profile-state">
+										<option value="AL">Alabama</option>
+										<option value="AK">Alaska</option>
+										<option value="AZ">Arizona</option>
+										<option value="AR">Arkansas</option>
+										<option value="CA">California</option>
+										<option value="CO">Colorado</option>
+										<option value="CT">Connecticut</option>
+										<option value="DE">Delaware</option>
+										<option value="DC">District Of Columbia</option>
+										<option value="FL">Florida</option>
+										<option value="GA">Georgia</option>
+										<option value="HI">Hawaii</option>
+										<option value="ID">Idaho</option>
+										<option value="IL">Illinois</option>
+										<option value="IN">Indiana</option>
+										<option value="IA">Iowa</option>
+										<option value="KS">Kansas</option>
+										<option value="KY">Kentucky</option>
+										<option value="LA">Louisiana</option>
+										<option value="ME">Maine</option>
+										<option value="MD">Maryland</option>
+										<option value="MA">Massachusetts</option>
+										<option value="MI">Michigan</option>
+										<option value="MN">Minnesota</option>
+										<option value="MS">Mississippi</option>
+										<option value="MO">Missouri</option>
+										<option value="MT">Montana</option>
+										<option value="NE">Nebraska</option>
+										<option value="NV">Nevada</option>
+										<option value="NH">New Hampshire</option>
+										<option value="NJ">New Jersey</option>
+										<option value="NM">New Mexico</option>
+										<option value="NY">New York</option>
+										<option value="NC">North Carolina</option>
+										<option value="ND">North Dakota</option>
+										<option value="OH">Ohio</option>
+										<option value="OK">Oklahoma</option>
+										<option value="OR">Oregon</option>
+										<option value="PA">Pennsylvania</option>
+										<option value="RI">Rhode Island</option>
+										<option value="SC">South Carolina</option>
+										<option value="SD">South Dakota</option>
+										<option value="TN">Tennessee</option>
+										<option value="TX">Texas</option>
+										<option value="UT">Utah</option>
+										<option value="VT">Vermont</option>
+										<option value="VA">Virginia</option>
+										<option value="WA">Washington</option>
+										<option value="WV">West Virginia</option>
+										<option value="WI">Wisconsin</option>
+										<option value="WY">Wyoming</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>
+									Zip Code
+								</label>
+								<input type="number" class="form-control zip-code" id="profile-zip-code" name="user[zip_code]" value="<%= user.escape('zip_code')%>"
+								 required />
+							</div>
+							<div class="modal-footer">
+								<button class="btn btn-primary update-profile-btn modal-off" data-toggle="modal" type="submt">
+									Update!
+								</button>
+								<button class="btn btn-secondary modal-off cancel-btn" data-toggle="modal" data-dismiss="modal">
+									Cancel
+								</button>
+							</div>
 				</form>
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-primary update-profile-btn modal-off" data-toggle="modal" data-dismiss="modal">
-					Update!
-				</button>
-				<button class="btn btn-secondary modal-off cancel-btn" data-toggle="modal" data-dismiss="modal">
-					Cancel
-				</button>
 			</div>
 		</div>
 	</div>
