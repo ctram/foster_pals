@@ -12,12 +12,13 @@
  *
  */
 
- @import  "variables";
+ @import 'variables';
  @import 'bootstrap-datetimepicker';
  @import 'jquery.fancybox';
  @import 'animate';
  @import 'modal';
- @import "bootstrap";
+ @import 'bootstrap';
+ @import './themes/darkly';
  
- @import "**/*";
+ @import '**/*';
 
