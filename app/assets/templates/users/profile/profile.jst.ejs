@@ -157,22 +157,13 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-primary update-profile-btn modal-off" data-toggle="modal">
+				<button class="btn btn-primary update-profile-btn modal-off" data-toggle="modal" data-dismiss="modal">
 					Update!
 				</button>
-				<button class="btn btn-secondary modal-off cancel-btn" data-toggle="modal">
+				<button class="btn btn-secondary modal-off cancel-btn" data-toggle="modal" data-dismiss="modal">
 					Cancel
 				</button>
 			</div>
 		</div>
 	</div>
 </div>
-
-<script>
-	$(function () {
-		$(".modal-update-profile button").on("click", function (event) {
-			event.preventDefault();
-			$(".modal").modal("hide");
-		});
-	});
-</script>
