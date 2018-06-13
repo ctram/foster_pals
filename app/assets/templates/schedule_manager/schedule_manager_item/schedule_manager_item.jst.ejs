@@ -1,35 +1,32 @@
-<div class='row schedule-manager-item'>
-  <div class='schedule-manager-item col-md-3'>
-    <%= org.escape('org_name') %>
+<div class="row schedule-manager-item">
+  <div class="animal-item-hook col-2" />
+
+  <div class="col-3">
+    <%= org.escape("") %>
   </div>
 
-  <div class='schedule-manager-item col-md-2'>
-    <%= stay.escape('check_in_date') %>
+  <div class="col-3">
+    <%= org.escape("org_name") %>
   </div>
 
-  <div class='schedule-manager-item col-md-2'>
-    <%= stay.escape('check_out_date') %>
+  <div class="col-2">
+    <%= stay.escape("check_in_date") %>
   </div>
 
+  <div class="col-2">
+    <%= stay.escape("check_out_date") %>
+  </div>
 
-  <% if (stay.escape('status') === 'pending') { %>
-    <div class='confirm-deny-btns'>
-      <button class='btn btn-success prompt-confirm col-md-2'  data-stay-id="<%= stay.escape('id') %>">
+  <% if (stay.escape("status") === "pending") { %>
+    <div class="confirm-deny-btns col-3">
+      <button class="btn btn-success prompt-confirm" data-stay-id="<%= stay.escape(" id ") %>">
         Confirm
       </button>
 
-      <button class='btn btn-danger prompt-deny col-md-2' data-stay-id="<%= stay.escape('id')%>" >
+      <button class="btn btn-danger prompt-deny" data-stay-id="<%= stay.escape(" id ")%>">
         Deny
       </button>
     </div>
-  <% } else { %>
-    <!--
-    <button class='btn btn-info contact-org col-md-1' data-stay-id="<%= stay.escape('id')%>" >
-      Contact Rescue Org
-    </button>
-    -->
-  <% } %>
+    <% } %>
 
-  <div class='animal-item-hook well'>
-  </div>
 </div>
