@@ -10,13 +10,13 @@ body,
 }
 
 main {
-  // so fixed navbar and footer do not over lap with content.
   height: inherit;
-
+  overflow: auto;
+  
+  // so fixed navbar and footer do not over lap with content.
   &.app-container {
-    padding-top: 4em;
+    padding: 4em 0;
   }
-
 }
 
 textarea {
