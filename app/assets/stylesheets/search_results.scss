@@ -107,6 +107,7 @@
 
 #search-results-view, .results-and-map {
   height: inherit;
+  padding-top: 1em;
 }
 
 .user-items {
@@ -134,11 +135,10 @@
 }
 
 .sidebar-info {
-  background: white;
-  position: fixed;
   width: 24em;
   text-align: center;
   height: 7em;
+  padding-top: 8em;
 
   h2 {
     line-height: 2em;
