@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
   end
 
   def app
+    @context = 'app'
   end
 
 end
