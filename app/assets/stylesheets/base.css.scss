@@ -8,11 +8,8 @@ body,
 main {
   height: inherit;
   overflow: auto;
-  
   // so fixed navbar and footer do not over lap with content.
-  &.app-container {
-    padding: 4em 0;
-  }
+  padding: 74px 0 54px 0;
 }
 
 textarea {
