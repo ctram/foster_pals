@@ -1,3 +1,5 @@
+FosterPals.Collections.addFormImages = new FosterPals.Collections.Images();
+
 FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   initialize: function(options) {
     this.user = options.model;
@@ -24,18 +26,8 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   },
 
   addAnimal: function(event) {
-    // FIXME: validation errors float above the navbar - lower its z-index
-    event.preventDefault();
-
-    var errorsView = this.subviews('.errors-hook')._wrapped[0];
-    if (errorsView) {
-      $('.validation-error').addClass('fadeOutLeftBig');
-      setTimeout(
-        function() {
-          this.removeSubview('.errors-hook', errorsView);
-        }.bind(this),
-        1000
-      );
+    if (!$('#add-animal-form')[0].checkValidity()) {
+      return;
     }
 
     var $button = $(event.target);
@@ -60,18 +52,14 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     $.ajax('/api/animals', {
       data: animal,
       method: 'POST',
-      // TODO: newly added animal not showing up in the roster immediately.
       success: successCallback,
       error: errorCallback
     });
   },
 
   addImage: function(e) {
-    // TODO: right now, when an image is uploaded - it is immediately saved to the database - perhaps delete the images if the animal does not end up being saved.
-    // TODO: Right now the whole page refreshes when an image is upload, losing all previously inputted data. If the user than saves, no animal will be added.
-
-    var image = new FosterPals.Models.Image();
     e.preventDefault();
+    var image = new FosterPals.Models.Image();
     cloudinary.openUploadWidget(
       CLOUDINARY_OPTIONS,
       function(error, result) {
@@ -98,9 +86,6 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     var content = this.template({ imageSetId: this.imageSetId });
     this.$el.html(content);
     this.attachSubviews();
-
     return this;
   }
 });
-
-FosterPals.Collections.addFormImages = new FosterPals.Collections.Images();
