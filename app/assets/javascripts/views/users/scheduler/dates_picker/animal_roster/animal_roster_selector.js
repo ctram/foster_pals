@@ -1,6 +1,13 @@
 FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
-  initialize: function (options) {
 
+  template: JST['users/scheduler/dates_picker/animal_roster_selector/animal_roster_selector'],
+  
+  className: 'animal-roster-selector',
+  
+  events: {
+  },
+  
+  initialize: function (options) {
     this.currentUser = options.currentUser;
     this.animals = options.animals;
 
@@ -8,7 +15,9 @@ FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
       var animal = this.animals.models[i];
       var name = animal.attributes.name;
 
-      // TODO: animals with denied stays should be able to be included on new reservation requests - right now only animals with no stay what so ever are able to be included on reservation requests - animals only get one chance to make a reservation.
+      // TODO: animals with denied stays should be able to be included on new reservation requests - 
+      // right now only animals with no stay what so ever are able to be included on reservation requests 
+      // - animals only get one chance to make a reservation.
       if (animal.attributes.stays.length > 0 ) {
         // FIXME: do not show animals with confirmed stays
         continue;
@@ -20,13 +29,6 @@ FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
     }
     this.listenTo(FosterPals.Events, 'removeAnimal', this.removeAnimalView);
     this.listenTo(FosterPals.Events, 'addAnimal', this.addAnimalView);
-  },
-
-  template: JST['users/scheduler/dates_picker/animal_roster_selector/animal_roster_selector'],
-
-  className: 'animal-roster-selector',
-
-  events: {
   },
 
   addAnimalView: function (animal) {
