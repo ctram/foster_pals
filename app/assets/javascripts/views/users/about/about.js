@@ -1,7 +1,7 @@
 FosterPals.Views.About = Backbone.CompositeView.extend({
   template: JST['users/about/about'],
 
-  className: 'about-view well',
+  className: 'about-view',
 
   initialize: function (options) {
     this.user = options.model;

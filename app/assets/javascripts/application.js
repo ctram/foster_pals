@@ -18,7 +18,6 @@
 ////////////////////////////// require jquery-ui/effect-drop
 
 //= require moment
-//= require bootstrap-datetimepicker
 //= require underscore
 //= require backbone
 //= require foster_pals

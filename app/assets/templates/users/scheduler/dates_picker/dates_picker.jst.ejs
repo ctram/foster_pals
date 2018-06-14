@@ -18,13 +18,13 @@
     <div class="chosen-animals-hook mb-3" />
 </div>
 
-<div class="my-3">
+<div class="my-3 ml-3">
     <div class="check-in-group">
         <h3>Check-in</h3>
         <div class="row">
             <div class="col-2">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="check-in" />
+                    <input type="date" class="form-control" id="check-in" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar" />
                     </span>
@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-2">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="check-out" />
+                    <input type="date" class="form-control" id="check-out" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar" />
                     </span>
@@ -51,17 +51,5 @@
             </div>
         </div>
     </div>
+    <button class="btn btn-primary" id="check-aval-btn" disabled>Check Availability</button>
 </div>
-
-<button class="btn btn-primary" id="check-aval-btn" disabled>Check Availability</button>
-
-<script type="text/javascript">
-    $(function () {
-        $("#check-in").datetimepicker({
-            format: "MM/DD/YYYY"
-        });
-        $("#check-out").datetimepicker({
-            format: "MM/DD/YYYY"
-        });
-    });
-</script>

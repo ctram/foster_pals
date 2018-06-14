@@ -1,18 +1,17 @@
 FosterPals.Views.Confirmation = Backbone.CompositeView.extend({
   template: JST['users/scheduler/confirmation/confirmation'],
 
-  className: 'confirmation-view well col-md-8',
+  className: 'confirmation-view',
 
   events: {
     'click button.to-map': 'toMap'
   },
 
-  initialize: function (options) {
+  initialize: function(options) {
     this.listenTo(this.collection, 'sync', this.render);
   },
 
-  render: function () {
-    // TODO: animals not showing on confirmation page of sent reservations
+  render: function() {
     var content = this.template({
       reservations: this.collection
     });
@@ -21,8 +20,7 @@ FosterPals.Views.Confirmation = Backbone.CompositeView.extend({
     return this;
   },
 
-  toMap: function (event) {
-    Backbone.history.navigate('', {trigger: true});
+  toMap: function(event) {
+    Backbone.history.navigate('search', { trigger: true });
   }
-
 });

@@ -4,7 +4,6 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'backbone-on-rails'
 gem 'haml'
 gem 'momentjs-rails', '>= 2.8.1'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem 'figaro' # prevent environment access keys from getting pushed to git
 gem 'jquery-ui-rails'
 
