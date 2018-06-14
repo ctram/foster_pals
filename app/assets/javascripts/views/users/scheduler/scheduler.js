@@ -21,6 +21,21 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     this.listenTo(this.model, 'sync', this.render);
   },
 
+  validateDatesNotEmpty: function (checkInDate, checkOutDate, indefiniteStay) {
+    if (checkInDate === 'Invalid Date') {
+      return 'Check-in date cannot be empty';
+    }
+    if (checkOutDate === 'Invalid Date' && !indefiniteStay) {
+      return 'Check-out date cannot be empty';
+    }
+  },
+
+  validateDatesInOrder: function (checkInDate, checkOutDate, indefiniteStay) {
+    if (!indefiniteStay && checkOutDate < checkInDate) {
+      return 'Check-in date must precede check-out date'
+    }
+  },
+
   checkDates: function() {
     var selectedAnimals = $('.chosen-animal');
     var animalIds = [];
@@ -39,7 +54,6 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     for (var i = 0; i < selectedAnimals.length; i++) {
       $item = $(selectedAnimals[i]);
       var animalId = $item.data('animal-id');
-
       animalIds.push(parseInt(animalId));
     }
 
