@@ -21,34 +21,48 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     this.listenTo(this.model, 'sync', this.render);
   },
 
-  validateDatesNotEmpty: function (checkInDate, checkOutDate, indefiniteStay) {
-    if (checkInDate === 'Invalid Date') {
+  validateDatesNotEmpty: function(checkInDate, checkOutDate, indefiniteStay) {
+    if (!Date.parse(checkInDate)) {
       return 'Check-in date cannot be empty';
     }
-    if (checkOutDate === 'Invalid Date' && !indefiniteStay) {
+    if (!indefiniteStay && !Date.parse(checkOutDate)) {
       return 'Check-out date cannot be empty';
     }
   },
 
-  validateDatesInOrder: function (checkInDate, checkOutDate, indefiniteStay) {
+  validateDatesInOrder: function(checkInDate, checkOutDate, indefiniteStay) {
     if (!indefiniteStay && checkOutDate < checkInDate) {
-      return 'Check-in date must precede check-out date'
+      return 'Check-in date must precede check-out date';
     }
+  },
+
+  validateSelectedAnimals: function() {
+    var selectedAnimals = $('.chosen-animal');
+    if (selectedAnimals.length === 0) {
+      return 'Must choose at least one pet to make a reservation for.';
+    }
+  },
+
+  validate: function(checkInDate, checkOutDate, indefiniteStay) {
+    return (
+      this.validateDatesNotEmpty(checkInDate, checkOutDate, indefiniteStay) ||
+      this.validateDatesInOrder(checkInDate, checkOutDate, indefiniteStay) ||
+      this.validateSelectedAnimals()
+    );
   },
 
   checkDates: function() {
     var selectedAnimals = $('.chosen-animal');
     var animalIds = [];
 
-    if (selectedAnimals.length === 0) {
-      if ($('.no-animals-selected-err').length > 0) {
-        return;
-      }
-      $err = $('<div>').addClass('no-animals-selected-err');
-      $err.text('You must choose at least one pet to make a reservation for!');
-      $('#check-aval-btn').append($err);
+    var checkInDate = new Date($('#check-in').val());
+    var checkOutDate = new Date($('#check-out').val());
+    var indefiniteStay = $('#indefinite-stay-checkbox').prop('checked');
 
-      return;
+    var error = this.validate(checkInDate, checkOutDate, indefiniteStay);
+
+    if (error) {
+      return toastr.error(error);
     }
 
     for (var i = 0; i < selectedAnimals.length; i++) {
