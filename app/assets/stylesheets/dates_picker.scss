@@ -1,0 +1,18 @@
+.dates-picker {
+  img {
+    max-width: 10em;
+    border-radius: 5px
+  }
+
+  .chosen-animals-heading {
+    color: $brand-green;
+  }
+
+  .animal {
+    &:hover {
+      border-radius: 5px;
+      background: $dark-grey;
+      border: 1px solid $dark-grey;
+    }
+  }
+}

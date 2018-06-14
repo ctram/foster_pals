@@ -1,4 +1,16 @@
 FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
+  
+  template: JST['search_results/search_results'],
+
+  id: 'search-results-view',
+
+  events: {
+    'mouseenter div.user-item': 'startBounceAndHightlight',
+    'mouseleave div.user-item': 'stopBounceAndHighlight',
+    'click div.go-to-user-profile': 'toUserShow',
+    'click div.user-item': 'panToListing'
+  },
+  
   initialize: function(options) {
     this.mapView = new FosterPals.Views.Map({
       collection: this.collection,
@@ -12,17 +24,6 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     this.listenTo(FosterPals.Events, 'mouseOverMarker', this.showProfilePreview);
     this.listenTo(FosterPals.Events, 'mouseOutMarker', this.removeAllProfilePreviews);
     this.profilePreviews = [];
-  },
-
-  template: JST['search_results/search_results'],
-
-  id: 'search-results-view',
-
-  events: {
-    'mouseenter div.user-item': 'startBounceAndHightlight',
-    'mouseleave div.user-item': 'stopBounceAndHighlight',
-    'click div.go-to-user-profile': 'toUserShow',
-    'click div.user-item': 'panToListing'
   },
 
   highlightUserItem: function(event) {

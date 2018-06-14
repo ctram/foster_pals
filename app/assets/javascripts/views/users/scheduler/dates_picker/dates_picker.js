@@ -1,12 +1,10 @@
 FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   template: JST['users/scheduler/dates_picker/dates_picker'],
 
-  className: 'dates-picker well col-md-8',
+  className: 'dates-picker',
 
   events: {
     'click input#indefinite-stay-checkbox': 'lockCheckOutInput',
-    'mouseenter .animal-selector-item': 'toggleAnimalItemHighlight',
-    'mouseleave .animal-selector-item': 'toggleAnimalItemHighlight',
     'click .animal-selector-item': 'addChosenAnimal',
     'click .chosen-animal': 'removeChosenAnimal',
     'click .to-animal-roster-btn': 'toAnimalRoster'
@@ -15,9 +13,9 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   initialize: function(options) {
     this.currentUser = options.currentUser;
     this.animals = options.animals;
-
     this.fosterer = options.model;
     this.checkOutInputToggled = false;
+    this.animalsAdded = 0;
 
     var animalRosterSelectorView = new FosterPals.Views.AnimalRosterSelector({
       currentUser: this.currentUser,
@@ -34,6 +32,12 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
       model: animal
     });
 
+    this.animalsAdded += 1;
+
+    if (this.animalsAdded > 0) {
+      $('.chosen-animals-container').removeClass('d-none');
+    }
+
     FosterPals.Events.trigger('removeAnimal', animal);
     this.addSubview('.chosen-animals-hook', chosenAnimalView);
   },
@@ -48,7 +52,11 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     var $div = $(event.currentTarget);
     var animalId = parseInt($div.data('animal-id'));
     var animal = this.animals.getOrFetch(animalId);
-    // TODO: left off here - code the removal of the chosen animal  - place it back into the other list.
+    this.animalsAdded -= 1;
+
+    if (this.animalsAdded === 0) {
+      $('.chosen-animals-container').addClass('d-none');
+    }
 
     var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
       model: animal
@@ -68,11 +76,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
   toAnimalRoster: function(event) {
     Backbone.history.navigate('animal-roster', { trigger: true });
-  },
-
-  toggleAnimalItemHighlight: function(event) {
-    $div = $(event.currentTarget);
-    $div.toggleClass('active-item');
   },
 
   toggleAnimalRoster: function(event) {
@@ -95,7 +98,8 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     var content = this.template({
       user: this.model,
       currentUser: this.currentUser,
-      fosterer: this.fosterer
+      fosterer: this.fosterer,
+      animals: this.animals
     });
     this.$el.html(content);
     this.attachSubviews();

@@ -1,16 +1,15 @@
 FosterPals.Views.ChosenAnimal = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  template: JST['users/scheduler/dates_picker/chosen_animal/chosen_animal'],
+
+  className: 'chosen-animals-view mb-3',
+
+  events: {},
+
+  initialize: function(options) {
     this.animals = options.animals;
   },
 
-  template: JST['users/scheduler/dates_picker/chosen_animal/chosen_animal'],
-
-  className: 'chosen-animals-view',
-
-  events: {
-  },
-
-  render: function () {
+  render: function() {
     var content = this.template({
       animal: this.model
     });
