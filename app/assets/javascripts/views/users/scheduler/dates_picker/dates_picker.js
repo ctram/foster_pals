@@ -36,6 +36,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
     if (this.animalsAdded > 0) {
       $('.chosen-animals-container').removeClass('d-none');
+      $('#check-aval-btn').attr('disabled', false);
     }
 
     FosterPals.Events.trigger('removeAnimal', animal);
@@ -56,6 +57,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
     if (this.animalsAdded === 0) {
       $('.chosen-animals-container').addClass('d-none');
+      $('#check-aval-btn').attr('disabled', true);
     }
 
     var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
