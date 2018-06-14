@@ -35,7 +35,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     this.animalsAdded += 1;
 
     if (this.animalsAdded > 0) {
-      $('.chosen-animals-container').removeClass('d-none');
+      $('.no-animals-text').addClass('d-none');
       $('#check-aval-btn').attr('disabled', false);
     }
 
@@ -56,7 +56,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     this.animalsAdded -= 1;
 
     if (this.animalsAdded === 0) {
-      $('.chosen-animals-container').addClass('d-none');
+      $('.no-animals-text').removeClass('d-none');
       $('#check-aval-btn').attr('disabled', true);
     }
 
@@ -81,8 +81,8 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   toggleAnimalRoster: function(event) {
-    $('.selector-toggler').toggleClass('display-none');
-    $('.animal-roster-hook').toggleClass('display-none');
+    $('.selector-toggler').toggleClass('d-none');
+    $('.animal-roster-hook').toggleClass('d-none');
   },
 
   toggleCheckOutInput: function() {
