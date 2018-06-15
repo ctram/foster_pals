@@ -38,7 +38,7 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
     }
   },
 
-  signOut: function(event) {
+  signOut: function() {
     $.ajax({
       url: '/session',
       type: 'DELETE',
