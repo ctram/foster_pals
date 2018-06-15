@@ -56,7 +56,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn btn-default modal-off" href="" data-toggle="modal" role="button" data-dismiss="modal">
-					Go To  Map!
+					Go To Map!
 				</button>
 			</div>
 		</div>
@@ -81,7 +81,6 @@
 		function removeExplanationDiv($div) {
 			if ($div.classList[0] === "explain") {
 				// div is an explanation
-				$div.removeClass("slideInRight").addClass("fadeOutDown");
 				setTimeout(function ($div) {
 					$div.remove();
 				}, 3000);
@@ -90,6 +89,24 @@
 				$div.removeClass("nav-link-pop");
 			}
 		}
+
+		function removePulses() {
+			var elements = $(".pulse");
+			elements.each(function (idx, element) {
+				$(element).removeClass("pulse nav-link-pop");
+			});
+		}
+
+		$("*").on("click", function () {
+			var urlFragment = Backbone.history.location.href.split("/")[3];
+
+			if (!urlFragment || !urlFragment.includes("search")) {
+				removePulses();
+				$("*").off();
+				$('.modal-backdrop').remove();
+			}
+		});
+
 		function tour() {
 			var divRemovalQueue;
 			var linkRemovalQueue;
@@ -101,22 +118,6 @@
 			var $explainMyPets = $($(".explain-my-pets"));
 			$explainMyPets.removeClass("invisible");
 			$("#" + $explainMyPets.data("link-id")).addClass("pulse nav-link-pop");
-
-			function removePulses() {
-				var elements = $(".pulse");
-				elements.each(function (idx, element) {
-					$(element).removeClass("pulse nav-link-pop");
-				});
-			}
-
-			$("*").on("click", function() {
-				var urlFragment = Backbone.history.location.href.split("/")[3];
-
-				if (!urlFragment || !urlFragment.includes("search")) {
-					removePulses();
-					$("*").off();
-				}
-			});
 
 			$(".explain").on("click", function (event) {
 				$previousDiv = $(event.currentTarget);
