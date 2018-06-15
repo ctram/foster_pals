@@ -1,4 +1,5 @@
 FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
+
   template: JST['schedule_manager/schedule_manager'],
 
   className: 'schedule-manager-view',
@@ -12,15 +13,15 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   initialize: function() {
     this.setupSubviews();
     this.listenTo(this.stays_as_fosterer, 'sync', this.render);
-    this.listenTo(
-      this.model,
-      'sync',
-      function() {
-        this.remove();
-        this.setupSubviews();
-        this.render();
-      }.bind(this)
-    );
+    // this.listenTo(
+    //   this.model,
+    //   'sync',
+    //   function() {
+    //     this.remove();
+    //     this.setupSubviews();
+    //     this.render();
+    //   }.bind(this)
+    // );
   },
 
   setupSubviews: function() {
@@ -54,14 +55,14 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     );
   },
 
-  backToScheduleManager: function(event) {
+  backToScheduleManager: function() {
     $('.animal-stays').toggleClass('d-none');
     var confirmStayView = this.subviews('.confirmation')._wrapped[0];
     this.removeSubview('.confirmation', confirmStayView);
   },
 
   promptConfirm: function(event) {
-    $btn = $(event.currentTarget);
+    var $btn = $(event.currentTarget);
     var stayId = $btn.data('stay-id');
     var stay = this.stays_as_fosterer.get(stayId);
 
@@ -69,7 +70,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
     var org = FosterPals.Collections.users.getOrFetch(orgId);
 
-    successCallback = function(overlappingStays) {
+    var successCallback = function(overlappingStays) {
       overlappingStays = new FosterPals.Collections.Stays(overlappingStays);
       var promptConfirmView = new FosterPals.Views.PromptConfirm({
         stay: stay,
@@ -91,7 +92,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   },
 
   promptDeny: function(event) {
-    $btn = $(event.currentTarget);
+    var $btn = $(event.currentTarget);
     var stayId = $btn.data('stay-id');
     var stay = this.stays_as_fosterer.get(stayId);
 

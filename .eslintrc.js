@@ -24,6 +24,8 @@ module.exports = {
     window: true,
     FosterPals: true,
       Backbone: true,
-    CURRENT_USER_ID: true
+    CURRENT_USER_ID: true,
+    JST: true,
+    $: true
   }
 };
