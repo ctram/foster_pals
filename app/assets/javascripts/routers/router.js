@@ -13,13 +13,12 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     'users/:id/scheduler': 'userScheduler',
     'animal-roster': 'animalRoster',
     'schedule-manager': 'scheduleManager',
-    search: 'search',
     profile: 'profile',
     'animals/:id': 'animalShow'
   },
 
   animalRoster: function() {
-    currentUserCallback = function(currentUser, response, options) {
+    var currentUserCallback = function(currentUser) {
       var animals = currentUser.animals_as_org();
       var animalRosterView = new FosterPals.Views.AnimalRoster({
         model: this.currentUser,
@@ -54,7 +53,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this.userShow(CURRENT_USER_ID);
   },
 
-  scheduleManager: function(event) {
+  scheduleManager: function() {
     this.currentUser.fetch({
       success: function() {
         var scheduleManagerView = new FosterPals.Views.ScheduleManager({
@@ -73,7 +72,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
       search_location: search_location
     });
     Backbone.history.navigate('search');
-
     this._swapView(searchView);
   },
 
@@ -83,7 +81,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     }
     var user = this.users.getOrFetch(id);
 
-    currentUserCallback = function() {
+    var currentUserCallback = function() {
       var animals = this.currentUser.animals_as_org();
 
       var userSchedulerView = new FosterPals.Views.UserScheduler({
@@ -118,7 +116,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   _swapView: function(view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
-
     this.$rootEl.html(view.render().$el);
   }
 });

@@ -1,38 +1,45 @@
-<h3>Are you sure you want to deny this request?</h3>
+<div>
+  <% if (denied) { %>
+    <h3 class="res-confirmation mb-5">
+      Reservation Denied and Removed From List
+    </h3>
+    <button class="btn btn-info rtrn-to-manager">
+      Return to Reservation Manager
+    </button>
+  <% } else { %>
+    <h3 class="res-confirmation">Are you sure you want to deny this request?</h3>
 
-<div class='row table-header'>
-  <div class='col-3'>
-    Rescue Org
-  </div>
-  <div class='col-3'>
-    Check In Date
-  </div>
-  <div class='col-3'>
-    Check Out Date
-  </div>
-</div>
+    <div class="row table-header mb-3">
+      <div class="col-3">
+        Rescue Org
+      </div>
+      <div class="col-3">
+        Check In Date
+      </div>
+      <div class="col-3">
+        Check Out Date
+      </div>
+    </div>
 
-<div class='row'>
-  <div class='col-3'>
-    <%=org.escape('org_name') %>
-  </div>
-  <div class='col-3'>
-    <%=stay.escape('check_in_date') %>
-  </div>
-  <div class='col-3'>
-    <%=stay.escape('check_out_date') %>
-  </div>
-</div>
+    <div class="row mb-3">
+      <div class="col-3">
+        <%=org.escape("org_name") %>
+      </div>
+      <div class="col-3">
+        <%=stay.escape("check_in_date") %>
+      </div>
+      <div class="col-3">
+        <%=stay.escape("check_out_date") %>
+      </div>
+    </div>
 
-<div class='deny-btns'>
-  <button class='btn btn-danger deny-stay' data-stay-id=<%=s tay.escape( 'id')%> > Deny request
-  </button>
-
-  <button class='btn btn-info rtrn-to-manager'>
-    Return to Reservation Manager
-  </button>
-</div>
-
-<div class='res-confirmation'>
-  Reservation Denied and Removed From List
+    <div class="deny-btns mb-3">
+      <button class="btn btn-danger deny-stay" data-stay-id="<%= stay.escape( "id") %>">
+        Deny request
+      </button>
+      <button class="btn btn-info rtrn-to-manager">
+        Return to Reservation Manager
+      </button>
+    </div>    
+  <% } %>
 </div>

@@ -2,17 +2,17 @@
   <div class="col-1 offset-1">
     <div class="d-flex flex-column confirm-deny-btns">
       <% if (stay.escape("status") === "pending") { %>
-        <button class="btn btn-success prompt-confirm mb-3" data-stay-id="<%= stay.escape(" id ") %>">
+        <button class="btn btn-success prompt-confirm mb-3" data-stay-id="<%= stay.escape('id') %>">
           Confirm
         </button>
-        <button class="btn btn-danger prompt-deny" data-stay-id="<%= stay.escape(" id ")%>">
+        <button class="btn btn-danger prompt-deny" data-stay-id="<%= stay.escape('id')%>">
           Deny
         </button>
         <% } %>
     </div>
   </div>
 
-  <div class="col-2">
+  <div class="col-3">
     <div class="animal-item-hook" />
   </div>
 

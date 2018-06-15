@@ -55,6 +55,10 @@ ul {
   color: $brand-green !important;
 }
 
+.table-header {
+  text-decoration: underline;
+}
+
 @include media-breakpoint-up(xs) {
 }
 @include media-breakpoint-up(sm) {

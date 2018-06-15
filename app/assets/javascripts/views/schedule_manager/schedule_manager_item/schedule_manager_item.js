@@ -6,6 +6,7 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
   initialize: function(options) {
     this.org = options.org;
     this.stay = options.stay;
+    this.user = options.user;
 
     var stayId = this.stay.id;
 
@@ -27,7 +28,8 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
 
   addAnimalView: function(animal) {
     var animalItemView = new FosterPals.Views.ScheduleAnimalItem({
-      model: animal
+      model: animal,
+      user: this.user
     });
     this.addSubview('.animal-item-hook', animalItemView);
   },

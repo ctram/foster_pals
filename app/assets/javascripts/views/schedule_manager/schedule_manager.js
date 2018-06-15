@@ -4,15 +4,30 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   className: 'schedule-manager-view',
 
   events: {
-    'click button.prompt-confirm': 'promptConfirm',
-    'click button.confirm-stay': 'confirmStay',
     'click button.rtrn-to-manager': 'backToScheduleManager',
-    'click button.prompt-deny': 'promptDeny',
-    'click button.deny-stay': 'denyStay'
+    'click button.prompt-confirm': 'promptConfirm',
+    'click button.prompt-deny': 'promptDeny'
   },
 
-  initialize: function(options) {
+  initialize: function() {
+    this.setupSubviews();
+    this.listenTo(this.stays_as_fosterer, 'sync', this.render);
+    this.listenTo(
+      this.model,
+      'sync',
+      function() {
+        this.remove();
+        this.setupSubviews();
+        this.render();
+      }.bind(this)
+    );
+  },
+
+  setupSubviews: function() {
     this.stays_as_fosterer = this.model.stays_as_fosterer();
+    this.numConfirmedStays = 0;
+    this.numPendingStays = 0;
+    this.numDeniedStays = 0;
 
     this.stays_as_fosterer.each(
       function(stay) {
@@ -26,65 +41,23 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
         // TODO: move some of this code into separate functions, too much going on in the intialize.
         if (stay.get('status') === 'confirmed') {
+          this.numConfirmedStays++;
           this.addSubview('.scheduled-animals', scheduleManagerItemView);
         } else if (stay.get('status') === 'pending') {
+          this.numPendingStays++;
           this.addSubview('.pending-animals', scheduleManagerItemView);
         } else {
+          this.numDeniedStays++;
           this.addSubview('.denied-animals', scheduleManagerItemView);
         }
       }.bind(this)
     );
-
-    this.listenTo(this.stays_as_fosterer, 'sync', this.render);
   },
 
   backToScheduleManager: function(event) {
     $('.animal-stays').toggleClass('d-none');
     var confirmStayView = this.subviews('.confirmation')._wrapped[0];
     this.removeSubview('.confirmation', confirmStayView);
-  },
-
-  confirmStay: function(event) {
-    $btn = $(event.currentTarget);
-    var stayId = $btn.data('stay-id');
-    var stay = this.stays_as_fosterer.get(stayId);
-
-    stay.set({ status: 'confirmed', denyOthers: true });
-
-    stayAttrs = stay.attributes;
-
-    // TODO: move ajax calls to backbone save()
-    $.ajax('/api/stays/' + stayId, {
-      method: 'patch',
-      dataType: 'json',
-      data: { stay: stayAttrs },
-      success: function() {
-        setTimeout(function() {
-          Backbone.history.loadUrl();
-        }, 3500);
-      }
-    });
-  },
-
-  denyStay: function(event) {
-    $btn = $(event.currentTarget);
-    var stayId = $btn.data('stay-id');
-    var stay = this.stays_as_fosterer.get(stayId);
-
-    stay.set({ status: 'denied' });
-
-    stayAttrs = stay.attributes;
-
-    $.ajax('/api/stays/' + stayId, {
-      method: 'patch',
-      dataType: 'json',
-      data: { stay: stayAttrs },
-      success: function() {
-        setTimeout(function() {
-          Backbone.history.loadUrl();
-        }, 3500);
-      }
-    });
   },
 
   promptConfirm: function(event) {
@@ -96,14 +69,13 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
     var org = FosterPals.Collections.users.getOrFetch(orgId);
 
-    // TODO: pull in overlapping stays
     successCallback = function(overlappingStays) {
       overlappingStays = new FosterPals.Collections.Stays(overlappingStays);
-
       var promptConfirmView = new FosterPals.Views.PromptConfirm({
         stay: stay,
         org: org,
-        overlappingStays: overlappingStays
+        overlappingStays: overlappingStays,
+        user: this.model
       });
 
       $('.animal-stays').toggleClass('d-none');
@@ -132,7 +104,8 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     var denyStayView = new FosterPals.Views.DenyStay({
       stay: stay,
       animal: animal,
-      org: org
+      org: org,
+      user: this.model
     });
 
     $('.animal-stays').toggleClass('d-none');
@@ -140,7 +113,11 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    var content = this.template();
+    var content = this.template({
+      numConfirmedStays: this.numConfirmedStays,
+      numDeniedStays: this.numDeniedStays,
+      numPendingStays: this.numPendingStays
+    });
     this.$el.html(content);
     this.attachSubviews();
 
