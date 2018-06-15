@@ -3,7 +3,7 @@
 
   <% for (var i = 0; i < reservations.models.length; i++) { %>
     <% var animal = reservations.models[i].attributes.animal %>
-      <div>
+      <div class="mb-5">
         <img src="<%= animal.main_image_thumb_url %>">
         <span class="strong">
           <%= animal.name %>
@@ -12,6 +12,6 @@
       <% } %>
 
         <button class="btn btn-primary to-map">
-          Return to the Map
+          Return to Map
         </button>
 </div>

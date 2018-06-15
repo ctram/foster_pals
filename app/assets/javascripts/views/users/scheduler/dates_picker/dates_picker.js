@@ -86,11 +86,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     Backbone.history.navigate('animal-roster', { trigger: true });
   },
 
-  toggleAnimalRoster: function(event) {
-    $('.selector-toggler').toggleClass('d-none');
-    $('.animal-roster-hook').toggleClass('d-none');
-  },
-
   toggleCheckOutInput: function() {
     var $checkOutInput = $('#check-out');
     $checkOutInput.prop('disabled', $checkOutInput.prop('disabled'));

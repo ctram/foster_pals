@@ -13,16 +13,14 @@ class Api::StaysController < ApplicationController
 
   def create
     fosterer_id, org_id, indefinite_stay, status, reservations, check_in_date, check_out_date = stay_params.values_at(:fosterer_id, :org_id, :indefinite_stay, :status, :reservations, :check_in_date, :check_out_date)
-    byebug
     
     data = {
       fosterer_id: fosterer_id,
       org_id: org_id,
       status: status,
       check_in_date: Date.strptime(check_in_date.split('T').first, '%Y-%m-%d'),
-      check_out_date: !check_out_date.empty? && Date.strptime(check_out_date.split('T').first, '%Y-%m-%d') || ''
+      check_out_date: !check_out_date.empty? && Date.strptime(check_out_date.split('T').first, '%Y-%m-%d') || nil
     }
-    byebug
     
     @stay = Stay.create(data)
 
