@@ -24,8 +24,8 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   addChosenAnimal: function(event) {
-    var $div = $(event.currentTarget);
-    var animalId = parseInt($div.attr('animal_id'));
+    var $animalDiv = $($(event.currentTarget).children('[data-animal-id]')[0]);
+    var animalId = parseInt($animalDiv.data('animal-id'));
     var animal = this.animalsWithoutStays.getOrFetch(animalId);
     var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
       model: animal

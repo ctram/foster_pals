@@ -93,37 +93,41 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
 
     this.reservations = new FosterPals.Collections.Reservations();
 
-    resSuccessCallback = function(model) {
+    reservationSuccessCallback = function(model) {
       this.reservations.add(model);
     }.bind(this);
 
     var animalId;
     var checkOutDate;
 
+    var reservationPromises = [];
+
     for (var i = 0; i < animalIds.length; i++) {
       animalId = animalIds[i];
-
-      // TODO: animals are being reserved as separate stays even when they are of the same dates -- a stay should have multiple animals - right now a stay has one animal - when multiple animals are being reserved, they are each getting a separate stay.
 
       resAttrs = {
         animal_id: animalId
       };
 
-      $.ajax('api/reservations', {
-        method: 'post',
-        data: { reservation: resAttrs },
-        dataType: 'json',
-        success: resSuccessCallback
-      });
+      reservationPromises.push(
+        $.ajax('api/reservations', {
+          method: 'post',
+          data: { reservation: resAttrs },
+          dataType: 'json',
+          success: reservationSuccessCallback
+        })
+      );
     }
 
-    setTimeout(
-      function() {
+    var _this = this;
+
+    Promise.all(reservationPromises)
+      .then(function() {
         var reservations = [];
         var res;
 
-        for (var i = 0; i < this.reservations.length; i++) {
-          res = this.reservations.models[i].attributes;
+        for (var i = 0; i < _this.reservations.length; i++) {
+          res = _this.reservations.models[i].attributes;
           reservations.push(res);
         }
 
@@ -132,24 +136,22 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
           check_in_date: checkInDate,
           check_out_date: checkOutDate,
           org_id: CURRENT_USER_ID,
-          fosterer_id: this.model.escape('id'),
+          fosterer_id: _this.model.escape('id'),
           status: 'pending'
         };
 
         // TODO: should be ajax to make reservations with an empty stay.
-        $.ajax('/api/stays', {
+        return $.ajax('/api/stays', {
           data: { stay: stayAttrs },
           method: 'post',
           dataType: 'json',
           success: successCallback,
           error: errorCallback
         });
-
-        // TODO: ajax to create stay
-        this.showConfirmation();
-      }.bind(this),
-      1000
-    );
+      })
+      .then(function() {
+        return _this.showConfirmation();
+      });
   },
 
   goToShow: function() {
