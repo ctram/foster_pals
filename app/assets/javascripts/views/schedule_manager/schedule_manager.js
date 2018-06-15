@@ -39,7 +39,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   },
 
   backToScheduleManager: function(event) {
-    $('.animal-stays').toggleClass('display-none');
+    $('.animal-stays').toggleClass('d-none');
     var confirmStayView = this.subviews('.confirmation')._wrapped[0];
     this.removeSubview('.confirmation', confirmStayView);
   },
@@ -106,7 +106,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
         overlappingStays: overlappingStays
       });
 
-      $('.animal-stays').toggleClass('display-none');
+      $('.animal-stays').toggleClass('d-none');
       this.addSubview('.confirmation', promptConfirmView);
     }.bind(this);
 
@@ -135,7 +135,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
       org: org
     });
 
-    $('.animal-stays').toggleClass('display-none');
+    $('.animal-stays').toggleClass('d-none');
     this.addSubview('.confirmation', denyStayView);
   },
 

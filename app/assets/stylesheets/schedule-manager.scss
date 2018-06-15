@@ -1,0 +1,16 @@
+.schedule-manager-view {
+  .schedule-manager-item-view {
+    &:hover {
+      border: 1px solid $dark-grey;
+      background: $dark-grey;
+      border-radius: 5px;
+    }
+  }
+  
+  .table-header {
+    .animal-name {
+      padding-right: 69px;
+      text-align: right;
+    }
+  }
+}
