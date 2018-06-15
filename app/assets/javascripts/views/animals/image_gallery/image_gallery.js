@@ -8,7 +8,7 @@ FosterPals.Views.ImageGallery = Backbone.CompositeView.extend({
 
   template: JST['animals/image_gallery/image_gallery'],
 
-  className: 'image-gallery-view',
+  className: 'image-gallery-view text-center',
 
 
   render: function () {

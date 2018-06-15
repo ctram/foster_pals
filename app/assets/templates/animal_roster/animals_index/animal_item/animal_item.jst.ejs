@@ -7,7 +7,7 @@
       <div class="animal-stats row">
         <div class="col-2 animal-name" data-animal-id="<%= animal.escape("id")%>">
           <div>
-            <strong>Name</strong>
+            <u>Name</u>
           </div>
           <div>
             <%= animal.escape("name") %>
@@ -15,7 +15,7 @@
         </div>
         <div class="col-2 animal-species">
           <div>
-            <strong>Species</strong>
+            <u>Species</u>
           </div>
           <div>
             <%= animal.escape("species") %>
@@ -23,7 +23,7 @@
         </div>
         <div class="col-2 animal-breed">
           <div>
-            <strong>Breed</strong>
+            <u>Breed</u>
           </div>
           <div>
             <%= animal.escape("breed") %>
@@ -31,7 +31,7 @@
         </div>
         <div class="col-2 animal-color">
           <div>
-            <strong>Color</strong>
+            <u>Color</u>
           </div>
           <div>
             <%= animal.escape("color") %>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-1 animal-sex">
           <div>
-            <strong>Sex</strong>
+            <u>Sex</u>
           </div>
           <div>
             <%= animal.escape("sex") %>
@@ -47,7 +47,7 @@
         </div>
         <div class="col-1 animal-weight">
           <div>
-            <strong>Weight</strong>
+            <u>Weight</u>
           </div>
           <div>
             <%= animal.escape("weight") %>
@@ -64,23 +64,23 @@
       <div class="animal-reservations mt-5">
         <div class="animal-item-stays">
           <% if (stays.length === 0) { %>
-            <strong>Pet has no reservations.</strong>
+            <u>Pet has no reservations.</u>
             <% } else { %>
               <h5 class="reservations-header">
                 Reservations
               </h5>
               <div class="row">
                 <div class="col-2 ">
-                  <strong>Fosterer</strong>
+                  <u>Fosterer</u>
                 </div>
                 <div class="col-2 ">
-                  <strong>Reservation Status</strong>
+                  <u>Reservation Status</u>
                 </div>
                 <div class="col-2 ">
-                  <strong>Check In Date</strong>
+                  <u>Check In Date</u>
                 </div>
                 <div class="col-2 ">
-                  <strong>Check Out Date</strong>
+                  <u>Check Out Date</u>
                 </div>
               </div>
 
