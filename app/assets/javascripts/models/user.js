@@ -30,7 +30,6 @@ FosterPals.Models.User = Backbone.Model.extend({
   },
 
   parse: function (response) {
-
     if (response.animals_as_org) {
       this.animals_as_org().set(response.animals_as_org);
       delete response.animals_as_org;

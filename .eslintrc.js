@@ -26,6 +26,7 @@ module.exports = {
       Backbone: true,
     CURRENT_USER_ID: true,
     JST: true,
-    $: true
+    $: true,
+    _: true
   }
 };
