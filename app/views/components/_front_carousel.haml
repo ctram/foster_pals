@@ -1,16 +1,25 @@
-#carouselExampleIndicators.carousel.slide{'data-ride':"carousel"}
+#myCarousel.carousel.slide{'data-ride':"carousel"}
   %ol.carousel-indicators
-    %li.active{'data-target': "#carouselExampleIndicators", 'data-slide-to': "0"}
-    %li{'data-target': "#carouselExampleIndicators", 'data-slide-to': "1"}
-    %li{'data-target': "#carouselExampleIndicators", 'data-slide-to': "2"}
+    %li.active{'data-target': "#myCarousel", 'data-slide-to': "0"}
+    %li{'data-target': "#myCarousel", 'data-slide-to': "1"}
+    %li{'data-target': "#myCarousel", 'data-slide-to': "2"}
   .carousel-inner
     .carousel-item.active
       %img.d-block.w-100{src:"assets/catsmile.jpeg"}
+      .carousel-caption.d-none.d-md-block
+        %h5
+          Make a New friend
     .carousel-item
       %img.d-block.w-100{src:"assets/catsnowcolor.jpeg"}
+      .carousel-caption.d-none.d-md-block
+        %h5 
+          You'll Fall in Love
     .carousel-item
       %img.d-block.w-100{src:"assets/catstare.jpg"}
-  %a.carousel-control-prev{href: "#carouselExampleIndicators", role:"button", 'data-slide':"prev"}
+      .carousel-caption.d-none.d-md-block
+        %h5
+          Save a Life
+  %a.carousel-control-prev{href: "#myCarousel", role:"button", 'data-slide':"prev"}
     %span.carousel-control-prev-icon{'aria-hidden': "true"}
-  %a.carousel-control-next{href: "#carouselExampleIndicators", role: "button", 'data-slide':"next"}
+  %a.carousel-control-next{href: "#myCarousel", role: "button", 'data-slide':"next"}
     %span.carousel-control-next-icon{'aria-hidden': "true"} 

@@ -1,3 +1,7 @@
 .carousel {
   border-bottom: 1px solid black;
+  img {
+    max-height: 50em;
+    object-fit: cover;
+  }
 }

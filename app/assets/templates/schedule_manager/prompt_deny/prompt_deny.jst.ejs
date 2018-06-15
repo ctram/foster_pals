@@ -1,32 +1,31 @@
 <h3>Are you sure you want to deny this request?</h3>
 
 <div class='row table-header'>
-  <div class='col-md-3'>
+  <div class='col-3'>
     Rescue Org
   </div>
-  <div class='col-md-3'>
+  <div class='col-3'>
     Check In Date
   </div>
-  <div class='col-md-3'>
+  <div class='col-3'>
     Check Out Date
   </div>
 </div>
 
 <div class='row'>
-  <div class='col-md-3'>
+  <div class='col-3'>
     <%=org.escape('org_name') %>
   </div>
-  <div class='col-md-3'>
+  <div class='col-3'>
     <%=stay.escape('check_in_date') %>
   </div>
-  <div class='col-md-3'>
+  <div class='col-3'>
     <%=stay.escape('check_out_date') %>
   </div>
 </div>
 
 <div class='deny-btns'>
-  <button class='btn btn-danger deny-stay' data-stay-id=<%= stay.escape('id')%> >
-    Deny request
+  <button class='btn btn-danger deny-stay' data-stay-id=<%=s tay.escape( 'id')%> > Deny request
   </button>
 
   <button class='btn btn-info rtrn-to-manager'>

@@ -1,25 +1,25 @@
 <h3>Please Confirm This Reservation</h3>
 
 <div class='row table-header'>
-  <div class='col-md-3'>
+  <div class='col-3'>
     Rescue Org
   </div>
-  <div class='col-md-3'>
+  <div class='col-3'>
     Check In Date
   </div>
-  <div class='col-md-3'>
+  <div class='col-3'>
     Check Out Date
   </div>
 </div>
 
 <div class='row'>
-  <div class='col-md-3'>
+  <div class='col-3'>
     <%=org.escape('org_name') %>
   </div>
-  <div class='col-md-3'>
+  <div class='col-3'>
     <%=stay.escape('check_in_date') %>
   </div>
-  <div class='col-md-3'>
+  <div class='col-3'>
     <%=stay.escape('check_out_date') %>
   </div>
 </div>
@@ -31,13 +31,13 @@
   <h3>The following reservations overlap and will automatically be denied</h3>
 
   <div class='row table-header'>
-    <div class='col-md-3'>
+    <div class='col-3'>
       Rescue Org
     </div>
-    <div class='col-md-3'>
+    <div class='col-3'>
       Check In Date
     </div>
-    <div class='col-md-3'>
+    <div class='col-3'>
       Check Out Date
     </div>
   </div>
@@ -45,13 +45,13 @@
   <% for (var i = 0; i < overlappingStays.length; i++) { %>
     <% var otherStay = overlappingStays.models[i] %>
     <div class='row'>
-      <div class='col-md-3'>
+      <div class='col-3'>
         <%= org.escape('org_name') %>
       </div>
-      <div class='col-md-3'>
+      <div class='col-3'>
         <%= otherStay.escape('check_in_date') %>
       </div>
-      <div class='col-md-3'>
+      <div class='col-3'>
         <%= otherStay.escape('check_out_date') %>
       </div>
     </div>
