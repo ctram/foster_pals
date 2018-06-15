@@ -12,14 +12,13 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
   initialize: function(options) {
     this.currentUser = options.currentUser;
-    this.animals = options.animals;
+    this.animalsWithoutStays = options.animals.filterWithoutStays();
     this.fosterer = options.model;
-    this.checkOutInputToggled = false;
-    this.animalsAdded = 0;
+    this.numAnimalsSelected = 0;
 
     var animalRosterSelectorView = new FosterPals.Views.AnimalRosterSelector({
       currentUser: this.currentUser,
-      animals: this.animals
+      animals: this.animalsWithoutStays
     });
     this.addSubview('.animal-roster-hook', animalRosterSelectorView);
   },
@@ -27,16 +26,20 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   addChosenAnimal: function(event) {
     var $div = $(event.currentTarget);
     var animalId = parseInt($div.attr('animal_id'));
-    var animal = this.animals.getOrFetch(animalId);
+    var animal = this.animalsWithoutStays.getOrFetch(animalId);
     var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
       model: animal
     });
 
-    this.animalsAdded += 1;
+    this.numAnimalsSelected += 1;
 
-    if (this.animalsAdded > 0) {
-      $('.no-animals-text').addClass('d-none');
+    if (this.numAnimalsSelected > 0) {
+      $('.no-animals-for-reservation').addClass('d-none');
       $('#check-aval-btn').attr('disabled', false);
+    }
+
+    if (this.numAnimalsSelected === this.animalsWithoutStays.length) {
+      $('.no-animals-to-select').removeClass('d-none');
     }
 
     FosterPals.Events.trigger('removeAnimal', animal);
@@ -52,12 +55,15 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   removeChosenAnimal: function(event) {
     var $div = $(event.currentTarget);
     var animalId = parseInt($div.data('animal-id'));
-    var animal = this.animals.getOrFetch(animalId);
-    this.animalsAdded -= 1;
+    var animal = this.animalsWithoutStays.getOrFetch(animalId);
+    this.numAnimalsSelected -= 1;
 
-    if (this.animalsAdded === 0) {
-      $('.no-animals-text').removeClass('d-none');
+    if (this.numAnimalsSelected === 0) {
+      $('.no-animals-for-reservation').removeClass('d-none');
       $('#check-aval-btn').attr('disabled', true);
+    }
+    if (this.numAnimalsSelected !== this.animalsWithoutStays.length) {
+      $('.no-animals-to-select').addClass('d-none');
     }
 
     var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
@@ -86,14 +92,8 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   toggleCheckOutInput: function() {
-    var $checkOut = $('#check-out');
-    var checkOutInput = $checkOut.data('DateTimePicker');
-    if (!this.checkOutInputToggled) {
-      checkOutInput.disable();
-    } else {
-      checkOutInput.enable();
-    }
-    this.checkOutInputToggled = !this.checkOutInputToggled;
+    var $checkOutInput = $('#check-out');
+    $checkOutInput.prop('disabled', $checkOutInput.prop('disabled'));
   },
 
   render: function() {
@@ -101,7 +101,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
       user: this.model,
       currentUser: this.currentUser,
       fosterer: this.fosterer,
-      animals: this.animals
+      animals: this.animalsWithoutStays
     });
     this.$el.html(content);
     this.attachSubviews();

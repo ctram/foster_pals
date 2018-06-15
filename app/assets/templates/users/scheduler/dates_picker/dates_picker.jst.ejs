@@ -1,4 +1,4 @@
-<h2 class="mb-3">
+<h2 class="mb-3 brand-color">
     Request a Stay with
     <strong>
         <%= fosterer.escape('name')%>
@@ -7,18 +7,23 @@
 
 <hr />
 
-<h3 class="mb-3">Select Animals for this Stay</h3>
-<div class="animal-roster-hook mb-3" />
+<div class="mt-5">
+    <h3 class="mb-5">Select Animals for this Stay</h3>
+    <div class="no-animals-to-select <%= animals.length === 0 ? '' : 'd-none' %>">
+        No more animals.
+    </div>
+    <div class="animal-roster-hook mb-3" />
+</div>
 
-<div class="chosen-animals-container p-3 mb-3">
-    <h3 class="mb-5 chosen-animals-heading">Animals for this Reservation</h3>
-    <div class="no-animals-text">
+<div class="chosen-animals-container py-3 my-5">
+    <h3 class="mb-5">Animals for this Reservation</h3>
+    <div class="no-animals-for-reservation">
         No animals added yet.
     </div>
     <div class="chosen-animals-hook mb-3" />
 </div>
 
-<div class="my-3 ml-3">
+<div class="my-3">
     <div class="check-in-group">
         <h3>Check-in</h3>
         <div class="row">

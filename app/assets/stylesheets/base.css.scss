@@ -43,11 +43,16 @@ textarea {
 }
 
 hr {
-  border: 1px dashed rgb(24, 188, 156);
+  // border: 1px dashed rgb(24, 188, 156);
+  border: 1px solid rgb(75, 75, 75);
 }
 
 ul {
   list-style-type: none;
+}
+
+.brand-color {
+  color: $brand-green !important;
 }
 
 @include media-breakpoint-up(xs) {

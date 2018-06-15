@@ -3,15 +3,15 @@ FosterPals.Collections.Animals = Backbone.Collection.extend({
 
   model: FosterPals.Models.Animal,
 
-  getOrFetch: function (id) {
+  getOrFetch: function(id) {
     var animals = this;
     var animal = animals.get(id);
     if (!animal) {
       animal = new FosterPals.Models.Animal({
-        id : id
+        id: id
       });
       animal.fetch({
-        success: function (model, response, options) {
+        success: function(model, response, options) {
           animals.add(model);
         }
       });
@@ -19,6 +19,17 @@ FosterPals.Collections.Animals = Backbone.Collection.extend({
       animal.fetch();
     }
     return animal;
+  },
+
+  /**
+   * @method filterWithoutStays
+   * @return {FosterPals.Collections.Animals}
+   */
+  filterWithoutStays: function() {
+    var animalsWithoutStays = this.filter(function(animal) {
+      return !animal.get('stays').length;
+    });
+    return new FosterPals.Collections.Animals(animalsWithoutStays);
   }
 });
 

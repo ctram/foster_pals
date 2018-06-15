@@ -1,5 +1,11 @@
 FosterPals.Views.ValidationErrors = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  template: JST['validation_errors/validation_errors'],
+
+  className: 'validation-errors-view',
+
+  events: {},
+
+  initialize: function(options) {
     if (options.manualErrors) {
       this.errors = options.manualErrors;
     } else {
@@ -15,21 +21,14 @@ FosterPals.Views.ValidationErrors = Backbone.CompositeView.extend({
         this.errors[i] = error.join('');
       }
     }
-    
+
     if (options.view === 'dates-picker') {
       // Add custom css class to this view for styling
-      this.$el.addClass('dates-picker-errors' );
+      this.$el.addClass('dates-picker-errors');
     }
   },
 
-  template: JST['validation_errors/validation_errors'],
-
-  className: 'validation-errors-view',
-
-  events: {
-  },
-
-  render: function () {
+  render: function() {
     var content = this.template({
       errors: this.errors
     });

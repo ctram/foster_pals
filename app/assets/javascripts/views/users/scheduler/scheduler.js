@@ -66,58 +66,29 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     }
 
     for (var i = 0; i < selectedAnimals.length; i++) {
-      $item = $(selectedAnimals[i]);
+      var $item = $(selectedAnimals[i]);
       var animalId = $item.data('animal-id');
       animalIds.push(parseInt(animalId));
     }
 
-    var $checkIn = $('#check-in');
-    var $checkOut = $('#check-out');
+    checkInDate = checkInDate.toISOString();
 
-    var checkInEmptyBool = $checkIn.find('input').val() === '';
-    var checkOutEmptyBool = $checkOut.find('input').val() === '';
-    var indefiniteStayBool = $('#indefinite-stay-checkbox:checked').length !== 1;
-
-    if (checkInEmptyBool || (checkOutEmptyBool && indefiniteStayBool)) {
-      var errors = ['Must enter check-in and check-out dates'];
-      var errorsView = new FosterPals.Views.ValidationErrors({
-        manualErrors: errors,
-        view: 'dates-picker'
-      });
-      this.addSubview('.dates-picker', errorsView);
-
-      return;
-    }
-
-    var checkInDate = $checkIn
-      .data('DateTimePicker')
-      .date()
-      ._d.toLocaleString();
-
-    if ($('#indefinite-stay-checkbox:checked').length === 1) {
+    if (indefiniteStay) {
       var checkOutDate = '';
     } else {
-      var checkOutDate = $checkOut
-        .data('DateTimePicker')
-        .date()
-        ._d.toLocaleString();
+      checkOutDate = checkOutDate.toISOString();
     }
 
     this.animals = new FosterPals.Collections.Animals();
 
     successCallback = function(model) {
       var animalId = model['id'];
-      // var animal_id = model['animal_id'];
       var animal = FosterPals.Collections.animals.getOrFetch(animalId);
       this.animals.add(animal);
     }.bind(this);
 
-    errorCallback = function(model) {
-      var errorsView = new FosterPals.Views.ValidationErrors({
-        model: model,
-        view: 'dates-picker'
-      });
-      this.addSubview('.dates-picker', errorsView);
+    errorCallback = function(res) {
+      toastr.error(res.responseText);
     }.bind(this);
 
     this.reservations = new FosterPals.Collections.Reservations();

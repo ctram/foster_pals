@@ -10,17 +10,19 @@ FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
     this.animals = options.animals;
     this.fosterer = options.fosterer;
 
-    for (var i = 0; i < this.animals.models.length; i++) {
+    for (var i = 0; i < this.animals.length; i++) {
       var animal = this.animals.models[i];
-      var name = animal.attributes.name;
-
+      var name = animal.get('name');
       // TODO: animals with denied stays should be able to be included on new reservation requests -
       // right now only animals with no stay what so ever are able to be included on reservation requests
       // - animals only get one chance to make a reservation.
-      if (animal.attributes.stays.length > 0) {
-        // FIXME: do not show animals with confirmed stays
-        continue;
-      }
+
+      // var numStays = animal.get('stays').length;
+      //
+      // if (animal.get('stays').length > 0) {
+      //   // FIXME: do not show animals with confirmed stays
+      //   continue;
+      // }
       var animalSelectorItemView = new FosterPals.Views.AnimalSelectorItem({
         model: this.animals.models[i]
       });

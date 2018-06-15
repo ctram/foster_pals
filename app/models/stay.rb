@@ -1,8 +1,6 @@
 class Stay < ActiveRecord::Base
-  # validates_presence_of :animal_id
   validates_presence_of :fosterer_id
   validates_presence_of :org_id
-  # validates_presence_of :indefinite_stay
   validates_presence_of :check_in_date
   validates_presence_of :check_out_date
   validates_presence_of :status

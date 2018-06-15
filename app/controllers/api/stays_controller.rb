@@ -12,37 +12,25 @@ class Api::StaysController < ApplicationController
   end
 
   def create
-    # 6/16/2015, 8:54:41 AM - date incoming from params
-    check_in_date_str = params[:stay][:check_in_date]
-    check_out_date_str = params[:stay][:check_out_date]
-
-    check_in_date_str = check_in_date_str.split('/')
-    check_in_month = check_in_date_str[0]
-    check_in_day = check_in_date_str[1]
-    check_in_year = check_in_date_str[2].split(',')[0]
-
-    check_out_date_str = check_out_date_str.split('/')
-    check_out_month = check_out_date_str[0]
-    check_out_day = check_out_date_str[1]
-    check_out_year = check_out_date_str[2].split(',')[0]
-
-    check_in_date = Date.strptime(check_in_year + '-' + check_in_month + '-' + check_in_month, '%Y-%m-%d')
-    check_out_date = Date.strptime(check_out_year + '-' + check_out_month + '-' + check_out_month, '%Y-%m-%d')
-
-    params[:stay][:check_in_date] = check_in_date
-    params[:stay][:check_out_date] = check_out_date
-
-    animal_id = params[:stay][:animal_id]
-    params[:stay].delete :animal_id
-
-    @stay = Stay.create(stay_params)
+    fosterer_id, org_id, indefinite_stay, status, reservations, check_in_date, check_out_date = stay_params.values_at(:fosterer_id, :org_id, :indefinite_stay, :status, :reservations, :check_in_date, :check_out_date)
+    byebug
+    
+    data = {
+      fosterer_id: fosterer_id,
+      org_id: org_id,
+      status: status,
+      check_in_date: Date.strptime(check_in_date.split('T').first, '%Y-%m-%d'),
+      check_out_date: !check_out_date.empty? && Date.strptime(check_out_date.split('T').first, '%Y-%m-%d') || ''
+    }
+    byebug
+    
+    @stay = Stay.create(data)
 
     if @stay.save
-      params[:stay][:reservations].each do |k, res|
+      reservations.each do |k, res|
         animal_id =  res[:animal_id]
         Reservation.create(animal_id: animal_id, stay_id: @stay.id)
       end
-
       render :show
     else
       render json: @stay.errors.full_messages, status: 422
@@ -55,7 +43,6 @@ class Api::StaysController < ApplicationController
 
       if params[:stay][:denyOthers]
         overlapping_stays_arr = current_user.overlapping_pending_stays @stay
-
         overlapping_stays_arr.each do |stay|
           stay.status = 'denied'
           stay.save
@@ -83,7 +70,15 @@ class Api::StaysController < ApplicationController
       :indefinite_stay,
       :check_in_date,
       :check_out_date,
-      :status
+      :status,
+      reservations: 
+      [ 
+        :animal_id, 
+        :stay_id, 
+        animal: [ 
+          :org_id, :name, :color, :weight, :species, :sex, :breed, :main_image_thumb_url, :main_image_url, :fosterer_id, :id 
+        ]
+      ]
     )
   end
 end
