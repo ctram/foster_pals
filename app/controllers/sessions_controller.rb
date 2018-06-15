@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    render json: {}
+    redirect_to new_session_url
   end
 
   def sign_in_as_guest

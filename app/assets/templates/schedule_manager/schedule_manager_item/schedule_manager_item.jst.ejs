@@ -1,32 +1,31 @@
-<div class="row schedule-manager-item">
-  <div class="animal-item-hook col-2" />
+<div class="row schedule-manager-item mb-5">
+  <div class="col-2">
+    <div class="animal-item-hook" />
+    <% if (stay.escape("status") === "pending") { %>
+      <div class="confirm-deny-btns mt-3">
+        <button class="btn btn-success prompt-confirm" data-stay-id="<%= stay.escape(" id ") %>">
+          Confirm
+        </button>
+        <button class="btn btn-danger prompt-deny" data-stay-id="<%= stay.escape(" id ")%>">
+          Deny
+        </button>
+      </div>
+      <% } %>
+  </div>
 
-  <div class="col-3">
+  <div class="col-2">
     <%= org.escape("") %>
   </div>
 
-  <div class="col-3">
+  <div class="col-2">
     <%= org.escape("org_name") %>
   </div>
 
-  <div class="col-2">
+  <div class="col-1">
     <%= stay.escape("check_in_date") %>
   </div>
 
-  <div class="col-2">
+  <div class="col-1">
     <%= stay.escape("check_out_date") %>
   </div>
-
-  <% if (stay.escape("status") === "pending") { %>
-    <div class="confirm-deny-btns col-3">
-      <button class="btn btn-success prompt-confirm" data-stay-id="<%= stay.escape(" id ") %>">
-        Confirm
-      </button>
-
-      <button class="btn btn-danger prompt-deny" data-stay-id="<%= stay.escape(" id ")%>">
-        Deny
-      </button>
-    </div>
-    <% } %>
-
 </div>

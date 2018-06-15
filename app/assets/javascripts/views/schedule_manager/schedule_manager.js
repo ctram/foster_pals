@@ -1,9 +1,8 @@
 FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
-  
   template: JST['schedule_manager/schedule_manager'],
-  
+
   className: 'schedule-manager-view',
-  
+
   events: {
     'click button.prompt-confirm': 'promptConfirm',
     'click button.confirm-stay': 'confirmStay',
@@ -11,7 +10,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     'click button.prompt-deny': 'promptDeny',
     'click button.deny-stay': 'denyStay'
   },
-  
+
   initialize: function(options) {
     this.stays_as_fosterer = this.model.stays_as_fosterer();
 
@@ -19,6 +18,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
       function(stay) {
         var orgId = stay.get('org_id');
         var org = FosterPals.Collections.users.getOrFetch(orgId);
+
         var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem({
           org: org,
           stay: stay
@@ -37,7 +37,6 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
 
     this.listenTo(this.stays_as_fosterer, 'sync', this.render);
   },
-
 
   backToScheduleManager: function(event) {
     $('.animal-stays').toggleClass('display-none');
