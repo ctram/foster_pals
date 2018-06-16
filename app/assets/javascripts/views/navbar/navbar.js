@@ -1,7 +1,9 @@
 FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   initialize: function(options) {
     this.router = options.router;
-    this.listenTo(this.router, 'all', this.render);
+    document.addEventListener('submit', function(e) {
+      this.invokeSearch(e);
+    }.bind(this));
   },
 
   template: JST['navbar/navbar'],
@@ -11,8 +13,7 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   events: {
     'click a#sign-out-link': 'signOut',
     'click nav a': 'followLink',
-    'submit form#location-search-form': 'invokeSearch',
-    'click .location-search-form-submit-btn': 'invokeSearch'
+    // 'submit form#location-search-form': 'invokeSearch' // using global listener over to fix quirky wherein this listener is disabled after navigation to different route.
   },
 
   followLink: function(event) {
@@ -58,7 +59,7 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    var content = this.template({ onSubmit: this.invokeSearch });
+    var content = this.template({});
     this.$el.html(content);
     return this;
   }
