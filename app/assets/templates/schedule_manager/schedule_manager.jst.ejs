@@ -9,72 +9,76 @@
       <div class="text-center">
         <strong class="brand-color">No Pending Stays</strong>
       </div>
-    <% } else { %>
-      <div class="row mb-3 table-header">
-        <div class=" animal-name col-3 offset-2">
-          <u>Name</u>
+      <% } else { %>
+        <div class="row mb-3 table-header">
+          <div class=" animal-name col-3 offset-2">
+            <u>Name</u>
+          </div>
+          <div class=" org-name col-2">
+            <u>Rescue Org</u>
+          </div>
+          <div class=" start-date col-1">
+            <u>Start Date</u>
+          </div>
+          <div class=" end-date col-1">
+            <u>End Date</u>
+          </div>
         </div>
-        <div class=" org-name col-2">
-          <u>Rescue Org</u>
-        </div>
-        <div class=" start-date col-1">
-          <u>Start Date</u>
-        </div>
-        <div class=" end-date col-1">
-          <u>End Date</u>
-        </div>
-      </div>
-      <div class="pending-animals" />
-    <% } %>
+        <div class="pending-animals" />
+        <% } %>
   </div>
 
+
   <div class="animal-stays mb-5">
+    <hr />
     <h3 class="text-center">Scheduled Reservations</h3>
     <% if (numConfirmedStays === 0) { %>
       <div class="text-center">
         <strong class="brand-color">No Scheduled Stays</strong>
       </div>
-    <% } else { %>
-      <div class="row mb-3 table-header">
-        <div class=" animal-name col-3 offset-2">
-          <u>Name</u>
+      <% } else { %>
+        <div class="row mb-3 table-header">
+          <div class=" animal-name col-3 offset-2">
+            <u>Name</u>
+          </div>
+          <div class=" org-name col-2">
+            <u>Rescue Org</u>
+          </div>
+          <div class=" start-date col-1">
+            <u>Start Date</u>
+          </div>
+          <div class=" end-date col-1">
+            <u>End Date</u>
+          </div>
         </div>
-        <div class=" org-name col-2">
-          <u>Rescue Org</u>
-        </div>
-        <div class=" start-date col-1">
-          <u>Start Date</u>
-        </div>
-        <div class=" end-date col-1">
-          <u>End Date</u>
-        </div>
-      </div>
-      <div class="scheduled-animals" />
-    <% } %>
+        <div class="scheduled-animals" />
+        <% } %>
   </div>
 
+
   <div class="animal-stays mb-5">
+    <hr />
     <h3 class="text-center">Denied Reservations</h3>
     <% if (numDeniedStays === 0) { %>
       <div class="text-center">
         <strong class="brand-color">No Denied Stays</strong>
       </div>
-    <% } else { %>
-      <div class="row mb-3 table-header">
-        <div class=" animal-name col-3 offset-2">
-          <u>Name</u>
+      <% } else { %>
+        <div class="row mb-3 table-header">
+          <div class=" animal-name col-3 offset-2">
+            <u>Name</u>
+          </div>
+          <div class=" org-name col-2">
+            <u>Rescue Org</u>
+          </div>
+          <div class=" start-date col-1">
+            <u>Start Date</u>
+          </div>
+          <div class=" end-date col-1">
+            <u>End Date</u>
+          </div>
         </div>
-        <div class=" org-name col-2">
-          <u>Rescue Org</u>
-        </div>
-        <div class=" start-date col-1">
-          <u>Start Date</u>
-        </div>
-        <div class=" end-date col-1">
-          <u>End Date</u>
-        </div>
-      </div>
-      <div class="denied-animals" />
-    <% } %>
+        <div class="denied-animals" />
+        <% } %>
   </div>
 </div>
