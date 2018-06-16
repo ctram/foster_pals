@@ -27,6 +27,7 @@ module.exports = {
     CURRENT_USER_ID: true,
     JST: true,
     $: true,
-    _: true
+    _: true,
+    jQuery: true
   }
 };

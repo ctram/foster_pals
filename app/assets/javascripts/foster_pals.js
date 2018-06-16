@@ -11,12 +11,12 @@ window.FosterPals = {
   initialize: function() {
     window.$ = jQuery;
     var currentUser = FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID);
-    var currentUserId = CURRENT_USER_ID;
     var router = new FosterPals.Routers.Router({
       $rootEl: jQuery('.app-container'),
       users: FosterPals.Collections.users,
       currentUser: currentUser
     });
+    window.FosterPals.router = router;
     var navbarView = new FosterPals.Views.Navbar({
       router: router
     });
