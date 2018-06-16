@@ -8,9 +8,6 @@ FosterPals.Views.UserShow = Backbone.CompositeView.extend({
     var profileView = new FosterPals.Views.Profile({
       model: this.user
     });
-    var contactIslandView = new FosterPals.Views.ContactIsland({
-      model: this.user
-    });
     var aboutView = new FosterPals.Views.About({
       model: this.user
     });

@@ -1,5 +1,4 @@
 FosterPals.Views.Profile = Backbone.CompositeView.extend({
-
   template: JST['users/profile/profile'],
 
   className: 'profile-view',
@@ -11,7 +10,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
   },
 
   initialize: function(options) {
-    viewingFromScheduler = options.viewingFromScheduler;
+    var viewingFromScheduler = options.viewingFromScheduler;
 
     this.contactIslandView = new FosterPals.Views.ContactIsland({
       model: this.model,
@@ -27,18 +26,10 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
     this.listenTo(this.model, 'sync', this.render);
   },
 
-  // TODO: finish user info update - right now a modal pops up but no data is saved -- or there is no change after button is clicked.
   editProfile: function(event) {
     event.preventDefault();
     $('.modal').modal('toggle');
     this.resetEditFormData();
-  },
-
-  render: function() {
-    var content = this.template({ user: this.model });
-    this.$el.html(content);
-    this.attachSubviews();
-    return this;
   },
 
   resetEditFormData: function() {
@@ -64,22 +55,26 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
   },
 
   updateProfile: function() {
-    form = $('#form-update-profile')[0];
+    var form = $('#form-update-profile')[0];
     if (!form.checkValidity()) {
       return;
     }
 
-    attrs = $(form).serializeJSON().user;
+    var attrs = $(form).serializeJSON().user;
     this.model.save(attrs, {
       success: function() {
         $('.modal').modal('hide');
-        setTimeout(function() {
-          location.reload();
-        }, 1000);
       },
-      error: function (model, response, options) {
+      error: function(model, response, options) {
         console.error(response);
       }
     });
+  },
+
+  render: function() {
+    var content = this.template({ user: this.model });
+    this.$el.html(content);
+    this.attachSubviews();
+    return this;
   }
 });

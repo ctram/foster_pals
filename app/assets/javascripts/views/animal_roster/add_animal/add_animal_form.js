@@ -36,13 +36,13 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     var attrs = animal.animal;
     attrs.image_set_id = this.imageSetId;
 
-    successCallback = function(model, response, options) {
+    var successCallback = function(model, response, options) {
       var animal = new FosterPals.Models.Animal(attrs);
       this.animals.add(animal, { merge: true });
       location.reload(true);
     }.bind(this);
 
-    errorCallback = function(response, responseText, options) {
+    var errorCallback = function(response, responseText, options) {
       var errorsView = new FosterPals.Views.ValidationErrors({
         response: response
       });
