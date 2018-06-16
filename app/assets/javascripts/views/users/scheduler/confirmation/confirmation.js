@@ -7,7 +7,7 @@ FosterPals.Views.Confirmation = Backbone.CompositeView.extend({
     'click button.to-map': 'toMap'
   },
 
-  initialize: function(options) {
+  initialize: function() {
     this.listenTo(this.collection, 'sync', this.render);
   },
 
@@ -20,7 +20,7 @@ FosterPals.Views.Confirmation = Backbone.CompositeView.extend({
     return this;
   },
 
-  toMap: function(event) {
+  toMap: function() {
     Backbone.history.navigate('search', { trigger: true });
   }
 });

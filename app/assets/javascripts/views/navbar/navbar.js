@@ -1,7 +1,7 @@
 FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   initialize: function(options) {
     this.router = options.router;
-    this.listenTo(this.router, '', this.render);
+    this.listenTo(this.router, 'all', this.render);
   },
 
   template: JST['navbar/navbar'],
@@ -11,7 +11,8 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   events: {
     'click a#sign-out-link': 'signOut',
     'click nav a': 'followLink',
-    'submit form#location-search-form': 'invokeSearch'
+    'submit form#location-search-form': 'invokeSearch',
+    'click .location-search-form-submit-btn': 'invokeSearch'
   },
 
   followLink: function(event) {
@@ -20,11 +21,12 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
     var $destLi = $(event.currentTarget.parentElement);
     $destLi.addClass('active');
     var dest = $destLink.attr('id');
-    Backbone.history.navigate(dest, { trigger: true });
+    this.router.navigate(dest, { trigger: true });
   },
 
   invokeSearch: function(event) {
     event.preventDefault();
+
     $('li').removeClass('active');
     var search_location = $('form')
       .find('input')
@@ -47,17 +49,17 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
     });
   },
 
-  render: function() {
-    var content = this.template({});
-    this.$el.html(content);
-    return this;
-  },
-
   toggleLinkHighlight: function($link) {
     if ($link.hasClass('active')) {
       $link.removeClass('active');
     } else {
       $link.addClass('active');
     }
+  },
+
+  render: function() {
+    var content = this.template({ onSubmit: this.invokeSearch });
+    this.$el.html(content);
+    return this;
   }
 });
