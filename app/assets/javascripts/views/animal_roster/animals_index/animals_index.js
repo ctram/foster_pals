@@ -1,11 +1,10 @@
 FosterPals.Views.AnimalsIndex = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  initialize: function () {
     // HACK: Quick and dirty: have the newest animal at top of the list.
     // TODO: use collection comparators to flip the list.
 
     for (var i = this.collection.models.length - 1; i >= 0; i--) {
       var animal = this.collection.models[i];
-      var org_id = animal.attributes.org_id;
       this.addAnimalItemView(animal);
     }
   },
