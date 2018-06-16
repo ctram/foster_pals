@@ -4,11 +4,11 @@ FosterPals.Views.PromptConfirm = Backbone.CompositeView.extend({
   className: 'confirm-stay-view',
 
   events: {
-    'click button.rtrn-to-manager': 'returnToManager',
     'click button.confirm-stay': 'confirmStay'
   },
 
   initialize: function(options) {
+    FosterPals.router.navigate('schedule-manager/prompt-confirm');
     this.stay = options.stay;
     this.org = options.org;
     this.overlappingStays = options.overlappingStays;
@@ -18,13 +18,7 @@ FosterPals.Views.PromptConfirm = Backbone.CompositeView.extend({
     this.listenTo(this.org, 'sync', this.render);
   },
 
-  returnToManager: function() {
-    this.user.fetch().then(function () {
-      Backbone.history.navigate('schedule-manager', { trigger: true });
-    })
-  },
-
-  confirmStay: function(event) {
+  confirmStay: function() {
     var _this = this;
     this.stay.set({ status: 'confirmed', denyOthers: true });
 
@@ -48,7 +42,6 @@ FosterPals.Views.PromptConfirm = Backbone.CompositeView.extend({
     });
     this.$el.html(content);
     this.attachSubviews();
-
     return this;
   }
 });

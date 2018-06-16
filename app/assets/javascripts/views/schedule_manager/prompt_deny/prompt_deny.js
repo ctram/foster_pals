@@ -4,11 +4,11 @@ FosterPals.Views.DenyStay = Backbone.CompositeView.extend({
   className: 'deny-stay-view',
 
   events: {
-    'click button.deny-stay': 'denyStay',
-    'click button.rtrn-to-manager': 'returnToManager'
+    'click button.deny-stay': 'denyStay'
   },
 
   initialize: function(options) {
+    FosterPals.router.navigate('schedule-manager/prompt-deny');
     this.stay = options.stay;
     this.animal = options.animal;
     this.org = options.org;
@@ -17,18 +17,6 @@ FosterPals.Views.DenyStay = Backbone.CompositeView.extend({
     this.listenTo(this.stay, 'sync', this.render);
     this.listenTo(this.animal, 'sync', this.render);
     this.listenTo(this.org, 'sync', this.render);
-  },
-
-  returnToManager: function() {
-    this.user.fetch().then(
-      function() {
-        this.remove();
-        Backbone.history.navigate('schedule-manager', { trigger: true });
-        FosterPals.router.scheduleManager();
-        
-        // FosterPals.Events.trigger('returnToScheduleManager');
-      }.bind(this)
-    );
   },
 
   denyStay: function() {

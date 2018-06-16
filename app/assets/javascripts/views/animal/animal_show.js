@@ -1,6 +1,5 @@
 FosterPals.Views.AnimalShow = Backbone.CompositeView.extend({
-  initialize: function (options) {
-
+  initialize: function () {
     var profileView = new FosterPals.Views.AnimalProfile({
       model: this.model
     });
@@ -25,7 +24,7 @@ FosterPals.Views.AnimalShow = Backbone.CompositeView.extend({
   },
 
   toAnimalRoster: function () {
-    Backbone.history.navigate('animal-roster', {trigger: true});
+    Backbone.history.navigate('animal-roster', { trigger: true });
   },
 
   render: function () {
