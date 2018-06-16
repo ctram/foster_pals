@@ -1,35 +1,35 @@
 FosterPals.Models.User = Backbone.Model.extend({
   urlRoot: '/api/users',
 
-  animals_as_org: function () {
+  animals_as_org: function() {
     if (!this._animals_as_org) {
       this._animals_as_org = new FosterPals.Collections.Animals();
     }
     return this._animals_as_org;
   },
 
-  animals_as_fosterer: function () {
+  animals_as_fosterer: function() {
     if (!this._animals_as_fosterer) {
       this._animals_as_fosterer = new FosterPals.Collections.Animals();
     }
     return this._animals_as_fosterer;
   },
 
-  stays_as_fosterer: function () {
+  stays_as_fosterer: function() {
     if (!this._stays_as_fosterer) {
       this._stays_as_fosterer = new FosterPals.Collections.Stays();
     }
     return this._stays_as_fosterer;
   },
 
-  stays_as_org: function () {
+  stays_as_org: function() {
     if (!this._stays_as_org) {
       this._stays_as_org = new FosterPals.Collections.Stays();
     }
     return this._stays_as_org;
   },
 
-  parse: function (response) {
+  parse: function(response) {
     if (response.animals_as_org) {
       this.animals_as_org().set(response.animals_as_org);
       delete response.animals_as_org;
