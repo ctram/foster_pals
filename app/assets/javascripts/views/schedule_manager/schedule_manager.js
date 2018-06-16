@@ -1,5 +1,4 @@
 FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
-
   template: JST['schedule_manager/schedule_manager'],
 
   className: 'schedule-manager-view',
@@ -13,15 +12,6 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   initialize: function() {
     this.setupSubviews();
     this.listenTo(this.stays_as_fosterer, 'sync', this.render);
-    // this.listenTo(
-    //   this.model,
-    //   'sync',
-    //   function() {
-    //     this.remove();
-    //     this.setupSubviews();
-    //     this.render();
-    //   }.bind(this)
-    // );
   },
 
   setupSubviews: function() {

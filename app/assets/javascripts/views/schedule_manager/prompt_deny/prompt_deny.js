@@ -20,9 +20,15 @@ FosterPals.Views.DenyStay = Backbone.CompositeView.extend({
   },
 
   returnToManager: function() {
-    this.user.fetch().then(function() {
-      Backbone.history.navigate('schedule-manager', { trigger: true });
-    });
+    this.user.fetch().then(
+      function() {
+        this.remove();
+        Backbone.history.navigate('schedule-manager', { trigger: true });
+        FosterPals.router.scheduleManager();
+        
+        // FosterPals.Events.trigger('returnToScheduleManager');
+      }.bind(this)
+    );
   },
 
   denyStay: function() {
