@@ -13,7 +13,8 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   events: {
     'click a#sign-out-link': 'signOut',
     'click nav a': 'followLink',
-    // 'submit form#location-search-form': 'invokeSearch' // using global listener over to fix quirky wherein this listener is disabled after navigation to different route.
+    // 'submit form#location-search-form': 'invokeSearch' // using global listener in initialize to fix quirky 
+    // wherein this listener is disabled after navigation to different route.
   },
 
   followLink: function(event) {
