@@ -11,8 +11,7 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   events: {
     'click a#sign-out-link': 'signOut',
     'click nav a': 'followLink',
-    'click button#search-btn': 'invokeSearch',
-    'submit form': 'invokeSearch'
+    'submit form#location-search-form': 'invokeSearch'
   },
 
   followLink: function(event) {
@@ -27,7 +26,7 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   invokeSearch: function(event) {
     event.preventDefault();
     $('li').removeClass('active');
-    search_location = $('form')
+    var search_location = $('form')
       .find('input')
       .val();
 

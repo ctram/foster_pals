@@ -27,7 +27,7 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   },
 
   highlightUserItem: function(event) {
-    $resultItem = $(event.currentTarget);
+    var $resultItem = $(event.currentTarget);
     $resultItem.addClass('active-user-item');
   },
 
@@ -41,21 +41,6 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     Backbone.View.prototype.remove.call(this);
     this.mapView.remove();
     this.usersIndex.remove();
-  },
-
-  render: function() {
-    var content = this.template();
-    this.$el.html(content);
-
-    this.$('.user-items-hook').html(this.usersIndex.render().$el);
-    this.$('.map-hook').html(this.mapView.$el);
-    setTimeout(
-      function() {
-        this.mapView.initMap();
-      }.bind(this),
-      0
-    );
-    return this;
   },
 
   removeAllProfilePreviews: function() {
@@ -87,9 +72,6 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   },
 
   toUserShow: function(event) {
-    // safety, make sure links in the navbar are not wearing tour classes if the user navigates to a new page before the tour is over.
-    $('a').removeClass('nav-link-pop');
-
     var $div = $(event.currentTarget);
     var userId = $div.data('user-id');
     var destUrl = 'users/' + userId;
@@ -99,7 +81,22 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   },
 
   unhighlightUserItem: function(event) {
-    $resultItem = $(event.currentTarget);
+    var $resultItem = $(event.currentTarget);
     $resultItem.removeClass('active-user-item');
-  }
+  },
+
+  render: function() {
+    var content = this.template();
+    this.$el.html(content);
+
+    this.$('.user-items-hook').html(this.usersIndex.render().$el);
+    this.$('.map-hook').html(this.mapView.$el);
+    setTimeout(
+      function() {
+        this.mapView.initMap();
+      }.bind(this),
+      0
+    );
+    return this;
+  },
 });

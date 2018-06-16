@@ -5,7 +5,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     this.listenTo(this.collection, 'remove', this.removeMarker);
     this.listenTo(FosterPals.Events, 'pan', this.pan);
     if (options.search_location) {
-      this.pan(search_location);
+      this.pan(options.search_location);
     }
   },
 
@@ -19,7 +19,6 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     if (this._markers[user.id]) {
       return;
     }
-    var view = this;
 
     var marker = new google.maps.Marker({
       position: { lat: user.get('lat'), lng: user.get('long') },
@@ -66,14 +65,13 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   },
 
   pan: function(search_location) {
-    // TODO: when map re-renders, it should set an appropriate zoom to cover the current "subject", right now it retains the current zoom level.
     $.ajax('/api/search/location-to-geocode', {
       data: { search_location: search_location },
       method: 'get',
       dataType: 'json',
       success: function(response) {
         if (response.status === 'ZERO_RESULTS' && $('.no-results-err').length === 0) {
-          $errMsg = $('<div>')
+          var $errMsg = $('<div>')
             .addClass('no-results-err')
             .html('Location not found');
           $('.map-hook').prepend($errMsg);
@@ -98,18 +96,17 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   },
 
   reDrawMap: function() {
-    // TODO: have the current user's marker look unique.
-    bounds = this._map.getBounds();
-    NECoords = bounds.getNorthEast();
-    SWCoords = bounds.getSouthWest();
+    var bounds = this._map.getBounds();
+    var NECoords = bounds.getNorthEast();
+    var SWCoords = bounds.getSouthWest();
 
-    upperLong = NECoords.K;
-    lowerLong = SWCoords.K;
+    var upperLong = NECoords.K;
+    var lowerLong = SWCoords.K;
 
-    upperLat = NECoords.G;
-    lowerLat = SWCoords.G;
+    var upperLat = NECoords.G;
+    var lowerLat = SWCoords.G;
 
-    viewport_bounds = { lat: [lowerLat, upperLat], long: [lowerLong, upperLong] };
+    var viewport_bounds = { lat: [lowerLat, upperLat], long: [lowerLong, upperLong] };
 
     this.collection.fetch({
       data: { viewport_bounds: viewport_bounds }
@@ -127,7 +124,6 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
   },
 
   showMarkerInfo: function(event, marker) {
-    // TODO: have a div of information show up when the marker is clicked on, perhaps a mini profile of the user clicked on.
     var infoWindow = new google.maps.InfoWindow({
       content: marker.title
     });

@@ -28,6 +28,7 @@ module.exports = {
     JST: true,
     $: true,
     _: true,
-    jQuery: true
+    jQuery: true,
+    google: true
   }
 };

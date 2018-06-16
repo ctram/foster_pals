@@ -5,7 +5,8 @@ FosterPals.Views.About = Backbone.CompositeView.extend({
 
   events: {
     'click button.about-edit-button': 'editAbout',
-    'click button.about-info-save-btn': 'updateAboutInfo'
+    'click button.about-info-save-btn': 'updateAboutInfo',
+    'click button.about-info-cancel-btn': 'cancelEditing'
   },
 
   initialize: function(options) {
@@ -25,16 +26,13 @@ FosterPals.Views.About = Backbone.CompositeView.extend({
   },
 
   editAbout: function() {
-    // if (parseInt(this.user.id) !== CURRENT_USER_ID) {
-    //   return alert('Not Authorized');
-    // }
-
-    // this.aboutFormView = new FosterPals.Views.AboutForm({
-    //   model: this.user
-    // });
-
-    // this.addSubview('section', this.aboutFormView);
     this.state.showAboutForm = true;
+    this.render();
+  },
+
+  cancelEditing: function (e) {
+    e.preventDefault();
+    this.state.showAboutForm = false;
     this.render();
   },
 
