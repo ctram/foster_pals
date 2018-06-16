@@ -2,7 +2,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   initialize: function(options) {
     this.$rootEl = options.$rootEl;
     this.currentUser = options.currentUser;
-    this.currentUserId = options.currentUserId; // TODO: is this still used?
     this.users = options.users;
   },
 
@@ -14,7 +13,8 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     'animal-roster': 'animalRoster',
     'schedule-manager': 'scheduleManager',
     profile: 'profile',
-    'animals/:id': 'animalShow'
+    'animals/:id': 'animalShow',
+    'sign-out': 'signOut'
   },
 
   animalRoster: function() {
@@ -25,7 +25,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
         collection: animals
       });
       this._swapView(animalRosterView);
-      // TODO: add user's animals into a collection so that you don't need to fetch the animal again for animalShow();
     }.bind(this);
 
     this.currentUser.fetch({
@@ -117,5 +116,15 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
+  },
+
+  signOut: function() {
+    $.ajax({
+      url: '/session',
+      type: 'DELETE',
+      success: function() {
+        window.location = '/session/new';
+      }
+    });
   }
 });
