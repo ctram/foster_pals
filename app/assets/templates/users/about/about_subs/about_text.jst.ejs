@@ -1,9 +1,9 @@
-<div class='about-text'>
-  <%= user.escape('about_info') %>
+<div class="about-text">
+  <%= user.escape("about_info") %>
 </div>
 
-<% if (parseInt(this.user.escape('id')) === CURRENT_USER_ID) { %>
+<% if (parseInt(this.user.escape("id")) === CURRENT_USER_ID) { %>
   <div class="mt-3">
-    <button class='about-update-button btn btn-primary'>Edit Info</button>
+    <button class="about-edit-button btn btn-primary">Edit Info</button>
   </div>
-<% } %>
+  <% } %>
