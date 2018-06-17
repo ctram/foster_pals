@@ -11,37 +11,31 @@ FosterPals.Views.ContactIsland = Backbone.CompositeView.extend({
 
   addImage: function(e) {
     e.preventDefault();
-
-    var reRender = function() {
-      this.render();
-    }.bind(this);
-
-    var imageSaveCallback = function() {
-      this.model.fetch({
-        success: reRender
-      });
-    }.bind(this);
-
-    var cloudinaryCallback = function(error, result) {
-      var data = result[0];
-      image.set({
-        url: data.url,
-        thumb_url: data.thumbnail_url,
-        // imageable_id: id,
-        imageable_type: 'User',
-        image_set_id: this.imageSetId
-      });
-
-      image.save(
-        {},
-        {
-          success: imageSaveCallback
-        }
-      );
-    }.bind(this);
-
     var image = new FosterPals.Models.Image();
-    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, cloudinaryCallback);
+
+    cloudinary.openUploadWidget(
+      CLOUDINARY_OPTIONS,
+      function(error, result) {
+        debugger;
+        var data = result[0];
+        image.set({
+          url: data.url,
+          thumb_url: data.thumbnail_url,
+          imageable_type: 'User',
+          imageable_id: $(e.target).data('user-id'),
+          image_set_id: this.imageSetId
+        });
+
+        image.save(
+          {},
+          {
+            success: function() {
+              this.model.fetch();
+            }.bind(this)
+          }
+        );
+      }.bind(this)
+    );
   },
 
   render: function() {

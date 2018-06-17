@@ -20,12 +20,12 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   className: 'add-animal-form-view',
 
   events: {
-    // TODO: make all button elements have IDs instead of classes for your event listeners.
     'click button.add-animal-btn': 'addAnimal',
     'click button.add-image-btn': 'addImage'
   },
 
   addAnimal: function(event) {
+    event.preventDefault();
     if (!$('#add-animal-form')[0].checkValidity()) {
       return;
     }

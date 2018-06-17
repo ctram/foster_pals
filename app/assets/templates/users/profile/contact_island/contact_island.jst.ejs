@@ -1,18 +1,12 @@
-<% if (CURRENT_USER_ID !== parseInt(user.escape('id'))) { %>
-  <button class='btn btn-primary btn-sm schedule-btn' data-user-id="<%= user.escape( 'id')%>">
+<% if (CURRENT_USER_ID !== parseInt(user.escape("id"))) { %>
+  <button class="btn btn-primary btn-sm schedule-btn" data-user-id="<%= user.escape('id') %>">
     Click to Request a Reservation for your Pet!
   </button>
   <% } else { %>
-    <button class='photo-upload-btn btn-sm btn btn-primary'>
+    <button class="photo-upload-btn btn-sm btn btn-primary" data-user-id="<%= user.escape('id') %>">
       Change Photo
     </button>
-    <button class='btn btn-primary edit-profile-btn btn-sm'>
+    <button class="btn btn-primary edit-profile-btn btn-sm">
       Edit Profile
     </button>
     <% } %>
-
-      <script>
-        setTimeout(function () {
-          $('.highlight-request-btn').removeClass('slideInRight').addClass('fadeOut');
-        }, 3000)
-      </script>

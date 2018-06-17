@@ -29,6 +29,8 @@ module.exports = {
     $: true,
     _: true,
     jQuery: true,
-    google: true
+    google: true,
+    cloudinary: true,
+    CLOUDINARY_OPTIONS: true
   }
 };
