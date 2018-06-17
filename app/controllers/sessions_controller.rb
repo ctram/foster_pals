@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:destroy]
 
   def new
-    render layout: 'static_pages'
+      render layout: 'static_pages'
   end
 
   def create
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       redirect_to "/"
     else
       flash.now[:errors] = ["Invalid username or password"]
-      render 'new'
+      render 'new', layout: 'static_pages'
     end
   end
 

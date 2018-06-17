@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
-  validates_presence_of :org_name
+  validates_presence_of :org_name, if: Proc.new { |a| a.org? }
   validates_presence_of :email, uniqueness: true
   validates :password, length: {minimum: 1, allow_nil: true}
-  validates_presence_of :first_name
-  validates_presence_of :last_name
+  validates_presence_of :first_name, unless: Proc.new { |a| a.org? }
+  validates_presence_of :last_name, unless: Proc.new { |a| a.org? }
   validates_presence_of :street_address
   validates_presence_of :city
   validates_presence_of :state
@@ -132,8 +132,12 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
-  private
+  def org?
+    role === 'org'
+  end
 
+  private
+  
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
   end

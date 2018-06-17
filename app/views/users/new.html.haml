@@ -4,10 +4,10 @@
 
   .row.justify-content-center
     .col-xl-6
-      %form.p-5{action: "#{users_url}", method: 'POST' }
-        %input{type:'hidden', name:'authenticity_token', value:' form_authenticity_token'}
+      %form.p-5{action: "#{users_url}", method: "POST" }
+        %input{type:"hidden", name:"authenticity_token", value:" form_authenticity_token"}
         
-        .fosterer-or-organization.mb-1
+        .fosterer-or-organization.mb-5
           %div.form-check
             %input.form-check-input{ type: "radio", name: "user[role]", id: "org-radio-btn", value: "org", checked: true }
             %label.form-check-label{ for: "org-radio-btn" }
@@ -18,30 +18,47 @@
             %label.form-check-label{ for: "fosterer-radio-btn"}
               Fosterer
 
+        .form-group
+          %label{ for: "email-input" } 
+            Email
+          %input{type:"email", class:"form-control", placeholder:"Email", name: "user[email]", id:"email-input", required: true}
+
+        .form-group
+          %label{ for: "password-input" } 
+            Password
+          %input{type:"password", class:"form-control", placeholder:"Password", name: "user[password]", id: "password-input", required: true}
+
         %fieldset.org-name
           .form-group
-            %input{type:"text", class:"form-control", placeholder:"Organization Name", name: "user[org_name]", id:'org-name-input'}
+            %label{ for: "org-name-input" } 
+              Organization Name
+            %input{type:"text", class:"form-control", placeholder:"Organization Name", name: "user[org_name]", id:"org-name-input", required: true}
+
+        .form-group.non-org-name.d-none
+          %label{ for: "first-name-input" } 
+            First Name
+          %input{type:"text", class:"form-control", placeholder:"First Name", name: "user[first_name]", id: "first-name-input"}
+
+        .form-group.non-org-name.d-none
+          %label{ for: "last-name-input" } 
+            Last Name
+          %input{type:"text", class:"form-control", placeholder:"Last Name", name: "user[last_name]", id: "last-name-input"}
 
         .form-group
-          %input{type:"email", class:"form-control", placeholder:"Email", name: "user[email]", id:'email-input', required: true}
+          %label{ for: "street-address-input" } 
+            Street
+          %input{type:"text", class:"form-control", placeholder:"Street Address", name: "user[street_address]", id: "street-address-input", required: true}
 
         .form-group
-          %input{type:"password", class:"form-control", placeholder:"Password", name: "user[password]", id: 'password-input', required: true}
-
-        .form-group
-          %input{type:"text", class:"form-control", placeholder:"First Name", name: "user[first_name]", id: 'first-name-input', required: true}
-
-        .form-group
-          %input{type:"text", class:"form-control", placeholder:"Last Name", name: "user[last_name]", id: 'last-name-input', required: true}
-
-        .form-group
-          %input{type:"text", class:"form-control", placeholder:"Street Address", name: "user[street_address]", id: 'street-address-input', required: true}
-
-        .form-group
-          %input{type:"text", class:"form-control", placeholder:"City", name: "user[city]", id: 'city-input', required: true}
+          %label{ for: "city-input" } 
+            City
+          %input{type:"text", class:"form-control", placeholder:"City", name: "user[city]", id: "city-input", required: true}
           
         .form-group
-          %select{class:'form-control new-user', name:"user[state]", required: true}
+          %label{ for: "state-input" } 
+            State
+
+          %select{class:"form-control new-user", name:"user[state]", required: true, id: "state-select"}
             %option{ value:"AL", checked: true}
               Alabama
             %option{ value:"AK"}
@@ -146,22 +163,36 @@
               Wyoming
 
         .form-group
-          %input{type:"text", class:"form-control", placeholder:"Zipcode",name: "user[zip_code]", id: 'zip-code-input', required: true}
+          %label{ for: "zipe-code-input" } 
+            Zipcode
+          %input{type:"text", class:"form-control", placeholder:"Zipcode",name: "user[zip_code]", id: "zip-code-input", required: true}
 
-        %button{type: 'submit', class:'btn btn-primary'}
+        %button{type: "submit", class:"btn btn-primary"}
           Register!
 
   :javascript
     var $fostererRadioBtn = $('#fosterer-radio-btn');
     var $orgRadioBtn = $('#org-radio-btn');
     var $fieldsetOrgName = $($('fieldset.org-name')[0]);
+    var _$ = $;
 
     $fostererRadioBtn.on('click', function () {
       $fostererRadioBtn.prop('checked', true);
       $fieldsetOrgName.prop('disabled', true);
+      _$('#org-name-input').val('');
+      _$('.non-org-name').removeClass('d-none');
+      _$('.org-name').addClass('d-none');
+      _$('#org-name-input').prop('required', false);
+      _$('#first-name-input').prop('required', true);
+      _$('#last-name-input').prop('required', true);
     });
 
     $orgRadioBtn.on('click', function () {
       $orgRadioBtn.prop('checked', true);
       $fieldsetOrgName.prop('disabled', false);
+      _$('.non-org-name').addClass('d-none');
+      _$('.org-name').removeClass('d-none');
+      _$('#org-name-input').prop('required', true);
+      _$('#first-name-input').prop('required', false);
+      _$('#last-name-input').prop('required', false);
     });

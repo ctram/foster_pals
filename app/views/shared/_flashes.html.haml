@@ -1,12 +1,11 @@
-
 - if flash[:errors]
-  %ul.flashes
+  %ul.flashes.mt-5
     - flash[:errors].each do |msg|
       %li.alert.alert-danger.animated.fadeInRight
         = msg
 
 - if flash[:notice]
-  %ul.flashes
+  %ul.flashes.mt-5
     - flash[:notice].each do |msg|
       %li.alert.alert-info.animated.fadeInRight
         =msg
