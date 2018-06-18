@@ -28,9 +28,10 @@ FosterPals.Views.About = Backbone.CompositeView.extend({
   editAbout: function() {
     this.state.showAboutForm = true;
     this.render();
+    this.renderSubviews();
   },
 
-  cancelEditing: function (e) {
+  cancelEditing: function(e) {
     e.preventDefault();
     this.state.showAboutForm = false;
     this.render();

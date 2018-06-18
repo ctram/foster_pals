@@ -5,7 +5,8 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
 
   events: {
     'click button.schedule-btn': 'toScheduler',
-    'click button.edit-profile-btn': 'editProfile'
+    'click button.edit-profile-btn': 'editProfile',
+    'click button.update-profile-btn': 'updateProfile'
   },
 
   initialize: function(options) {
@@ -20,14 +21,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
       model: this.model
     });
     this.addSubview('.profile-photo', profilePhotoView);
-
     this.listenTo(this.model, 'sync', this.render);
-
-    $('button.update-profile-btn').click(
-      function(e) {
-        this.updateProfile(e);
-      }.bind(this)
-    );
   },
 
   editProfile: function(event) {
@@ -64,7 +58,6 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
       return;
     }
     e.preventDefault();
-
     var attrs = $(form).serializeJSON().user;
     this.model.save(attrs, {
       success: function() {
