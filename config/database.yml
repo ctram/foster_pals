@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: foster_pals_production
-  username: foster_pals
-  password: <%= ENV['FOSTER_PALS_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_URL'] %>

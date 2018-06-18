@@ -1,0 +1,1 @@
+bundle && rails server -p $PORT
