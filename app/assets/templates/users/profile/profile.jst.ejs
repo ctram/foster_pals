@@ -62,42 +62,38 @@
 			</div>
 			<div class="modal-body">
 				<form id="form-update-profile">
-					<% if (user.role === "org") { %>
+					<% if (user.isOrg()) { %>
 						<div class="form-group">
 							<label for="profile-org-name">
 								Organization Name
 							</label>
-							<input type="text" class="form-control org-name" id="profile-org-name" name="user[org_name]" value="<%= user.escape('org_name ')%>"
-							 required />
+							<input type="text" class="form-control org-name" id="profile-org-name" name="user[org_name]" value="<%= user.escape('org_name')%>" required />
 						</div>
-						<% } %>
-							<div class="form-group">
-								<label for="profile-first-name">
-									First Name
-								</label>
-								<input type="text" class="form-control first-name" id="profile-first-name" name="user[first_name]" value="<%= user.escape('first_name')%>"
-								 required />
-							</div>
-							<div class="form-group">
-								<label for="profile-last-name">
-									Last Name
-								</label>
-								<input type="text" class="form-control last-name" id="profile-last-name" name="user[last_name]" value="<%= user.escape('last_name')%>"
-								 required />
-							</div>
+					<% } else { %>
+						<div class="form-group">
+							<label for="profile-first-name">
+								First Name
+							</label>
+							<input type="text" class="form-control first-name" id="profile-first-name" name="user[first_name]" value="<%= user.escape('first_name')%>" required />
+						</div>
+						<div class="form-group">
+							<label for="profile-last-name">
+								Last Name
+							</label>
+							<input type="text" class="form-control last-name" id="profile-last-name" name="user[last_name]" value="<%= user.escape('last_name')%>" required />
+						</div>
+					<% } %>
 							<div class="form-group">
 								<label for="profile-street">
 									Street
 								</label>
-								<input type="text" class="form-control street-address" id="profile-street" name="user[street_address]" value="<%= user.escape('street_address')%>"
-								 required />
+								<input type="text" class="form-control street-address" id="profile-street" name="user[street_address]" value="<%= user.escape('street_address')%>" required />
 							</div>
 							<div class="form-group">
 								<label for="profile-city">
 									City
 								</label>
-								<input type="text" class="form-control city" name="user[city]" id="profile-city" value="<%= user.escape('city')%>" required
-								/>
+								<input type="text" class="form-control city" name="user[city]" id="profile-city" value="<%= user.escape('city')%>" required />
 							</div>
 
 							<div class="form-group">
@@ -168,7 +164,7 @@
 								 required />
 							</div>
 							<div class="modal-footer">
-								<button class="btn btn-primary update-profile-btn modal-off" data-toggle="modal" type="submt">
+								<button class="btn btn-primary update-profile-btn modal-off" data-toggle="modal" role="button">
 									Update!
 								</button>
 								<button class="btn btn-secondary modal-off cancel-btn" data-toggle="modal" data-dismiss="modal">

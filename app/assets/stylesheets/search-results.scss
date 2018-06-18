@@ -8,6 +8,9 @@
   z-index: 1001;
   top: 10em;
   left: 50%;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .go-to-user-profile {

@@ -1,5 +1,4 @@
 FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
-  
   template: JST['search_results/search_results'],
 
   id: 'search-results-view',
@@ -8,9 +7,10 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     'mouseenter div.user-item': 'startBounceAndHightlight',
     'mouseleave div.user-item': 'stopBounceAndHighlight',
     'click div.go-to-user-profile': 'toUserShow',
-    'click div.user-item': 'panToListing'
+    'click div.user-item': 'panToListing',
+    'click .explain': 'moveTourForward'
   },
-  
+
   initialize: function(options) {
     this.mapView = new FosterPals.Views.Map({
       collection: this.collection,
@@ -85,18 +85,32 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
     $resultItem.removeClass('active-user-item');
   },
 
-  render: function() {
-    var content = this.template();
-    this.$el.html(content);
-
-    this.$('.user-items-hook').html(this.usersIndex.render().$el);
-    this.$('.map-hook').html(this.mapView.$el);
-    setTimeout(
-      function() {
-        this.mapView.initMap();
-      }.bind(this),
-      0
-    );
-    return this;
+  moveTourForward: function() {
+    FosterPals.moveTourForward();
   },
+
+  render: function() {
+    var _this = this;
+    var content = this.template({
+      tourOn: FosterPals.state.tourOn,
+      tourStep: FosterPals.state.tourStep
+    });
+    _this.$el.html(content);
+    _this.$('.user-items-hook').html(_this.usersIndex.render().$el);
+    _this.$('.map-hook').html(_this.mapView.$el);
+    setTimeout(function() {
+      FosterPals.state.mapFirstVisit && $('.modal-about-map').modal();
+      FosterPals.state.mapFirstVisit = false;
+      !FosterPals.state.tourOn && _this.mapView.initMap();
+      $('.modal-about-map').on(
+        'hidden.bs.modal',
+        function() {
+          FosterPals.state.mapFirstVisit = false;
+          FosterPals.state.tourOn = true;
+          FosterPals.moveTourForward();
+        }
+      );
+    }, 0);
+    return this;
+  }
 });

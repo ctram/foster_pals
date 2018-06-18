@@ -16,7 +16,6 @@ FosterPals.Views.ContactIsland = Backbone.CompositeView.extend({
     cloudinary.openUploadWidget(
       CLOUDINARY_OPTIONS,
       function(error, result) {
-        debugger;
         var data = result[0];
         image.set({
           url: data.url,

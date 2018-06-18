@@ -7,7 +7,17 @@ window.FosterPals = {
   UserId: null,
   Events: {},
   map: {},
-  mapFirstVisit: true,
+  views: [],
+  state: { tourOn: false, tourStep: 0, mapFirstVisit: true },
+  moveTourForward: function() {
+    FosterPals.state.tourStep++;
+    FosterPals.views.searchResults.render();
+    FosterPals.views.navbar.render();
+  },
+  shutdownTour: function () {
+    FosterPals.state.tourOn = false;
+    FosterPals.views.navbar.render();
+  },
   initialize: function() {
     window.$ = jQuery;
     var currentUser = FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID);
@@ -17,10 +27,10 @@ window.FosterPals = {
       currentUser: currentUser
     });
     window.FosterPals.router = router;
-    var navbarView = new FosterPals.Views.Navbar({
+    FosterPals.views.navbar = new FosterPals.Views.Navbar({
       router: router
     });
-    jQuery('.navbar-hook').html(navbarView.render().$el);
+    jQuery('.navbar-hook').html(FosterPals.views.navbar.render().$el);
     _.extend(FosterPals.Events, Backbone.Events);
     Backbone.history.start();
   }

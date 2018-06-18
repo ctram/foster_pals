@@ -66,12 +66,12 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   search: function(search_location) {
     var users = new FosterPals.Collections.Users();
     users.fetch();
-    var searchView = new FosterPals.Views.SearchResults({
+    FosterPals.views.searchResults = new FosterPals.Views.SearchResults({
       collection: users,
       search_location: search_location
     });
     Backbone.history.navigate('search');
-    this._swapView(searchView);
+    this._swapView(FosterPals.views.searchResults);
   },
 
   userScheduler: function(id) {

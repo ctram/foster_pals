@@ -1,6 +1,10 @@
 FosterPals.Models.User = Backbone.Model.extend({
   urlRoot: '/api/users',
 
+  isOrg: function () {
+    return this.get('role') === 'org';
+  },
+  
   animals_as_org: function() {
     if (!this._animals_as_org) {
       this._animals_as_org = new FosterPals.Collections.Animals();

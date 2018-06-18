@@ -23,11 +23,17 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
     $('li').removeClass('active');
     var $destLi = $(event.currentTarget.parentElement);
     $destLi.addClass('active');
+
+    // Turn off tour if navigate away from map page.
+    if (!FosterPals.state.mapFirstVisit) {
+      $('.modal-about-map').modal('hide');
+      FosterPals.shutdownTour();
+    }
   },
 
   invokeSearch: function(event) {
     event.preventDefault();
-    
+
     $('li').removeClass('active');
     var search_location = $('form')
       .find('input')
@@ -41,7 +47,10 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    var content = this.template({});
+    var content = this.template({
+      tourOn: FosterPals.state.tourOn,
+      tourStep: FosterPals.state.tourStep
+    });
     this.$el.html(content);
     return this;
   }
