@@ -7,8 +7,6 @@ class Api::UsersController < ApplicationController
     stay = Stay.find(params[:stay_id])
     @overlapping_stays = current_user.overlapping_pending_stays stay
     render :check_overlapping_stays
-    # TODO: next, overlapping stays should make their way to backbone
-
   end
 
   def edit
@@ -79,11 +77,6 @@ class Api::UsersController < ApplicationController
     user.about_info = about_info
     user.save
     render :show
-  end
-
-  # XXX: don't think this is used anymore - remove?
-  def animal_roster
-    @user = User.find(params[:id])
   end
 
   private
