@@ -25,5 +25,6 @@ module FosterPals
     config.public_file_server.enabled = true
 
     config.autoload_paths += %W(#{config.root}/lib)
+    config.logger = Logger.new(STDOUT)
   end
 end
