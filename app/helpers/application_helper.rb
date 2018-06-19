@@ -44,7 +44,11 @@ module ApplicationHelper
   end
 
   def generate_postal_address(lat, long)
+    puts "inside generate postal address"
+    puts "lat and long are, lat: #{lat},  long: #{long} "
     api_key = ENV['GOOGLE_MAPS_API_KEY']
+
+    puts "api_key #{api_key}"
 
     gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
     gmaps_api_url += lat.to_s + ',' + long.to_s + '&key=' + api_key

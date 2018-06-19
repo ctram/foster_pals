@@ -46,20 +46,27 @@ class SessionsController < ApplicationController
       about_info: about_info
     )
 
-
     puts "first user created!: #{user1}"
-
+    
+    
+    
     hsh_address = generate_postal_address user1.lat, user1.long
+    puts "hsh_address, #{hsh_address}"
     set_postal_address user1, hsh_address
 
+    puts "coords2, #{coords2}"
+
+    puts "second user created!: #{user2}"
+    
     user2 = Fabricate(
       :user,
       lat: coords2[0],
       long: coords2[1]
     )
 
-    puts "second user created!: #{user2}"
-
+    
+    puts ""
+    
     hsh_address = generate_postal_address user2.lat, user2.long
     set_postal_address user2, hsh_address
 
