@@ -31,6 +31,8 @@ class SessionsController < ApplicationController
   end
 
   def sign_in_as_guest
+    puts "start sign in as guest"
+
     coords1 = generate_random_sf_coords
     coords2 = generate_random_sf_coords
 
