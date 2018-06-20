@@ -31,8 +31,8 @@ class SessionsController < ApplicationController
   end
 
   def sign_in_as_guest
-    coords1 = generate_random_sf_coords
-    coords2 = generate_random_sf_coords
+    coords1 = random_us_coords
+    coords2 = random_us_coords
 
     about_info = "Hey everyone! I've always loved animals. But it wasn't until I rescued my Pekingese dog named Hugh, that I realized how much animals bring into our lives! There are currently so many animals out in the world that how so much to give to us and so many people who are willing to add another memeber to the family -- I'm so glad this site exists to help that process along by giving all these animals a place to be while they find their perfect family to go live with!/nI live on the Peninsula but am open to traveling to transport animals to and from my place; do please check in with me about that! If anyone is interested in setting up a get together, let me know!"
 
@@ -43,18 +43,14 @@ class SessionsController < ApplicationController
       long: coords1[1],
       about_info: about_info
     )
-
-    hsh_address = generate_postal_address user1.lat, user1.long
-    set_postal_address user1, hsh_address
+    set_postal_address_for_user user1
 
     user2 = Fabricate(
       :user,
       lat: coords2[0],
       long: coords2[1]
     )
-      
-    hsh_address = generate_postal_address user2.lat, user2.long
-    set_postal_address user2, hsh_address
+    set_postal_address_for_user user2
 
     [user1, user2].each do |user|
       user.org_name = "Guest Rescue Group"

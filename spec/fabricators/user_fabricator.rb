@@ -17,7 +17,6 @@ Fabricator :user do
     us_lat_range = us_northern_lat - us_southern_lat
     us_lat = us_lat_range * rand + us_southern_lat
   end
-
   long do
     us_western_long = -115.031388
     us_eastern_long = -82.893386

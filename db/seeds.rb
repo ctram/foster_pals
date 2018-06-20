@@ -17,12 +17,10 @@ carl = Fabricate(
   password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
   email: 'c@w',
   role: 'org',
-  lat: 37.733795,
+  lat: 37.733791,
   long: -122.446747
 )
-
-hsh_address = helper.generate_postal_address carl.lat, carl.long
-helper.set_postal_address carl, hsh_address
+helper.set_postal_address_for_user carl
 
 fred = Fabricate(
   :user,
@@ -33,12 +31,8 @@ fred = Fabricate(
   role: 'org',
   lat: 37.733795,
   long: -122.446747
-
 )
-
-hsh_address = helper.generate_postal_address fred.lat, fred.long
-helper.set_postal_address fred, hsh_address
-
+helper.set_postal_address_for_user fred
 
 #################################################
 # Carl's image
@@ -47,7 +41,6 @@ Fabricate(
 )
 
 carl.main_image_thumb_url = helper.ensure_image_url_not_broken carl.main_image_thumb_url
-
 
 # Animals for Carl as a potential fosterer
 1.times do
@@ -149,8 +142,7 @@ end
     :user
   )
 
-  hsh_address = helper.generate_postal_address user.lat, user.long
-  helper.set_postal_address user, hsh_address
+  helper.set_postal_address_for_user user
 
   image_url = helper.random_profile_image_url
 
@@ -160,7 +152,4 @@ end
     imageable_type: 'User',
     thumb_url: image_url
   )
-
 end
-
-# 39.443837207487924,-103.73344211601939

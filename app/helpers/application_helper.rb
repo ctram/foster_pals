@@ -19,6 +19,9 @@ module ApplicationHelper
   end
 
   def generate_lat_and_long_for_user user
+    safety_lat = rand * 90 * [-1, 1].sample
+    safety_long = rand * 180 * [-1, 1].sample
+    
     # Generate lat and long data for all users
     api_key = ENV['GOOGLE_MAPS_API_KEY']
     gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?address="
@@ -30,56 +33,36 @@ module ApplicationHelper
     begin
       response = JSON.parse(Net::HTTP.get(uri))
       if response['status'] == 'ZERO_RESULTS'
-        user.lat = rand * 90 * [-1, 1].sample
-        user.long = rand * 180 * [-1, 1].sample
+        user.lat = safety_lat
+        user.long = safety_long
       else
         user.lat = response['results'][0]['geometry']['location']['lat']
         user.long = response['results'][0]['geometry']['location']['lng']
       end
     rescue
-      user.lat = rand * 90 * [-1, 1].sample
-      user.long = rand * 180 * [-1, 1].sample
+      user.lat = safety_lat
+      user.long = safety_long
     end
     user
   end
 
-  def generate_postal_address(lat, long)
-    api_key = ENV['GOOGLE_MAPS_API_KEY']
+  def generate_random_coords(lat_northern_bound: , lat_southern_bound:, long_eastern_bound:, long_western_bound: )
+    lat_range = lat_northern_bound - lat_southern_bound
+    lat = lat_range * rand + lat_southern_bound
 
-    gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
-    gmaps_api_url += lat.to_s + ',' + long.to_s + '&key=' + api_key
-    uri = URI(gmaps_api_url)
-    response = JSON.parse(Net::HTTP.get(uri))
+    long_range = long_eastern_bound - long_western_bound
+    long = long_range * rand + long_western_bound
 
-    hsh_address = {}
-    address_components = ['street_number', 'street_address', 'route', 'locality', 'administrative_area_level_1', 'postal_code' ]
-    address = response["results"].first["address_components"]
-
-    address.each do |component|
-      type = component["types"].first
-      if address_components.include? type
-        if type == 'administrative_area_level_1'
-          hsh_address[type] = component['short_name']
-        else
-          hsh_address[type] = component['long_name']
-        end
-      end
-    end
-    hsh_address
+    [lat, long]
   end
-
-  def generate_random_sf_coords
-    sf_southern_lat = 37.712764
-    sf_northern_lat = 37.780090
-    sf_lat_range = sf_northern_lat - sf_southern_lat
-    sf_lat = sf_lat_range * rand + sf_southern_lat
-
-    sf_western_long = -122.496652
-    sf_eastern_long = -122.400521
-    sf_long_range = sf_eastern_long - sf_western_long
-    sf_long = sf_long_range * rand + sf_western_long
-
-    [sf_lat, sf_long]
+  
+  def random_us_coords
+    generate_random_coords(
+      lat_northern_bound: 37.780090, 
+      lat_southern_bound: 37.712764,
+      long_eastern_bound: -122.400521, 
+      long_western_bound:  -122.496652
+    )
   end
 
   def random_profile_image_url
@@ -89,7 +72,6 @@ module ApplicationHelper
     # If UI Faces' api is broken, then set the image_url to a default image.
     begin
       random_user = JSON.parse(Net::HTTP.get(uri))
-
       image_url = random_user['image_urls']['epic']
       image_url = ensure_image_url_not_broken image_url
     rescue
@@ -154,29 +136,53 @@ module ApplicationHelper
     path + image
   end
 
-  def set_postal_address user, hsh_address
-    street_number = hsh_address["street_number"]
-    route = hsh_address["route"]
-    city = hsh_address["locality"]
-    state = hsh_address["administrative_area_level_1"]
-    zip_code = hsh_address["postal_code"]
+  def generate_postal_address(lat, long)
+    api_key = ENV['GOOGLE_MAPS_API_KEY']
 
-    arr_address = [street_number, route, city, state, zip_code]
+    gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
+    gmaps_api_url += lat.to_s + ',' + long.to_s + '&key=' + api_key
+    uri = URI(gmaps_api_url)
+    response = JSON.parse(Net::HTTP.get(uri))
 
-    if arr_address.any? {|component| component == nil}
-      # Set lat and long and address to default SF data
-      user.lat = 37.733795
-      user.long = -122.446747
-      user.street_address = '901 Teresita Boulevard'
-      user.city = 'San Francisco'
-      user.state = 'CA'
-      user.zip_code = '94127'
-    else
-      user.street_address = street_number + ' ' +  route
-      user.city = city
-      user.state = state
-      user.zip_code = zip_code
+    hsh_address = {}
+    address_components = ['street_number', 'street_address', 'route', 'locality', 'administrative_area_level_1', 'postal_code' ]
+    address = response["results"].first["address_components"]
+
+    address.each do |component|
+      type = component["types"].first
+      if address_components.include? type
+        if type == 'administrative_area_level_1'
+          hsh_address[type] = component['short_name']
+        else
+          hsh_address[type] = component['long_name']
+        end
+      end
     end
+    hsh_address
+  end
+
+  def set_postal_address_for_user user
+    postal_address = nil
+    num_tries = 0
+    num_limit_tries = 100
+
+    while true
+      num_tries += 1
+      postal_address = generate_postal_address(user.lat, user.long)
+      break if postal_address.none? {|component| component == nil}
+      raise 'not able to generate a valid address' if num_tries == num_limit_tries
+    end
+    
+    street_number = postal_address["street_number"]
+    route = postal_address["route"]
+    city = postal_address["locality"]
+    state = postal_address["administrative_area_level_1"]
+    zip_code = postal_address["postal_code"]
+
+    user.street_address = street_number + ' ' +  route
+    user.city = city
+    user.state = state
+    user.zip_code = zip_code
     user.save
   end
 end
