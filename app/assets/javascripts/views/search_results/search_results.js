@@ -72,6 +72,7 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   },
 
   toUserShow: function(event) {
+    FosterPals.shutdownTour();
     var $div = $(event.currentTarget);
     var userId = $div.data('user-id');
     var destUrl = 'users/' + userId;
