@@ -16,9 +16,7 @@ carl = Fabricate(
   first_name: 'Chad',
   password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
   email: 'c@w',
-  role: 'org',
-  lat: 37.733791,
-  long: -122.446747
+  role: 'org'
 )
 helper.set_postal_address_for_user carl
 
@@ -28,9 +26,7 @@ fred = Fabricate(
   first_name: 'Fred',
   password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
   email: 'f@w',
-  role: 'org',
-  lat: 37.733795,
-  long: -122.446747
+  role: 'org'
 )
 helper.set_postal_address_for_user fred
 

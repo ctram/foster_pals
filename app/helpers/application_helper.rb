@@ -18,7 +18,10 @@ module ApplicationHelper
   # "https://s3.amazonaws.com/uifaces/faces/twitter/fredfairclough/128.jpg"
   end
 
-  def generate_lat_and_long_for_user user
+  # Sets user's latitude and longitude based on the user's postal address
+  # @param user [User]
+  # @return user [User]
+  def set_lat_and_long_for_user user
     safety_lat = rand * 90 * [-1, 1].sample
     safety_long = rand * 180 * [-1, 1].sample
     
@@ -30,20 +33,13 @@ module ApplicationHelper
     location = location.split.join('+')
     complete_url = gmaps_api_url + location + '&key=' + api_key
     uri = URI(complete_url)
-    begin
-      response = JSON.parse(Net::HTTP.get(uri))
-      if response['status'] == 'ZERO_RESULTS'
-        user.lat = safety_lat
-        user.long = safety_long
-      else
-        user.lat = response['results'][0]['geometry']['location']['lat']
-        user.long = response['results'][0]['geometry']['location']['lng']
-      end
-    rescue
-      user.lat = safety_lat
-      user.long = safety_long
+    response = JSON.parse(Net::HTTP.get(uri))
+    if response['status'] == 'ZERO_RESULTS'
+      raise 'not latitude and longitude data found for given postal address'
     end
-    user
+    user.lat = response['results'][0]['geometry']['location']['lat']
+    user.long = response['results'][0]['geometry']['location']['lng']
+    user.save
   end
 
   def generate_random_coords(lat_northern_bound: , lat_southern_bound:, long_eastern_bound:, long_western_bound: )
@@ -137,52 +133,63 @@ module ApplicationHelper
   end
 
   def generate_postal_address(lat, long)
+    response = nil
     api_key = ENV['GOOGLE_MAPS_API_KEY']
-
     gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
     gmaps_api_url += lat.to_s + ',' + long.to_s + '&key=' + api_key
     uri = URI(gmaps_api_url)
-    response = JSON.parse(Net::HTTP.get(uri))
+    unless response
+      response = JSON.parse(Net::HTTP.get(uri))
+    end
 
     hsh_address = {}
-    address_components = ['street_number', 'street_address', 'route', 'locality', 'administrative_area_level_1', 'postal_code' ]
     address = response["results"].first["address_components"]
 
     address.each do |component|
       type = component["types"].first
-      if address_components.include? type
-        if type == 'administrative_area_level_1'
-          hsh_address[type] = component['short_name']
-        else
-          hsh_address[type] = component['long_name']
-        end
+      if type == 'administrative_area_level_1'
+        hsh_address[type] = component['short_name']
+      else
+        hsh_address[type] = component['long_name']
       end
     end
     hsh_address
   end
 
+  # Sets a user's latitude and longitude data based on the user's postal address. 
+  # Regenerates the postal address if it is invalid. 
+  # @param user [User]
+  # @return user [User]
   def set_postal_address_for_user user
-    postal_address = nil
+    postal_address = {
+      street_address: user.street_address,
+      city: user.city,
+      state: user.state,
+      zip_code: user.zip_code
+    }
     num_tries = 0
     num_limit_tries = 100
-
-    while true
-      num_tries += 1
-      postal_address = generate_postal_address(user.lat, user.long)
-      break if postal_address.none? {|component| component == nil}
-      raise 'not able to generate a valid address' if num_tries == num_limit_tries
-    end
     
-    street_number = postal_address["street_number"]
-    route = postal_address["route"]
-    city = postal_address["locality"]
-    state = postal_address["administrative_area_level_1"]
-    zip_code = postal_address["postal_code"]
-
-    user.street_address = street_number + ' ' +  route
-    user.city = city
-    user.state = state
-    user.zip_code = zip_code
-    user.save
+    begin
+      set_lat_and_long_for_user user
+    rescue StandardError
+      raise 'latitude and longitude data cannot be set' if num_limit_tries == num_tries
+      user.update_attributes(
+        street_address: Faker::Address.street_name,
+        city: Faker::Address.city,
+        state: Faker::Address.state_abbr,
+        zip_code: Faker::Address.zip_code
+      )
+      num_tries += 1
+      retry
+    end
+    user
+  end
+  
+  def postal_address_valid? postal_address={}
+    return false unless ['street_number', 'street_address', 'route', 'locality', 'administrative_area_level_1', 'postal_code' ].all? do |key|
+      postal_address.has_key?(key) && postal_address[key]
+    end
+    true
   end
 end
