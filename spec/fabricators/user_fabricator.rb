@@ -14,6 +14,6 @@ Fabricator :user do
   zip_code { Faker::Address.zip_code }
   about_info { Faker::Lorem.paragraph(10) }
   after_create do |user|
-    ApplicationHelper.set_lat_and_long_from_postal_address user
+    ApplicationHelper.set_lat_and_long_from_zipcode user
   end
 end

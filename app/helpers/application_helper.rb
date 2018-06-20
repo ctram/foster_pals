@@ -1,10 +1,10 @@
 # TODO: move this into concerns?
 
 module ApplicationHelper
-  def self.ensure_image_url_not_broken url
-    error_msg_str = "Access Denied"
+  def self.ensure_image_url_not_broken(url)
+    error_msg_str = 'Access Denied'
     uri = URI(url)
-    if Net::HTTP.get(uri).include? error_msg_str
+    if Net::HTTP.get(uri).include?(error_msg_str)
       pictures = [
         'assets/profile-picture.jpg',
         'assets/profile-picture2.jpg',
@@ -13,67 +13,23 @@ module ApplicationHelper
       url = pictures.sample
     end
     url
-
-  # broken url sample:
-  # "https://s3.amazonaws.com/uifaces/faces/twitter/fredfairclough/128.jpg"
-  end
-
-  # Sets user's latitude and longitude based on the user's postal address
-  # @param user [User]
-  # @return user [User]
-  def self.set_lat_and_long_for_user user
-    safety_lat = rand * 90 * [-1, 1].sample
-    safety_long = rand * 180 * [-1, 1].sample
-    
-    # Generate lat and long data for all users
-    api_key = ENV['GOOGLE_MAPS_API_KEY']
-    gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?address="
-
-    location = "#{user.street_address}, #{user.state} #{user.zip_code}"
-    location = location.split.join('+')
-    complete_url = gmaps_api_url + location + '&key=' + api_key
-    uri = URI(complete_url)
-    response = JSON.parse(Net::HTTP.get(uri))
-    if response['status'] == 'ZERO_RESULTS'
-      raise 'not latitude and longitude data found for given postal address'
-    end
-    user.lat = response['results'][0]['geometry']['location']['lat']
-    user.long = response['results'][0]['geometry']['location']['lng']
-    user.save
-  end
-
-  def self.generate_random_coords(lat_northern_bound: , lat_southern_bound:, long_eastern_bound:, long_western_bound: )
-    lat_range = lat_northern_bound - lat_southern_bound
-    lat = lat_range * rand + lat_southern_bound
-
-    long_range = long_eastern_bound - long_western_bound
-    long = long_range * rand + long_western_bound
-
-    [lat, long]
-  end
-  
-  def self.random_us_coords
-    generate_random_coords(
-      lat_northern_bound: 37.780090, 
-      lat_southern_bound: 37.712764,
-      long_eastern_bound: -122.400521, 
-      long_western_bound:  -122.496652
-    )
+    # broken url sample:
+    # 'https://s3.amazonaws.com/uifaces/faces/twitter/fredfairclough/128.jpg'
   end
 
   def self.random_profile_image_url
     # uifaces api for a random profile picture
-    uri = URI("http://uifaces.com/api/v1/random")
+    uri = URI('http://uifaces.com/api/v1/random')
 
     # If UI Faces' api is broken, then set the image_url to a default image.
     begin
       random_user = JSON.parse(Net::HTTP.get(uri))
       image_url = random_user['image_urls']['epic']
-      image_url = ensure_image_url_not_broken image_url
-    rescue
+      image_url = ensure_image_url_not_broken(image_url)
+    rescue StandardError
       # backup profile picture
       # TODO: add a stock profile pictures for humans
-      image_url = "assets/profile-picture3.jpg"
+      image_url = 'assets/profile-picture3.jpg'
     end
     image_url
   end
@@ -132,52 +88,34 @@ module ApplicationHelper
     path + image
   end
 
-  def self.generate_postal_address(lat, long)
-    response = nil
+  def self.postal_address_from_lat_and_long(lat, long)
     api_key = ENV['GOOGLE_MAPS_API_KEY']
-    gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
+    gmaps_api_url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='
     gmaps_api_url += lat.to_s + ',' + long.to_s + '&key=' + api_key
     uri = URI(gmaps_api_url)
-    unless response
-      response = JSON.parse(Net::HTTP.get(uri))
+    response = JSON.parse(Net::HTTP.get(uri))
+    address = {}
+
+    response['results'].first['address_components'].each do |component|
+      address[type] = component['types'].first == 'administrative_area_level_1' ? component['short_name'] : component['long_name']
     end
 
-    hsh_address = {}
-    address = response["results"].first["address_components"]
-
-    address.each do |component|
-      type = component["types"].first
-      if type == 'administrative_area_level_1'
-        hsh_address[type] = component['short_name']
-      else
-        hsh_address[type] = component['long_name']
-      end
-    end
-    hsh_address
+    required_keys = %w[street_number route locality administrative_area_level_1]
+    raise 'incomplete postal address' unless address.none? { |key| !required_keys.include?(key) }
+    address
   end
 
-  # Sets a user's latitude and longitude data based on the user's postal address. 
-  # Regenerates the postal address if it is invalid. 
-  # @param user [User]
-  # @return user [User]
-  def self.set_lat_and_long_from_postal_address user
-    postal_address = {
-      street_address: user.street_address,
-      city: user.city,
-      state: user.state,
-      zip_code: user.zip_code
-    }
+  def self.set_lat_and_long_from_zipcode(zipcode)
     num_tries = 0
-    num_limit_tries = 100
-    
+    num_limit_tries = 500
+
     begin
-      set_lat_and_long_for_user user
+      lat, long = lat_and_long_from_zipcode(zip_code).values_at :lat, :long
+      user.update_attributes(lat: lat, long: long)
+      set_postal_address_from_lat_and_long user
     rescue StandardError
       raise 'latitude and longitude data cannot be set' if num_limit_tries == num_tries
       user.update_attributes(
-        street_address: Faker::Address.street_name,
-        city: Faker::Address.city,
-        state: Faker::Address.state_abbr,
         zip_code: Faker::Address.zip_code
       )
       num_tries += 1
@@ -185,10 +123,28 @@ module ApplicationHelper
     end
     user
   end
+
+  # Sets user's latitude and longitude based on the user's postal address
+  # @param zipcode [Integer]
+  # @return [Hash]
+  def self.lat_and_long_from_zipcode(zipcode)
+    # Generate lat and long data for all users
+    api_key = ENV['GOOGLE_MAPS_API_KEY']
+    gmaps_api_url = 'https://maps.googleapis.com/maps/api/geocode/json?address='
+    complete_url = gmaps_api_url + "+#{zipcode}" + '&key=' + api_key
+    uri = URI(complete_url)
+    response = JSON.parse(Net::HTTP.get(uri))
+    if response['status'] == 'ZERO_RESULTS'
+      raise 'not latitude and longitude data found for given postal address'
+    end
+    lat = response['results'][0]['geometry']['location']['lat']
+    long = response['results'][0]['geometry']['location']['lng']
+    { lat: lat, long: long }
+  end
   
-  def self.postal_address_valid? postal_address={}
-    return false unless ['street_number', 'street_address', 'route', 'locality', 'administrative_area_level_1', 'postal_code' ].all? do |key|
-      postal_address.has_key?(key) && postal_address[key]
+  def self.postal_address_valid?(postal_address = {})
+    return false unless %w[street_number street_address route locality administrative_area_level_1 postal_code ].all? do |key|
+      postal_address.key?(key) && postal_address[key]
     end
     true
   end

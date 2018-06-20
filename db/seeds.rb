@@ -52,7 +52,7 @@ carl.main_image_thumb_url = ApplicationHelper.ensure_image_url_not_broken carl.m
     fosterer_id: carl.id
   )
 
-  reservation = Fabricate(
+  Fabricate(
     :reservation,
     animal_id: animal.id,
     stay_id: stay.id
@@ -68,17 +68,17 @@ end
   )
 
   Fabricate(
-  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: random_image, url: random_image
+    :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: random_image, url: random_image
   )
 end
 ############################################
 
 # Fred's image
 Fabricate(
-  :image, imageable_id: fred.id, imageable_type: 'User', thumb_url: "https://s3.amazonaws.com/uifaces/faces/twitter/fredfairclough/128.jpg"
+  :image, imageable_id: fred.id, imageable_type: 'User', thumb_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/fredfairclough/128.jpg'
 )
 
-fred.main_image_thumb_url = ApplicationHelper.ensure_image_url_not_broken fred.main_image_thumb_url
+fred.main_image_thumb_url = ApplicationHelper.ensure_image_url_not_broken(fred.main_image_thumb_url)
 
 
 # Animals for Fred as a potential fosterer
@@ -101,7 +101,7 @@ fred.main_image_thumb_url = ApplicationHelper.ensure_image_url_not_broken fred.m
     fosterer_id: fred.id
   )
 
-  reservation = Fabricate(
+  Fabricate(
     :reservation,
     animal_id: animal.id,
     stay_id: stay.id
@@ -117,7 +117,7 @@ end
   )
 
   Fabricate(
-  :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: random_image, url: random_image
+    :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: random_image, url: random_image
   )
 end
 

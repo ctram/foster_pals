@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'bootstrap', '~> 4.1.1'
 gem 'backbone-on-rails'
-gem 'haml'
-gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap', '~> 4.1.1'
 gem 'figaro' # prevent environment access keys from getting pushed to git
+gem 'haml'
 gem 'jquery-ui-rails'
+gem 'momentjs-rails', '>= 2.8.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
@@ -36,8 +36,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'faker'
 gem 'fabrication'
+gem 'faker'
 
 gem 'react-rails'
 
