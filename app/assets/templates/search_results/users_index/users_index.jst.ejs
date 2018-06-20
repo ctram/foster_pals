@@ -5,32 +5,32 @@
 
 <div class="user-items px-3">
   <% users.each(function (user) { %>
-    <div class="user-item row" data-user-id="<%= user.escape( 'id')%>">
-      <% var streetAddress = user.escape('street_address') %>
-        <% var city = user.escape('city') %>
-          <% var state = user.escape('state') %>
-            <% var zip = user.escape('zip_code') %>
+    <div class="user-item row" data-user-id="<%= user.escape("id") %>">
+      <% var streetAddress = user.escape("street_address") %>
+        <% var city = user.escape("city") %>
+          <% var state = user.escape("state") %>
+            <% var zip = user.escape("zip_code") %>
 
-              <div class='user-item-info' data-user-id="<%= user.escape( 'id')%>">
-                <div class='user-item-name'>
+              <div class="user-item-info" data-user-id="<%= user.escape("id") %>">
+                <div class="user-item-name">
                   <strong>
-                    <%= user.escape('name') %>
+                    <%= user.escape("name") %>
                   </strong>
                 </div>
 
-                <div class='user-item-location'>
+                <div class="user-item-location">
                   <%= streetAddress %>
                 </div>
-                <div class='user-item-location'>
+                <div class="user-item-location">
                   <%= city %>,
-                    <%= state%>
+                    <%= state %>
                       <%= zip %>
                 </div>
               </div>
 
-              <div class='go-to-user-profile' data-user-id="<%= user.escape( 'id')%>">
+              <div class="go-to-user-profile" data-user-id="<%= user.escape("id") %>">
                 <a class="go-to-user-profile__pal">
-                  Go To Pal's Profile
+                  Go To Pal"s Profile
                 </a>
               </div>
 
