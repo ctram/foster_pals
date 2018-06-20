@@ -1,3 +1,5 @@
+require_relative '../../app/helpers/application_helper'
+
 Fabricator :user do
   password_digest { Faker::Internet.password }
   session_token { Faker::Internet.password }
@@ -11,4 +13,7 @@ Fabricator :user do
   state { Faker::Address.state_abbr }
   zip_code { Faker::Address.zip_code }
   about_info { Faker::Lorem.paragraph(10) }
+  after_create do |user|
+    ApplicationHelper.set_lat_and_long_from_postal_address user
+  end
 end

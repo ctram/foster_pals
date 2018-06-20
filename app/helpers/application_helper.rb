@@ -1,7 +1,7 @@
 # TODO: move this into concerns?
 
 module ApplicationHelper
-  def ensure_image_url_not_broken url
+  def self.ensure_image_url_not_broken url
     error_msg_str = "Access Denied"
     uri = URI(url)
     if Net::HTTP.get(uri).include? error_msg_str
@@ -21,7 +21,7 @@ module ApplicationHelper
   # Sets user's latitude and longitude based on the user's postal address
   # @param user [User]
   # @return user [User]
-  def set_lat_and_long_for_user user
+  def self.set_lat_and_long_for_user user
     safety_lat = rand * 90 * [-1, 1].sample
     safety_long = rand * 180 * [-1, 1].sample
     
@@ -42,7 +42,7 @@ module ApplicationHelper
     user.save
   end
 
-  def generate_random_coords(lat_northern_bound: , lat_southern_bound:, long_eastern_bound:, long_western_bound: )
+  def self.generate_random_coords(lat_northern_bound: , lat_southern_bound:, long_eastern_bound:, long_western_bound: )
     lat_range = lat_northern_bound - lat_southern_bound
     lat = lat_range * rand + lat_southern_bound
 
@@ -52,7 +52,7 @@ module ApplicationHelper
     [lat, long]
   end
   
-  def random_us_coords
+  def self.random_us_coords
     generate_random_coords(
       lat_northern_bound: 37.780090, 
       lat_southern_bound: 37.712764,
@@ -61,7 +61,7 @@ module ApplicationHelper
     )
   end
 
-  def random_profile_image_url
+  def self.random_profile_image_url
     # uifaces api for a random profile picture
     uri = URI("http://uifaces.com/api/v1/random")
 
@@ -78,7 +78,7 @@ module ApplicationHelper
     image_url
   end
 
-  def random_animal_image
+  def self.random_animal_image
     path = 'assets/dogs/'
     image = [
       '035bbe68fe79229568cab6abcb5232a9.jpg',
@@ -132,7 +132,7 @@ module ApplicationHelper
     path + image
   end
 
-  def generate_postal_address(lat, long)
+  def self.generate_postal_address(lat, long)
     response = nil
     api_key = ENV['GOOGLE_MAPS_API_KEY']
     gmaps_api_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
@@ -160,7 +160,7 @@ module ApplicationHelper
   # Regenerates the postal address if it is invalid. 
   # @param user [User]
   # @return user [User]
-  def set_postal_address_for_user user
+  def self.set_lat_and_long_from_postal_address user
     postal_address = {
       street_address: user.street_address,
       city: user.city,
@@ -186,7 +186,7 @@ module ApplicationHelper
     user
   end
   
-  def postal_address_valid? postal_address={}
+  def self.postal_address_valid? postal_address={}
     return false unless ['street_number', 'street_address', 'route', 'locality', 'administrative_area_level_1', 'postal_code' ].all? do |key|
       postal_address.has_key?(key) && postal_address[key]
     end

@@ -1,4 +1,5 @@
 require 'net/http'
+require_relative '../helpers/application_helper'
 
 class SessionsController < ApplicationController
   before_action :redirect_to_front_if_not_signed_in, except: [:new, :create, :destroy, :sign_in_as_guest]
@@ -31,32 +32,21 @@ class SessionsController < ApplicationController
   end
 
   def sign_in_as_guest
-    coords1 = random_us_coords
-    coords2 = random_us_coords
-
     about_info = "Hey everyone! I've always loved animals. But it wasn't until I rescued my Pekingese dog named Hugh, that I realized how much animals bring into our lives! There are currently so many animals out in the world that how so much to give to us and so many people who are willing to add another memeber to the family -- I'm so glad this site exists to help that process along by giving all these animals a place to be while they find their perfect family to go live with!/nI live on the Peninsula but am open to traveling to transport animals to and from my place; do please check in with me about that! If anyone is interested in setting up a get together, let me know!"
 
     user1 = Fabricate(
       :user,
       password_digest: '$2a$10$X3v2.He5PlB/utS9dJcrXuKdyHOICuud59dOyzBM1oI726.h77f3y',
-      lat: coords1[0],
-      long: coords1[1],
       about_info: about_info
     )
-    set_postal_address_for_user user1
 
-    user2 = Fabricate(
-      :user,
-      lat: coords2[0],
-      long: coords2[1]
-    )
-    set_postal_address_for_user user2
+    user2 = Fabricate :user
 
     [user1, user2].each do |user|
       user.org_name = "Guest Rescue Group"
       user.first_name = 'Gus'
       user.last_name = 'Guest'
-      image_url = random_profile_image_url
+      image_url = ApplicationHelper.random_profile_image_url
 
       image = Fabricate(
         :image,
@@ -81,7 +71,7 @@ class SessionsController < ApplicationController
           imageable_id: animal.id,
           imageable_type: 'Animal'
         )
-        image.thumb_url = random_animal_image
+        image.thumb_url = ApplicationHelper.random_animal_image
         image.save
 
         stay = Fabricate(
@@ -111,7 +101,7 @@ class SessionsController < ApplicationController
           imageable_id: animal.id,
           imageable_type: 'Animal'
         )
-        image.thumb_url = random_animal_image
+        image.thumb_url = ApplicationHelper.random_animal_image
         image.url = image.thumb_url
         image.save
       end

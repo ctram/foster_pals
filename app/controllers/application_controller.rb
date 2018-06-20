@@ -1,7 +1,5 @@
-require_relative '../helpers/application_helper'
 
 class ApplicationController < ActionController::Base
-  include ApplicationHelper
   protect_from_forgery with: :exception
 
   # Expose these methods to the views
@@ -35,5 +33,3 @@ class ApplicationController < ActionController::Base
     session[:session_token] = nil
   end
 end
-
-# TODO: working sign out button in the backbone navbar -- todo: hook up a button to a form that issues a delete to the sessions controller , then redirect to the sign in page.

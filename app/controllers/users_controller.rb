@@ -1,3 +1,5 @@
+require_relative '../helpers/application_helper'
+
 class UsersController < ApplicationController
   before_action :complete_attributes_for_user_creation, only: [:create]
 
@@ -13,8 +15,8 @@ class UsersController < ApplicationController
     if @user.save
       image = Fabricate(
         :image,
-        url: random_profile_image_url,
-        thumb_url: random_profile_image_url,
+        url: ApplicationHelper.random_profile_image_url,
+        thumb_url: ApplicationHelper.random_profile_image_url,
         imageable_id: @user.id,
         imageable_type: 'User'
       )
