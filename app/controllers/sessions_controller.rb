@@ -31,8 +31,6 @@ class SessionsController < ApplicationController
   end
 
   def sign_in_as_guest
-    puts "start sign in as guest"
-
     coords1 = generate_random_sf_coords
     coords2 = generate_random_sf_coords
 
@@ -46,15 +44,8 @@ class SessionsController < ApplicationController
       about_info: about_info
     )
 
-    puts "first user created!: #{user1}"
-    
-
-    
     hsh_address = generate_postal_address user1.lat, user1.long
-    puts "hsh_address, #{hsh_address}"
     set_postal_address user1, hsh_address
-
-    puts "coords2, #{coords2}"
 
     user2 = Fabricate(
       :user,
@@ -62,8 +53,6 @@ class SessionsController < ApplicationController
       long: coords2[1]
     )
       
-    puts "second user created!: #{user2}"
-    
     hsh_address = generate_postal_address user2.lat, user2.long
     set_postal_address user2, hsh_address
 
@@ -71,7 +60,6 @@ class SessionsController < ApplicationController
       user.org_name = "Guest Rescue Group"
       user.first_name = 'Gus'
       user.last_name = 'Guest'
-
       image_url = random_profile_image_url
 
       image = Fabricate(
@@ -84,7 +72,6 @@ class SessionsController < ApplicationController
       other_user = (user == user1 ? user2 : user1)
 
       # Set animals with requests for fostering.
-      puts 'creating animals'
       5.times do
         
         animal = Fabricate(
@@ -115,7 +102,6 @@ class SessionsController < ApplicationController
         )
       end
 
-      puts 'set animals in roster'
       # Set animals in roster.
       5.times do
         animal = Fabricate(
@@ -135,11 +121,7 @@ class SessionsController < ApplicationController
       end
     end
 
-    puts 'sign in user'
-
     sign_in(user1)
-
-    puts 'all done, redirect to root page'
     redirect_to "/"
   end
 end
