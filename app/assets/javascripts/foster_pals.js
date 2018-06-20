@@ -14,7 +14,10 @@ window.FosterPals = {
     FosterPals.views.searchResults.render();
     FosterPals.views.navbar.render();
   },
-  shutdownTour: function () {
+  shutdownTour: function() {
+    if (!FosterPals.state.tourOn) {
+      return;
+    }
     FosterPals.state.tourOn = false;
     FosterPals.views.navbar.render();
   },
