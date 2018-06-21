@@ -4,5 +4,5 @@ end
 class IncompleteAddressError < StandardError
 end
 
-class NoResponseError < StandardError
+class GoogleMapsBadResponseError < StandardError
 end

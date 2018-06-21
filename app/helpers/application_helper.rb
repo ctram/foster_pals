@@ -102,7 +102,7 @@ module ApplicationHelper
 
     response = JSON.parse(Net::HTTP.get(uri))
     puts "response is #{response}"
-    raise(NoResponseError, 'bad response from google maps') if response.nil? || response['results'].empty?
+    raise(GoogleMapsBadResponseError, 'bad response from google maps') if response.nil? || response['results'].empty?
 
     response['results'].first['address_components'].each do |component|
       type = component['types'].first
@@ -147,7 +147,7 @@ module ApplicationHelper
       lat, long = lat_and_long_from_zip_code(user.zip_code).values_at :lat, :long
       address = address_from_lat_and_long(lat, long)
       puts "end of begin block"
-    rescue GoogleMapsGetLatLongError, IncompleteAddressError => e
+    rescue GoogleMapsGetLatLongError, IncompleteAddressError, GoogleMapsBadResponseError => e
       puts "there was an error from the rescue #{e}"
       user.update_attributes(zip_code: Faker::Address.zip_code)
       num_tries += 1
