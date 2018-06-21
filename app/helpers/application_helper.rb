@@ -144,12 +144,12 @@ module ApplicationHelper
       lat, long = lat_and_long_from_zip_code(user.zip_code).values_at :lat, :long
       address = address_from_lat_and_long(lat, long)
     rescue GoogleMapsGetLatLongError, IncompleteAddressError, GoogleMapsBadResponseError
-      user.update_attributes(zip_code: Faker::Address.zip_code)
+      user.update(zip_code: Faker::Address.zip_code)
       num_tries += 1
       raise('cannot generate latitude and longitude') if num_tries == num_tries_limit
       retry
     end
-    user.update_attributes(
+    user.update(
       street_address: "#{address['street_number']} #{address['route']}",
       city: address['locality'],
       state: address['administrative_area_level_1'],

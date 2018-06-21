@@ -33,23 +33,11 @@ class Animal < ActiveRecord::Base
   end
 
   def main_image_thumb_url
-    stock_image_url = "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
-    if (images.empty?) or (images.first.thumb_url == stock_image_url)
+    stock_image_url = 'http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png'
+    if images.empty? || images.first.thumb_url == stock_image_url
       stock_image_url
     else
       images.first.thumb_url
-    end
-  end
-
-  def status
-    if stays.empty?
-      return '-'
-    end
-
-    stays.each do |stay|
-      if stay.status == 'confirmed'
-        return 'fostered'
-      end
     end
   end
 end

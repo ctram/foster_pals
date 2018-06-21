@@ -1,7 +1,6 @@
 require_relative '../helpers/application_helper'
 
 class UsersController < ApplicationController
-
   def new
     @user = User.new
     render layout: 'static_pages'
@@ -13,7 +12,7 @@ class UsersController < ApplicationController
     end
 
     @user = User.create(user_params)
-    ApplicationHelper.create_lat_and_long_for_user @user
+    ApplicationHelper.create_lat_and_long_for_user(@user)
 
     if @user.save
       Fabricate(
@@ -23,11 +22,11 @@ class UsersController < ApplicationController
         imageable_id: @user.id,
         imageable_type: 'User'
       )
-      redirect_to new_session_url
-    else
-      flash.now[:errors] = @user.errors.full_messages
-      render :new
+      return redirect_to new_session_url
     end
+
+    flash.now[:errors] = @user.errors.full_messages
+    render :new
   end
 
   private

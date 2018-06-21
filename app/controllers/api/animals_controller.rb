@@ -4,25 +4,23 @@ class Api::AnimalsController < ApplicationController
   def create
     @animal = Animal.create(animal_params)
 
-    if !@animal.save
+    unless @animal.save
       render json: @animal.errors.full_messages, status: 422
       return
     end
 
-# "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png" cartoon dog
+    # "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png" cartoon dog
     animal_images = Image.where(image_set_id: @animal.image_set_id)
     if animal_images.empty?
       Image.create(
-        thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png",
-        url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png",
+        thumb_url: 'http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png',
+        url: 'http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png',
         imageable_type: 'Animal',
         imageable_id: @animal.id
       )
     else
       animal_images.each do |image|
-        image.imageable_id = @animal.id
-        image.imageable_type = 'Animal'
-        image.save
+        image.update(imageable_id: @animal.id, imageable_type: 'Animal')
       end
     end
     render :show

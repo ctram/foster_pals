@@ -32,6 +32,7 @@ module.exports = {
     jQuery: true,
     google: true,
     cloudinary: true,
-    CLOUDINARY_OPTIONS: true
+    CLOUDINARY_OPTIONS: true,
+    toastr: true
   }
 };

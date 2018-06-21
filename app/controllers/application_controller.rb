@@ -1,4 +1,3 @@
-
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -20,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def signed_in?
-    !!current_user
+    current_user ? true : false
   end
 
   def sign_in(user)

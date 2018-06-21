@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
-  validates_presence_of :org_name, if: Proc.new { |a| a.org? }
+  validates_presence_of :org_name, if: proc { |a| a.org? }
   validates_presence_of :email, uniqueness: true
-  validates :password, length: {minimum: 1, allow_nil: true}
-  validates_presence_of :first_name, unless: Proc.new { |a| a.org? }
-  validates_presence_of :last_name, unless: Proc.new { |a| a.org? }
+  validates :password, length: { minimum: 1, allow_nil: true }
+  validates_presence_of :first_name, unless: proc { |a| a.org? }
+  validates_presence_of :last_name, unless: proc { |a| a.org? }
   validates_presence_of :street_address
   validates_presence_of :city
   validates_presence_of :state
-  validates_presence_of :zip_code, numericality: { only_integer: true }, length: {minimum:5, maximum: 5}
+  validates_presence_of :zip_code, numericality: { only_integer: true }, length: { minimum: 5, maximum: 5 }
 
   after_initialize :ensure_session_token
 
@@ -43,63 +43,45 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
-  def User.find_by_credentials(email, password)
+  def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     return nil unless user && user.valid_password?(password)
     user
   end
 
-  def deny_overlapping_stays stay
+  def deny_overlapping_stays(stay)
     ol_stays = overlapping_pending_stays
-    if ol_stays.include? stay
-      ol_stays.delete stay
-      ol_stays.each do |stay|
-        stay.status = 'denied'
-        stay.save
-      end
+    return unless ol_stays.include?(stay)
+    ol_stays.delete stay
+    ol_stays.each do |inner_stay|
+      inner_stay.update(status: 'denied')
     end
   end
 
   # TODO: extract main_image code into a module -- animal class also uses it.
   def main_image_url
-    if images.empty?
-      "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
-    else
-      images.first.url
-    end
+    images.empty? ? 'http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png' : images.first.url
   end
 
   def main_image_thumb_url
-    if images.empty?
-      "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
-    else
-      images.last.thumb_url
-    end
+    images.empty? ? 'http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png' : images.last.thumb_url
   end
 
-  def main_image_thumb_url= url
-    image = images.last
-    image.thumb_url = url
-    image.save
+  def main_image_thumb_url=(url)
+    images.last.update(thumb_url: url)
   end
 
   def name
-    if self.role == 'org'
-      org_name.capitalize
-    else
-      first_name.capitalize + ' ' + last_name.capitalize
-    end
+    role == 'org' ? org_name.capitalize : first_name.capitalize + ' ' + last_name.capitalize
   end
 
-  # TODO: re-code overlapping stays as a custom validation in the stay model, i.e. when a stay's status is updated to "confirmed", the validation denies all other stays.
-  def overlapping_pending_stays stay
+  # TODO: re-code overlapping stays as a custom validation in the stay model, i.e. when a stay's status is updated to 'confirmed', the validation denies all other stays.
+  def overlapping_pending_stays(stay)
     p_stays = pending_stays.reject do |other_stay|
       other_stay.id == stay.id
     end
 
-    if p_stays.length < 1
-      return []
-    end
+    return [] if p_stays.empty?
 
     overlapping_stays_arr = []
 
@@ -121,32 +103,27 @@ class User < ActiveRecord::Base
     stays_as_fosterer.where(status: 'pending')
   end
 
-
   def reset_token!
-    self.session_token = SecureRandom.urlsafe_base64(16)
-    self.save!
-    self.session_token
+    session_token = SecureRandom.urlsafe_base64(16)
+    save
+    session_token
   end
 
   def valid_password?(password)
-    BCrypt::Password.new(self.password_digest).is_password?(password)
+    BCrypt::Password.new(password_digest).is_password?(password)
   end
 
   def org?
-    role === 'org'
+    role == 'org'
   end
 
   private
-  
+
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
   end
 
-  def overlapping_stays? stay1, stay2
-    if stay1.check_in_date <= stay2.check_out_date or stay1.check_out_date >= stay2.check_in_date
-      true
-    else
-      false
-    end
+  def overlapping_stays?(stay1, stay2)
+    stay1.check_in_date <= stay2.check_out_date || stay1.check_out_date >= stay2.check_in_date
   end
 end

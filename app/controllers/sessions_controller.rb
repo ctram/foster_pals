@@ -3,10 +3,10 @@ require_relative '../helpers/application_helper'
 
 class SessionsController < ApplicationController
   before_action :redirect_to_front_if_not_signed_in, except: [:new, :create, :destroy, :sign_in_as_guest]
-  skip_before_filter :verify_authenticity_token, :only => [:destroy]
+  skip_before_filter :verify_authenticity_token, only: [:destroy]
 
   def new
-      render layout: 'static_pages'
+    render layout: 'static_pages'
   end
 
   def create
@@ -17,13 +17,11 @@ class SessionsController < ApplicationController
 
     if user
       sign_in(user)
-      user_id = user.id
-      user_role = user.class.to_s.downcase + 's'
-      redirect_to "/"
-    else
-      flash.now[:errors] = ["Invalid username or password"]
-      render 'new', layout: 'static_pages'
+      return redirect_to '/'
     end
+
+    flash.now[:errors] = ['Invalid username or password']
+    render 'new', layout: 'static_pages'
   end
 
   def destroy
@@ -43,42 +41,39 @@ class SessionsController < ApplicationController
     user2 = Fabricate :user
 
     [user1, user2].each do |user|
-      user.org_name = "Guest Rescue Group"
+      user.org_name = 'Guest Rescue Group'
       user.first_name = 'Gus'
       user.last_name = 'Guest'
-      image_url = ApplicationHelper.random_profile_image_url
 
-      image = Fabricate(
+      Fabricate(
         :image,
         imageable_id: user.id,
         imageable_type: 'User',
-        thumb_url: image_url
+        thumb_url: ApplicationHelper.random_profile_image_url
       )
 
       other_user = (user == user1 ? user2 : user1)
 
       # Set animals with requests for fostering.
       5.times do
-        
         animal = Fabricate(
           :animal,
           org_id: other_user.id,
-          fosterer_id: user.id,
+          fosterer_id: user.id
         )
 
-        image = Fabricate(
+        Fabricate(
           :image,
           imageable_id: animal.id,
-          imageable_type: 'Animal'
+          imageable_type: 'Animal',
+          thumb_url: ApplicationHelper.random_animal_image
         )
-        image.thumb_url = ApplicationHelper.random_animal_image
-        image.save
 
         stay = Fabricate(
           :stay,
           status: 'pending',
           org_id: other_user.id,
-          fosterer_id: user.id,
+          fosterer_id: user.id
         )
 
         Fabricate(
@@ -90,24 +85,24 @@ class SessionsController < ApplicationController
 
       # Set animals in roster.
       5.times do
-        animal = Fabricate(
+        Fabricate(
           :animal,
           org_id: user.id,
-          fosterer_id: other_user.id,
+          fosterer_id: other_user.id
         )
 
-        image = Fabricate(
+        random_animal_url = ApplicationHelper.random_animal_image
+        Fabricate(
           :image,
           imageable_id: animal.id,
-          imageable_type: 'Animal'
+          imageable_type: 'Animal',
+          thumb_url: random_animal_url,
+          url: random_animal_image
         )
-        image.thumb_url = ApplicationHelper.random_animal_image
-        image.url = image.thumb_url
-        image.save
       end
     end
 
     sign_in(user1)
-    redirect_to "/"
+    redirect_to '/'
   end
 end

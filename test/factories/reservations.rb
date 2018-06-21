@@ -1,6 +1,3 @@
 FactoryGirl.define do
-  factory :reservation do
-    
-  end
-
+  factory :reservation
 end

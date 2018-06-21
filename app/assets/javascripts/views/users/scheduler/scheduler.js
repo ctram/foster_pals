@@ -52,13 +52,12 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   },
 
   checkDates: function() {
+    var _this = this;
     var selectedAnimals = $('.chosen-animal');
     var animalIds = [];
-
     var checkInDate = new Date($('#check-in').val());
     var checkOutDate = new Date($('#check-out').val());
     var indefiniteStay = $('#indefinite-stay-checkbox').prop('checked');
-
     var error = this.validate(checkInDate, checkOutDate, indefiniteStay);
 
     if (error) {
@@ -74,53 +73,37 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     checkInDate = checkInDate.toISOString();
 
     if (indefiniteStay) {
-      var checkOutDate = '';
+      checkOutDate = '';
     } else {
       checkOutDate = checkOutDate.toISOString();
     }
 
     this.animals = new FosterPals.Collections.Animals();
-
-    successCallback = function(model) {
-      var animalId = model['id'];
-      var animal = FosterPals.Collections.animals.getOrFetch(animalId);
-      this.animals.add(animal);
-    }.bind(this);
-
-    errorCallback = function(res) {
-      toastr.error(res.responseText);
-    }.bind(this);
-
     this.reservations = new FosterPals.Collections.Reservations();
 
-    reservationSuccessCallback = function(model) {
+    var reservationSuccessCallback = function(model) {
       this.reservations.add(model);
     }.bind(this);
-
-    var animalId;
-    var checkOutDate;
 
     var reservationPromises = [];
 
     for (var i = 0; i < animalIds.length; i++) {
       animalId = animalIds[i];
 
-      resAttrs = {
-        animal_id: animalId
-      };
-
       reservationPromises.push(
         $.ajax('api/reservations', {
           method: 'post',
-          data: { reservation: resAttrs },
+          data: {
+            reservation: {
+              animal_id: animalId
+            }
+          },
           dataType: 'json',
           success: reservationSuccessCallback
         })
       );
     }
-
-    var _this = this;
-
+    
     Promise.all(reservationPromises)
       .then(function() {
         var reservations = [];
@@ -131,22 +114,28 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
           reservations.push(res);
         }
 
-        stayAttrs = {
-          reservations: reservations,
-          check_in_date: checkInDate,
-          check_out_date: checkOutDate,
-          org_id: CURRENT_USER_ID,
-          fosterer_id: _this.model.escape('id'),
-          status: 'pending'
-        };
-
         // TODO: should be ajax to make reservations with an empty stay.
         return $.ajax('/api/stays', {
-          data: { stay: stayAttrs },
+          data: {
+            stay: {
+              reservations: reservations,
+              check_in_date: checkInDate,
+              check_out_date: checkOutDate,
+              org_id: CURRENT_USER_ID,
+              fosterer_id: _this.model.escape('id'),
+              status: 'pending'
+            }
+          },
           method: 'post',
           dataType: 'json',
-          success: successCallback,
-          error: errorCallback
+          success: function(model) {
+            var animalId = model['id'];
+            var animal = FosterPals.Collections.animals.getOrFetch(animalId);
+            this.animals.add(animal);
+          }.bind(this),
+          error: function(res) {
+            toastr.error(res.responseText);
+          }
         });
       })
       .then(function() {
@@ -161,7 +150,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
   },
 
   showConfirmation: function() {
-    animalRosterSelectorView = this.subviews()._wrapped['.dates-picker-hook']._wrapped[0];
+    var animalRosterSelectorView = this.subviews()._wrapped['.dates-picker-hook']._wrapped[0];
     this.removeSubview('.dates-picker-hook', animalRosterSelectorView);
     var confirmationView = new FosterPals.Views.Confirmation({
       collection: this.reservations

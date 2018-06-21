@@ -1,10 +1,19 @@
 FosterPals.Collections.addFormImages = new FosterPals.Collections.Images();
 
 FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
-  initialize: function(options) {
+  template: JST['animal_roster/add_animal/add_animal_form'],
+
+  className: 'add-animal-form-view',
+
+  events: {
+    'click button.add-animal-btn': 'addAnimal',
+    'click button.add-image-btn': 'addImage'
+  },
+
+  initialize: function (options) {
     this.user = options.model;
     this.animals = options.animals;
-    this.imageSetId = randomString(25, 'aA#');
+    this.imageSetId = FosterPals.helpers.randomString(25, 'aA#');
 
     this.images = FosterPals.Collections.addFormImages;
 
@@ -13,15 +22,6 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     });
     this.addSubview('div.image-list', listOfImagesView);
     this.listenTo(this.images, 'add', this.render);
-  },
-
-  template: JST['animal_roster/add_animal/add_animal_form'],
-
-  className: 'add-animal-form-view',
-
-  events: {
-    'click button.add-animal-btn': 'addAnimal',
-    'click button.add-image-btn': 'addImage'
   },
 
   addAnimal: function(event) {
@@ -36,39 +36,39 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     var attrs = animal.animal;
     attrs.image_set_id = this.imageSetId;
 
-    var successCallback = function(model, response, options) {
-      var animal = new FosterPals.Models.Animal(attrs);
-      this.animals.add(animal, { merge: true });
-      location.reload(true);
-    }.bind(this);
-
-    var errorCallback = function(response, responseText, options) {
-      var errorsView = new FosterPals.Views.ValidationErrors({
-        response: response
-      });
-      this.addSubview('.errors-hook', errorsView, 'prepend');
-    }.bind(this);
-
     $.ajax('/api/animals', {
       data: animal,
       method: 'POST',
-      success: successCallback,
-      error: errorCallback
+      success: function(model) {
+        debugger;
+        var animal = new FosterPals.Models.Animal(attrs);
+        this.animals.add(animal, { merge: true });
+        location.reload(true);
+      }.bind(this),
+      error: function(response) {
+        var errorsView = new FosterPals.Views.ValidationErrors({
+          response: response
+        });
+        this.addSubview('.errors-hook', errorsView, 'prepend');
+      }.bind(this)
     });
   },
 
   addImage: function(e) {
     e.preventDefault();
-    var image = new FosterPals.Models.Image();
     cloudinary.openUploadWidget(
       CLOUDINARY_OPTIONS,
       function(error, result) {
+        debugger
+        if (error) {
+          return console.log(error.message);
+        }
         var data = result[0];
-        image.set({
+        var image = new FosterPals.Models.Image({
           url: data.url,
           thumb_url: data.thumbnail_url,
-          imageable_id: id,
-          image_set_id: this.imageSetId
+          image_set_id: this.imageSetId,
+          imageable_id: this.user.id
         });
         image.save(
           {},

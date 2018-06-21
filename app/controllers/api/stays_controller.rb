@@ -12,8 +12,8 @@ class Api::StaysController < ApplicationController
   end
 
   def create
-    fosterer_id, org_id, indefinite_stay, status, reservations, check_in_date, check_out_date = stay_params.values_at(:fosterer_id, :org_id, :indefinite_stay, :status, :reservations, :check_in_date, :check_out_date)
-    
+    fosterer_id, org_id, status, reservations, check_in_date, check_out_date = stay_params.values_at(:fosterer_id, :org_id, :status, :reservations, :check_in_date, :check_out_date)
+
     data = {
       fosterer_id: fosterer_id,
       org_id: org_id,
@@ -21,18 +21,16 @@ class Api::StaysController < ApplicationController
       check_in_date: Date.strptime(check_in_date.split('T').first, '%Y-%m-%d'),
       check_out_date: !check_out_date.empty? && Date.strptime(check_out_date.split('T').first, '%Y-%m-%d') || nil
     }
-    
-    @stay = Stay.create(data)
 
-    if @stay.save
-      reservations.each do |k, res|
-        animal_id =  res[:animal_id]
-        Reservation.create(animal_id: animal_id, stay_id: @stay.id)
-      end
-      render :show
-    else
-      render json: @stay.errors.full_messages, status: 422
+    @stay = Stay.create!(data)
+
+    render(json: @stay.errors.full_messages, status: 422) unless @stay
+
+    reservations.each do |_k, res|
+      animal_id =  res[:animal_id]
+      Reservation.create(animal_id: animal_id, stay_id: @stay.id)
     end
+    render :show
   end
 
   def update
@@ -42,8 +40,7 @@ class Api::StaysController < ApplicationController
       if params[:stay][:denyOthers]
         overlapping_stays_arr = current_user.overlapping_pending_stays @stay
         overlapping_stays_arr.each do |stay|
-          stay.status = 'denied'
-          stay.save
+          stay.update(status: 'denied')
         end
       end
       render :show
@@ -54,7 +51,7 @@ class Api::StaysController < ApplicationController
 
   def destroy
     @stay = Stay.find(params[:id])
-    @stay.destroy()
+    @stay.destroy
     render :show
   end
 
@@ -69,12 +66,11 @@ class Api::StaysController < ApplicationController
       :check_in_date,
       :check_out_date,
       :status,
-      reservations: 
-      [ 
-        :animal_id, 
-        :stay_id, 
-        animal: [ 
-          :org_id, :name, :color, :weight, :species, :sex, :breed, :main_image_thumb_url, :main_image_url, :fosterer_id, :id 
+      reservations: [
+        :animal_id,
+        :stay_id,
+        animal: %i[
+          org_id name color weight species sex breed main_image_thumb_url main_image_url fosterer_id id
         ]
       ]
     )
