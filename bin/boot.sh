@@ -1,0 +1,1 @@
+bundle && rails db:reset && rails server -p $PORT

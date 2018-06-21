@@ -1,1 +1,0 @@
-bundle && rails db:migrate && rails server -p $PORT
