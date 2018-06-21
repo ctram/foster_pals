@@ -88,7 +88,7 @@ module ApplicationHelper
     path + image
   end
 
-  def self.postal_address_from_lat_and_long(lat, long)
+  def self.address_from_lat_and_long(lat, long)
     api_key = ENV['GOOGLE_MAPS_API_KEY']
     gmaps_api_url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='
     gmaps_api_url += lat.to_s + ',' + long.to_s + '&key=' + api_key
@@ -105,14 +105,22 @@ module ApplicationHelper
     address
   end
 
-  def self.set_lat_and_long_from_zipcode(zipcode)
+  def self.save_lat_and_long_from_zipcode(user)
     num_tries = 0
     num_limit_tries = 500
 
     begin
-      lat, long = lat_and_long_from_zipcode(zip_code).values_at :lat, :long
-      user.update_attributes(lat: lat, long: long)
-      set_postal_address_from_lat_and_long user
+      lat, long = lat_and_long_from_zipcode(user.zip_code).values_at :lat, :long
+      address = address_from_lat_and_long user.lat, user.long
+      raise 'address incomplete' if address_valid?(address)
+
+      user.update_attributes(
+        street_address: "#{address.street_number} #{address.route}", 
+        city: address.locality,
+        state: address.administrative_area_level_1,
+        lat: lat, 
+        long: long
+      )
     rescue StandardError
       raise 'latitude and longitude data cannot be set' if num_limit_tries == num_tries
       user.update_attributes(
@@ -142,9 +150,9 @@ module ApplicationHelper
     { lat: lat, long: long }
   end
   
-  def self.postal_address_valid?(postal_address = {})
-    return false unless %w[street_number street_address route locality administrative_area_level_1 postal_code ].all? do |key|
-      postal_address.key?(key) && postal_address[key]
+  def self.address_valid??(address = {})
+    return false unless %w[street_number route locality administrative_area_level_1 postal_code ].all? do |key|
+      address.key?(key) && address[key]
     end
     true
   end
