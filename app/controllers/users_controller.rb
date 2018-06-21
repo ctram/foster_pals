@@ -1,7 +1,6 @@
 require_relative '../helpers/application_helper'
 
 class UsersController < ApplicationController
-  before_action :complete_attributes_for_user_creation, only: [:create]
 
   def new
     @user = User.new
@@ -9,18 +8,21 @@ class UsersController < ApplicationController
   end
 
   def create
+    if user_params[:user][:role] == 'fosterer'
+      user_params[:user][:org_name] = 'NOT_ORG'
+    end
+
     @user = User.create(user_params)
-    @user = save_lat_and_long_from_zip_code @user
+    ApplicationHelper.create_lat_and_long_for_user @user
 
     if @user.save
-      image = Fabricate(
+      Fabricate(
         :image,
         url: ApplicationHelper.random_profile_image_url,
         thumb_url: ApplicationHelper.random_profile_image_url,
         imageable_id: @user.id,
         imageable_type: 'User'
       )
-      
       redirect_to new_session_url
     else
       flash.now[:errors] = @user.errors.full_messages
@@ -45,11 +47,4 @@ class UsersController < ApplicationController
       :num_animals_willing_to_foster
     )
   end
-
-  def complete_attributes_for_user_creation
-    if params[:user][:role] == 'fosterer'
-      params[:user][:org_name] = 'NOT_ORG'
-    end
-  end
-
 end
