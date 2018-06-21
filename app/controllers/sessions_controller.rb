@@ -66,7 +66,7 @@ class SessionsController < ApplicationController
           :image,
           imageable_id: animal.id,
           imageable_type: 'Animal',
-          thumb_url: ApplicationHelper.random_animal_image
+          thumb_url: ApplicationHelper.random_animal_image_url
         )
 
         stay = Fabricate(
@@ -85,22 +85,23 @@ class SessionsController < ApplicationController
 
       # Set animals in roster.
       5.times do
-        Fabricate(
+        animal = Fabricate(
           :animal,
           org_id: user.id,
           fosterer_id: other_user.id
         )
 
-        random_animal_url = ApplicationHelper.random_animal_image
+        random_animal_image_url = ApplicationHelper.random_animal_image_url
         Fabricate(
           :image,
           imageable_id: animal.id,
           imageable_type: 'Animal',
-          thumb_url: random_animal_url,
-          url: random_animal_image
+          thumb_url: random_animal_image_url,
+          url: random_animal_image_url
         )
       end
     end
+    
 
     sign_in(user1)
     redirect_to '/'

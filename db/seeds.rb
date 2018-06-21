@@ -31,7 +31,7 @@ carl.main_image_thumb_url = ApplicationHelper.ensure_image_url_not_broken carl.m
 
 # Animals for Carl as a potential fosterer
 1.times do
-  random_image = ApplicationHelper.random_animal_image
+  random_image = ApplicationHelper.random_animal_image_url
 
   animal = Fabricate(
     :animal,
@@ -61,7 +61,7 @@ end
 
 # Animals for Carl as org
 1.times do
-  random_image = ApplicationHelper.random_animal_image
+  random_image = ApplicationHelper.random_animal_image_url
 
   animal = Fabricate(
     :animal, org_id: carl.id
@@ -82,7 +82,7 @@ fred.main_image_thumb_url = ApplicationHelper.ensure_image_url_not_broken(fred.m
 
 # Animals for Fred as a potential fosterer
 1.times do
-  random_image = ApplicationHelper.random_animal_image
+  random_image = ApplicationHelper.random_animal_image_url
 
   animal = Fabricate(
     :animal,
@@ -109,7 +109,7 @@ end
 
 # Animals for Fred as org
 1.times do
-  random_image = ApplicationHelper.random_animal_image
+  random_image = ApplicationHelper.random_animal_image_url
 
   animal = Fabricate(
     :animal, org_id: fred.id

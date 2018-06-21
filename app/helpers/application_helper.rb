@@ -35,7 +35,7 @@ module ApplicationHelper
     image_url
   end
 
-  def self.random_animal_image
+  def self.random_animal_image_url
     path = 'assets/dogs/'
     image = [
       '035bbe68fe79229568cab6abcb5232a9.jpg',
