@@ -102,7 +102,7 @@ module ApplicationHelper
 
     response = JSON.parse(Net::HTTP.get(uri))
     puts "response is #{response}"
-    raise(NoResponseError, 'no response from google maps') if response.nil?
+    raise(NoResponseError, 'bad response from google maps') if response.nil? || response['results'].empty?
 
     response['results'].first['address_components'].each do |component|
       type = component['types'].first
