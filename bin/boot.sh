@@ -1,1 +1,1 @@
-bundle && DISABLE_DATABASE_ENVIRONMENT_CHECK=1 rails db:reset && rails server -p $PORT
+bundle && rails db:migrate && rails server -p $PORT
