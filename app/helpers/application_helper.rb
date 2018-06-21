@@ -122,18 +122,15 @@ module ApplicationHelper
     response = JSON.parse(Net::HTTP.get(uri))
     raise(GoogleMapsGetLatLongError, 'no latitude and longitude data found for given postal address') if response['status'] == 'ZERO_RESULTS'
     {
-      lat: response['results'].first['geometry']['location']['lat'], 
-      long: response['results'].first['geometry']['location']['lng'] 
+      lat: response['results'].first['geometry']['location']['lat'],
+      long: response['results'].first['geometry']['location']['lng']
     }
   end
 
   # @param address [Hash]
   # @return [Boolean]
   def self.address_valid?(address = {})
-    puts "need these keys: street_number route locality administrative_area_level_1 postal_code"
-    puts "keys are actually: #{address.keys}"
-
-    %w[street_number route locality administrative_area_level_1 postal_code ].all? do |key|
+    %w[street_number route locality administrative_area_level_1 postal_code].all? do |key|
       address.key?(key) && address[key]
     end
   end
@@ -146,16 +143,13 @@ module ApplicationHelper
     begin
       lat, long = lat_and_long_from_zip_code(user.zip_code).values_at :lat, :long
       address = address_from_lat_and_long(lat, long)
-      puts "end of begin block"
-    rescue GoogleMapsGetLatLongError, IncompleteAddressError, GoogleMapsBadResponseError => e
-      puts "there was an error from the rescue #{e}"
+    rescue GoogleMapsGetLatLongError, IncompleteAddressError, GoogleMapsBadResponseError
       user.update_attributes(zip_code: Faker::Address.zip_code)
       num_tries += 1
       raise('cannot generate latitude and longitude') if num_tries == num_tries_limit
       retry
     end
-    puts "last thing, address is #{address}"
-    user.update_attributes( 
+    user.update_attributes(
       street_address: "#{address['street_number']} #{address['route']}",
       city: address['locality'],
       state: address['administrative_area_level_1'],
