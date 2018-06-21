@@ -105,12 +105,12 @@ module ApplicationHelper
     address
   end
 
-  def self.save_lat_and_long_from_zipcode(user)
+  def self.save_lat_and_long_from_zip_code(user)
     num_tries = 0
     num_limit_tries = 500
 
     begin
-      lat, long = lat_and_long_from_zipcode(user.zip_code).values_at :lat, :long
+      lat, long = lat_and_long_from_zip_code(user.zip_code).values_at :lat, :long
       address = address_from_lat_and_long user.lat, user.long
       raise 'address incomplete' if address_valid?(address)
 
@@ -133,13 +133,13 @@ module ApplicationHelper
   end
 
   # Sets user's latitude and longitude based on the user's postal address
-  # @param zipcode [Integer]
+  # @param zip_code [Integer]
   # @return [Hash]
-  def self.lat_and_long_from_zipcode(zipcode)
+  def self.lat_and_long_from_zip_code(zip_code)
     # Generate lat and long data for all users
     api_key = ENV['GOOGLE_MAPS_API_KEY']
     gmaps_api_url = 'https://maps.googleapis.com/maps/api/geocode/json?address='
-    complete_url = gmaps_api_url + "+#{zipcode}" + '&key=' + api_key
+    complete_url = gmaps_api_url + "+#{zip_code}" + '&key=' + api_key
     uri = URI(complete_url)
     response = JSON.parse(Net::HTTP.get(uri))
     if response['status'] == 'ZERO_RESULTS'

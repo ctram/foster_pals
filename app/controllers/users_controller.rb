@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    @user = save_lat_and_long_from_zipcode @user
+    @user = save_lat_and_long_from_zip_code @user
 
     if @user.save
       image = Fabricate(
