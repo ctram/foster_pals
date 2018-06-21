@@ -1,1 +1,1 @@
-bundle && rails db:reset && rails server -p $PORT
+ DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle && rails db:reset && rails server -p $PORT
