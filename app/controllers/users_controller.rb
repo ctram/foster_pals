@@ -8,8 +8,16 @@ class UsersController < ApplicationController
 
   def create
     begin
-      @user = User.create!(user_params)
-    rescue StandardError
+      @user = User.create(user_params)
+    rescue ActiveRecord::RecordNotUnique
+      flash.now[:alert] = ['Email must be unique']
+    rescue StandardError => e
+      flash.now[:alert] = [e]
+    end
+
+    return render(:new) unless flash.alert.nil? || flash.alert.empty?
+
+    unless @user.errors.full_messages.empty?
       flash.now[:alert] = @user.errors.full_messages
       return render :new
     end
