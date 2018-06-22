@@ -7,26 +7,24 @@ class UsersController < ApplicationController
   end
 
   def create
-    if user_params[:user][:role] == 'fosterer'
-      user_params[:user][:org_name] = 'NOT_ORG'
+    begin
+      @user = User.create!(user_params)
+    rescue StandardError
+      flash.now[:alert] = @user.errors.full_messages
+      return render :new
     end
 
-    @user = User.create(user_params)
     ApplicationHelper.create_lat_and_long_for_user(@user)
 
-    if @user.save
-      Fabricate(
-        :image,
-        url: ApplicationHelper.random_profile_image_url,
-        thumb_url: ApplicationHelper.random_profile_image_url,
-        imageable_id: @user.id,
-        imageable_type: 'User'
-      )
-      return redirect_to new_session_url
-    end
-
-    flash.now[:errors] = @user.errors.full_messages
-    render :new
+    Fabricate(
+      :image,
+      url: ApplicationHelper.random_profile_image_url,
+      thumb_url: ApplicationHelper.random_profile_image_url,
+      imageable_id: @user.id,
+      imageable_type: 'User'
+    )
+    flash.notice = ['Registration Successful! Please Sign In']
+    redirect_to new_session_url
   end
 
   private

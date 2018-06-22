@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
       return redirect_to '/'
     end
 
-    flash.now[:errors] = ['Invalid username or password']
+    flash.now[:alert] = ['Invalid username or password']
     render 'new', layout: 'static_pages'
   end
 
