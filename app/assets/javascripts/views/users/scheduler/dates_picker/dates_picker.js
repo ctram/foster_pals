@@ -46,10 +46,8 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     this.addSubview('.chosen-animals-hook', chosenAnimalView);
   },
 
-  lockCheckOutInput: function() {
-    var $checkOutGroup = $('.check-out-group');
-    $checkOutGroup.toggleClass('lock-check-out');
-    this.toggleCheckOutInput();
+  lockCheckOutInput: function(e) {
+    $('#check-out').val('').prop('disabled', $(e.target).prop('checked'))
   },
 
   removeChosenAnimal: function(event) {
@@ -80,11 +78,6 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
   toAnimalRoster: function() {
     Backbone.history.navigate('animal-roster', { trigger: true });
-  },
-
-  toggleCheckOutInput: function() {
-    var $checkOutInput = $('#check-out');
-    $checkOutInput.prop('disabled', $checkOutInput.prop('disabled'));
   },
 
   render: function() {
