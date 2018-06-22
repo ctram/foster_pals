@@ -26,5 +26,6 @@
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.1.0",
     "eslint-plugin-react": "^7.9.1"
-  }
+  },
+  "eslintIgnore": ["vendor/**/*"]
 }
