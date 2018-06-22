@@ -3,22 +3,6 @@ require_relative './errors'
 require 'net/http'
 
 module ApplicationHelper
-  def self.ensure_image_url_not_broken(url)
-    error_msg_str = 'Access Denied'
-    uri = URI(url)
-    if Net::HTTP.get(uri).include?(error_msg_str)
-      pictures = [
-        'assets/profile-picture.jpg',
-        'assets/profile-picture2.jpg',
-        'assets/profile-picture3.jpg'
-      ]
-      url = pictures.sample
-    end
-    url
-    # broken url sample:
-    # 'https://s3.amazonaws.com/uifaces/faces/twitter/fredfairclough/128.jpg'
-  end
-
   def self.random_profile_image_url
     # uifaces api for a random profile picture
     uri = URI('http://uifaces.com/api/v1/random')
@@ -26,14 +10,16 @@ module ApplicationHelper
     # If UI Faces' api is broken, then set the image_url to a default image.
     begin
       random_user = JSON.parse(Net::HTTP.get(uri))
-      image_url = random_user['image_urls']['epic']
-      image_url = ensure_image_url_not_broken(image_url)
+      random_user['image_urls']['epic']
     rescue StandardError
       # backup profile picture
       # TODO: add a stock profile pictures for humans
-      image_url = 'assets/profile-picture3.jpg'
+      rand_num = 0
+      while rand_num.zero?
+        rand_num = rand(17)
+      end
+      "assets/profile-picture#{rand_num}.jpg"
     end
-    image_url
   end
 
   def self.random_animal_image_url
