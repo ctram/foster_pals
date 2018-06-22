@@ -11,13 +11,9 @@
 // about supported directives.
 
 //= require jquery
-//= require jquery.fancybox
 //= require jquery_ujs
 //= require bootstrap
 
-////////////////////////////// require jquery-ui/effect-drop
-
-//= require moment
 //= require underscore
 //= require backbone
 //= require foster_pals

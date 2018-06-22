@@ -5,7 +5,6 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'figaro' # prevent environment access keys from getting pushed to git
 gem 'haml'
 gem 'jquery-ui-rails'
-gem 'momentjs-rails', '>= 2.8.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
