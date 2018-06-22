@@ -24,20 +24,13 @@ class Animal < ActiveRecord::Base
   has_many :reservations
   has_many :stays, through: :reservations
 
+  STOCK_IMAGE_URL = 'http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png'.freeze
+
   def main_image_url
-    if images.empty?
-      'url_to_default_image'
-    else
-      images.first.url
-    end
+    images.empty? ? ApplicationHelper.random_animal_image_url : images.first.url
   end
 
   def main_image_thumb_url
-    stock_image_url = 'http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png'
-    if images.empty? || images.first.thumb_url == stock_image_url
-      stock_image_url
-    else
-      images.first.thumb_url
-    end
+    images.empty? || images.first.thumb_url == STOCK_IMAGE_URL ? STOCK_IMAGE_URL : images.first.thumb_url
   end
 end
