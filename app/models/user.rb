@@ -95,8 +95,7 @@ class User < ActiveRecord::Base
   end
 
   def password=(password)
-    @password = password
-    self.password_digest = BCrypt::Password.create(password)
+    update(password_digest: BCrypt::Password.create(password))
   end
 
   def pending_stays
@@ -104,8 +103,7 @@ class User < ActiveRecord::Base
   end
 
   def reset_token!
-    session_token = SecureRandom.urlsafe_base64(16)
-    save
+    update(session_token: SecureRandom.urlsafe_base64(16))
     session_token
   end
 

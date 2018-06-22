@@ -1,5 +1,6 @@
 # TODO: move this into concerns?
 require_relative './errors'
+require 'net/http'
 
 module ApplicationHelper
   def self.ensure_image_url_not_broken(url)
