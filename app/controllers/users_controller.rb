@@ -23,11 +23,12 @@ class UsersController < ApplicationController
     end
 
     ApplicationHelper.create_lat_and_long_for_user(@user)
+    random_profile_image_url = ApplicationHelper.random_profile_image_url
 
     Fabricate(
       :image,
-      url: ApplicationHelper.random_profile_image_url,
-      thumb_url: ApplicationHelper.random_profile_image_url,
+      url: random_profile_image_url,
+      thumb_url: random_profile_image_url,
       imageable_id: @user.id,
       imageable_type: 'User'
     )
