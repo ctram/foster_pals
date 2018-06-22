@@ -12,7 +12,7 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
 
     $.ajax('/api/stays/' + stayId, {
       statusCode: {
-        200: function(stay, status) {
+        200: function(stay) {
           var animals = stay.animals;
           for (var i = 0; i < animals.length; i++) {
             var animal = new FosterPals.Models.Animal(animals[i]);
