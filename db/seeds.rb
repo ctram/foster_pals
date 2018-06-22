@@ -23,11 +23,14 @@ fred = Fabricate(
 
 #################################################
 # Carl's image
-Fabricate(
-  :image, imageable_id: carl.id, imageable_type: 'User', thumb_url: "https://s3.amazonaws.com/uifaces/faces/twitter/carlfairclough/128.jpg"
-)
+random_profile_image_url1 = ApplicationHelper.random_profile_image_url
 
-carl.main_image_thumb_url = ApplicationHelper.ensure_image_url_not_broken carl.main_image_thumb_url
+Fabricate(
+  :image, 
+  imageable_id: carl.id, 
+  imageable_type: 'User', 
+  thumb_url: random_profile_image_url1
+)
 
 # Animals for Carl as a potential fosterer
 1.times do
@@ -41,9 +44,6 @@ carl.main_image_thumb_url = ApplicationHelper.ensure_image_url_not_broken carl.m
   Fabricate(
     :image, imageable_id: animal.id, imageable_type: 'Animal', thumb_url: random_image, url: random_image
   )
-
-  # stock animal image - cartoon dog.
-  # thumb_url: "http://png-3.findicons.com/files/icons/367/ifunny/128/dog.png"
 
   stay = Fabricate(
     :stay,
@@ -73,12 +73,15 @@ end
 end
 ############################################
 
+random_animal_image_url2 = ApplicationHelper.random_animal_image_url
+
 # Fred's image
 Fabricate(
-  :image, imageable_id: fred.id, imageable_type: 'User', thumb_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/fredfairclough/128.jpg'
+  :image, 
+  imageable_id: fred.id, 
+  imageable_type: 'User', 
+  thumb_url: random_animal_image_url2
 )
-
-fred.main_image_thumb_url = ApplicationHelper.ensure_image_url_not_broken(fred.main_image_thumb_url)
 
 # Animals for Fred as a potential fosterer
 1.times do
