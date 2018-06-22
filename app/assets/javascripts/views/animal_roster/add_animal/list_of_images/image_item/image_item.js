@@ -3,7 +3,7 @@ FosterPals.Views.ImageItem = Backbone.CompositeView.extend({
 
   className: 'image-item',
 
-  initialize: function(options) {},
+  initialize: function() {},
 
   events: {},
 

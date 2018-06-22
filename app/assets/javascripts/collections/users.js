@@ -9,7 +9,7 @@ FosterPals.Collections.Users = Backbone.Collection.extend({
     if (!user) {
       user = new FosterPals.Models.User({id: id});
       user.fetch({
-        success: function (model, response, options) {
+        success: function () {
           users.add(user);
         }
       });

@@ -40,8 +40,7 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
       data: animal,
       method: 'POST',
       success: function(model) {
-        debugger;
-        var animal = new FosterPals.Models.Animal(attrs);
+        var animal = new FosterPals.Models.Animal(model);
         this.animals.add(animal, { merge: true });
         location.reload(true);
       }.bind(this),
@@ -59,7 +58,6 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
     cloudinary.openUploadWidget(
       CLOUDINARY_OPTIONS,
       function(error, result) {
-        debugger
         if (error) {
           return console.log(error.message);
         }

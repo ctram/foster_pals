@@ -9,8 +9,8 @@ FosterPals.Views.ValidationErrors = Backbone.CompositeView.extend({
     if (options.manualErrors) {
       this.errors = options.manualErrors;
     } else {
-      errorsStr = options.response.responseText;
-      errorsChars = errorsStr.split('');
+      var errorsStr = options.response.responseText;
+      var errorsChars = errorsStr.split('');
       errorsChars.pop();
       errorsChars.shift();
       this.errors = errorsChars.join('').split(',');

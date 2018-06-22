@@ -39,7 +39,7 @@ FosterPals.Views.Map = Backbone.CompositeView.extend({
     google.maps.event.addListener(
       marker,
       'mouseout',
-      function(event) {
+      function() {
         this.removeAllProfilePreviews();
       }.bind(this)
     );

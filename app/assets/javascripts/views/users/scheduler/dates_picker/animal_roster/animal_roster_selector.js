@@ -11,8 +11,6 @@ FosterPals.Views.AnimalRosterSelector = Backbone.CompositeView.extend({
     this.fosterer = options.fosterer;
 
     for (var i = 0; i < this.animals.length; i++) {
-      var animal = this.animals.models[i];
-      var name = animal.get('name');
       var animalSelectorItemView = new FosterPals.Views.AnimalSelectorItem({
         model: this.animals.models[i]
       });

@@ -1,5 +1,5 @@
 FosterPals.Views.AnimalProfile = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
   },
 
@@ -13,7 +13,6 @@ FosterPals.Views.AnimalProfile = Backbone.CompositeView.extend({
     });
     this.$el.html(content);
     this.attachSubviews();
-
     return this;
   },
 

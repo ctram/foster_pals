@@ -11,7 +11,7 @@ FosterPals.Collections.Stays = Backbone.Collection.extend({
         id: id
       });
       stay.fetch({
-        success: function(model, response, options) {
+        success: function(model) {
           stays.add(model);
         }
       });

@@ -87,7 +87,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
 
     var reservationPromises = [];
 
-    for (var i = 0; i < animalIds.length; i++) {
+    for (i = 0; i < animalIds.length; i++) {
       animalId = animalIds[i];
 
       reservationPromises.push(

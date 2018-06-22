@@ -3,7 +3,7 @@ FosterPals.Views.ScheduleAnimalItem = Backbone.CompositeView.extend({
 
   className: 'animal-with-res',
 
-  initialize: function(options) {
+  initialize: function() {
     this.listenTo(this.model, 'sync', this.render);
   },
 
@@ -13,7 +13,6 @@ FosterPals.Views.ScheduleAnimalItem = Backbone.CompositeView.extend({
     });
     this.$el.html(content);
     this.attachSubviews();
-
     return this;
   }
 });

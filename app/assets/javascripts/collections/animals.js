@@ -11,7 +11,7 @@ FosterPals.Collections.Animals = Backbone.Collection.extend({
         id: id
       });
       animal.fetch({
-        success: function(model, response, options) {
+        success: function(model) {
           animals.add(model);
         }
       });

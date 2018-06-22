@@ -1,5 +1,5 @@
 FosterPals.Views.ProfilePhoto = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
   },
 

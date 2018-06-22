@@ -63,7 +63,7 @@ FosterPals.Views.Profile = Backbone.CompositeView.extend({
       success: function() {
         $('.modal').modal('hide');
       },
-      error: function(model, response, options) {
+      error: function(_model, response) {
         console.error(response);
       }
     });

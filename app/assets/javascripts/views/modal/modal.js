@@ -1,5 +1,5 @@
 FosterPals.Views.Modal = Backbone.CompositeView.extend({
-  initialize: function (options) {
+  initialize: function () {
   },
 
   template: JST['modal/modal'],
@@ -13,8 +13,6 @@ FosterPals.Views.Modal = Backbone.CompositeView.extend({
     var content = this.template();
     this.$el.html(content);
     this.attachSubviews();
-
     return this;
   }
-
 });
