@@ -65,16 +65,12 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     if (this.numAnimalsSelected !== this.animalsWithoutStays.length) {
       $('.no-animals-to-select').addClass('d-none');
     }
-
-    var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
-      model: animal
-    });
     FosterPals.Events.trigger('addAnimal', animal);
     this.removeModelSubview('.chosen-animals-hook', animal);
   },
 
   showConfirmation: function(stays) {
-    animalRosterSelectorView = this.subviews('.animal-roster-hook');
+    var animalRosterSelectorView = this.subviews('.animal-roster-hook');
     animalRosterSelectorView.remove();
     var confirmationView = new FosterPals.Views.Confirmation({
       collection: stays
@@ -82,7 +78,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     this.addSubview('.animal-roster-hook', confirmationView);
   },
 
-  toAnimalRoster: function(event) {
+  toAnimalRoster: function() {
     Backbone.history.navigate('animal-roster', { trigger: true });
   },
 
