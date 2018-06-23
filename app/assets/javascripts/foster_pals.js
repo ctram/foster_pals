@@ -23,6 +23,7 @@ window.FosterPals = {
   },
   initialize: function() {
     window.$ = jQuery;
+    window.cloudinary = cloudinary;
     var currentUser = FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID);
     var router = new FosterPals.Routers.Router({
       $rootEl: jQuery('.app-container'),
