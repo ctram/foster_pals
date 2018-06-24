@@ -3,20 +3,18 @@ FosterPals.Collections.Users = Backbone.Collection.extend({
 
   model: FosterPals.Models.User,
 
-  getOrFetch: function (id) {
-    var users = this;
-    var user = users.get(id);
-    if (!user) {
-      user = new FosterPals.Models.User({id: id});
-      user.fetch({
-        success: function () {
-          users.add(user);
-        }
-      });
-    } else {
-      user.fetch();
+  getOrFetch: function(id) {
+    var _this = this;
+    var user = _this.get(id);
+
+    if (user) {
+      return Promise.resolve(user);
     }
-    return user;
+
+    return new FosterPals.Models.User({ id: id }).fetch().then(function(user) {
+      _this.add(user);
+      return _this.get(user.id);
+    });
   }
 });
 

@@ -24,19 +24,20 @@ window.FosterPals = {
   initialize: function() {
     window.$ = jQuery;
     window.cloudinary = cloudinary;
-    var currentUser = FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID);
-    var router = new FosterPals.Routers.Router({
-      $rootEl: jQuery('.app-container'),
-      users: FosterPals.Collections.users,
-      currentUser: currentUser
+    FosterPals.Collections.users.getOrFetch(CURRENT_USER_ID).then(function(user) {
+      var router = new FosterPals.Routers.Router({
+        $rootEl: jQuery('.app-container'),
+        users: FosterPals.Collections.users,
+        currentUser: user
+      });
+      window.FosterPals.router = router;
+      FosterPals.views.navbar = new FosterPals.Views.Navbar({
+        router: router
+      });
+      jQuery('.navbar-hook').html(FosterPals.views.navbar.render().$el);
+      _.extend(FosterPals.Events, Backbone.Events);
+      Backbone.history.start();
     });
-    window.FosterPals.router = router;
-    FosterPals.views.navbar = new FosterPals.Views.Navbar({
-      router: router
-    });
-    jQuery('.navbar-hook').html(FosterPals.views.navbar.render().$el);
-    _.extend(FosterPals.Events, Backbone.Events);
-    Backbone.history.start();
   },
   helpers: {
     randomString: function(length, chars) {

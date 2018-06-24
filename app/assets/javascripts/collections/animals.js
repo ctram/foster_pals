@@ -6,19 +6,19 @@ FosterPals.Collections.Animals = Backbone.Collection.extend({
   getOrFetch: function(id) {
     var animals = this;
     var animal = animals.get(id);
-    if (!animal) {
-      animal = new FosterPals.Models.Animal({
-        id: id
-      });
-      animal.fetch({
-        success: function(model) {
-          animals.add(model);
-        }
-      });
-    } else {
-      animal.fetch();
+
+    if (animal) {
+      return Promise.resolve(animal);
     }
-    return animal;
+
+    return new FosterPals.Models.Animal({
+      id: id
+    }).fetch({
+      success: function(model) {
+        animals.add(model);
+        return model;
+      }
+    });
   },
 
   /**

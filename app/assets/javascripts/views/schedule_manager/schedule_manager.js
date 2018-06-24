@@ -15,34 +15,33 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   },
 
   setupSubviews: function() {
-    this.stays_as_fosterer = this.model.stays_as_fosterer();
-    this.numConfirmedStays = 0;
-    this.numPendingStays = 0;
-    this.numDeniedStays = 0;
+    var _this = this;
+    _this.stays_as_fosterer = _this.model.stays_as_fosterer();
+    _this.numConfirmedStays = 0;
+    _this.numPendingStays = 0;
+    _this.numDeniedStays = 0;
 
-    this.stays_as_fosterer.each(
-      function(stay) {
-        var orgId = stay.get('org_id');
-        var org = FosterPals.Collections.users.getOrFetch(orgId);
-
+    _this.stays_as_fosterer.each(function(stay) {
+      var orgId = stay.get('org_id');
+      FosterPals.Collections.users.getOrFetch(orgId).then(function(org) {
         var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem({
           org: org,
           stay: stay
         });
 
-        // TODO: move some of this code into separate functions, too much going on in the intialize.
+        // TODO: move some of code into separate functions, too much going on in the intialize.
         if (stay.get('status') === 'confirmed') {
-          this.numConfirmedStays++;
-          this.addSubview('.scheduled-animals', scheduleManagerItemView);
+          _this.numConfirmedStays++;
+          _this.addSubview('.scheduled-animals', scheduleManagerItemView);
         } else if (stay.get('status') === 'pending') {
-          this.numPendingStays++;
-          this.addSubview('.pending-animals', scheduleManagerItemView);
+          _this.numPendingStays++;
+          _this.addSubview('.pending-animals', scheduleManagerItemView);
         } else {
-          this.numDeniedStays++;
-          this.addSubview('.denied-animals', scheduleManagerItemView);
+          _this.numDeniedStays++;
+          _this.addSubview('.denied-animals', scheduleManagerItemView);
         }
-      }.bind(this)
-    );
+      });
+    });
   },
 
   backToScheduleManager: function() {
@@ -50,55 +49,59 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   },
 
   promptConfirm: function(event) {
+    var _this = this;
     var $btn = $(event.currentTarget);
     var stayId = $btn.data('stay-id');
-    var stay = this.stays_as_fosterer.get(stayId);
-
+    var stay = _this.stays_as_fosterer.get(stayId);
     var orgId = stay.get('org_id');
 
-    var org = FosterPals.Collections.users.getOrFetch(orgId);
+    FosterPals.Collections.users.getOrFetch(orgId).then(function(org) {
+      $.ajax('/api/users/check-overlapping-stays', {
+        method: 'get',
+        dataType: 'json',
+        success: function(overlappingStays) {
+          overlappingStays = new FosterPals.Collections.Stays(overlappingStays);
+          var promptConfirmView = new FosterPals.Views.PromptConfirm({
+            stay: stay,
+            org: org,
+            overlappingStays: overlappingStays,
+            user: _this.model
+          });
 
-    var successCallback = function(overlappingStays) {
-      overlappingStays = new FosterPals.Collections.Stays(overlappingStays);
-      var promptConfirmView = new FosterPals.Views.PromptConfirm({
-        stay: stay,
-        org: org,
-        overlappingStays: overlappingStays,
-        user: this.model
+          $('.animal-stays').toggleClass('d-none');
+          _this.addSubview('.confirmation', promptConfirmView);
+        },
+        data: { stay_id: stayId }
       });
-
-      $('.animal-stays').toggleClass('d-none');
-      this.addSubview('.confirmation', promptConfirmView);
-    }.bind(this);
-
-    $.ajax('/api/users/check-overlapping-stays', {
-      method: 'get',
-      dataType: 'json',
-      success: successCallback,
-      data: { stay_id: stayId }
     });
   },
 
   promptDeny: function(event) {
+    var _this = this;
     var $btn = $(event.currentTarget);
     var stayId = $btn.data('stay-id');
-    var stay = this.stays_as_fosterer.get(stayId);
+    var stay = _this.stays_as_fosterer.get(stayId);
 
     var orgId = stay.get('org_id');
     var animalId = stay.get('animal_id');
+    var org;
 
-    var org = FosterPals.Collections.users.getOrFetch(orgId);
-    var animal = FosterPals.Collections.animals.getOrFetch(animalId);
-
-    var denyStayView = new FosterPals.Views.DenyStay({
-      stay: stay,
-      animal: animal,
-      org: org,
-      user: this.model
-    });
-
-    $('.animal-stays').toggleClass('d-none');
-    this.addSubview('.confirmation', denyStayView);
+    FosterPals.Collections.users
+      .getOrFetch(orgId)
+      .then(function(_org) {
+        org = _org;
+        return FosterPals.Collections.animals.getOrFetch(animalId);
+      })
+      .then(function(animal) {
+        var denyStayView = new FosterPals.Views.DenyStay({
+          stay: stay,
+          animal: animal,
+          org: org,
+          user: _this.model
+        });
+        $('.animal-stays').toggleClass('d-none');
+        _this.addSubview('.confirmation', denyStayView);
+      });
   },
 
   render: function() {

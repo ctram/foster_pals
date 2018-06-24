@@ -75,41 +75,34 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   userScheduler: function(id) {
+    var _this = this;
     if (id === null) {
       id = parseInt(this.currentUser.escape('id'));
     }
-    var user = this.users.getOrFetch(id);
-
-    var currentUserCallback = function() {
-      var animals = this.currentUser.animals_as_org();
-
+    _this.users.getOrFetch(id).then(function(user) {
       var userSchedulerView = new FosterPals.Views.UserScheduler({
         model: user,
-        currentUser: this.currentUser,
-        animals: animals
+        currentUser: _this.currentUser,
+        animals: _this.currentUser.animals_as_org()
       });
-      this._swapView(userSchedulerView);
-    }.bind(this);
-
-    this.currentUser.fetch({
-      success: currentUserCallback
+      _this._swapView(userSchedulerView);
     });
   },
 
   userShow: function(id) {
+    var _this = this;
     if (FosterPals.UserId !== null) {
       id = FosterPals.UserId;
       FosterPals.UserId = null;
     }
 
     if (id === null) {
-      id = parseInt(this.currentUser.escape('id'));
+      id = parseInt(_this.currentUser.escape('id'));
     }
 
-    var user = this.users.getOrFetch(id);
-    var userShowView = new FosterPals.Views.UserShow({ model: user });
-
-    this._swapView(userShowView);
+    _this.users.getOrFetch(id).then(function(user) {
+      _this._swapView(new FosterPals.Views.UserShow({ model: user }));
+    });
   },
 
   _swapView: function(view) {
@@ -126,5 +119,9 @@ FosterPals.Routers.Router = Backbone.Router.extend({
         window.location = '/session/new';
       }
     });
+  },
+
+  currentFragmentLocation: function () {
+    return Backbone.history.location.href.split('#')[1];
   }
 });

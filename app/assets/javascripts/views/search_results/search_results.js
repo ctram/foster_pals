@@ -51,12 +51,15 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
   },
 
   showProfilePreview: function(userId) {
-    var user = FosterPals.Collections.users.getOrFetch(userId);
-    var profilePreviewView = new FosterPals.Views.ProfilePreview({
-      model: user
+    var _this = this;
+    FosterPals.Collections.users.getOrFetch(userId).then(function(user) {
+      var profilePreviewView = new FosterPals.Views.ProfilePreview({
+        model: user
+      });
+      _this.profilePreviews.push(profilePreviewView);
+
+      _this.addSubview('.profile-preview-hook', profilePreviewView);
     });
-    this.profilePreviews.push(profilePreviewView);
-    this.addSubview('.profile-preview-hook', profilePreviewView);
   },
 
   startBounceAndHightlight: function(event) {
@@ -103,14 +106,11 @@ FosterPals.Views.SearchResults = Backbone.CompositeView.extend({
       FosterPals.state.mapFirstVisit && $('.modal-about-map').modal();
       FosterPals.state.mapFirstVisit = false;
       !FosterPals.state.tourOn && _this.mapView.initMap();
-      $('.modal-about-map').on(
-        'hidden.bs.modal',
-        function() {
-          FosterPals.state.mapFirstVisit = false;
-          FosterPals.state.tourOn = true;
-          FosterPals.moveTourForward();
-        }
-      );
+      $('.modal-about-map').on('hidden.bs.modal', function() {
+        FosterPals.state.mapFirstVisit = false;
+        FosterPals.state.tourOn = true;
+        FosterPals.moveTourForward();
+      });
     }, 0);
     return this;
   }

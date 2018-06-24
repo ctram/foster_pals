@@ -58,7 +58,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     var checkInDate = new Date($('#check-in').val());
     var checkOutDate = new Date($('#check-out').val());
     var indefiniteStay = $('#indefinite-stay-checkbox').prop('checked');
-    var error = this.validate(checkInDate, checkOutDate, indefiniteStay);
+    var error = _this.validate(checkInDate, checkOutDate, indefiniteStay);
 
     if (error) {
       return toastr.error(error);
@@ -78,12 +78,12 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       checkOutDate = checkOutDate.toISOString();
     }
 
-    this.animals = new FosterPals.Collections.Animals();
-    this.reservations = new FosterPals.Collections.Reservations();
+    _this.animals = new FosterPals.Collections.Animals();
+    _this.reservations = new FosterPals.Collections.Reservations();
 
     var reservationSuccessCallback = function(model) {
-      this.reservations.add(model);
-    }.bind(this);
+      _this.reservations.add(model);
+    };
 
     var reservationPromises = [];
 
@@ -103,7 +103,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
         })
       );
     }
-    
+
     Promise.all(reservationPromises)
       .then(function() {
         var reservations = [];
@@ -129,10 +129,10 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
           method: 'post',
           dataType: 'json',
           success: function(model) {
-            var animalId = model['id'];
-            var animal = FosterPals.Collections.animals.getOrFetch(animalId);
-            this.animals.add(animal);
-          }.bind(this),
+            FosterPals.Collections.animals.getOrFetch(model['id']).then(function(animal) {
+              _this.animals.add(animal);
+            });
+          },
           error: function(res) {
             toastr.error(res.responseText);
           }

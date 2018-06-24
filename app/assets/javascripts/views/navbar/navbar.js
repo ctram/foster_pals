@@ -47,9 +47,12 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   },
 
   render: function() {
+    FosterPals.router.currentFragmentLocation();
+    
     var content = this.template({
       tourOn: FosterPals.state.tourOn,
-      tourStep: FosterPals.state.tourStep
+      tourStep: FosterPals.state.tourStep,
+      currentFragmentLocation: FosterPals.router.currentFragmentLocation()
     });
     this.$el.html(content);
     return this;

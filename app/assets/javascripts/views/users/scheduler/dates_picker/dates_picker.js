@@ -24,47 +24,52 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   },
 
   addChosenAnimal: function(event) {
+    var _this = this;
     var $animalDiv = $($(event.currentTarget).children('[data-animal-id]')[0]);
     var animalId = parseInt($animalDiv.data('animal-id'));
-    var animal = this.animalsWithoutStays.getOrFetch(animalId);
-    var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
-      model: animal
+    _this.animalsWithoutStays.getOrFetch(animalId).then(function(animal) {
+      var chosenAnimalView = new FosterPals.Views.ChosenAnimal({
+        model: animal
+      });
+      _this.numAnimalsSelected += 1;
+
+      if (_this.numAnimalsSelected > 0) {
+        $('.no-animals-for-reservation').addClass('d-none');
+        $('#check-aval-btn').attr('disabled', false);
+      }
+
+      if (_this.numAnimalsSelected === _this.animalsWithoutStays.length) {
+        $('.no-animals-to-select').removeClass('d-none');
+      }
+
+      FosterPals.Events.trigger('removeAnimal', animal);
+      _this.addSubview('.chosen-animals-hook', chosenAnimalView);
     });
-
-    this.numAnimalsSelected += 1;
-
-    if (this.numAnimalsSelected > 0) {
-      $('.no-animals-for-reservation').addClass('d-none');
-      $('#check-aval-btn').attr('disabled', false);
-    }
-
-    if (this.numAnimalsSelected === this.animalsWithoutStays.length) {
-      $('.no-animals-to-select').removeClass('d-none');
-    }
-
-    FosterPals.Events.trigger('removeAnimal', animal);
-    this.addSubview('.chosen-animals-hook', chosenAnimalView);
   },
 
   lockCheckOutInput: function(e) {
-    $('#check-out').val('').prop('disabled', $(e.target).prop('checked'))
+    $('#check-out')
+      .val('')
+      .prop('disabled', $(e.target).prop('checked'));
   },
 
   removeChosenAnimal: function(event) {
+    var _this = this;
     var $div = $(event.currentTarget);
     var animalId = parseInt($div.data('animal-id'));
-    var animal = this.animalsWithoutStays.getOrFetch(animalId);
-    this.numAnimalsSelected -= 1;
+    _this.animalsWithoutStays.getOrFetch(animalId).then(function(animal) {
+      _this.numAnimalsSelected -= 1;
 
-    if (this.numAnimalsSelected === 0) {
-      $('.no-animals-for-reservation').removeClass('d-none');
-      $('#check-aval-btn').attr('disabled', true);
-    }
-    if (this.numAnimalsSelected !== this.animalsWithoutStays.length) {
-      $('.no-animals-to-select').addClass('d-none');
-    }
-    FosterPals.Events.trigger('addAnimal', animal);
-    this.removeModelSubview('.chosen-animals-hook', animal);
+      if (_this.numAnimalsSelected === 0) {
+        $('.no-animals-for-reservation').removeClass('d-none');
+        $('#check-aval-btn').attr('disabled', true);
+      }
+      if (_this.numAnimalsSelected !== _this.animalsWithoutStays.length) {
+        $('.no-animals-to-select').addClass('d-none');
+      }
+      FosterPals.Events.trigger('addAnimal', animal);
+      _this.removeModelSubview('.chosen-animals-hook', animal);
+    });
   },
 
   showConfirmation: function(stays) {
