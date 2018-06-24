@@ -53,13 +53,12 @@ FosterPals.Routers.Router = Backbone.Router.extend({
   },
 
   scheduleManager: function() {
-    this.currentUser.fetch({
-      success: function() {
-        var scheduleManagerView = new FosterPals.Views.ScheduleManager({
-          model: this.currentUser
-        });
-        this._swapView(scheduleManagerView);
-      }.bind(this)
+    var _this = this;
+    _this.currentUser.fetch().then(function(data) {
+      var scheduleManagerView = new FosterPals.Views.ScheduleManager({
+        model: _this.currentUser.set(data)
+      });
+      _this._swapView(scheduleManagerView);
     });
   },
 
@@ -121,7 +120,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
     });
   },
 
-  currentFragmentLocation: function () {
+  currentFragmentLocation: function() {
     return Backbone.history.location.href.split('#')[1];
   }
 });
