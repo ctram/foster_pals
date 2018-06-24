@@ -25,31 +25,32 @@ FosterPals.Views.AddAnimalForm = Backbone.CompositeView.extend({
   },
 
   addAnimal: function(event) {
-    event.preventDefault();
+    var _this = this;
     if (!$('#add-animal-form')[0].checkValidity()) {
       return;
     }
+    event.preventDefault();
 
     var $button = $(event.target);
     var $form = $button.closest('form');
     var animal = $form.serializeJSON();
     var attrs = animal.animal;
-    attrs.image_set_id = this.imageSetId;
+    attrs.image_set_id = _this.imageSetId;
 
     $.ajax('/api/animals', {
       data: animal,
       method: 'POST',
       success: function(model) {
         var animal = new FosterPals.Models.Animal(model);
-        this.animals.add(animal, { merge: true });
+        _this.animals.add(animal, { merge: true });
         location.reload(true);
-      }.bind(this),
+      },
       error: function(response) {
         var errorsView = new FosterPals.Views.ValidationErrors({
           response: response
         });
-        this.addSubview('.errors-hook', errorsView, 'prepend');
-      }.bind(this)
+        _this.addSubview('.errors-hook', errorsView, 'prepend');
+      }
     });
   },
 
