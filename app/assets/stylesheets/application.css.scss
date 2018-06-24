@@ -13,10 +13,8 @@
  */
 
  @import 'variables';
- @import 'animate';
- @import 'modal';
  @import 'bootstrap';
- @import './themes/darkly';
+ @import '../../../vendor/assets/stylesheets/themes/darkly';
  
  @import '**/*';
 
