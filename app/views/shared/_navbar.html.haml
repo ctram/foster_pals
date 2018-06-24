@@ -7,12 +7,12 @@
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.justify-content-end{id: "navbarSupportedContent"}
     %ul.navbar-nav
-      %li.nav-item
+      %li{ class: "nav-item #{@current_fragment_location == '/register' ? 'active' : '' }" }
         %a.nav-link{href: "/register"}
           Register
-      %li.nav-item
+      %li{ class: "nav-item #{@current_fragment_location == '/session/new' ? 'active' : '' }" }
         %a.nav-link{href:"/session/new"}
-          Login
+          Sign In
       %li.nav-item
         %a.nav-link{href:"/sign-in-as-guest"}
-          Login As Guest
+          Sign In As Guest

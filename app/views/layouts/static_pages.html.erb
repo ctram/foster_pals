@@ -4,7 +4,7 @@
   <%= render 'shared/helper_scripts' %>
   <body>
     <%= render partial: 'shared/flashes' %>
-    <%= render 'shared/navbar' %>
+    <%= render 'shared/navbar', locals: { current_fragment_location: @current_fragment_location } %>
     <main class="static-pages">
       <%= yield %>
     </main>

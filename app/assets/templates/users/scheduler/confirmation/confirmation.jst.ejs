@@ -4,10 +4,10 @@
   <% for (var i = 0; i < reservations.models.length; i++) { %>
     <% var animal = reservations.models[i].attributes.animal %>
       <div class="mb-5">
-        <img src="<%= animal.main_image_thumb_url %>">
-        <span class="strong">
+        <img class="img-fluid" src="<%= animal.main_image_thumb_url %>">
+        <strong class="ml-3">
           <%= animal.name %>
-        </span>
+        </strong>
       </div>
       <% } %>
 

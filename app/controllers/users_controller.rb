@@ -3,6 +3,7 @@ require_relative '../helpers/application_helper'
 class UsersController < ApplicationController
   def new
     @user = User.new
+    @current_fragment_location = '/register'
     render layout: 'static_pages'
   end
 
