@@ -1,9 +1,9 @@
-<div class="sidebar-info fixed-top">
+<div class="sidebar-info fixed-top pl-3">
   <h3 class="text-center">Search Results</h3>
   <hr/>
 </div>
 
-<div class="user-items px-3">
+<div class="user-items px-4">
   <% users.each(function (user) { %>
     <div class="user-item row" data-user-id="<%= user.escape("id") %>">
       <% var streetAddress = user.escape("street_address") %>
@@ -29,7 +29,7 @@
               </div>
 
               <div class="go-to-user-profile" data-user-id="<%= user.escape("id") %>">
-                <a class="go-to-user-profile__pal badge badge-primary">
+                <a class="go-to-user-profile__pal badge badge-light">
                   Go To Pal's Profile
                 </a>
               </div>
