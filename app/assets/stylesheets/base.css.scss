@@ -72,6 +72,10 @@ a {
     border: 1px solid $light-grey;
     background: $lightest-grey;
   }
+
+  .no-pointer & {
+    cursor: default !important;
+  }
 }
 
 @include media-breakpoint-up(xs) {
