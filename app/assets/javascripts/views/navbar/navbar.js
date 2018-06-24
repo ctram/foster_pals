@@ -17,18 +17,17 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
         this.invokeSearch(e);
       }.bind(this)
     );
+    this.currentFragmentLocation = FosterPals.router.currentFragmentLocation();
   },
 
-  clickLink: function(event) {
-    $('li').removeClass('active');
-    var $destLi = $(event.currentTarget.parentElement);
-    $destLi.addClass('active');
-
+  clickLink: function(e) {
     // Turn off tour if navigate away from map page.
     if (!FosterPals.state.mapFirstVisit) {
       $('.modal-about-map').modal('hide');
       FosterPals.shutdownTour();
     }
+    this.currentFragmentLocation = $(e.target).prop('href').split('#')[1];
+    this.render();
   },
 
   invokeSearch: function(event) {
@@ -47,12 +46,10 @@ FosterPals.Views.Navbar = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    FosterPals.router.currentFragmentLocation();
-    
     var content = this.template({
       tourOn: FosterPals.state.tourOn,
       tourStep: FosterPals.state.tourStep,
-      currentFragmentLocation: FosterPals.router.currentFragmentLocation()
+      currentFragmentLocation: this.currentFragmentLocation
     });
     this.$el.html(content);
     return this;
