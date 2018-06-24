@@ -10,10 +10,17 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
   },
 
   initialize: function() {
-    this.setupSubviews();
-    this.listenTo(this.stays_as_fosterer, 'sync', this.render);
+    var _this = this;
+    _this.setupSubviews().then(function() {
+      _this.render();
+    });
+    _this.listenTo(_this.stays_as_fosterer, 'sync', _this.render);
   },
 
+  /**
+   * @method setupSubviews attach all subviews related to stay requests.
+   * @return {Promise}
+   */
   setupSubviews: function() {
     var _this = this;
     _this.stays_as_fosterer = _this.model.stays_as_fosterer();
@@ -21,9 +28,17 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     _this.numPendingStays = 0;
     _this.numDeniedStays = 0;
 
-    _this.stays_as_fosterer.each(function(stay) {
-      var orgId = stay.get('org_id');
-      FosterPals.Collections.users.getOrFetch(orgId).then(function(org) {
+    var promises = _this.stays_as_fosterer.map(function(stay) {
+      return FosterPals.Collections.users.getOrFetch(stay.get('org_id')).then(function(org) {
+        return { stay: stay, org: org };
+      });
+    });
+
+    return Promise.all(promises).then(function(results) {
+      results.forEach(function(result) {
+        var stay = result.stay;
+        var org = result.org;
+
         var scheduleManagerItemView = new FosterPals.Views.ScheduleManagerItem({
           org: org,
           stay: stay
