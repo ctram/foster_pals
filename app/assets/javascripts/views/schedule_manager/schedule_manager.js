@@ -14,7 +14,6 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
     _this.setupSubviews().then(function() {
       _this.render();
     });
-    _this.listenTo(_this.stays_as_fosterer, 'sync', _this.render);
   },
 
   /**

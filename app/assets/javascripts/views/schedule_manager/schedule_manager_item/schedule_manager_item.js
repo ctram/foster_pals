@@ -4,26 +4,20 @@ FosterPals.Views.ScheduleManagerItem = Backbone.CompositeView.extend({
   className: 'schedule-manager-item-view px-3 py-4 mb-3 item-view',
 
   initialize: function(options) {
-    this.org = options.org;
-    this.stay = options.stay;
-    this.user = options.user;
+    var _this = this;
+    _this.org = options.org;
+    _this.stay = options.stay;
+    _this.user = options.user;
 
-    var stayId = this.stay.id;
-
-    $.ajax('/api/stays/' + stayId, {
-      statusCode: {
-        200: function(stay) {
-          var animals = stay.animals;
-          for (var i = 0; i < animals.length; i++) {
-            var animal = new FosterPals.Models.Animal(animals[i]);
-            this.addAnimalView(animal);
-          }
-        }.bind(this)
-      }
-    });
-
-    this.listenTo(this.org, 'sync', this.render);
-    this.listenTo(this.stay, 'sync', this.render);
+    $.ajax('/api/stays/' + _this.stay.id)
+      .then(function(stay) {
+        return stay.animals.forEach(function(animal) {
+          _this.addAnimalView(new FosterPals.Models.Animal(animal));
+        });
+      })
+      .then(function() {
+        return _this.render();
+      });
   },
 
   addAnimalView: function(animal) {

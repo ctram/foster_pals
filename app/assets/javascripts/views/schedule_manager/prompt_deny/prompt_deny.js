@@ -12,11 +12,6 @@ FosterPals.Views.DenyStay = Backbone.CompositeView.extend({
     this.stay = options.stay;
     this.animal = options.animal;
     this.org = options.org;
-    this.user = options.user;
-
-    this.listenTo(this.stay, 'sync', this.render);
-    this.listenTo(this.animal, 'sync', this.render);
-    this.listenTo(this.org, 'sync', this.render);
   },
 
   denyStay: function() {
