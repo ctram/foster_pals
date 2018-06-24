@@ -6,14 +6,12 @@ class SessionsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:destroy]
 
   def new
-    @current_fragment_location = '/session/new'
     render layout: 'static_pages'
   end
 
   def create
     email = params[:user][:email]
     password = params[:user][:password]
-
     user = User.find_by_credentials(email, password)
 
     if user
