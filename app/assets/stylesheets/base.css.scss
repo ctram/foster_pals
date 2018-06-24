@@ -21,7 +21,6 @@ textarea {
   cursor: pointer;
 }
 
-
 .errors-hook {
   position: relative;
 }
@@ -57,6 +56,22 @@ ul {
 
 .table-header {
   text-decoration: underline;
+}
+
+a {
+  &:hover {
+    text-decoration-line: none;
+  }
+}
+
+.item-view {
+  cursor: pointer;
+
+  &:hover {
+    border-radius: 2px;
+    border: 1px solid $light-grey;
+    background: $lightest-grey;
+  }
 }
 
 @include media-breakpoint-up(xs) {

@@ -4,16 +4,6 @@
   max-width: 10em;
 }
 
-.animal-item-view {
-  cursor: pointer;
-
-  &:hover {
-    border-radius: 2px;
-    border: 1px solid $dark-grey;
-    background: $dark-grey;
-  }
-}
-
 .reservations-header {
   color: $brand-green;
 }
