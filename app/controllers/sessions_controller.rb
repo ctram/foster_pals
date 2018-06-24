@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:destroy]
 
   def new
+    @current_fragment_location = '/session/new'
     render layout: 'static_pages'
   end
 
@@ -39,10 +40,6 @@ class SessionsController < ApplicationController
     user2 = Fabricate :user
 
     [user1, user2].each do |user|
-      user.org_name = 'Guest Rescue Group'
-      user.first_name = 'Gus'
-      user.last_name = 'Guest'
-
       Fabricate(
         :image,
         imageable_id: user.id,
