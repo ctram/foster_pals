@@ -1,0 +1,11 @@
+footer {
+  a {
+    color: $white !important;
+    text-decoration-line: none;
+
+    &:hover {
+      color: $white !important;
+      text-decoration-line: underline;
+    }
+  }
+}
