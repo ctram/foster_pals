@@ -1,24 +1,48 @@
 # FosterPals
+
+[Live link][fosterpals_live]
+
+[fosterpals_live]: https://fosterpals.herokuapp.com/
+
 FosterPals is an app inspired by Airbnb. FosterPals aims to bring together those who tirelessly rescue animals from kill shelters and those who have space in their homes to temporarily care for a rescue animal until it finds a forever home.
 
-Technologies used to build this application include:
+## Technologies used to build this application include:
 - Rails
 - Backbone.js
 - jQuery
 - jQuery-UI
 - Bootstrap
 
-[Live link][fosterpals_live]
+## Setup
 
-[fosterpals_live]: http://www.fosterpals.com
+**Third-Party Accounts Required:**
 
+- Google maps
+- Cloudinary
 
+**Environment Variables Required:**
+
+The following environment variables are required:
+
+`GOOGLE_MAPS_API_KEY` - To use Google maps feature.
+
+`CLOUDINARY_CLOUD_NAME` - To enable photo uploading and hosting.
+
+`CLOUDINARY_UPLOAD_PRESET` - To enable photo uploading and hosting.
+
+From within the project directory, run the following commands:
+
+```
+bundle install
+rails db:setup
+rails s
+```
+
+In browser, navigate to `localhost:3000`
 
 ## Minimum Viable Product
 
-  Users can:
-
-<!-- This is a Markdown checklist. Use it to keep track of your progress! -->
+Users can:
 
 - [x] Welcome Page
 - [x] Create accounts
@@ -33,11 +57,13 @@ Technologies used to build this application include:
 - [x] Rescue Organizations can keep track of confirmed and pending stays.
 
 ## Design Docs
-* [View Wireframes][views]
-* [DB schema][schema]
+
+- [View Wireframes][views]
+- [DB schema][schema]
 
 [views]: ./docs/views.md
 [schema]: ./docs/schema.md
+
 <!--
 ## Implementation Timeline
 
@@ -87,8 +113,8 @@ This phase create a search feature for Rescue Organizations to find nearby Foste
 
 [Details][phase-seven] -->
 
-
 ### Bonus Features (TBD)
+
 - [ ] Use slugs instead of user id numbers in the url
 - [ ] Mini google map of user's location on the user profile page
 - [x] Integration with Google maps to show locations of search results
