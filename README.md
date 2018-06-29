@@ -22,8 +22,6 @@ FosterPals is an app inspired by Airbnb. FosterPals aims to bring together those
 
 **Environment Variables Required:**
 
-The following environment variables are required:
-
 `GOOGLE_MAPS_API_KEY` - To use Google maps feature.
 
 `CLOUDINARY_CLOUD_NAME` - To enable photo uploading and hosting.
