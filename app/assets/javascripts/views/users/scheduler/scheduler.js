@@ -81,9 +81,6 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
     _this.animals = new FosterPals.Collections.Animals();
     _this.reservations = new FosterPals.Collections.Reservations();
 
-    var reservationSuccessCallback = function(model) {
-      _this.reservations.add(model);
-    };
 
     var reservationPromises = [];
 
@@ -99,7 +96,9 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
             }
           },
           dataType: 'json',
-          success: reservationSuccessCallback
+          success: function(model) {
+            _this.reservations.add(model);
+          }
         })
       );
     }
