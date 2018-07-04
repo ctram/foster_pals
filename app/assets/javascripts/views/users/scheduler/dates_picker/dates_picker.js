@@ -4,10 +4,11 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
   className: 'dates-picker',
 
   events: {
-    'click input#indefinite-stay-checkbox': 'lockCheckOutInput',
+    'click input#indefinite-stay-checkbox': 'toggleCheckoutInput',
     'click .animal-selector-item': 'addChosenAnimal',
     'click .chosen-animal': 'removeChosenAnimal',
-    'click .to-animal-roster-btn': 'toAnimalRoster'
+    'click .to-animal-roster-btn': 'toAnimalRoster',
+    'change form.dates-detail': 'updateSubmitButtonState'
   },
 
   initialize: function(options) {
@@ -47,10 +48,13 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
     });
   },
 
-  lockCheckOutInput: function(e) {
+  toggleCheckoutInput: function(e) {
+    const checked = $(e.target).prop('checked');
+
     $('#check-out')
       .val('')
-      .prop('disabled', $(e.target).prop('checked'));
+      .prop('disabled', checked);
+    $('#check-aval-btn').prop('disabled', !checked);
   },
 
   removeChosenAnimal: function(event) {
@@ -83,6 +87,17 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
   toAnimalRoster: function() {
     Backbone.history.navigate('animal-roster', { trigger: true });
+  },
+
+  areDatesValid: function () {
+    return $('#check-in').val() && ($('#check-out').val() || $('#indefinite-stay-checkbox').prop('checked'));
+  },
+
+  updateSubmitButtonState: function () {
+    if (this.areDatesValid()) {
+      return $('#check-aval-btn').prop('disabled', false);
+    }
+    return $('#check-aval-btn').prop('disabled', true);
   },
 
   render: function() {
