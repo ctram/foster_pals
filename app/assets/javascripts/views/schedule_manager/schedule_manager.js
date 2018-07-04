@@ -22,7 +22,7 @@ FosterPals.Views.ScheduleManager = Backbone.CompositeView.extend({
    */
   setupSubviews: function() {
     var _this = this;
-    _this.stays_as_fosterer = _this.model.stays_as_fosterer();
+    _this.stays_as_fosterer = _this.model.get('stays_as_fosterer');
     _this.numConfirmedStays = 0;
     _this.numPendingStays = 0;
     _this.numDeniedStays = 0;

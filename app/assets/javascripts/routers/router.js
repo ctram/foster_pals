@@ -19,7 +19,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
 
   animalRoster: function() {
     var currentUserCallback = function(currentUser) {
-      var animals = currentUser.animals_as_org();
+      var animals = currentUser.get('animals_as_org');
       var animalRosterView = new FosterPals.Views.AnimalRoster({
         model: this.currentUser,
         collection: animals
@@ -82,7 +82,7 @@ FosterPals.Routers.Router = Backbone.Router.extend({
       var userSchedulerView = new FosterPals.Views.UserScheduler({
         model: user,
         currentUser: _this.currentUser,
-        animals: _this.currentUser.animals_as_org()
+        animals: _this.currentUser.get('animals_as_org')
       });
       _this._swapView(userSchedulerView);
     });
