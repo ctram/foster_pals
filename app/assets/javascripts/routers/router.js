@@ -82,7 +82,6 @@ FosterPals.Routers.Router = Backbone.Router.extend({
       var userSchedulerView = new FosterPals.Views.UserScheduler({
         model: user,
         currentUser: _this.currentUser,
-        animals: _this.currentUser.get('animals_as_org')
       });
       _this._swapView(userSchedulerView);
     });

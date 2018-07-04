@@ -10,12 +10,10 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
 
   initialize: function(options) {
     this.currentUser = options.currentUser;
-    this.animals = options.animals;
 
     this.datesPickerView = new FosterPals.Views.DatesPicker({
       currentUser: this.currentUser,
       model: this.model,
-      animals: this.animals
     });
     this.addSubview('.dates-picker-hook', this.datesPickerView);
     this.listenTo(this.model, 'sync', this.render);
@@ -78,9 +76,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
       checkOutDate = checkOutDate.toISOString();
     }
 
-    _this.animals = new FosterPals.Collections.Animals();
     _this.reservations = new FosterPals.Collections.Reservations();
-
 
     var reservationPromises = [];
 
@@ -98,6 +94,7 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
           dataType: 'json',
           success: function(model) {
             _this.reservations.add(model);
+            _this.currentUser.fetch();
           }
         })
       );
@@ -128,9 +125,6 @@ FosterPals.Views.UserScheduler = Backbone.CompositeView.extend({
           method: 'post',
           dataType: 'json',
           success: function(model) {
-            FosterPals.Collections.animals.getOrFetch(model['id']).then(function(animal) {
-              _this.animals.add(animal);
-            });
           },
           error: function(res) {
             toastr.error(res.responseText);

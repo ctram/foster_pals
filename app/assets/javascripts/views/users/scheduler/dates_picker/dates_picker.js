@@ -13,7 +13,7 @@ FosterPals.Views.DatesPicker = Backbone.CompositeView.extend({
 
   initialize: function(options) {
     this.currentUser = options.currentUser;
-    this.animalsWithoutStays = options.animals.filterWithoutStays();
+    this.animalsWithoutStays = this.currentUser.get('animals_as_org').filterWithoutStays();
     this.fosterer = options.model;
     this.numAnimalsSelected = 0;
 
